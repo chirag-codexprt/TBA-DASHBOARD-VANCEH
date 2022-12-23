@@ -55,21 +55,22 @@ const PassWord = ({showPass,onClose}) => {
                 centered
 
             >
-                <Modal.Header closeButton className='border-0'>
-                    <Modal.Title className='fw-bolder'>Alterar senha</Modal.Title>
-                </Modal.Header>
                 <Modal.Body>
+                <Row>
+                    <Col md={9} className='fw-bolder fs-3 m-3'>Alterar senha</Col>
+                    <Col md={2} className='d-flex justify-content-end'><Button onClick={onClose} className='border-0 text-dark p-0 mx-4 fs-4 bg-white'>x</Button></Col>
+                    </Row>
                     <Row className=''>
                         <Col md={10} className='mx-auto my-2'>
                             <p className='fw-bold my-1'>Senha atual</p>
-                            <InputGroup className="mb-3 border rounded" >
+                            <InputGroup className="mb-3 border rounded">
                                 <InputGroup.Text
-                                    className='bg-white border-0'
+                                    className='border-0'
                                     style={{ backgroundColor: '#F4F6F8' }}>
                                     <i class="bi bi-lock-fill" ></i>
                                 </InputGroup.Text>
                                 <Form.Control
-                                    className='border-0 shadow-none'
+                                    className='border-0 ps-0 shadow-none'
                                     placeholder='Sua senha atual'
                                     type={"text"}
 
@@ -85,20 +86,20 @@ const PassWord = ({showPass,onClose}) => {
                                         <p className='fw-bold my-1'>{val.name}</p>
                                         <InputGroup className="mb-3 border rounded" >
                                             <InputGroup.Text
-                                                className='bg-white border-0'
+                                                className='border-0'
                                                 style={{ backgroundColor: '#F4F6F8' }}>
                                                 <i class="bi bi-lock-fill" ></i>
                                             </InputGroup.Text>
 
                                             <Form.Control
-                                                className='border-0 shadow-none'
+                                                className='border-0 ps-0 shadow-none'
                                                 placeholder='Nova Senha'
                                                 type={val.show ? "text" : "password"}
                                                 onChange={(e) => handlePasswordChange(e, i)}
                                                 name="password"
                                             />
                                             <InputGroup.Text
-                                                className='bg-white border-0'
+                                                className=' border-0'
                                                 style={{ backgroundColor: '#F4F6F8' }}>
 
 

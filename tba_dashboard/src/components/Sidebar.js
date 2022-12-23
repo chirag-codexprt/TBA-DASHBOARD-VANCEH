@@ -50,8 +50,8 @@ const Sidebar = () => {
     return (
         <>
             <Row>
-                <Col md={12} className=''>
-                    <div className='text-center mt-5'>Category</div>
+                <Col md={12}>
+                    <div className=' mx-5 mt-5' style={{color:'#c2c2c2'}}>Category</div>
                     {
                         link.map((val) => {
                             if (val.active == true) {

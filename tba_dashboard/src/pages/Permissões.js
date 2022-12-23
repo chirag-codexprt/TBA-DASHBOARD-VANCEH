@@ -4,11 +4,9 @@ import { Row, Col } from "react-bootstrap";
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import Table from "react-bootstrap/Table";
-import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-// import { ButtonGreen, ButtonRed } from './buttons/Button';
 import Pagination from 'react-bootstrap/Pagination';
 import Modal from 'react-bootstrap/Modal';
 import Sidebar from '../components/Sidebar';
@@ -43,7 +41,7 @@ const Permissões = () => {
                     </Nav>
                     <Button className="fs-color btnn mx-1 border-0 bg-white">Pendentes</Button>
                     <Button className="fs-color btnn mx-1 border-0 bg-white">Respondidas</Button>
-                    <Button className="fs-color btnn mx-1 border-0 bg-white">Todas</Button>
+                    <Button className="fs-color mx-1 border-0 fw-bold text-white" style={{background:'#85A6A2'}}>Todas</Button>
                 </Navbar.Collapse>
             </Navbar>
         )
@@ -72,14 +70,56 @@ const Permissões = () => {
         )
     }
 
+    const TABLE = () => {
+        return (
+            <Table className="p-3 table-fit text-wrap tbl-color-text" responsive>
+                <thead>
+                    <tr>
+                        <th className='tbl-head-color'>Nome </th>
+                        <th className='tbl-head-color'>Email </th>
+                        <th className='tbl-head-color'>Função </th>
+                        <th className='tbl-head-color'>Insights</th>
+                        <th className='tbl-head-color'>Contatos pendentes </th>
+                        <th className='tbl-head-color'>Contatos respondidos </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td className='fw-bold'>Ana Júlia Garcia</td>
+                        <td >anajulia@vanceh.com</td>
+                        <td >Marketing </td>
+                        <td >
+                            <Button variant=" success" size='lg' className="p-0 fw-bolder text-success  border-0" onClick={handleShow}>
+                                <i className="bi bi-check"></i>Autorizar
+                            </Button>
+                        </td>
+
+                        <td >
+                            <Button variant="danger" size='lg' className="p-0 fw-bolder text-danger button-red">
+                                <i className="bi bi-x"></i>Remover
+                            </Button>
+                        </td>
+                        <td >
+
+                            <Button variant=" success" size='lg' className="p-0 button-green  fw-bolder text-success  border-0 ">
+                                <i className="bi bi-check"></i>Autorizar
+                            </Button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </Table>
+        )
+    }
+
     return (
         <>
-        <NavbarCom/>
-            <Row style={{marginTop:'6.9%'}}>
+            <NavbarCom />
+            <Row style={{ marginTop: '6.9%' }}>
                 <Col md={2}>
                     <Sidebar />
                 </Col>
-                <Col md={10} style={{background:'#DCDFE5'}}>
+                <Col md={10} style={{ background: '#DCDFE5' }}>
                     <h2 className='mt-3 ms-5'>Permissões</h2>
                     <Card className="p-3 m-5 my-3">
                         <Row>
@@ -88,43 +128,7 @@ const Permissões = () => {
                             </Col>
                             {/* table */}
                             <Col md={12} className='m-2' >
-                                <Table className="p-3 table-fit text-wrap tbl-color-text" responsive>
-                                    <thead>
-                                        <tr>
-                                            <th className='tbl-head-color'>Nome </th>
-                                            <th className='tbl-head-color'>Email </th>
-                                            <th className='tbl-head-color'>Função </th>
-                                            <th className='tbl-head-color'>Insights</th>
-                                            <th className='tbl-head-color'>Contatos pendentes </th>
-                                            <th className='tbl-head-color'>Contatos respondidos </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td className='fw-bold'>Ana Júlia Garcia</td>
-                                            <td >anajulia@vanceh.com</td>
-                                            <td >Marketing </td>
-                                            <td >
-                                                <Button variant=" success" size='lg' className="p-0 fw-bolder text-success  border-0" onClick={handleShow}>
-                                                    <i className="bi bi-check"></i>Autorizar
-                                                </Button>
-                                            </td>
-
-                                            <td >
-                                                <Button variant="danger" size='lg' className="p-0 fw-bolder text-danger button-red">
-                                                    <i className="bi bi-x"></i>Remover
-                                                </Button>
-                                            </td>
-                                            <td >
-
-                                                <Button variant=" success" size='lg' className="p-0 button-green  fw-bolder text-success  border-0 ">
-                                                    <i className="bi bi-check"></i>Autorizar
-                                                </Button>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </Table>
+                                <TABLE/>
                             </Col>
                             {/* pagination */}
                             <Col className='d-flex justify-content-center me-auto m-2' md={12}>

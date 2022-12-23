@@ -15,7 +15,6 @@ const NewAccount = ({showNew,newC}) => {
                 backdrop="static"
                 keyboard={false}
                 centered
-
             >
                 <Modal.Header closeButton className='border-0'>
                     <Modal.Title className='fw-bolder'>Código para nova conta</Modal.Title>
@@ -40,7 +39,7 @@ const NewAccount = ({showNew,newC}) => {
                         </Col>
                         <Col md={12}>
                             <p className='fw-bold fs-6'>Autorizações</p>
-                            <Table className="p-3 table-fit text-wrap tbl-color-text text-center " responsive>
+                            <Table className="p-3 table-fit text-wrap tbl-color-text text-center ">
                                 <thead className='small'>
                                     <tr>
                                         <th style={{ color: '#B5B6B7' }}>Insights </th>
@@ -50,31 +49,28 @@ const NewAccount = ({showNew,newC}) => {
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    <tr >
-                                        <td className='fw-bold'>
+                                    <tr>
+                                        <td className='fw-bold p-0'>
                                             <Button
                                                 variant=" success"
-                                                size='lg'
                                                 className="mx-1 button-green  fw-bolder text-success  border-0 ">
                                                 <small>
-                                                    <i className="bi bi-x"></i>
+                                                <i className="bi bi-check"></i>
                                                     Autorizar
                                                 </small>
                                             </Button></td>
-                                        <td >
+                                        <td className='p-0'>
                                             <Button
                                                 variant="danger"
-                                                size='lg'
                                                 className="mx-1 fw-bolder text-danger button-red ">
-                                                <i className="bi bi-check"></i>
+                                                    <i className="bi bi-x"></i>
                                                 Autorizar
                                             </Button></td>
-                                        <td >
+                                        <td className='p-0' >
                                             <Button
                                                 variant="danger"
-                                                size='lg'
                                                 className="mx-1 fw-bolder text-danger button-red ">
-                                                <i className="bi bi-check"></i>
+                                                    <i className="bi bi-x"></i>
                                                 Autorizar
                                             </Button></td>
 
@@ -85,7 +81,6 @@ const NewAccount = ({showNew,newC}) => {
                         <Col md={12}>
                             <p className='fw-bold fs-6'>Código para criação de conta</p>
                             <InputGroup className="mb-3">
-
                                 <Form.Control placeholder='89C8217J91OAI' className='p-2 border-0 shadow-none' style={{ backgroundColor: '#F4F6F8' }} />
                                 <InputGroup.Text className='border-0' style={{ backgroundColor: '#F4F6F8' }}>Copiar</InputGroup.Text>
                             </InputGroup>

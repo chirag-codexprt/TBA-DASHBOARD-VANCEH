@@ -8,18 +8,12 @@ const PerMphoto = ({shows,onHides}) => {
 
     return (
         <>
-            <Modal
-                show={shows}
-                onHide={onHides}
-                backdrop="static"
-                keyboard={false}
-                centered
-            >
-                <Modal.Header closeButton className='border-0'>
-
-                </Modal.Header>
+            <Modal show={shows} onHide={onHides} backdrop="static" keyboard={false} centered>
                 <Modal.Body>
-                    <p className='fw-bolder fs-3 mx-5 '>Alterar foto</p>
+                    <Row>
+                    <Col className='fw-bolder fs-3 ms-3'>Alterar foto</Col>
+                    <Col className='d-flex justify-content-end'><Button onClick={onHides} className='border-0 text-dark p-0 mx-4 fs-4 bg-white'>x</Button></Col>
+                    </Row>
                     <Row className='text-center'>
                         <Col md={12} className='my-3'>
                             <img src='/assets/img/madam2.png' />

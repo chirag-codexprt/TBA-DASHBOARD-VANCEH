@@ -6,6 +6,12 @@ body{
   overflow-x: hidden !important;
 }
 
+@media (max-width:550px) {
+  body{
+    padding-top: 25px;
+  }
+}
+
 .Dashboard {
   min-height: 100vh;
   width: 100%;
@@ -14,12 +20,12 @@ body{
   background-position: center center;
   background-size: 100% 100%;
 }
-.show{
+.mainPage{
 animation: show 1s 1s linear;
 }
 @keyframes show {
   from{
-    scale: 1;
+    scale: 1;  
   }
   to{
     scale: 0;

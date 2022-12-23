@@ -1,0 +1,22 @@
+.form-switch  .form-check-input:checked{
+    background-color: #dcdddf !important;
+    border: 0 !important;
+    background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%%27/></svg>") !important;
+}
+
+.form-switch .form-check-input{
+    background-color: #dcdddf !important;
+    border:0 !important;
+    background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%23fff%27/></svg>") !important;
+}
+
+.form-switch .form-check-input {
+}
+.form-switch .form-check-input:checked {
+  }
+  
+  .form-switch .form-check-input:focus {
+    border-color: #6668 !important;
+    outline: 0;
+    box-shadow: none !important;
+  }

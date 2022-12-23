@@ -1,38 +1,325 @@
-.App {
-  text-align: center;
+*{
+  outline-color:transparent !important ;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  overflow-x: hidden !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.Dashboard {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 100%;
+  background-image: url("../public/assets/img/dashbordIMG.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+}
+.show{
+animation: show 1s 1s linear;
+}
+@keyframes show {
+  from{
+    scale: 1;
+  }
+  to{
+    scale: 0;
+  }
+}
+.TBA-Logo {
+  width: 20rem;
+  height:20rem;
+  background-color: rgba(31, 31, 31, 0.8);
+  border: 2px solid #fff;
+  border-radius: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.form-control{
+  transition: none !important;
+  box-shadow: none !important;
+  border: 1px solid #ced4da !important;
+  border-left: 0 !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-group, .form-control{
+  background-color: #F4F6F8 !important;
+}
+
+.form-check-input{
+  box-shadow: none !important;
+  border: 1px solid #85A6A2 !important;
+}
+
+.input-group-text {
+  background-color: transparent !important;
+}
+
+.eye-logo{
+  border-right: 0 !important;
+}
+
+.Login {
+  max-height: 80% !important;
+  border-radius: 10px;
+  background-color: #FBFBFB;
+}
+
+.login-enter {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  width: fit-content;
+}
+
+.login-enter::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  z-index: 100;
+  border-radius: 2px;
+  width: 0%;
+  left: 0;
+  bottom: -5px;
+  background: #85A6A2;
+  transition: 200ms;
+}
+
+.login-enter:hover::after {
+  width: 100%;
+}
+
+.login-btn{
+  background-color: #1C3D59 !important;
+}
+
+.active{
+  color: #CED4DB;
+}
+
+.form-check-input:checked {
+  background-color: #85A6A2 !important;
+}
+
+/* Navbar */
+
+.active-to{
+  background-color: #85A6A2 !important;
+  font-weight: 600 !important;
+}
+
+.nav{
+  position: fixed !important;
+  width: 100vw;
+  top: 0px !important;
+  background: rgba(0,0,0,0.7);
+  z-index: 100;
+}
+
+.Nav-after{
+  position: relative !important;
+}
+.Nav-after::after{
+  content: "";
+  position: absolute !important;
+  bottom: 0;
+  left: 40%;
+  height: 3px;
+  width: 30% !important;
+  background-color: #85A6A2 !important;
+  transition: 200ms;
+}
+
+.nav-search{
+  background: rgb(0,0,0) !important;
+}
+
+.nav-items{
+  width: 100vw!important;
+}
+
+.navbar-toggler{
+  background-color: #fff !important;
+}
+
+/* Sidebar */
+
+.border-div{
+  position: relative;
+  top: 30px;
+  width: 50px;
+  border-top: 2px solid rgba(181,182,183,0.2);
+}
+
+.side-line{
+  position: relative;
+}
+
+.side-line::after{
+  content: '';
+  position: absolute;
+  height: 25px;
+  width: 3px;
+  background-color: #85A6A2;
+  top: 0;
+  left: -60px;
+}
+
+.c-point{
+  cursor: pointer;
+}
+
+.contant{
+  margin-top: 87px !important;
+}
+
+.scroll{
+  height: 100vh !important;
+  padding-bottom: 70px;
+  overflow-y: scroll !important;
+}
+
+.T-active{
+  background-color: #85A6A2 !important;
+}
+
+.toggle{
+  height: 100px;
+}
+
+/* yash */
+
+/* Green Color Button */
+.button-green {
+  color: #58A43D;
+  outline: none;
+  border: none;
+  background-color: #fff;
+}
+
+/* Red color Button */
+.button-red {
+  color: #A43D3D;
+  outline: none;
+  border: none !important;
+  background-color: #fff !important;
+}
+
+/* Nav button , button hover */
+.btnn:hover {
+  font-weight: 900 !important;
+  color: white !important;
+  background-color: #85A6A2 !important;
+}
+
+.active-to{
+  background-color: #85A6A2 !important;
+}
+
+.fs-color {
+  color: #6F767E !important;
+}
+
+.fs-color-fill {
+  color: #1A1D1F;
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+/* tabrl text color */
+.tbl-color-text {
+  color: #272B30 !important;
+}
+
+.tbl-head-color {
+  color:
+    #B5B6B7 !important;
+  font-size: 0.8rem !important;
+}
+
+/* pagination */
+
+.page-link {
+  border-radius: 100px;
+  border: none !important;
+  margin: 1rem;
+  --bs-pagination-font-size: 1.3rem;
+  --bs-pagination-color: #1C3D59;
+
+}
+
+.page-item:not(:first-child) .page-link {
+  margin-left: 0 !important;
+}
+
+.pagination {
+  --bs-pagination-hover-color: none;
+  --bs-pagination-font-size: 2rem;
+  --bs-pagination-color: #1C3D59;
+  --bs-pagination-active-bg: #1C3D59 !important;
+}
+
+.border-left {
+  border-left: 5px solid #85A6A2;
+}
+
+.row-height{
+  height: 200px;
+}
+
+
+.btn-outline-success{
+  --bs-btn-hover-bg:'none' !important;
+  --bs-btn-hover-color:Green !important;
+  --bs-btn-active-color:Green !important;
+  --bs-btn-active-bg:rgba(0, 128, 0, 0) !important;
+}
+
+.btn-outline-warning{
+  --bs-btn-hover-bg:'none' !important;
+  --bs-btn-hover-color:#ffc107 !important;
+  --bs-btn-active-color:#ffc107 !important;
+  --bs-btn-active-bg:rgba(0, 128, 0, 0) !important;
+}
+
+.btn-outline-secondary{
+  --bs-btn-hover-bg:'none' !important;
+  --bs-btn-hover-color:#6c757d !important;
+  --bs-btn-active-color:#6c757d !important;
+  --bs-btn-active-bg:rgba(0, 128, 0, 0) !important;
+}
+
+.pagination{
+  --bs-pagination-active-bg:transparent !important;
+  --bs-pagination-active-color:#1C3D59 !important;
+}
+
+.page-link{
+  --bs-pagination-color:rgba(169, 167, 167, 0.775);
+}
+
+.modal{
+  --bs-modal-width:400px !important; 
+}
+
+.chack-item:checked{
+  background-color: #6c757d !important;
+}
+
+/* Modal Switch  */
+
+.form-switch  .form-check-input:checked{
+  background-color: #dcdddf !important;
+  border: 0 !important;
+  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%%27/></svg>") !important;
+}
+
+.form-switch .form-check-input{
+  background-color: #dcdddf !important;
+  border:0 !important;
+  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%23fff%27/></svg>") !important;
+}
+
+.form-switch .form-check-input:focus {
+  border-color: #6668 !important;
+  outline: 0;
+  box-shadow: none !important;
 }

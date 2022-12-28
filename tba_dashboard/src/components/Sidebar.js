@@ -89,17 +89,15 @@ const Sidebar = () => {
                             <div className='border-div'></div>
                         </Col>
                         <Col className='mt-5 c-point d-flex justify-content-center'>
-                            <NavLink to={'/login'} style={{ textDecoration: 'none' }}>
                                 <Row className='mt-4'>
                                     <Col md={1} xs={1}>
                                         <img src='/assets/img/side-4.png'></img>
                                     </Col>
 
                                     <Col>
-                                        <NavLink className='text-dark' style={{ textDecoration: 'none' }} to={'/logout'}>Sair</NavLink>
+                                        <NavLink style={{ textDecoration: 'none',color:'#c2c2c2' }} to={'/logout'}>Sair</NavLink>
                                     </Col>
                                 </Row>
-                            </NavLink>
                         </Col>
                     </Row>
                 </Col>

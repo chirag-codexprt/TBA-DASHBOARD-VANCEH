@@ -22,8 +22,13 @@ const Login = () => {
     }
 
     let navigate=useNavigate()
+    useEffect(()=>{
+        let login = localStorage.getItem('login')
+    if(login){
+        navigate('/Insights') 
+    }
+    },[])
     const ProLogin = () =>{
-        
             localStorage.setItem('login',true)
             navigate('/Insights')
     }

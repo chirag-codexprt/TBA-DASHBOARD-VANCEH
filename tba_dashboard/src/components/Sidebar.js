@@ -89,7 +89,9 @@ const Sidebar = () => {
 								<NavLink
 									to={val.link}
 									style={{ textDecoration: "none" }}>
-									<Row className='mt-4 active c-point'>
+									<Row
+										className='mt-4 active c-point'
+										style={{ color: "#6F767E" }}>
 										<Col
 											md={5}
 											xs={5}

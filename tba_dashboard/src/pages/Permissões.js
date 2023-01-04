@@ -12,6 +12,7 @@ import Modal from "react-bootstrap/Modal";
 import Sidebar from "../components/Sidebar";
 import NavbarCom from "../components/NavbarCom";
 import AfterAuth from "../HOC/AfterAuth";
+import TableNavbar from "../components/TableNavbar";
 
 const Permissões = () => {
 	let active = 2;
@@ -30,50 +31,6 @@ const Permissões = () => {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-
-	const NAVBAR = () => {
-		return (
-			<Navbar expand='lg'>
-				<Navbar.Brand className='fw-bolder' href='#'>
-					Permissões
-				</Navbar.Brand>
-				<Navbar.Toggle aria-controls='navbarScroll' />
-				<Navbar.Collapse id='navbarScroll'>
-					<Nav
-						className='me-auto my-2 my-lg-0'
-						style={{ maxHeight: "100px" }}
-						navbarScroll>
-						<InputGroup className='rounded-2'>
-							<InputGroup.Text
-								id='basic-addon1'
-								className='border-0'
-								style={{ background: "white" }}>
-								<i className='bi bi-search'></i>
-							</InputGroup.Text>
-							<Form.Control
-								type='Search'
-								placeholder='Procurar....'
-								aria-label='Search'
-								aria-describedby='basic-addon1'
-								className='border-0 ps-0'
-							/>
-						</InputGroup>
-					</Nav>
-					<Button className='fs-color btnn mx-1 border-0 bg-white'>
-						Pendentes
-					</Button>
-					<Button className='fs-color btnn mx-1 border-0 bg-white'>
-						Respondidas
-					</Button>
-					<Button
-						className='fs-color mx-1 border-0 fw-bold text-white'
-						style={{ background: "#85A6A2" }}>
-						Todas
-					</Button>
-				</Navbar.Collapse>
-			</Navbar>
-		);
-	};
 
 	const MODAL = () => {
 		return (
@@ -190,7 +147,13 @@ const Permissões = () => {
 				<Card className='p-3 m-5 my-3'>
 					<Row>
 						<Col className='m-2'>
-							<NAVBAR />
+							{/* <NAVBAR /> */}
+							<TableNavbar
+								title={"Permissões"}
+								btn1Text='Pendentes'
+								btn2Text='Respondidas'
+								btn3Text='Todas'
+							/>
 						</Col>
 						{/* table */}
 						<Col md={12} className='m-2'>

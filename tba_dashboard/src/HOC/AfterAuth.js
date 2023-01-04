@@ -31,7 +31,8 @@ const AfterAuth = ({ children }) => {
 						className='py-4'
 						style={{
 							backgroundColor: "#DCDFE5",
-							overflowY: "scroll !important",
+
+							overflowY: "scroll",
 							height: "100vh",
 						}}>
 						{children}

@@ -116,7 +116,7 @@ animation: show 1s 1s linear;
   position: fixed !important;
   width: 100vw;
   top: 0px !important;
-  background: rgba(0,0,0,0.7);
+  background:linear-gradient(136.92deg, #151515 21.87%, #000000 82.73%);
   z-index: 100;
 }
 
@@ -127,7 +127,7 @@ animation: show 1s 1s linear;
   content: "";
   position: absolute !important;
   bottom: 0;
-  left: 40%;
+  left: 25%;
   height: 3px;
   width: 30% !important;
   background-color: #85A6A2 !important;
@@ -328,4 +328,19 @@ animation: show 1s 1s linear;
   border-color: #6668 !important;
   outline: 0;
   box-shadow: none !important;
+}
+
+
+/* STYLE FOR IMAGE PREVIEW */
+.yourBtn {
+  
+  padding: 5px;
+  
+  cursor: pointer;
+}
+.imgPreview {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  margin-top: 1rem;
 }

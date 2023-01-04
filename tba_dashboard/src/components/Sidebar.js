@@ -53,7 +53,7 @@ const Sidebar = () => {
 						className=' mt-5'
 						style={{
 							color: "#c2c2c2",
-							marginLeft: "6rem",
+							marginLeft: "30%",
 						}}>
 						Category
 					</div>

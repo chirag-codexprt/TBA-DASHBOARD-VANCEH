@@ -27,6 +27,7 @@ const TableNavbar = ({ title, btn1Text, btn2Text, btn3Text }) => {
 								aria-label='Search'
 								aria-describedby='basic-addon1'
 								className='border-0'
+								name="search"
 							/>
 						</InputGroup>
 					</Nav>

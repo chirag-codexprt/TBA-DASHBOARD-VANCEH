@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -14,6 +14,7 @@ import NavbarCom from "../components/NavbarCom";
 import AfterAuth from "../HOC/AfterAuth";
 import TableNavbar from "../components/TableNavbar";
 import PermissonTable from "../components/Permisson/PermissonTable";
+import { permissonTable } from "../helper/API/Permisson";
 
 const Permissões = () => {
 	let active = 2;
@@ -28,6 +29,27 @@ const Permissões = () => {
 			</Pagination.Item>
 		);
 	}
+
+	const [tableRow, setTableRow] = useState([])
+
+
+	useEffect(() => {
+		const submitData = {
+			search: '',
+		}
+		permissonTable(submitData).then((res) => {
+			// console.log('res', res)
+			if (res.success) {
+				setTableRow(res.data.adminList)
+			}
+			else (
+				setTableRow([])
+			)
+		})
+	}, [])
+	console.log('table', tableRow)
+
+
 
 	return (
 		<>
@@ -46,7 +68,7 @@ const Permissões = () => {
 						</Col>
 						{/* table */}
 						<Col md={12} className='m-2'>
-							<PermissonTable />
+							<PermissonTable tableRow={tableRow} />
 						</Col>
 						{/* pagination */}
 						<Col

@@ -91,6 +91,14 @@ const Login = () => {
 	const registerUser = () => {
 		registerAdmin(registerFormValues).then((res) => {
 			console.log("res", res);
+			if (res.success) {
+				Login()
+				toast.success(res.message)
+				navigate('/login')
+			}
+			else (
+				toast.error(res.message)
+			)
 		});
 		console.log("registerFormValues", registerFormValues);
 	};

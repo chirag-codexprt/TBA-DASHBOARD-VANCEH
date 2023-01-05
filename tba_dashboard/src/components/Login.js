@@ -11,11 +11,17 @@ import RegisterForm from "./Auth.js/RegisterForm";
 const Login = () => {
 	const [login, setLogin] = useState(true);
 	const [account, setAccount] = useState(false);
+	const [hidePassword, setHidePassword] = useState(false);
+	const [hideConfirmPassword, setHideConfirmPassword] = useState(false);
+	const [confirmPassword, setConfirmPassword] = useState("");
 	const [formValues, setFormValues] = useState({
 		email: "",
 		password: "",
 	});
 	const [registerFormValues, setrRegisterFormValues] = useState({
+		code: "",
+		designation: "",
+		name: "",
 		email: "",
 		password: "",
 	});
@@ -39,6 +45,10 @@ const Login = () => {
 		}
 	}, []);
 
+	const hidePwd = () => {
+		setHidePassword(!hidePassword);
+	};
+
 	const handleForm = (e) => {
 		console.log("handleForm", e.target.value);
 		setFormValues({
@@ -46,12 +56,35 @@ const Login = () => {
 			[e.target.name]: e.target.value,
 		});
 	};
-
+	const handleRegisterForm = (e) => {
+		console.log("handleForm", e.target.value);
+		setrRegisterFormValues({
+			...registerFormValues,
+			[e.target.name]: e.target.value,
+		});
+	};
+	console.log("confirmPassoword ::", confirmPassword);
 	const ProLogin = () => {
 		localStorage.setItem("login", true);
 
 		navigate("/Insights");
 		console.log("formValues", formValues);
+
+		// loginAdmin(formValues).then((res)=>{
+		//     if(res.success){
+		//         localStorage.setItem('login',true)
+
+		//         navigate('/Insights')
+		//     }else{
+
+		//     }
+		// })
+	};
+	const reisterUser = () => {
+		// localStorage.setItem("login", true);
+
+		// navigate("/Insights");
+		console.log("registerFormValues", registerFormValues);
 
 		// loginAdmin(formValues).then((res)=>{
 		//     if(res.success){
@@ -114,9 +147,24 @@ const Login = () => {
 								formValues={formValues}
 								handleForm={handleForm}
 								ProLogin={ProLogin}
+								hidePassword={hidePassword}
+								hidePwd={() => setHidePassword(!hidePassword)}
 							/>
 						)}
-						{account && <RegisterForm />}
+						{account && (
+							<RegisterForm
+								handleRegisterForm={handleRegisterForm}
+								reisterUser={reisterUser}
+								hidePassword={hidePassword}
+								hidePwd={() => setHidePassword(!hidePassword)}
+								hideCnfrmPassword={hideConfirmPassword}
+								hideCnfrmPwd={() =>
+									setHideConfirmPassword(!hideConfirmPassword)
+								}
+								setConfirmPassword={setConfirmPassword}
+								confirmPassword={confirmPassword}
+							/>
+						)}
 					</Col>
 				</Row>
 			</div>

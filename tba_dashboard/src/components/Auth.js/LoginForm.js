@@ -1,7 +1,13 @@
 import React from "react";
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 
-const LoginForm = ({ formValues, handleForm, ProLogin }) => {
+const LoginForm = ({
+	formValues,
+	handleForm,
+	ProLogin,
+	hidePassword,
+	hidePwd,
+}) => {
 	return (
 		<div>
 			<Row>
@@ -36,13 +42,24 @@ const LoginForm = ({ formValues, handleForm, ProLogin }) => {
 								className='eye-logo ps-0'
 								aria-describedby='basic-addon1'
 								name='password'
+								type={hidePassword ? "text" : "password"}
 								defaultValue={formValues.password}
 								onChange={handleForm}
 							/>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
-								<i
-									class='bi bi-eye-slash-fill'
-									style={{ color: "#CED4DB" }}></i>
+								{hidePassword && (
+									<i
+										class='bi bi-eye-slash-fill'
+										style={{ color: "#CED4DB" }}
+										onClick={hidePwd}></i>
+								)}
+
+								{!hidePassword && (
+									<i
+										class='bi bi-eye-fill'
+										style={{ color: "#CED4DB" }}
+										onClick={hidePwd}></i>
+								)}
 							</InputGroup.Text>
 						</InputGroup>
 						<Form.Group

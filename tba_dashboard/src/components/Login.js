@@ -101,16 +101,6 @@ const Login = () => {
 			)
 		});
 		console.log("registerFormValues", registerFormValues);
-
-		// loginAdmin(formValues).then((res)=>{
-		//     if(res.success){
-		//         localStorage.setItem('login',true)
-
-		//         navigate('/Insights')
-		//     }else{
-
-		//     }
-		// })
 	};
 
 	return (

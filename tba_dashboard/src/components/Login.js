@@ -5,71 +5,17 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { NavLink, useNavigate } from "react-router-dom";
 import { loginAdmin } from "../helper/API/auth";
-
-const LoginItem = ({ formValues, handleForm, ProLogin }) => {
-	return (
-		<Row>
-			<Col md={12} className='mt-4'>
-				<Form>
-					<Form.Label className='fs-5'>Email</Form.Label>
-					<InputGroup className='mb-4'>
-						<InputGroup.Text id='basic-addon1' className='p-2'>
-							<i
-								class='bi bi-person-fill'
-								style={{ color: "#CED4DB" }}></i>
-						</InputGroup.Text>
-						<Form.Control
-							type='text'
-							name='email'
-							placeholder='Email'
-							onChange={handleForm}
-							value={formValues.email}
-							className='ps-0'
-							aria-describedby='basic-addon1'
-						/>
-					</InputGroup>
-					<Form.Label className='fs-5'>Senha</Form.Label>
-					<InputGroup className='mb-4'>
-						<InputGroup.Text id='basic-addon1' className='p-2'>
-							<i
-								class='bi bi-lock-fill'
-								style={{ color: "#CED4DB" }}></i>
-						</InputGroup.Text>
-						<Form.Control
-							placeholder='Sua senha'
-							className='eye-logo ps-0'
-							aria-describedby='basic-addon1'
-							name='password'
-							defaultValue={formValues.password}
-							onChange={handleForm}
-						/>
-						<InputGroup.Text id='basic-addon1' className='p-2'>
-							<i
-								class='bi bi-eye-slash-fill'
-								style={{ color: "#CED4DB" }}></i>
-						</InputGroup.Text>
-					</InputGroup>
-					<Form.Group className='mb-4' controlId='formBasicCheckbox'>
-						<Form.Check type='checkbox' label='Lembrar' />
-					</Form.Group>
-				</Form>
-			</Col>
-			<Col className='d-flex mt-5 justify-content-center'>
-				<Button
-					className='login-btn px-5 py-2 fw-bold fs-4'
-					type='submit'
-					onClick={ProLogin}>
-					Submit
-				</Button>
-			</Col>
-		</Row>
-	);
-};
+import LoginForm from "./Auth.js/LoginForm";
+import RegisterForm from "./Auth.js/RegisterForm";
 
 const Login = () => {
 	const [login, setLogin] = useState(true);
 	const [account, setAccount] = useState(false);
 	const [formValues, setFormValues] = useState({
+		email: "",
+		password: "",
+	});
+	const [registerFormValues, setrRegisterFormValues] = useState({
 		email: "",
 		password: "",
 	});
@@ -118,104 +64,6 @@ const Login = () => {
 		// })
 	};
 
-	const AccountItem = () => {
-		return (
-			<Row>
-				<Col md={12} className='mt-3'>
-					<Form>
-						<Form.Label className='fs-6'>
-							Link para criação
-						</Form.Label>
-						<InputGroup className='mb-3'>
-							<InputGroup.Text id='basic-addon1' className='p-2'>
-								<i
-									class='bi bi-link-45deg'
-									style={{ color: "#CED4DB" }}></i>
-							</InputGroup.Text>
-							<Form.Control
-								placeholder='Link que você recebeu'
-								className='ps-0'
-								aria-describedby='basic-addon1'
-							/>
-						</InputGroup>
-						<Form.Label className='fs-6'>Seu cargo</Form.Label>
-						<InputGroup className='mb-3'>
-							<InputGroup.Text id='basic-addon1' className='p-2'>
-								<i
-									class='bi bi-bag-dash-fill'
-									style={{ color: "#CED4DB" }}></i>
-							</InputGroup.Text>
-							<Form.Control
-								placeholder='Marketing'
-								className='ps-0'
-								aria-describedby='basic-addon1'
-							/>
-						</InputGroup>
-						<Form.Label className='fs-6'>Nome</Form.Label>
-						<InputGroup className='mb-3'>
-							<InputGroup.Text id='basic-addon1' className='p-2'>
-								<i
-									class='bi bi-person-fill'
-									style={{ color: "#CED4DB" }}></i>
-							</InputGroup.Text>
-							<Form.Control
-								placeholder='Seu primeiro e último nome'
-								className='ps-0'
-								aria-describedby='basic-addon1'
-							/>
-						</InputGroup>
-						<Form.Label className='fs-6'>Senha</Form.Label>
-						<InputGroup className='mb-3'>
-							<InputGroup.Text id='basic-addon1' className='p-2'>
-								<i
-									class='bi bi-lock-fill'
-									style={{ color: "#CED4DB" }}></i>
-							</InputGroup.Text>
-							<Form.Control
-								placeholder='Sua senha'
-								className='eye-logo ps-0'
-								aria-describedby='basic-addon1'
-							/>
-							<InputGroup.Text id='basic-addon1' className='p-2'>
-								<i
-									class='bi bi-eye-slash-fill'
-									style={{ color: "#CED4DB" }}></i>
-							</InputGroup.Text>
-						</InputGroup>
-						<Form.Label className='fs-6'>Repetir senha</Form.Label>
-						<InputGroup className='mb-3'>
-							<InputGroup.Text id='basic-addon1' className='p-2'>
-								<i
-									class='bi bi-lock-fill'
-									style={{ color: "#CED4DB" }}></i>
-							</InputGroup.Text>
-							<Form.Control
-								placeholder='Sua senha'
-								className='eye-logo ps-0'
-								aria-describedby='basic-addon1'
-							/>
-							<InputGroup.Text id='basic-addon1' className='p-2'>
-								<i
-									class='bi bi-eye-slash-fill'
-									style={{ color: "#CED4DB" }}></i>
-							</InputGroup.Text>
-						</InputGroup>
-					</Form>
-				</Col>
-				<Col className='d-flex mt-1 justify-content-center'>
-					<Button
-						className='login-btn px-5 py-2 fw-bold fs-4'
-						onClick={() => {
-							Login();
-						}}
-						type='submit'>
-						Criar conta
-					</Button>
-				</Col>
-			</Row>
-		);
-	};
-
 	return (
 		<>
 			<div className='Dashboard d-flex align-items-center '>
@@ -260,14 +108,15 @@ const Login = () => {
 								)}
 							</Col>
 						</Row>
+
 						{login && (
-							<LoginItem
+							<LoginForm
 								formValues={formValues}
 								handleForm={handleForm}
 								ProLogin={ProLogin}
 							/>
 						)}
-						{account && <AccountItem />}
+						{account && <RegisterForm />}
 					</Col>
 				</Row>
 			</div>

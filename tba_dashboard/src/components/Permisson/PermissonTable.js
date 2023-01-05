@@ -46,34 +46,54 @@ const PermissonTable = ({ tableRow }) => {
 									<td>{val.email}</td>
 									<td>{val.designation}</td>
 									<td>
-										<Button
+										{val.permissions.contact ? <Button
 											onClick={handleClick}
 											variant=' success'
 											size='lg'
 											className='p-0 fw-bolder text-success  border-0'
 										>
 											<i className='bi bi-check'></i>Autorizar
-										</Button>
-										<PermissonTooltip show={show} target={target} ref={ref} handleClose={handleClose} />
-									</td>
-
-									<td>
-										<Button
+										</Button> : <Button
 											onClick={handleClick}
 											variant='danger'
 											size='lg'
 											className='p-0 fw-bolder text-danger button-red'>
 											<i className='bi bi-x'></i>Remover
-										</Button>
+										</Button>}
+										<PermissonTooltip show={show} target={target} ref={ref} handleClose={handleClose} />
 									</td>
+
 									<td>
-										<Button
+										{val.permissions.document ? <Button
 											onClick={handleClick}
 											variant=' success'
 											size='lg'
-											className='p-0 button-green  fw-bolder text-success  border-0 '>
+											className='p-0 fw-bolder text-success  border-0'
+										>
 											<i className='bi bi-check'></i>Autorizar
-										</Button>
+										</Button> : <Button
+											onClick={handleClick}
+											variant='danger'
+											size='lg'
+											className='p-0 fw-bolder text-danger button-red'>
+											<i className='bi bi-x'></i>Remover
+										</Button>}
+									</td>
+									<td>
+										{val.permissions.newAdmin ? <Button
+											onClick={handleClick}
+											variant=' success'
+											size='lg'
+											className='p-0 fw-bolder text-success  border-0'
+										>
+											<i className='bi bi-check'></i>Autorizar
+										</Button> : <Button
+											onClick={handleClick}
+											variant='danger'
+											size='lg'
+											className='p-0 fw-bolder text-danger button-red'>
+											<i className='bi bi-x'></i>Remover
+										</Button>}
 									</td>
 								</tr>)
 						}

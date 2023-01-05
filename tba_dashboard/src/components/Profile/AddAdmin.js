@@ -1,12 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Row, Col } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
+import { generateCode, inviteAdmin } from "../../helper/API/auth";
+import { toast } from "react-toastify";
 
 const AddAdmin = ({ open, handleClose }) => {
+	const [contact, setContact] = useState(false);
+	const [document, setDocument] = useState(false);
+	const [newAdmin, setNewAdmin] = useState(false);
+	const [designation, setDesignation] = useState("");
+	const [code, setCode] = useState(null);
+	useEffect(() => {
+		generateCode().then((res) => {
+			console.log("res code", res);
+			if (res.success) {
+				setCode(res.data);
+			}
+		});
+	}, []);
+
+	const submitAdmin = () => {
+		const submitData = {
+			designation: designation,
+			permissions: {
+				contact,
+				document,
+				newAdmin,
+			},
+			code,
+		};
+		inviteAdmin(submitData).then((res) => {
+			console.log("res invite admin", res);
+			if (res.success) {
+				toast.success(res.message);
+				handleClose();
+			} else {
+				toast.error(res.message);
+			}
+		});
+		// console.log("submitData", submitData);
+	};
+
 	return (
 		<>
 			<Modal
@@ -24,7 +62,7 @@ const AddAdmin = ({ open, handleClose }) => {
 					<Row>
 						<Col md={12} className='my-2'>
 							<p className='fs-6 fw-bold'>
-								Qual a função da pessoa?
+								Qual o cargo da pessoa?
 							</p>
 							<InputGroup
 								className='mb-3 border-0 rounded '
@@ -37,7 +75,10 @@ const AddAdmin = ({ open, handleClose }) => {
 								<Form.Control
 									style={{ backgroundColor: "#F4F6F8" }}
 									className='border-0 shadow-none'
-									placeholder='Nova Senha'
+									placeholder='Digite o cargo'
+									onChange={(e) =>
+										setDesignation(e.target.value)
+									}
 								/>
 							</InputGroup>
 						</Col>
@@ -47,43 +88,92 @@ const AddAdmin = ({ open, handleClose }) => {
 								<thead className='small'>
 									<tr>
 										<th style={{ color: "#B5B6B7" }}>
-											Insights{" "}
-										</th>
-										<th style={{ color: "#B5B6B7" }}>
 											Contatos{" "}
 										</th>
 										<th style={{ color: "#B5B6B7" }}>
-											Documentos
+											Documentos{" "}
+										</th>
+										<th style={{ color: "#B5B6B7" }}>
+											Nova conta
 										</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td className='fw-bold p-0'>
-											<Button
-												variant=' success'
-												className='mx-1 button-green  fw-bolder text-success  border-0 '>
-												<small>
-													<i className='bi bi-check'></i>
-													Autorizar
-												</small>
-											</Button>
+											{contact ? (
+												<Button
+													onClick={() =>
+														setContact(!contact)
+													}
+													variant=' success'
+													className='mx-1 button-green  fw-bolder text-success  border-0 '>
+													<small>
+														<i className='bi bi-check'></i>
+														Autorizar
+													</small>
+												</Button>
+											) : (
+												<Button
+													onClick={() =>
+														setContact(!contact)
+													}
+													variant='danger'
+													className='mx-1 fw-bolder text-danger button-red '>
+													<i className='bi bi-x'></i>
+													Remover
+												</Button>
+											)}
 										</td>
 										<td className='p-0'>
-											<Button
-												variant='danger'
-												className='mx-1 fw-bolder text-danger button-red '>
-												<i className='bi bi-x'></i>
-												Autorizar
-											</Button>
+											{document ? (
+												<Button
+													onClick={() =>
+														setDocument(!document)
+													}
+													variant=' success'
+													className='mx-1 button-green  fw-bolder text-success  border-0 '>
+													<small>
+														<i className='bi bi-check'></i>
+														Autorizar
+													</small>
+												</Button>
+											) : (
+												<Button
+													onClick={() =>
+														setDocument(!document)
+													}
+													variant='danger'
+													className='mx-1 fw-bolder text-danger button-red '>
+													<i className='bi bi-x'></i>
+													Remover
+												</Button>
+											)}
 										</td>
 										<td className='p-0'>
-											<Button
-												variant='danger'
-												className='mx-1 fw-bolder text-danger button-red '>
-												<i className='bi bi-x'></i>
-												Autorizar
-											</Button>
+											{newAdmin ? (
+												<Button
+													onClick={() =>
+														setNewAdmin(!newAdmin)
+													}
+													variant=' success'
+													className='mx-1 button-green  fw-bolder text-success  border-0 '>
+													<small>
+														<i className='bi bi-check'></i>
+														Autorizar
+													</small>
+												</Button>
+											) : (
+												<Button
+													onClick={() =>
+														setNewAdmin(!newAdmin)
+													}
+													variant='danger'
+													className='mx-1 fw-bolder text-danger button-red '>
+													<i className='bi bi-x'></i>
+													Remover
+												</Button>
+											)}
 										</td>
 									</tr>
 								</tbody>
@@ -98,6 +188,7 @@ const AddAdmin = ({ open, handleClose }) => {
 									placeholder='89C8217J91OAI'
 									className='p-2 border-0 shadow-none'
 									style={{ backgroundColor: "#F4F6F8" }}
+									value={code}
 								/>
 								<InputGroup.Text
 									className='border-0'
@@ -109,6 +200,7 @@ const AddAdmin = ({ open, handleClose }) => {
 						{/* button */}
 						<Col className='text-center'>
 							<Button
+								onClick={submitAdmin}
 								className='fw-bolder fs-6 w-50 border-0'
 								style={{ backgroundColor: "#1C3D59" }}>
 								Gerar código

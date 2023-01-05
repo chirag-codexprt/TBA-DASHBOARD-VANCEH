@@ -4,11 +4,17 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { NavLink, useNavigate } from "react-router-dom";
-import { loginAdmin } from "../helper/API/auth";
+import { toast } from "react-toastify";
+import { loginAdmin, registerAdmin } from "../helper/API/auth";
 import LoginForm from "./Auth.js/LoginForm";
 import RegisterForm from "./Auth.js/RegisterForm";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { jwtAtom, loginAtom } from "../recoil/Atoms";
 
 const Login = () => {
+	const [loginData, setLoginData] = useRecoilState(loginAtom);
+	const [JWT, setJwt] = useRecoilState(jwtAtom);
+
 	const [login, setLogin] = useState(true);
 	const [account, setAccount] = useState(false);
 	const [hidePassword, setHidePassword] = useState(false);
@@ -63,27 +69,29 @@ const Login = () => {
 			[e.target.name]: e.target.value,
 		});
 	};
-	console.log("confirmPassoword ::", confirmPassword);
+
 	const ProLogin = () => {
-		localStorage.setItem("login", true);
-
-		navigate("/Insights");
-		console.log("formValues", formValues);
-
-		// loginAdmin(formValues).then((res)=>{
-		//     if(res.success){
-		//         localStorage.setItem('login',true)
-
-		//         navigate('/Insights')
-		//     }else{
-
-		//     }
-		// })
+		loginAdmin(formValues).then((res) => {
+			console.log("res", res);
+			if (res.success) {
+				localStorage.setItem("login", true);
+				setLoginData(res.data);
+				localStorage.setItem(
+					"accessToken",
+					JSON.stringify(res.data.jwtTokens.accessToken)
+				);
+				setJwt(res.data.jwtTokens.accessToken);
+				navigate("/Insights");
+				toast.success(res.message);
+			} else {
+				toast.error(res.message);
+			}
+		});
 	};
-	const reisterUser = () => {
-		// localStorage.setItem("login", true);
-
-		// navigate("/Insights");
+	const registerUser = () => {
+		registerAdmin(registerFormValues).then((res) => {
+			console.log("res", res);
+		});
 		console.log("registerFormValues", registerFormValues);
 
 		// loginAdmin(formValues).then((res)=>{
@@ -154,7 +162,7 @@ const Login = () => {
 						{account && (
 							<RegisterForm
 								handleRegisterForm={handleRegisterForm}
-								reisterUser={reisterUser}
+								registerUser={registerUser}
 								hidePassword={hidePassword}
 								hidePwd={() => setHidePassword(!hidePassword)}
 								hideCnfrmPassword={hideConfirmPassword}

@@ -3,7 +3,7 @@ import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 
 const RegisterForm = ({
 	handleRegisterForm,
-	reisterUser,
+	registerUser,
 	hidePassword,
 	hidePwd,
 	hideCnfrmPassword,
@@ -152,7 +152,7 @@ const RegisterForm = ({
 				<Col className='d-flex mt-1 justify-content-center'>
 					<Button
 						className='login-btn px-5 py-2 fw-bold fs-4'
-						onClick={reisterUser}
+						onClick={registerUser}
 						type='submit'>
 						Criar conta
 					</Button>

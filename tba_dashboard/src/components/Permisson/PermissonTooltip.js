@@ -1,79 +1,172 @@
-import React, { useState, useRef } from 'react';
-import { Row, Col } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import Overlay from 'react-bootstrap/Overlay';
-import Popover from 'react-bootstrap/Popover';
+import React, { useState, useRef } from "react";
+import { Row, Col } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Overlay from "react-bootstrap/Overlay";
+import Popover from "react-bootstrap/Popover";
+import { toast } from "react-toastify";
+import { changePermission } from "../../helper/API/Permisson";
 
-const PermissonTooltip = ({ show, target, ref, handleClose }) => {
+const PermissonTooltip = ({
+	show,
+	target,
+	ref,
+	handleClose,
+	editData,
+	refresh,
+	setRefresh,
+}) => {
+	console.log("editData", editData);
 
-    // const [show, setShow] = useState(false);
-    // const [target, setTarget] = useState(null);
-    // const ref = useRef(null);
+	const handleAuth = () => {
+		var submitData;
+		if (editData.type === "contact") {
+			submitData = {
+				id: editData.id,
+				permissions: {
+					contact: true,
+					document: editData.permissions.document,
+					newAdmin: editData.permissions.newAdmin,
+				},
+			};
+		} else if (editData.type === "document") {
+			submitData = {
+				id: editData.id,
+				permissions: {
+					contact: editData.permissions.contact,
+					document: true,
+					newAdmin: editData.permissions.newAdmin,
+				},
+			};
+		} else {
+			submitData = {
+				id: editData.id,
+				permissions: {
+					contact: editData.permissions.contact,
+					document: editData.permissions.document,
+					newAdmin: true,
+				},
+			};
+		}
+		changePermission(submitData).then((res) => {
+			if (res.success) {
+				toast.success(res.message);
+				setRefresh(refresh + 1);
+				handleClose();
+			} else {
+				toast.error(res.message);
+				handleClose();
+			}
+		});
+	};
 
-    // const handleClick = (event) => {
-    //     setShow(!show);
-    //     setTarget(event.target);
-    // };
+	const handleRemove = () => {
+		var submitData;
+		if (editData.type === "contact") {
+			submitData = {
+				id: editData.id,
+				permissions: {
+					contact: false,
+					document: editData.permissions.document,
+					newAdmin: editData.permissions.newAdmin,
+				},
+			};
+		} else if (editData.type === "document") {
+			submitData = {
+				id: editData.id,
+				permissions: {
+					contact: editData.permissions.contact,
+					document: false,
+					newAdmin: editData.permissions.newAdmin,
+				},
+			};
+		} else {
+			submitData = {
+				id: editData.id,
+				permissions: {
+					contact: editData.permissions.contact,
+					document: editData.permissions.document,
+					newAdmin: false,
+				},
+			};
+		}
+		console.log("submitData", submitData);
+		changePermission(submitData).then((res) => {
+			if (res.success) {
+				toast.success(res.message);
+				setRefresh(refresh + 1);
+				handleClose();
+			} else {
+				toast.error(res.message);
+				handleClose();
+			}
+		});
+	};
 
-    return (
-        <div>
-            <div ref={ref}>
-                <Overlay
-                    show={show}
-                    target={target}
-                    placement="bottom"
-                    container={ref}
-                    containerPadding={10}
-                >
-                    <Popover id="popover-contained">
-                        <Popover.Body>
-                            <Row>
-                                <Col md={12}>
-                                    <i onClick={handleClose} className='bi bi-x fs-4 d-flex justify-content-end' style={{ color: 'lightgray' }}></i>
-                                </Col>
-                                <Col md={4}>
-                                    <img src='/assets/img/madam.png'></img>
-                                </Col>
-                                <Col md={8}>
-                                    <label
-                                        className='mt-2'
-                                        style={{ fontSize: "14px" }}>
-                                        Autorizar Ana Júlia Garcia a ter acesso aos
-                                        Insights da empresa?
-                                    </label>
-                                </Col>
-                            </Row>
-                            <Row className='gx-2'>
-                                <Col md={12} className='d-flex justify-content-center'>
-                                    <hr className='w-25' />
-                                </Col>
-                                <Col md={6}>
-                                    <Button
-                                        variant='danger'
-                                        className='w-100 px-0 fw-bold'
-                                        style={{ fontSize: "14px" }}>
-                                        <img
-                                            style={{ marginTop: "-5px" }}
-                                            src='/assets/img/X.png'></img>{" "}
-                                        Não autorizar
-                                    </Button>
-                                </Col>
-                                <Col md={6}>
-                                    <Button
-                                        variant='success'
-                                        className='w-100 px-0 fw-bold'
-                                        style={{ fontSize: "14px" }}>
-                                        <img src='/assets/img/Right.png'></img>{" "}
-                                        Autorizar
-                                    </Button>
-                                </Col>
-                            </Row>
-                        </Popover.Body>
-                    </Popover>
-                </Overlay>
-            </div>
-        </div>
-    )
-}
+	return (
+		<div>
+			<div ref={ref}>
+				<Overlay
+					show={show}
+					target={target}
+					placement='bottom'
+					container={ref}
+					containerPadding={10}>
+					<Popover id='popover-contained'>
+						<Popover.Body>
+							<Row>
+								<Col md={12}>
+									<i
+										onClick={handleClose}
+										className='bi bi-x fs-4 d-flex justify-content-end'
+										style={{ color: "lightgray" }}></i>
+								</Col>
+								<Col md={4}>
+									<img src='/assets/img/madam.png'></img>
+								</Col>
+								<Col md={8}>
+									<label
+										className='mt-2'
+										style={{ fontSize: "14px" }}>
+										Autorizar Ana Júlia Garcia a ter acesso
+										aos Insights da empresa?
+									</label>
+								</Col>
+							</Row>
+							<Row className='gx-2'>
+								<Col
+									md={12}
+									className='d-flex justify-content-center'>
+									<hr className='w-25' />
+								</Col>
+								<Col md={6}>
+									<Button
+										variant='danger'
+										onClick={handleRemove}
+										className='w-100 px-0 fw-bold'
+										style={{ fontSize: "14px" }}>
+										<img
+											style={{ marginTop: "-5px" }}
+											src='/assets/img/X.png'></img>{" "}
+										Não autorizar
+									</Button>
+								</Col>
+								<Col md={6}>
+									<Button
+										onClick={handleAuth}
+										variant='success'
+										className='w-100 px-0 fw-bold'
+										style={{ fontSize: "14px" }}>
+										<img src='/assets/img/Right.png'></img>{" "}
+										Autorizar
+									</Button>
+								</Col>
+							</Row>
+						</Popover.Body>
+					</Popover>
+				</Overlay>
+			</div>
+		</div>
+	);
+};
 
-export default PermissonTooltip
+export default PermissonTooltip;

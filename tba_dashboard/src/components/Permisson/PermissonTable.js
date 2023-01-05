@@ -4,22 +4,34 @@ import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import PermissonTooltip from "./PermissonTooltip";
 
-const PermissonTable = ({ tableRow }) => {
-
+const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 	const [show, setShow] = useState(false);
 	const [target, setTarget] = useState(null);
+	const [editData, setEditData] = useState(null);
+	const [tableData, setTableData] = useState(tableRow);
+
 	const ref = useRef(null);
 
-	const handleClick = (event) => {
+	useEffect(() => {
+		setTableData(tableRow);
+	}, [tableRow]);
+
+	const handleClick = (event, val, type, prmsn) => {
+		console.log("id", type);
 		setShow(!show);
 		setTarget(event.target);
+		setEditData({
+			...val,
+			type,
+			prmsn,
+		});
 	};
 
 	const handleClose = () => {
-		setShow(false)
-	}
+		setShow(false);
+	};
 
-	console.log(tableRow)
+	console.log(tableRow);
 	return (
 		<div>
 			<Table
@@ -31,73 +43,136 @@ const PermissonTable = ({ tableRow }) => {
 						<th className='tbl-head-color text-center'>Email </th>
 						<th className='tbl-head-color text-center'>Função </th>
 						<th className='tbl-head-color text-center'>Contatos</th>
-						<th className='tbl-head-color text-center'>Documentos</th>
+						<th className='tbl-head-color text-center'>
+							Documentos
+						</th>
 						<th className='tbl-head-color text-center'>
 							Nova conta{" "}
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					{
-						tableRow.map((val) => {
-							return (
-								<tr>
-									<td className='fw-bold'>{val.name}</td>
-									<td>{val.email}</td>
-									<td>{val.designation}</td>
-									<td>
-										{val.permissions.contact ? <Button
-											onClick={handleClick}
+					{tableData.map((val) => {
+						return (
+							<tr>
+								<td className='fw-bold'>{val.name}</td>
+								<td>{val.email}</td>
+								<td>{val.designation}</td>
+								<td>
+									{val.permissions.contact ? (
+										<Button
+											onClick={(e) =>
+												handleClick(
+													e,
+													val,
+													"contact",
+													true
+												)
+											}
 											variant=' success'
 											size='lg'
-											className='p-0 fw-bolder text-success  border-0'
-										>
-											<i className='bi bi-check'></i>Autorizar
-										</Button> : <Button
-											onClick={handleClick}
+											className='p-0 fw-bolder text-success  border-0'>
+											<i className='bi bi-check'></i>
+											Autorizar
+										</Button>
+									) : (
+										<Button
+											onClick={(e) =>
+												handleClick(
+													e,
+													val,
+													"contact",
+													false
+												)
+											}
 											variant='danger'
 											size='lg'
 											className='p-0 fw-bolder text-danger button-red'>
 											<i className='bi bi-x'></i>Remover
-										</Button>}
-										<PermissonTooltip show={show} target={target} ref={ref} handleClose={handleClose} />
-									</td>
+										</Button>
+									)}
+								</td>
 
-									<td>
-										{val.permissions.document ? <Button
-											onClick={handleClick}
+								<td>
+									{val.permissions.document ? (
+										<Button
+											onClick={(e) =>
+												handleClick(
+													e,
+													val,
+													"document",
+													true
+												)
+											}
 											variant=' success'
 											size='lg'
-											className='p-0 fw-bolder text-success  border-0'
-										>
-											<i className='bi bi-check'></i>Autorizar
-										</Button> : <Button
-											onClick={handleClick}
+											className='p-0 fw-bolder text-success  border-0'>
+											<i className='bi bi-check'></i>
+											Autorizar
+										</Button>
+									) : (
+										<Button
+											onClick={(e) =>
+												handleClick(
+													e,
+													val,
+													"document",
+													false
+												)
+											}
 											variant='danger'
 											size='lg'
 											className='p-0 fw-bolder text-danger button-red'>
 											<i className='bi bi-x'></i>Remover
-										</Button>}
-									</td>
-									<td>
-										{val.permissions.newAdmin ? <Button
-											onClick={handleClick}
+										</Button>
+									)}
+								</td>
+								<td>
+									{val.permissions.newAdmin ? (
+										<Button
+											onClick={(e) =>
+												handleClick(
+													e,
+													val,
+													"admin",
+													true
+												)
+											}
 											variant=' success'
 											size='lg'
-											className='p-0 fw-bolder text-success  border-0'
-										>
-											<i className='bi bi-check'></i>Autorizar
-										</Button> : <Button
-											onClick={handleClick}
+											className='p-0 fw-bolder text-success  border-0'>
+											<i className='bi bi-check'></i>
+											Autorizar
+										</Button>
+									) : (
+										<Button
+											onClick={(e) =>
+												handleClick(
+													e,
+													val,
+													"admin",
+													false
+												)
+											}
 											variant='danger'
 											size='lg'
 											className='p-0 fw-bolder text-danger button-red'>
 											<i className='bi bi-x'></i>Remover
-										</Button>}
-									</td>
-								</tr>)
-						}
-						)}
+										</Button>
+									)}
+									<PermissonTooltip
+										show={show}
+										target={target}
+										ref={ref}
+										handleClose={handleClose}
+										editData={editData}
+										refresh={refresh}
+										setRefresh={setRefresh}
+									/>
+								</td>
+							</tr>
+						);
+					})}
 				</tbody>
 			</Table>
 		</div>

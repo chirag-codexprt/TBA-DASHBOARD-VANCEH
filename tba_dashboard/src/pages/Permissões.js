@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
-import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
-import Table from "react-bootstrap/Table";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import Pagination from "react-bootstrap/Pagination";
-import Modal from "react-bootstrap/Modal";
-import Sidebar from "../components/Sidebar";
-import NavbarCom from "../components/NavbarCom";
 import AfterAuth from "../HOC/AfterAuth";
 import TableNavbar from "../components/TableNavbar";
 import PermissonTable from "../components/Permisson/PermissonTable";
@@ -30,26 +21,20 @@ const Permissões = () => {
 		);
 	}
 
-	const [tableRow, setTableRow] = useState([])
-
+	const [tableRow, setTableRow] = useState([]);
+	const [refresh, setRefresh] = useState(0);
 
 	useEffect(() => {
 		const submitData = {
-			search: '',
-		}
+			search: "",
+		};
 		permissonTable(submitData).then((res) => {
-			// console.log('res', res)
 			if (res.success) {
-				setTableRow(res.data.adminList)
-			}
-			else (
-				setTableRow([])
-			)
-		})
-	}, [])
-	console.log('table', tableRow)
-
-
+				setTableRow(res.data.adminList);
+			} else setTableRow([]);
+		});
+	}, [refresh]);
+	console.log("table", tableRow);
 
 	return (
 		<>
@@ -68,7 +53,11 @@ const Permissões = () => {
 						</Col>
 						{/* table */}
 						<Col md={12} className='m-2'>
-							<PermissonTable tableRow={tableRow} />
+							<PermissonTable
+								tableRow={tableRow}
+								refresh={refresh}
+								setRefresh={setRefresh}
+							/>
 						</Col>
 						{/* pagination */}
 						<Col

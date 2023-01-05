@@ -9,6 +9,7 @@ import { generateCode, inviteAdmin } from "../../helper/API/auth";
 import { toast } from "react-toastify";
 
 const AddAdmin = ({ open, handleClose }) => {
+	const [copy, setCopy] = useState(false);
 	const [contact, setContact] = useState(false);
 	const [document, setDocument] = useState(false);
 	const [newAdmin, setNewAdmin] = useState(false);
@@ -43,6 +44,15 @@ const AddAdmin = ({ open, handleClose }) => {
 			}
 		});
 		// console.log("submitData", submitData);
+	};
+
+	const handleCopy = (code) => {
+		if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+			return { i: navigator.clipboard.writeText(code), j: setCopy(true) };
+			// return Promise.reject("The Clipboard API is not available.");
+		} else {
+			return setCopy(false);
+		}
 	};
 
 	return (
@@ -192,8 +202,12 @@ const AddAdmin = ({ open, handleClose }) => {
 								/>
 								<InputGroup.Text
 									className='border-0'
-									style={{ backgroundColor: "#F4F6F8" }}>
-									Copiar
+									style={{
+										backgroundColor: "#F4F6F8",
+										cursor: "pointer",
+									}}
+									onClick={() => handleCopy(code)}>
+									{copy ? "Copiada" : "Copiar"}
 								</InputGroup.Text>
 							</InputGroup>
 						</Col>

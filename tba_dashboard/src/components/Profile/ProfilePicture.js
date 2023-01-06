@@ -4,11 +4,17 @@ import Modal from "react-bootstrap/Modal";
 import { Row, Col } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { profileAtom } from "../../recoil/Atoms";
+import { editProfile, profileData } from "../../helper/API/Profile";
+import { toast } from "react-toastify";
 const ProfilePicture = ({ open, handleClose }) => {
 	const hiddenFileInput = React.useRef(null);
 	const [images, setImages] = React.useState("");
 	const [imagePreview, setImagePreview] = React.useState("");
 	const [anchorEl, setAnchorEl] = useState(null);
+
+	const [changeImg, setChangeImg] = useRecoilState(profileAtom)
 
 	const handleImageChange = (event) => {
 		const fileUploaded = event.target.files[0];
@@ -25,6 +31,28 @@ const ProfilePicture = ({ open, handleClose }) => {
 		setAnchorEl(event.currentTarget);
 		hiddenFileInput.current.click();
 	};
+
+	const onEditProfile = () => {
+		const formData = new FormData()
+		formData.append("name", changeImg.name)
+		formData.append("avatar", images)
+
+		editProfile(formData).then((res) => {
+			if (res.success) {
+				profileData().then((res) => {
+					if (res.success) {
+						setChangeImg(res.data)
+					}
+				})
+				toast.success(res.message)
+				handleClose()
+			}
+			else {
+				toast.error(res.message)
+			}
+		})
+	}
+
 	return (
 		<>
 			<Modal
@@ -69,7 +97,7 @@ const ProfilePicture = ({ open, handleClose }) => {
 										alignItems: "center",
 										flexDirection: "column",
 									}}>
-									<img src='/assets/img/madam2.png' />
+									<img src={changeImg.profileImage} style={{ height: '180px', width: '180px', borderRadius: '10px' }} />
 									<div
 										style={{
 											display: "flex",
@@ -122,29 +150,9 @@ const ProfilePicture = ({ open, handleClose }) => {
 								style={{ color: "#B5B6B7" }}
 							/>
 						</div>
-						{/* <Col
-							sm={8}
-							md={8}
-							style={{ color: "#B5B6B7" }}
-							className='mb-4 mx-auto'>
-							<InputGroup className='mb-3 border-0 rounded items-center'>
-								<InputGroup.Text
-									className='bg-white border-0'
-									style={{ backgroundColor: "#F4F6F8" }}>
-									<i className='bi bi-camera-fill fs-color '></i>
-								</InputGroup.Text>
-								<Form.Control
-									disabled
-									className='border-0 shadow-none'
-									placeholder=' Abrir a câmera'
-									type={"text"}
-								/>
-							</InputGroup>
-
-							<span><i className="bi bi-camera-fill"></i>&nbsp;Abrir a câmera</span>
-						</Col> */}
 						<Col className='mx-auto' sm={6}>
 							<Button
+								onClick={onEditProfile}
 								className='fw-bolder fs-6 w-100'
 								style={{ backgroundColor: "#1C3D59" }}>
 								Atualizar

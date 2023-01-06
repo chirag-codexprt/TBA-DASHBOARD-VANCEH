@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 import { passwordChange } from "../../helper/API/Profile";
 
 const ChangePassword = ({ open, handleClose }) => {
-
 	const [hidePassword, setHidePassword] = useState(false);
 	const [hideConfirmPassword, setHideConfirmPassword] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
@@ -18,28 +17,38 @@ const ChangePassword = ({ open, handleClose }) => {
 		oldPasswords: "",
 		passwords: "",
 		confirmPasswords: "",
-	})
+	});
 
 	const handledataValue = (e) => {
-		let temp = formValues
-		temp[e.target.name] = e.target.value
-		setFormValues(temp)
-	}
+		let temp = formValues;
+		temp[e.target.name] = e.target.value;
+		setFormValues(temp);
+	};
 	const dataSubmit = () => {
-		passwordChange(formValues).then((res) => {
-			console.log("res", res)
-			if (formValues.passwords === formValues.confirmPasswords) {
-				toast.success("Password changed successfully")
-
-			} else {
-				toast.error("Passwords don't match")
-
-			}
-			// if(res.success){
-			// 	toast.()
-			// }
-		})
-	}
+		if (!formValues.oldPasswords) {
+			toast.error("Digite a senha antiga");
+		} else if (!formValues.passwords) {
+			toast.error("Digite a nova senha");
+		} else if (!formValues.confirmPasswords) {
+			toast.error("Por favor, digite a senha de confirmação");
+		} else if (formValues.confirmPasswords === formValues.oldPasswords) {
+			toast.error("Senha não coincide");
+		} else {
+			const submitData = {
+				oldPassword: formValues.oldPasswords,
+				newPassword: formValues.passwords,
+			};
+			passwordChange(submitData).then((res) => {
+				console.log("res GET PASSWORD", res);
+				if (res.success) {
+					toast.success(res.message);
+					handleClose();
+				} else {
+					toast.error(res.message);
+				}
+			});
+		}
+	};
 	return (
 		<>
 			<Modal
@@ -68,7 +77,8 @@ const ChangePassword = ({ open, handleClose }) => {
 								<InputGroup.Text
 									className='border-0'
 									style={{ backgroundColor: "#F4F6F8" }}>
-									<i class='bi bi-lock-fill'
+									<i
+										class='bi bi-lock-fill'
 										style={{ color: "#CED4DB" }}></i>
 								</InputGroup.Text>
 								<Form.Control
@@ -76,16 +86,16 @@ const ChangePassword = ({ open, handleClose }) => {
 									placeholder='Sua senha atual'
 									type={"text"}
 									onChange={(e) => handledataValue(e)}
-
-									name={'oldPasswords'}
+									name={"oldPasswords"}
 								/>
 							</InputGroup>
 						</Col>
 						<Col md={10} className='mx-auto my-2'>
-
 							<Form.Label className='fs-6'>Senha</Form.Label>
 							<InputGroup className='mb-3'>
-								<InputGroup.Text id='basic-addon1' className='p-2'>
+								<InputGroup.Text
+									id='basic-addon1'
+									className='p-2'>
 									<i
 										class='bi bi-lock-fill'
 										style={{ color: "#CED4DB" }}></i>
@@ -96,33 +106,39 @@ const ChangePassword = ({ open, handleClose }) => {
 									name='passwords'
 									type={hidePassword ? "text" : "password"}
 									onChange={(e) => handledataValue(e)}
-
-
 									aria-describedby='basic-addon1'
-
 								/>
-								<InputGroup.Text id='basic-addon1' className='p-2'>
+								<InputGroup.Text
+									id='basic-addon1'
+									className='p-2'>
 									{hidePassword && (
 										<i
 											class='bi bi-eye-slash-fill'
 											style={{ color: "#CED4DB" }}
-											onClick={() => setHidePassword(!hidePassword)}></i>
+											onClick={() =>
+												setHidePassword(!hidePassword)
+											}></i>
 									)}
 
 									{!hidePassword && (
 										<i
 											class='bi bi-eye-fill'
 											style={{ color: "#CED4DB" }}
-											onClick={() => setHidePassword(!hidePassword)}></i>
+											onClick={() =>
+												setHidePassword(!hidePassword)
+											}></i>
 									)}
 								</InputGroup.Text>
 							</InputGroup>
 						</Col>
 						<Col md={10} className='mx-auto my-2'>
-
-							<Form.Label className='fs-6'>Repetir senha</Form.Label>
+							<Form.Label className='fs-6'>
+								Repetir senha
+							</Form.Label>
 							<InputGroup className='mb-3'>
-								<InputGroup.Text id='basic-addon1' className='p-2'>
+								<InputGroup.Text
+									id='basic-addon1'
+									className='p-2'>
 									<i
 										class='bi bi-lock-fill'
 										style={{ color: "#CED4DB" }}></i>
@@ -132,32 +148,43 @@ const ChangePassword = ({ open, handleClose }) => {
 									className='eye-logo ps-0'
 									aria-describedby='basic-addon1'
 									name='confirmPasswords'
-									type={hideConfirmPassword ? "text" : "password"}
+									type={
+										hideConfirmPassword
+											? "text"
+											: "password"
+									}
 									onChange={(e) => {
 										setConfirmPassword(e.target.value);
-										handledataValue(e)
-									}
-									}
-
+										handledataValue(e);
+									}}
 								/>
-								<InputGroup.Text id='basic-addon1' className='p-2'>
+								<InputGroup.Text
+									id='basic-addon1'
+									className='p-2'>
 									{hideConfirmPassword && (
 										<i
 											class='bi bi-eye-slash-fill'
 											style={{ color: "#CED4DB" }}
-											onClick={() => setHideConfirmPassword(!hideConfirmPassword)}></i>
+											onClick={() =>
+												setHideConfirmPassword(
+													!hideConfirmPassword
+												)
+											}></i>
 									)}
 
 									{!hideConfirmPassword && (
 										<i
 											class='bi bi-eye-fill'
 											style={{ color: "#CED4DB" }}
-											onClick={() => setHideConfirmPassword(!hideConfirmPassword)}></i>
+											onClick={() =>
+												setHideConfirmPassword(
+													!hideConfirmPassword
+												)
+											}></i>
 									)}
 								</InputGroup.Text>
 							</InputGroup>
 						</Col>
-
 
 						<Col md={11} className='mx-auto my-2 text-center'>
 							<Button

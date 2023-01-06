@@ -344,3 +344,22 @@ animation: show 1s 1s linear;
   width: 70px;
   margin-top: 1rem;
 }
+
+.pagination-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  /* padding: 10px; */
+ 
+}
+.pagination-item{
+  display: inline-block;
+  list-style-type: none;
+  padding: 10px;
+ 
+}
+.active-page{
+  color:#1C3D59;
+  font-weight: bold;
+}

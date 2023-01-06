@@ -18,7 +18,7 @@ export const ENV_TYPE = "local"; // local // test // production
 
 export const BASE_URL = envData(
 	ENV_TYPE,
-	"http://192.168.1.113:3007/api/v1/",
+	"http://192.168.1.102:3007/api/v1/",
 	"",
 	""
 );

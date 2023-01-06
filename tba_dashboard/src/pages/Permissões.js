@@ -6,6 +6,7 @@ import AfterAuth from "../HOC/AfterAuth";
 import TableNavbar from "../components/TableNavbar";
 import PermissonTable from "../components/Permisson/PermissonTable";
 import { permissonTable } from "../helper/API/Permisson";
+import Loader from "../components/Loader";
 
 const Permissões = () => {
 	let active = 2;
@@ -23,15 +24,21 @@ const Permissões = () => {
 
 	const [tableRow, setTableRow] = useState([]);
 	const [refresh, setRefresh] = useState(0);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+		setLoading(true);
 		const submitData = {
 			search: "",
 		};
 		permissonTable(submitData).then((res) => {
 			if (res.success) {
 				setTableRow(res.data.adminList);
-			} else setTableRow([]);
+				setLoading(false);
+			} else {
+				setTableRow([]);
+				setLoading(false);
+			}
 		});
 	}, [refresh]);
 	console.log("table", tableRow);
@@ -53,23 +60,17 @@ const Permissões = () => {
 						</Col>
 						{/* table */}
 						<Col md={12} className='m-2'>
-							<PermissonTable
-								tableRow={tableRow}
-								refresh={refresh}
-								setRefresh={setRefresh}
-							/>
+							{loading ? (
+								<Loader />
+							) : (
+								<PermissonTable
+									tableRow={tableRow}
+									refresh={refresh}
+									setRefresh={setRefresh}
+								/>
+							)}
 						</Col>
 						{/* pagination */}
-						<Col
-							className='d-flex justify-content-center me-auto m-2'
-							md={12}>
-							<Pagination>
-								<Pagination.Prev />
-								{items}
-								{/* <Pagination.Ellipsis /> */}
-								<Pagination.Next />
-							</Pagination>
-						</Col>
 					</Row>
 				</Card>
 			</AfterAuth>

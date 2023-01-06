@@ -6,46 +6,17 @@ import Modal from "react-bootstrap/Modal";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 
-const ChangePassword = ({ open, handleClose }) => {
-	// const [passwordType, setPasswordType] = useState("password");
-	// const [passwordInput, setPasswordInput] = useState("");
-	const [showPassword, setShowPassword] = useState(false);
+const ChangePassword = ({ open, handleClose }, {
+	handleRegisterForm,
+	registerUser,
 
-	const [passwordType, setPasswordType] = useState([
-		{
-			name: "password",
-			input: "",
-			show: false,
-			name: "nova sehna",
-		},
-		{
-			name: "password",
-			input: "",
-			show: false,
-			name: "Repetir nova senha",
-		},
-	]);
-	const handlePasswordChange = (evnt, i) => {
-		// setPasswordInput(evnt.target.value);
-		let temp = passwordType;
-		temp[i].input = evnt.target.value;
-		setPasswordType(temp);
-	};
-	const togglePassword = () => {
-		if (passwordType === "password") {
-			setPasswordType("text");
-			return;
-		}
-		setPasswordType("password");
-	};
 
-	const hideShowPassword = (i) => {
-		setShowPassword(!showPassword);
-		let temp = passwordType;
-		temp[i].show = !passwordType[i].show;
-		console.log(passwordType);
-		setPasswordType(temp);
-	};
+}) => {
+
+	const [hidePassword, setHidePassword] = useState(false);
+	const [hideConfirmPassword, setHideConfirmPassword] = useState(false);
+	const [confirmPassword, setConfirmPassword] = useState("");
+
 	return (
 		<>
 			<Modal
@@ -74,7 +45,8 @@ const ChangePassword = ({ open, handleClose }) => {
 								<InputGroup.Text
 									className='border-0'
 									style={{ backgroundColor: "#F4F6F8" }}>
-									<i class='bi bi-lock-fill'></i>
+									<i class='bi bi-lock-fill'
+										style={{ color: "#CED4DB" }}></i>
 								</InputGroup.Text>
 								<Form.Control
 									className='border-0 ps-0 shadow-none'
@@ -83,82 +55,77 @@ const ChangePassword = ({ open, handleClose }) => {
 								/>
 							</InputGroup>
 						</Col>
+						<Col md={10} className='mx-auto my-2'>
 
-						{passwordType.map((val, i) => {
-							return (
-								<Col md={10} className='mx-auto my-2'>
-									<p className='fw-bold my-1'>{val.name}</p>
-									<InputGroup className='mb-3 border rounded'>
-										<InputGroup.Text
-											className='border-0'
-											style={{
-												backgroundColor: "#F4F6F8",
-											}}>
-											<i class='bi bi-lock-fill'></i>
-										</InputGroup.Text>
+							<Form.Label className='fs-6'>Senha</Form.Label>
+							<InputGroup className='mb-3'>
+								<InputGroup.Text id='basic-addon1' className='p-2'>
+									<i
+										class='bi bi-lock-fill'
+										style={{ color: "#CED4DB" }}></i>
+								</InputGroup.Text>
+								<Form.Control
+									placeholder='Sua senha'
+									className='eye-logo ps-0'
+									name='password'
+									type={hidePassword ? "text" : "password"}
+									onChange={handleRegisterForm}
+									aria-describedby='basic-addon1'
+								/>
+								<InputGroup.Text id='basic-addon1' className='p-2'>
+									{hidePassword && (
+										<i
+											class='bi bi-eye-slash-fill'
+											style={{ color: "#CED4DB" }}
+											onClick={() => setHidePassword(!hidePassword)}></i>
+									)}
 
-										<Form.Control
-											className='border-0 ps-0 shadow-none'
-											placeholder='Nova Senha'
-											type={
-												val.show ? "text" : "password"
-											}
-											onChange={(e) =>
-												handlePasswordChange(e, i)
-											}
-											name='password'
-										/>
-										<InputGroup.Text
-											className=' border-0'
-											style={{
-												backgroundColor: "#F4F6F8",
-											}}>
-											{val.show ? (
-												<i
-													className='bi bi-eye-slash-fill'
-													onClick={() =>
-														hideShowPassword(i)
-													}></i>
-											) : (
-												<i
-													class='bi bi-eye-fill'
-													onClick={() =>
-														hideShowPassword(i)
-													}></i>
-											)}
-										</InputGroup.Text>
-									</InputGroup>
-								</Col>
-							);
-						})}
+									{!hidePassword && (
+										<i
+											class='bi bi-eye-fill'
+											style={{ color: "#CED4DB" }}
+											onClick={() => setHidePassword(!hidePassword)}></i>
+									)}
+								</InputGroup.Text>
+							</InputGroup>
+						</Col>
+						<Col md={10} className='mx-auto my-2'>
 
-						{/* 
-                        <Col md={10} className='mx-auto my-2'>
-                            <p className='fw-bold my-1'>Repetir nova senha</p>
-                            <InputGroup className="mb-3 border rounded" >
-                                <InputGroup.Text
-                                    className='bg-white border-0'
-                                    style={{ backgroundColor: '#F4F6F8' }}>
-                                    <i class="bi bi-lock-fill" ></i>
-                                </InputGroup.Text>
-                                <Form.Control
-                                    className='border-0 shadow-none'
-                                    placeholder='Repetir nova senha'
-                                    type={showPassword ? "text" : "password"}
-                                    onChange={handlePasswordChange}
-                                    name="password"
-                                />
-                                <InputGroup.Text
-                                    className='bg-white border-0'
-                                    style={{ backgroundColor: '#F4F6F8' }}>
-                                    {showPassword ?
-                                        <i className="bi bi-eye-slash-fill" onClick={hideShowPassword} ></i> : <i class="bi bi-eye-fill" onClick={hideShowPassword}></i>
-                                    }
+							<Form.Label className='fs-6'>Repetir senha</Form.Label>
+							<InputGroup className='mb-3'>
+								<InputGroup.Text id='basic-addon1' className='p-2'>
+									<i
+										class='bi bi-lock-fill'
+										style={{ color: "#CED4DB" }}></i>
+								</InputGroup.Text>
+								<Form.Control
+									placeholder='Sua senha'
+									className='eye-logo ps-0'
+									aria-describedby='basic-addon1'
+									name='confirmPassword'
+									type={hideConfirmPassword ? "text" : "password"}
+									onChange={(e) =>
+										setConfirmPassword(e.target.value)
+									}
+								/>
+								<InputGroup.Text id='basic-addon1' className='p-2'>
+									{hideConfirmPassword && (
+										<i
+											class='bi bi-eye-slash-fill'
+											style={{ color: "#CED4DB" }}
+											onClick={() => setHideConfirmPassword(!hideConfirmPassword)}></i>
+									)}
 
+									{!hideConfirmPassword && (
+										<i
+											class='bi bi-eye-fill'
+											style={{ color: "#CED4DB" }}
+											onClick={() => setHideConfirmPassword(!hideConfirmPassword)}></i>
+									)}
+								</InputGroup.Text>
+							</InputGroup>
+						</Col>
 
-                                </InputGroup.Text>
-                            </InputGroup>
-                        </Col> */}
 
 						<Col md={11} className='mx-auto my-2 text-center'>
 							<Button

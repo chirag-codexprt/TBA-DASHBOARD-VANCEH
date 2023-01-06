@@ -5,18 +5,41 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
+import { toast } from "react-toastify";
+import { passwordChange } from "../../helper/API/Profile";
 
-const ChangePassword = ({ open, handleClose }, {
-	handleRegisterForm,
-	registerUser,
-
-
-}) => {
+const ChangePassword = ({ open, handleClose }) => {
 
 	const [hidePassword, setHidePassword] = useState(false);
 	const [hideConfirmPassword, setHideConfirmPassword] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
 
+	const [formValues, setFormValues] = useState({
+		oldPasswords: "",
+		passwords: "",
+		confirmPasswords: "",
+	})
+
+	const handledataValue = (e) => {
+		let temp = formValues
+		temp[e.target.name] = e.target.value
+		setFormValues(temp)
+	}
+	const dataSubmit = () => {
+		passwordChange(formValues).then((res) => {
+			console.log("res", res)
+			if (formValues.passwords === formValues.confirmPasswords) {
+				toast.success("Password changed successfully")
+
+			} else {
+				toast.error("Passwords don't match")
+
+			}
+			// if(res.success){
+			// 	toast.()
+			// }
+		})
+	}
 	return (
 		<>
 			<Modal
@@ -52,6 +75,9 @@ const ChangePassword = ({ open, handleClose }, {
 									className='border-0 ps-0 shadow-none'
 									placeholder='Sua senha atual'
 									type={"text"}
+									onChange={(e) => handledataValue(e)}
+
+									name={'oldPasswords'}
 								/>
 							</InputGroup>
 						</Col>
@@ -67,10 +93,13 @@ const ChangePassword = ({ open, handleClose }, {
 								<Form.Control
 									placeholder='Sua senha'
 									className='eye-logo ps-0'
-									name='password'
+									name='passwords'
 									type={hidePassword ? "text" : "password"}
-									onChange={handleRegisterForm}
+									onChange={(e) => handledataValue(e)}
+
+
 									aria-describedby='basic-addon1'
+
 								/>
 								<InputGroup.Text id='basic-addon1' className='p-2'>
 									{hidePassword && (
@@ -102,11 +131,14 @@ const ChangePassword = ({ open, handleClose }, {
 									placeholder='Sua senha'
 									className='eye-logo ps-0'
 									aria-describedby='basic-addon1'
-									name='confirmPassword'
+									name='confirmPasswords'
 									type={hideConfirmPassword ? "text" : "password"}
-									onChange={(e) =>
-										setConfirmPassword(e.target.value)
+									onChange={(e) => {
+										setConfirmPassword(e.target.value);
+										handledataValue(e)
 									}
+									}
+
 								/>
 								<InputGroup.Text id='basic-addon1' className='p-2'>
 									{hideConfirmPassword && (
@@ -129,6 +161,7 @@ const ChangePassword = ({ open, handleClose }, {
 
 						<Col md={11} className='mx-auto my-2 text-center'>
 							<Button
+								onClick={dataSubmit}
 								className='fw-bolder fs-6 w-50'
 								style={{ backgroundColor: "#1C3D59" }}>
 								Alterar

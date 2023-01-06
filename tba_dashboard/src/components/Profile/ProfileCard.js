@@ -6,12 +6,18 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import Pagination from "react-bootstrap/Pagination";
 import Card from "react-bootstrap/Card";
+import { profileAtom } from "../../recoil/Atoms";
+import { useRecoilValue } from "recoil";
 
 const ProfileCard = ({
 	showProfilePicture,
 	showChangePassword,
 	showAddAdmin,
 }) => {
+
+	const profile = useRecoilValue(profileAtom)
+	console.log('profile', profile)
+
 	return (
 		<div>
 			<Card className='my-3 m-5 p-3 px-4'>
@@ -22,10 +28,11 @@ const ProfileCard = ({
 							<Col xs={12} sm={12} md={12} lg={5} className=''>
 								<div>
 									<img
-										src='/assets/img/madam2.png'
+										src={profile?.profileImage}
 										style={{
 											height: "150px",
 											width: "150px",
+											borderRadius: '10px',
 										}}
 										className='position-relative'
 									/>
@@ -50,11 +57,11 @@ const ProfileCard = ({
 								<div className='border-left px-2'>
 									<span>
 										<h3 className='fw-bolder'>
-											Renata Vasconcelos
+											{profile?.name}
 										</h3>
 										<p>CEO</p>
 										<p>
-											renatavasconcelos@tbaconsulting.com
+											{profile?.email}
 										</p>
 									</span>
 								</div>

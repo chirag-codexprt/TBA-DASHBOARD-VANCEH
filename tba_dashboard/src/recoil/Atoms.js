@@ -14,3 +14,9 @@ export const jwtAtom = atom({
 	default: "",
 	effects_UNSTABLE: [persistAtom],
 });
+
+export const profileAtom = atom({
+	key: "profileAtom",
+	default: "",
+	effects_UNSTABLE: [persistAtom],
+});

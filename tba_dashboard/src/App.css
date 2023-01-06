@@ -350,6 +350,7 @@ animation: show 1s 1s linear;
   justify-content: center;
   align-items: center;
   list-style-type: none;
+  cursor: pointer;
   /* padding: 10px; */
  
 }
@@ -357,9 +358,11 @@ animation: show 1s 1s linear;
   display: inline-block;
   list-style-type: none;
   padding: 10px;
+  cursor: pointer;
  
 }
 .active-page{
   color:#1C3D59;
   font-weight: bold;
+  cursor: pointer;
 }

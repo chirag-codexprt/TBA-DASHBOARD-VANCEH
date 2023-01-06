@@ -1,7 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Form, InputGroup, Modal, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { generateLink } from "../../helper/API/contact";
 
-const GenerateLinkModal = ({ open, handleClose }) => {
+const GenerateLinkModal = ({ open, handleClose, editData }) => {
+	const [copy, setCopy] = useState(false);
+	const [formValues, setFormValues] = useState({
+		cpf: true,
+		socialContract: true,
+		proofOfAddress: true,
+	});
+
+	const link = `localhost:3000/document-verification/${editData.id}/${editData.documentRequest}`;
+
+	const handleCheck = (e) => {
+		setFormValues({
+			...formValues,
+			[e.target.name]: e.target.checked,
+		});
+	};
+
+	const submitForm = (e) => {
+		const submitData = {
+			permission: {
+				...formValues,
+			},
+			contactId: editData.id,
+			requestId: editData.documentRequest,
+			generateLink: link,
+		};
+		// generateLink(submitData).then((res)=>{
+		// 	if(res.success){
+		// 		toast.success(res.message)
+		// 	}else{
+		// 		toast.error(res.message)
+		// 	}
+		// })
+	};
+
+	const handleCopy = (code) => {
+		if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+			return { i: navigator.clipboard.writeText(code), j: setCopy(true) };
+		} else {
+			return setCopy(false);
+		}
+	};
+
 	return (
 		<div>
 			<Modal
@@ -31,6 +75,8 @@ const GenerateLinkModal = ({ open, handleClose }) => {
 								type='switch'
 								id='custom-switch'
 								checked
+								name='cpf'
+								defaultChecked={formValues.cpf}
 							/>
 							<label>CPF/CNPJ</label>
 						</Form>
@@ -41,7 +87,9 @@ const GenerateLinkModal = ({ open, handleClose }) => {
 								className='fs-5 border-0 input-check'
 								type='switch'
 								id='custom-switch'
-								checked
+								name='socialContract'
+								onChange={handleCheck}
+								defaultChecked={formValues.socialContract}
 							/>
 							<label>Contrato social</label>
 						</Form>
@@ -52,6 +100,9 @@ const GenerateLinkModal = ({ open, handleClose }) => {
 								className='fs-5 border-0 input-check'
 								type='switch'
 								id='custom-switch'
+								name='proofOfAddress'
+								onChange={handleCheck}
+								defaultChecked={formValues.proofOfAddress}
 							/>
 							<label>Comprovante de residência</label>
 						</Form>
@@ -63,18 +114,21 @@ const GenerateLinkModal = ({ open, handleClose }) => {
 						<InputGroup className='border-0 rounded mb-3'>
 							<Form.Control
 								className='border-0 p-3'
-								value='tbaconsulting.com.br/87A6DH7C'
+								value={link}
 							/>
 							<InputGroup.Text
 								id='basic-addon2'
 								className='border-0 c-point'
-								style={{ color: "#85A6A2" }}>
-								Copiar
+								style={{ color: "#85A6A2" }}
+								onClick={() => handleCopy(link)}>
+								{copy ? "Copiada" : "Copiar"}
 							</InputGroup.Text>
 						</InputGroup>
 					</Col>
 					<Col className='my-3 w-100 d-flex justify-content-center'>
-						<Button style={{ background: "#1C3D59" }}>
+						<Button
+							style={{ background: "#1C3D59" }}
+							onClick={submitForm}>
 							Encaminhar
 						</Button>
 					</Col>

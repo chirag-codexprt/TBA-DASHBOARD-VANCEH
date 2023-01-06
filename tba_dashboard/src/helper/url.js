@@ -10,3 +10,4 @@ export const CHANGE_PERMISSION = "permissions/change-permission";
 
 export const GET_CONTACT = "contacts/filter-contacts";
 export const CHANGE_PASSWORD = "auth/change-password";
+export const GENERATE_LINK = "contacts/generate-document-request-link";

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-
-import Pagination from "react-bootstrap/Pagination";
 import AfterAuth from "../HOC/AfterAuth";
 import TableNavbar from "../components/TableNavbar";
 import ContactTable from "../components/Contact/ContactTable";
 import { getContactList } from "../helper/API/contact";
+import Loader from "../components/Loader";
 
 const Contact = () => {
 	const [tableRow, setTableRow] = useState([]);
@@ -20,7 +19,7 @@ const Contact = () => {
 		getContactList(submitData).then((res) => {
 			console.log("res contact :: ", res);
 			if (res.success) {
-				// setTableRow(res.data.adminList);
+				setTableRow(res.data);
 				setLoading(false);
 			} else {
 				setTableRow([]);
@@ -28,7 +27,7 @@ const Contact = () => {
 			}
 		});
 	}, [refresh]);
-
+	console.log("tableRow", tableRow);
 	return (
 		<>
 			<AfterAuth>
@@ -41,7 +40,16 @@ const Contact = () => {
 						btn2Text='Respondidas'
 						btn3Text='Todas'
 					/>
-					<ContactTable />
+
+					{loading ? (
+						<Loader />
+					) : (
+						<ContactTable
+							tableRow={tableRow}
+							refresh={refresh}
+							setRefresh={setRefresh}
+						/>
+					)}
 				</Card>
 			</AfterAuth>
 		</>

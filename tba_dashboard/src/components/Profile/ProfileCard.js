@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
@@ -8,6 +8,8 @@ import Pagination from "react-bootstrap/Pagination";
 import Card from "react-bootstrap/Card";
 import { profileAtom } from "../../recoil/Atoms";
 import { useRecoilValue } from "recoil";
+import ProfileTable from "./ProfileTable";
+import { profileHistory } from "../../helper/API/Profile";
 
 const ProfileCard = ({
 	showProfilePicture,
@@ -16,7 +18,44 @@ const ProfileCard = ({
 }) => {
 
 	const profile = useRecoilValue(profileAtom)
-	console.log('profile', profile)
+	// console.log('profile', profile)
+
+
+	const [tableRow, setTableRow] = useState([])
+
+	useEffect(() => {
+		profileHistory().then((res) => {
+			console.log('res hello', res)
+			if (res.success) {
+				setTableRow(res.data)
+			}
+			else {
+				setTableRow([])
+			}
+		})
+	}, [])
+
+	// const [tableRow, setTableRow] = useState([]);
+	// const [loading, setLoading] = useState(false);
+
+	// useEffect(() => {
+	// 	setLoading(true);
+	// 	const submitData = {
+	// 		search: "",
+	// 	};
+	// 	getContactList(submitData).then((res) => {
+	// 		console.log("res contact :: ", res);
+	// 		if (res.success) {
+	// 			setTableRow(res.data);
+	// 			setLoading(false);
+	// 		} else {
+	// 			setTableRow([]);
+	// 			setLoading(false);
+	// 		}
+	// 	});
+	// }, [refresh]);
+	console.log("tableRow", tableRow);
+
 
 	return (
 		<div>
@@ -126,84 +165,7 @@ const ProfileCard = ({
 					</Col>
 					{/* tabel */}
 					<Col md={12}>
-						<Table
-							className='p-3 table-fit text-wrap tbl-color-text'
-							responsive>
-							<thead>
-								<tr>
-									<th className='tbl-head-color '>Nome </th>
-									<th className='tbl-head-color '>
-										CPF/CNPJ
-									</th>
-									<th className='tbl-head-color '>Email </th>
-									<th className='tbl-head-color '>Data</th>
-									<th className='tbl-head-color text-center'>
-										Hora{" "}
-									</th>
-									<th className='tbl-head-color text-center'>
-										Status{" "}
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td className='fw-bold'>
-										Ana Júlia Garcia
-									</td>
-									<td>000.000.000-00</td>
-									<td>anajulia@vanceh.com </td>
-									<td>13 dez 2022</td>
-									<td className='text-center'>13:04 </td>
-									<td className='text-end'>
-										<Button variant='warning' size='lg'>
-											Pendente
-										</Button>
-									</td>
-								</tr>
-								<tr>
-									<td className='fw-bold'>
-										Ana Júlia Garcia
-									</td>
-									<td>000.000.000-00</td>
-									<td>anajulia@vanceh.com </td>
-									<td>13 dez 2022</td>
-									<td className='text-center'>13:04 </td>
-									<td className='text-end'>
-										<Button variant='success' size='lg'>
-											Pendente
-										</Button>
-									</td>
-								</tr>
-								<tr>
-									<td className='fw-bold'>
-										Ana Júlia Garcia
-									</td>
-									<td>000.000.000-00</td>
-									<td>anajulia@vanceh.com </td>
-									<td>13 dez 2022</td>
-									<td className='text-center'>13:04 </td>
-									<td className='text-end'>
-										<Button variant='success' size='lg'>
-											Pendente
-										</Button>
-									</td>
-								</tr>
-								<tr>
-									<td className='fw-bold'>
-										Ana Júlia Garcia
-									</td>
-									<td>000.000.000-00</td>
-									<td>anajulia@vanceh.com </td>
-									<td>13 dez 2022</td>
-									<td className='text-center'>13:04 </td>
-									<td className='text-end'>
-										<Button variant='success' size='lg'>
-											Pendente
-										</Button>
-									</td>
-								</tr>
-							</tbody>
-						</Table>
+						<ProfileTable tableRow={tableRow} />
 					</Col>
 					{/* pagination */}
 					<Col

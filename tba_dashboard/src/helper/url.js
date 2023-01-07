@@ -15,3 +15,5 @@ export const GET_PROFILE = "profile/get-profile";
 export const EDIT_PROFILE = "profile/edit-profile";
 export const GENERATE_LINK = "contacts/generate-document-request-link";
 export const DOCUMENT_LIST = "contacts/get-all-document-details";
+
+export const PROFILE_HISTORY = "profile/filter-history";

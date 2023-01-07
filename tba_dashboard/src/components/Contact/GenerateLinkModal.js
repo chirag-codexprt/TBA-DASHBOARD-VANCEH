@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { Button, Col, Form, InputGroup, Modal, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { LINK_URL } from "../../config";
 import { generateLink } from "../../helper/API/contact";
 
-const GenerateLinkModal = ({ open, handleClose, editData }) => {
+const GenerateLinkModal = ({
+	open,
+	handleClose,
+	editData,
+	refresh,
+	setRefresh,
+}) => {
 	const [copy, setCopy] = useState(false);
 	const [formValues, setFormValues] = useState({
 		cpf: true,
@@ -11,7 +18,8 @@ const GenerateLinkModal = ({ open, handleClose, editData }) => {
 		proofOfAddress: true,
 	});
 
-	const link = `localhost:3000/document-verification/${editData.id}/${editData.documentRequest}`;
+	const link = `${LINK_URL}${editData.id}/${editData.documentRequest}`;
+	console.log("link", link);
 
 	const handleCheck = (e) => {
 		setFormValues({
@@ -29,13 +37,15 @@ const GenerateLinkModal = ({ open, handleClose, editData }) => {
 			requestId: editData.documentRequest,
 			generateLink: link,
 		};
-		// generateLink(submitData).then((res)=>{
-		// 	if(res.success){
-		// 		toast.success(res.message)
-		// 	}else{
-		// 		toast.error(res.message)
-		// 	}
-		// })
+		generateLink(submitData).then((res) => {
+			if (res.success) {
+				setRefresh(refresh + 1);
+				toast.success(res.message);
+				handleClose();
+			} else {
+				toast.error(res.message);
+			}
+		});
 	};
 
 	const handleCopy = (code) => {

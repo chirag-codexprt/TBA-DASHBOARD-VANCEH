@@ -14,7 +14,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 	const [id, setId] = useState(null);
 	const [editData, setEditData] = useState(null);
 	const [tableData, setTableData] = useState(tableRow);
-	let PageSize = 1;
+	let PageSize = 10;
 
 	useEffect(() => {
 		setTableData(tableRow);
@@ -38,6 +38,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 		setOpenLinkModal(true);
 		setEditData(val);
 	};
+	console.log("currentTableData", currentTableData);
 	return (
 		<div>
 			<Table responsive>
@@ -68,62 +69,80 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								<td>13:04</td>
 								<td className='position-relative'>
 									<Button
-										variant='warning'
-										onClick={() => handleShowRow(obj.id)}>
+										variant={
+											obj.status === "pending"
+												? "warning"
+												: "success"
+										}
+										onClick={
+											obj.status === "pending"
+												? () => handleShowRow(obj.id)
+												: null
+										}>
 										{obj.status}
 									</Button>
 								</td>
+								{obj.status === "pending" && (
+									<div>
+										{id === obj.id && open ? (
+											<Row
+												style={{
+													width: "600px",
+													position: "absolute",
+													right: "1.3%",
+													bottom: "0px",
+												}}>
+												{/* <Row> */}
+												<Col
+													md={4}
+													className='opacity-25'>
+													Entrar em contato por:
+												</Col>
 
-								{id === obj.id && open ? (
-									<Row
-										style={{
-											width: "600px",
-											position: "absolute",
-											right: "1.3%",
-											bottom: "0px",
-										}}>
-										{/* <Row> */}
-										<Col md={4} className='opacity-25'>
-											Entrar em contato por:
-										</Col>
-
-										<Col md={1}>
-											<Button
-												style={{
-													background: "#1C3D59",
-												}}>
-												<i class='bi bi-whatsapp'></i>
-											</Button>
-										</Col>
-										<Col md={1}>
-											<Button
-												style={{
-													background: "#1C3D59",
-												}}>
-												<i class='bi bi-envelope'></i>
-											</Button>
-										</Col>
-										<Col
-											md={2}
-											className='opacity-25 text-center'>
-											ou
-										</Col>
-										<Col md={3} className='ps-0'>
-											<Button
-												onClick={() =>
-													handleShowLinkModal(obj)
-												}
-												className='border-0'
-												style={{
-													background: "#C4CCD2",
-												}}>
-												Gerar link
-											</Button>
-										</Col>
-										{/* </Row> */}
-									</Row>
-								) : (
-									""
+												<Col md={1}>
+													<Button
+														style={{
+															background:
+																"#1C3D59",
+														}}>
+														<i class='bi bi-whatsapp'></i>
+													</Button>
+												</Col>
+												<Col md={1}>
+													<Button
+														style={{
+															background:
+																"#1C3D59",
+														}}>
+														<i class='bi bi-envelope'></i>
+													</Button>
+												</Col>
+												<Col
+													md={2}
+													className='opacity-25 text-center'>
+													ou
+												</Col>
+												<Col md={3} className='ps-0'>
+													<Button
+														onClick={() =>
+															handleShowLinkModal(
+																obj
+															)
+														}
+														className='border-0'
+														style={{
+															background:
+																"#C4CCD2",
+														}}>
+														Gerar link
+													</Button>
+												</Col>
+												{/* </Row> */}
+											</Row>
+										) : (
+											""
+										)}
+									</div>
 								)}
 							</tr>
 						))}
@@ -144,6 +163,8 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 					open={openLinkModal}
 					handleClose={() => setOpenLinkModal(false)}
 					editData={editData}
+					refresh={refresh}
+					setRefresh={setRefresh}
 				/>
 			)}
 		</div>

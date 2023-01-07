@@ -1,20 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Row, Col } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { InputGroup } from "react-bootstrap";
-import Table from "react-bootstrap/Table";
-import Modal from "react-bootstrap/Modal";
-import NavbarCom from "../components/NavbarCom";
-import Sidebar from "../components/Sidebar";
-import Figure from "react-bootstrap/Figure";
 import AfterAuth from "../HOC/AfterAuth";
 import TableNavbar from "../components/TableNavbar";
 import DocumentTable from "../components/Document/DocumentTable";
+import { getDocumentList } from "../helper/API/document";
+import Loader from "../components/Loader";
 
 const Documents = () => {
+	const [tableRow, setTableRow] = useState([]);
+	const [refresh, setRefresh] = useState(0);
+	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		setLoading(true);
+		const submitData = {
+			search: "",
+		};
+		getDocumentList(submitData).then((res) => {
+			console.log("res contact :: ", res);
+			if (res.success) {
+				setTableRow(res.data);
+				setLoading(false);
+			} else {
+				setTableRow([]);
+				setLoading(false);
+			}
+		});
+	}, [refresh]);
+
+	console.log("tableRow", tableRow);
+
 	return (
 		<>
 			<AfterAuth>
@@ -26,7 +41,15 @@ const Documents = () => {
 						btn2Text='Pendentes'
 						btn3Text='Todas'
 					/>
-					<DocumentTable />
+					{loading ? (
+						<Loader />
+					) : (
+						<DocumentTable
+							tableRow={tableRow}
+							refresh={refresh}
+							setRefresh={setRefresh}
+						/>
+					)}
 				</Card>
 			</AfterAuth>
 		</>

@@ -14,6 +14,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 	const [id, setId] = useState(null);
 	const [editData, setEditData] = useState(null);
 	const [tableData, setTableData] = useState(tableRow);
+	const [document, setDocument] = useState();
 	let PageSize = 10;
 	console.log("id", id);
 	useEffect(() => {
@@ -33,8 +34,12 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 		setId(data);
 	};
 
-	const handleShowImageModal = () => {
+	const handleShowImageModal = (data, type) => {
 		setOpenImageModal(true);
+		setDocument({
+			...data,
+			type,
+		});
 	};
 
 	const handleShowLinkModal = (val) => {
@@ -166,8 +171,8 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 													</Col>
 												</Col>
 
-												{obj.socialContract.approved ===
-													"pending" && (
+												{!obj.socialContract
+													.approved && (
 													<Col>
 														<Col
 															style={{
@@ -178,8 +183,11 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 														<Col>
 															<Button
 																className='w-100 p-0 ms-0'
-																onClick={
-																	handleShowImageModal
+																onClick={() =>
+																	handleShowImageModal(
+																		obj,
+																		"socialContract"
+																	)
 																}
 																variant='outline-warning'>
 																<i class='bi bi-clock-fill fs-1'></i>
@@ -198,8 +206,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 													</Col>
 												)}
 
-												{obj.addressProof.approved ===
-													"pending" && (
+												{!obj.addressProof.approved && (
 													<Col>
 														<Col
 															style={{
@@ -211,7 +218,13 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 														<Col>
 															<Button
 																className='w-100 p-0'
-																variant='outline-secondary'>
+																variant='outline-secondary'
+																onClick={() =>
+																	handleShowImageModal(
+																		obj,
+																		"addressProof"
+																	)
+																}>
 																<label
 																	style={{
 																		rotate: "45deg",
@@ -262,6 +275,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 				<ImageUploadModal
 					open={openImageModal}
 					handleClose={() => setOpenImageModal(false)}
+					document={document}
 				/>
 			)}
 			{openLinkModal && (

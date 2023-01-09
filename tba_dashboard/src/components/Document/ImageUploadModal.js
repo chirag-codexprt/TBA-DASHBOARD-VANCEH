@@ -1,7 +1,15 @@
 import React, { useRef, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { approvedDocumentList } from "../../helper/API/document";
 
-const ImageUploadModal = ({ open, handleClose, document }) => {
+const ImageUploadModal = ({
+	open,
+	handleClose,
+	document,
+	refresh,
+	setRefresh,
+}) => {
 	console.log("document", document);
 
 	const hiddenFileInput = useRef(null);
@@ -25,6 +33,24 @@ const ImageUploadModal = ({ open, handleClose, document }) => {
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 		hiddenFileInput.current.click();
+	};
+
+	const handleSubmit = (action) => {
+		const submitData = {
+			id: document.id,
+			type: document.type,
+			action,
+		};
+		approvedDocumentList(submitData).then((res) => {
+			if (res.success) {
+				toast.success(res.message);
+				setRefresh(refresh + 1);
+				handleClose();
+			} else {
+				toast.error(res.message);
+			}
+		});
+		console.log("submitData", submitData);
 	};
 
 	return (
@@ -89,7 +115,6 @@ const ImageUploadModal = ({ open, handleClose, document }) => {
 										backgroundColor: "#1C3D59",
 										right: "2%",
 										bottom: "12%",
-
 										zIndex: 10000,
 									}}>
 									<i class='bi bi-cloud-arrow-down-fill'></i>
@@ -102,14 +127,16 @@ const ImageUploadModal = ({ open, handleClose, document }) => {
 					<Col>
 						<Button
 							className='w-100 p-0 py-2 border-0'
-							style={{ background: "#C4CCD2" }}>
+							style={{ background: "#C4CCD2" }}
+							onClick={() => handleSubmit("reject")}>
 							<i class='bi bi-x'></i>Solicitar outra foto
 						</Button>
 					</Col>
 					<Col>
 						<Button
 							className='p-0 py-2 w-100 border-0'
-							style={{ backgroundColor: "#1C3D59" }}>
+							style={{ backgroundColor: "#1C3D59" }}
+							onClick={() => handleSubmit("approved")}>
 							<i class='bi bi-check'></i>Aprovar documento
 						</Button>
 					</Col>

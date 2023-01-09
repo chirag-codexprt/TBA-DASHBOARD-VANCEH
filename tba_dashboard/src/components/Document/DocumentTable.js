@@ -276,6 +276,8 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 					open={openImageModal}
 					handleClose={() => setOpenImageModal(false)}
 					document={document}
+					refresh={refresh}
+					setRefresh={setRefresh}
 				/>
 			)}
 			{openLinkModal && (

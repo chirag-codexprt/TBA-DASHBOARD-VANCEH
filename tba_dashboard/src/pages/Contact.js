@@ -11,10 +11,13 @@ const Contact = () => {
 	const [refresh, setRefresh] = useState(0);
 	const [loading, setLoading] = useState(false);
 
+	const [search, setSearch] = useState()
+	console.log('search', search)
+
 	useEffect(() => {
 		setLoading(true);
 		const submitData = {
-			search: "",
+			search
 		};
 		getContactList(submitData).then((res) => {
 			console.log("res contact :: ", res);
@@ -28,6 +31,30 @@ const Contact = () => {
 		});
 	}, [refresh]);
 	console.log("tableRow", tableRow);
+
+	const onEnter = (e) => {
+		if (e.key === 'Enter') {
+			console.log('clicked enter')
+
+			setLoading(true);
+			const submitData = {
+				search
+
+			};
+			getContactList(submitData).then((res) => {
+				console.log("res contact :: ", res);
+				if (res.success) {
+					setTableRow(res.data);
+					setLoading(false);
+				} else {
+					setTableRow([]);
+					setLoading(false);
+				}
+			});
+		}
+
+	}
+
 	return (
 		<>
 			<AfterAuth>
@@ -39,6 +66,11 @@ const Contact = () => {
 						btn1Text='Pendentes'
 						btn2Text='Respondidas'
 						btn3Text='Todas'
+						setSearch={setSearch}
+						onEnter={onEnter}
+						refresh={refresh}
+						setRefresh={setRefresh}
+						search={search}
 					/>
 
 					{loading ? (

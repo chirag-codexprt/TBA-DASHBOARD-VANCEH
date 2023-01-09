@@ -55,7 +55,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 						<tr>
 							<th>Nome</th>
 							<th>CPF/CNPJ</th>
-							<th>Email</th>
+							<th>Email/Telefone</th>
 							<th>Data</th>
 							<th>Hora</th>
 							<th>Status</th>

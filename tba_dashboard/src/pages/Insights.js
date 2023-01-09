@@ -68,7 +68,7 @@ const Insights = () => {
 					<tr>
 						<th className='tbl-head-color '>Nome </th>
 						<th className='tbl-head-color '>CPF/CNPJ</th>
-						<th className='tbl-head-color '>Email </th>
+						<th className='tbl-head-color '>Email/Telefone </th>
 						<th className='tbl-head-color '>Data</th>
 						<th className='tbl-head-color text-center'>Hora </th>
 						<th className='tbl-head-color text-center'>Status </th>

@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 
-const ImageUploadModal = ({ open, handleClose }) => {
+const ImageUploadModal = ({ open, handleClose, document }) => {
+	console.log("document", document);
+
+	const hiddenFileInput = useRef(null);
+	const [images, setImages] = useState("");
+	const [imagePreview, setImagePreview] = useState(
+		document.socialContract.url
+	);
+	const [anchorEl, setAnchorEl] = useState(null);
+
+	const handleImageChange = (event) => {
+		const fileUploaded = event.target.files[0];
+		if (event.target.files[0]) {
+			setImages(event.target.files[0]);
+			const reader = new FileReader();
+			reader.addEventListener("load", () => {
+				setImagePreview(reader.result);
+			});
+			reader.readAsDataURL(event.target.files[0]);
+		}
+	};
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+		hiddenFileInput.current.click();
+	};
+
 	return (
 		<div>
 			<Modal show={open} onHide={handleClose}>
@@ -23,20 +48,53 @@ const ImageUploadModal = ({ open, handleClose }) => {
 					<Col className='mx-4'>
 						<div
 							className='border d-flex align-items-center justify-content-center position-relative rounded-2 mb-4'
-							style={{ height: "400px" }}>
-							<img src='/assets/img/blankimg.png'></img>
-							<div>
+							style={{ height: "400px" }}
+							onClick={handleClick}>
+							<img
+								src={
+									imagePreview
+										? imagePreview
+										: "/assets/img/blankimg.png"
+								}
+								style={{
+									height: imagePreview ? "100%" : "",
+									width: imagePreview ? "100%" : "",
+									// padding: "0px 15px",
+								}}
+							/>
+
+							<div
+								style={{
+									height: "0px",
+									width: "0px",
+									overflow: "hidden",
+								}}>
+								<input
+									id='upfile'
+									type='file'
+									ref={hiddenFileInput}
+									onChange={handleImageChange}
+									style={{ display: "none" }}
+								/>
+							</div>
+						</div>
+						<div>
+							<a
+								href={document.socialContract.url}
+								target='_blank'
+								style={{ textDecoration: "none" }}>
 								<Button
 									style={{
 										position: "absolute",
 										backgroundColor: "#1C3D59",
-										right: "-6%",
-										bottom: "-10px",
-										border: "0",
+										right: "2%",
+										bottom: "12%",
+
+										zIndex: 10000,
 									}}>
 									<i class='bi bi-cloud-arrow-down-fill'></i>
 								</Button>
-							</div>
+							</a>
 						</div>
 					</Col>
 				</Row>

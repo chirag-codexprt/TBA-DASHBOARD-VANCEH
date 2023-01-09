@@ -1,23 +1,21 @@
-import React from 'react'
-import {useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Protected(props) {
-    const { Component } = props;
-    const navigate = useNavigate();
-    useEffect(() => {
-      let login = localStorage.getItem("login");
-    
-      if (!login) {
-        navigate('/login');
-      }
-      else{
-        navigate('/Insights')
-      }
-    },[]);
-    return (
-        <Component />
-        ) 
-  }
+	const { Component } = props;
+	const navigate = useNavigate();
+	useEffect(() => {
+		let login = localStorage.getItem("login");
 
-export default Protected
+		if (!login) {
+			navigate("/login");
+		}
+		// else{
+		//   navigate('/Insights')
+		// }
+	}, []);
+	return <Component />;
+}
+
+export default Protected;

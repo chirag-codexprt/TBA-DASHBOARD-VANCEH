@@ -171,82 +171,81 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 													</Col>
 												</Col>
 
-												{!obj.socialContract
-													.approved && (
-													<Col>
-														<Col
-															style={{
-																color: "#B5B6B7",
-															}}>
-															Contrato social
-														</Col>
-														<Col>
-															<Button
-																className='w-100 p-0 ms-0'
-																onClick={() =>
-																	handleShowImageModal(
-																		obj,
-																		"socialContract"
-																	)
-																}
-																variant='outline-warning'>
-																<i class='bi bi-clock-fill fs-1'></i>
-																<h6
-																	style={{
-																		color: "#C4CCD2",
-																		fontSize:
-																			"11px",
-																	}}>
-																	Aguardando
-																	análise,
-																	visualizar?
-																</h6>
-															</Button>
-														</Col>
+												{/* {!obj.socialContract
+													.approved && ( */}
+												<Col>
+													<Col
+														style={{
+															color: "#B5B6B7",
+														}}>
+														Contrato social
 													</Col>
-												)}
+													<Col>
+														<Button
+															className='w-100 p-0 ms-0'
+															onClick={() =>
+																handleShowImageModal(
+																	obj,
+																	"socialContract"
+																)
+															}
+															variant='outline-warning'>
+															<i class='bi bi-clock-fill fs-1'></i>
+															<h6
+																style={{
+																	color: "#C4CCD2",
+																	fontSize:
+																		"11px",
+																}}>
+																Aguardando
+																análise,
+																visualizar?
+															</h6>
+														</Button>
+													</Col>
+												</Col>
+												{/* )} */}
 
-												{!obj.addressProof.approved && (
-													<Col>
-														<Col
-															style={{
-																color: "#B5B6B7",
-															}}>
-															Comprovante de
-															residência
-														</Col>
-														<Col>
-															<Button
-																className='w-100 p-0'
-																variant='outline-secondary'
-																onClick={() =>
-																	handleShowImageModal(
-																		obj,
-																		"addressProof"
-																	)
-																}>
-																<label
-																	style={{
-																		rotate: "45deg",
-																	}}>
-																	<i class='bi bi-paperclip fs-1'></i>
-																</label>
-																<h6
-																	style={{
-																		color: "#C4CCD2",
-																		fontSize:
-																			"11px",
-																	}}>
-																	Arraste e
-																	solte aqui
-																	ou importe
-																	dos seus
-																	arquivos
-																</h6>
-															</Button>
-														</Col>
+												{/* {!obj.addressProof.approved && ( */}
+												<Col>
+													<Col
+														style={{
+															color: "#B5B6B7",
+														}}>
+														Comprovante de
+														residência
 													</Col>
-												)}
+													<Col>
+														<Button
+															className='w-100 p-0'
+															variant='outline-secondary'
+															onClick={() =>
+																handleShowImageModal(
+																	obj,
+																	"addressProof"
+																)
+															}>
+															<label
+																style={{
+																	rotate: "45deg",
+																}}>
+																<i class='bi bi-paperclip fs-1'></i>
+															</label>
+															<h6
+																style={{
+																	color: "#C4CCD2",
+																	fontSize:
+																		"11px",
+																}}>
+																Arraste e solte
+																aqui ou importe
+																dos seus
+																arquivos
+															</h6>
+														</Button>
+													</Col>
+												</Col>
+												{/* )} */}
 
 												<Row>
 													<Col
@@ -276,6 +275,8 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 					open={openImageModal}
 					handleClose={() => setOpenImageModal(false)}
 					document={document}
+					refresh={refresh}
+					setRefresh={setRefresh}
 				/>
 			)}
 			{openLinkModal && (

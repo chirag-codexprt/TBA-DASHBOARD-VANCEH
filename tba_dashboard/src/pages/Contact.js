@@ -35,24 +35,21 @@ const Contact = () => {
 	const onEnter = (e) => {
 		if (e.key === 'Enter') {
 			console.log('clicked enter')
-
 			setLoading(true);
 			const submitData = {
 				search
-
 			};
 			getContactList(submitData).then((res) => {
-				console.log("res contact :: ", res);
+				console.log("res contact :: enter ", res);
 				if (res.success) {
 					setTableRow(res.data);
 					setLoading(false);
 				} else {
-					setTableRow([]);
+
 					setLoading(false);
 				}
 			});
 		}
-
 	}
 
 	return (

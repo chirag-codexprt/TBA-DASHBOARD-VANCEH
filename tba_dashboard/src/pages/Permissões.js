@@ -26,10 +26,12 @@ const Permissões = () => {
 	const [refresh, setRefresh] = useState(0);
 	const [loading, setLoading] = useState(false);
 
+	const [search, setSearch] = useState()
+
 	useEffect(() => {
 		setLoading(true);
 		const submitData = {
-			search: "",
+			search
 		};
 		permissonTable(submitData).then((res) => {
 			if (res.success) {
@@ -42,6 +44,25 @@ const Permissões = () => {
 		});
 	}, [refresh]);
 	console.log("table", tableRow);
+
+	const onEnter = (e) => {
+		if (e.key === 'Enter') {
+			console.log('clicked enter')
+			setLoading(true);
+			const submitData = {
+				search
+			};
+			permissonTable(submitData).then((res) => {
+				if (res.success) {
+					setTableRow(res.data.adminList);
+					setLoading(false);
+				} else {
+					setTableRow([]);
+					setLoading(false);
+				}
+			});
+		}
+	}
 
 	return (
 		<>
@@ -56,6 +77,11 @@ const Permissões = () => {
 								btn1Text='Pendentes'
 								btn2Text='Respondidas'
 								btn3Text='Todas'
+								setSearch={setSearch}
+								onEnter={onEnter}
+								refresh={refresh}
+								setRefresh={setRefresh}
+								search={search}
 							/>
 						</Col>
 						{/* table */}

@@ -74,8 +74,8 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 								}}
 								className={
 									id === obj.id &&
-									open &&
-									obj.allStatus === "pending"
+										open &&
+										obj.allStatus === "pending"
 										? "row-height"
 										: ""
 								}>
@@ -171,42 +171,42 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 													</Col>
 												</Col>
 
-												{!obj.socialContract
-													.approved && (
-													<Col>
-														<Col
-															style={{
-																color: "#B5B6B7",
-															}}>
-															Contrato social
-														</Col>
+												{(!obj.socialContract
+													.approved || obj.socialContract == null) && (
 														<Col>
-															<Button
-																className='w-100 p-0 ms-0'
-																onClick={() =>
-																	handleShowImageModal(
-																		obj,
-																		"socialContract"
-																	)
-																}
-																variant='outline-warning'>
-																<i class='bi bi-clock-fill fs-1'></i>
-																<h6
-																	style={{
-																		color: "#C4CCD2",
-																		fontSize:
-																			"11px",
-																	}}>
-																	Aguardando
-																	análise,
-																	visualizar?
-																</h6>
-															</Button>
+															<Col
+																style={{
+																	color: "#B5B6B7",
+																}}>
+																Contrato social
+															</Col>
+															<Col>
+																<Button
+																	className='w-100 p-0 ms-0'
+																	onClick={() =>
+																		handleShowImageModal(
+																			obj,
+																			"socialContract"
+																		)
+																	}
+																	variant='outline-warning'>
+																	<i class='bi bi-clock-fill fs-1'></i>
+																	<h6
+																		style={{
+																			color: "#C4CCD2",
+																			fontSize:
+																				"11px",
+																		}}>
+																		Aguardando
+																		análise,
+																		visualizar?
+																	</h6>
+																</Button>
+															</Col>
 														</Col>
-													</Col>
-												)}
+													)}
 
-												{!obj.addressProof.approved && (
+												{(obj.addressProof == null || !obj.addressProof.approved) && (
 													<Col>
 														<Col
 															style={{

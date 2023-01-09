@@ -11,10 +11,13 @@ const Documents = () => {
 	const [refresh, setRefresh] = useState(0);
 	const [loading, setLoading] = useState(false);
 
+	const [search, setSearch] = useState()
+	// console.log('search', search)
+
 	useEffect(() => {
 		setLoading(true);
 		const submitData = {
-			search: "",
+			search
 		};
 		getDocumentList(submitData).then((res) => {
 			console.log("res contact :: ", res);
@@ -30,6 +33,26 @@ const Documents = () => {
 
 	console.log("tableRow", tableRow);
 
+	const onEnter = (e) => {
+		if (e.key === 'Enter') {
+			console.log('clicked enter')
+			setLoading(true);
+			const submitData = {
+				search
+			};
+			getDocumentList(submitData).then((res) => {
+				console.log("res contact :: ", res);
+				if (res.success) {
+					setTableRow(res.data);
+					setLoading(false);
+				} else {
+					setTableRow([]);
+					setLoading(false);
+				}
+			});
+		}
+	}
+
 	return (
 		<>
 			<AfterAuth>
@@ -40,6 +63,11 @@ const Documents = () => {
 						btn1Text='Concluídos'
 						btn2Text='Pendentes'
 						btn3Text='Todas'
+						setSearch={setSearch}
+						onEnter={onEnter}
+						refresh={refresh}
+						setRefresh={setRefresh}
+						search={search}
 					/>
 					{loading ? (
 						<Loader />

@@ -10,32 +10,33 @@ import { profileAtom } from "../../recoil/Atoms";
 import { useRecoilValue } from "recoil";
 import ProfileTable from "./ProfileTable";
 import { profileHistory } from "../../helper/API/Profile";
+import Loader from "../Loader";
 
 const ProfileCard = ({
 	showProfilePicture,
 	showChangePassword,
 	showAddAdmin,
 }) => {
-
-	const profile = useRecoilValue(profileAtom)
+	const profile = useRecoilValue(profileAtom);
 	// console.log('profile', profile)
 
-
-	const [tableRow, setTableRow] = useState([])
+	const [tableRow, setTableRow] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+		setLoading(true);
 		profileHistory().then((res) => {
-			console.log('res hello', res)
+			console.log("res hello", res);
 			if (res.success) {
-				setTableRow(res.data)
+				setLoading(false);
+				setTableRow(res.data);
+			} else {
+				setTableRow([]);
+				setLoading(false);
 			}
-			else {
-				setTableRow([])
-			}
-		})
-	}, [])
+		});
+	}, []);
 	console.log("tableRow", tableRow);
-
 
 	return (
 		<div>
@@ -51,7 +52,7 @@ const ProfileCard = ({
 										style={{
 											height: "150px",
 											width: "150px",
-											borderRadius: '10px',
+											borderRadius: "10px",
 										}}
 										className='position-relative'
 									/>
@@ -79,9 +80,7 @@ const ProfileCard = ({
 											{profile?.name}
 										</h3>
 										<p>CEO</p>
-										<p>
-											{profile?.email}
-										</p>
+										<p>{profile?.email}</p>
 									</span>
 								</div>
 								<Button
@@ -118,7 +117,7 @@ const ProfileCard = ({
 							</Col>
 							<Col xs={12} sm={12} md={4} lg={4}>
 								<form>
-									<InputGroup className="rounded">
+									<InputGroup className='rounded'>
 										<InputGroup.Text
 											id='basic-addon1'
 											style={{
@@ -144,7 +143,11 @@ const ProfileCard = ({
 					</Col>
 					{/* tabel */}
 					<Col md={12}>
-						<ProfileTable tableRow={tableRow} />
+						{loading ? (
+							<Loader />
+						) : (
+							<ProfileTable tableRow={tableRow} />
+						)}
 					</Col>
 					{/* pagination */}
 					<Col

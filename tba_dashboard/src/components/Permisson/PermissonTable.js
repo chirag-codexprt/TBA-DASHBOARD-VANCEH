@@ -344,7 +344,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 						})}
 					</tbody>
 				) : (
-					<RecordFound label='No Record Found' />
+					<RecordFound label='Nenhum Registro Encontrado' />
 				)}
 			</Table>
 			<Pagination

@@ -5,6 +5,7 @@ import RecordFound from "../RecordFound"
 
 const ProfileTable = ({ tableRow }) => {
 
+    const [tableData, setTableData] = useState(tableRow);
 
     useEffect(() => {
         setTableData(tableRow)
@@ -12,7 +13,6 @@ const ProfileTable = ({ tableRow }) => {
     console.log('tableRow', tableRow)
 
     let PageSize = 10;
-    const [tableData, setTableData] = useState(tableRow);
     const [currentPage, setCurrentPage] = useState(1);
 
     const currentTableData = useMemo(() => {
@@ -21,7 +21,7 @@ const ProfileTable = ({ tableRow }) => {
         return tableData.slice(firstPageIndex, lastPageIndex);
     }, [currentPage]);
 
-    // console.log('currentTableData', currentTableData)
+    console.log('currentTableData', currentTableData)
 
 
     return (
@@ -71,7 +71,7 @@ const ProfileTable = ({ tableRow }) => {
                         ))}
                     </tbody>
                 ) : (
-                    <RecordFound label='No Record Found' />
+                    <RecordFound label='Nenhum Registro Encontrado' />
                 )}
                 <Pagination
                     className='pagination-bar'

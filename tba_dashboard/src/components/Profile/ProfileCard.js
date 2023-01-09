@@ -34,26 +34,6 @@ const ProfileCard = ({
 			}
 		})
 	}, [])
-
-	// const [tableRow, setTableRow] = useState([]);
-	// const [loading, setLoading] = useState(false);
-
-	// useEffect(() => {
-	// 	setLoading(true);
-	// 	const submitData = {
-	// 		search: "",
-	// 	};
-	// 	getContactList(submitData).then((res) => {
-	// 		console.log("res contact :: ", res);
-	// 		if (res.success) {
-	// 			setTableRow(res.data);
-	// 			setLoading(false);
-	// 		} else {
-	// 			setTableRow([]);
-	// 			setLoading(false);
-	// 		}
-	// 	});
-	// }, [refresh]);
 	console.log("tableRow", tableRow);
 
 
@@ -134,12 +114,11 @@ const ProfileCard = ({
 					<Col md={12} className='my-4'>
 						<Row>
 							<Col xs={12} sm={12} md={4} lg={3}>
-								{" "}
 								<h3 className='fw-bolder'>Histórico</h3>
 							</Col>
 							<Col xs={12} sm={12} md={4} lg={4}>
 								<form>
-									<InputGroup>
+									<InputGroup className="rounded">
 										<InputGroup.Text
 											id='basic-addon1'
 											style={{
@@ -156,7 +135,7 @@ const ProfileCard = ({
 											placeholder='Procurar....'
 											aria-label='Search'
 											aria-describedby='basic-addon1'
-											className='border-0'
+											className='border-0 ps-0'
 										/>
 									</InputGroup>
 								</form>

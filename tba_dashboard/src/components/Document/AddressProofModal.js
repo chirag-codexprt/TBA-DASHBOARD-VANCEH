@@ -3,7 +3,7 @@ import { Button, Col, Modal, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { approvedDocumentList } from "../../helper/API/document";
 
-const ImageUploadModal = ({
+const AddressProofModal = ({
 	open,
 	handleClose,
 	document,
@@ -15,7 +15,7 @@ const ImageUploadModal = ({
 	const hiddenFileInput = useRef(null);
 	const [images, setImages] = useState("");
 	const [imagePreview, setImagePreview] = useState(
-		document?.socialContract?.url
+		document?.addressProof?.url
 	);
 	const [anchorEl, setAnchorEl] = useState(null);
 
@@ -106,7 +106,7 @@ const ImageUploadModal = ({
 						</div>
 						<div>
 							<a
-								href={document?.socialContract?.url}
+								href={document?.addressProof?.url}
 								target='_blank'
 								style={{ textDecoration: "none" }}>
 								<Button
@@ -146,4 +146,4 @@ const ImageUploadModal = ({
 	);
 };
 
-export default ImageUploadModal;
+export default AddressProofModal;

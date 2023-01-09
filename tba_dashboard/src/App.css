@@ -117,7 +117,7 @@ animation: show 1s 1s linear;
   width: 100vw;
   top: 0px !important;
   background:linear-gradient(136.92deg, #151515 21.87%, #000000 82.73%);
-  z-index: 100;
+  z-index: 5000 !important;
 }
 
 .Nav-after{

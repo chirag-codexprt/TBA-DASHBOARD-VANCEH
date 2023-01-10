@@ -132,8 +132,8 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 											handleShowLinkModal(obj)
 										}>
 										{obj.allStatus === "pending"
-											? "Pending"
-											: "Approved"}
+											? "Pendente"
+											: "Respondido"}
 									</Button>
 								</td>
 								{obj.allStatus === "pending" && (

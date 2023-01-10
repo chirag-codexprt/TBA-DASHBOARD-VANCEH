@@ -79,7 +79,9 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 												? () => handleShowRow(obj.id)
 												: null
 										}>
-										{obj.status}
+										{obj.status === "pending"
+											? "Pendente"
+											: "respondidas"}
 									</Button>
 								</td>
 								{obj.status === "pending" && (

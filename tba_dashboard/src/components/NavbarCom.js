@@ -9,18 +9,17 @@ import { profileData } from "../helper/API/Profile";
 import { profileAtom } from "../recoil/Atoms";
 
 const NavbarCom = () => {
-
-	const [profileItem, setProfileItem] = useRecoilState(profileAtom)
+	const [profileItem, setProfileItem] = useRecoilState(profileAtom);
 
 	useEffect(() => {
 		profileData().then((res) => {
-			console.log('res', res)
+			console.log("res", res);
 			if (res.success) {
-				setProfileItem(res.data)
+				setProfileItem(res.data);
 			}
-		})
-	}, [])
-	console.log(profileItem)
+		});
+	}, []);
+	console.log(profileItem);
 
 	let pathName = window.location.pathname;
 
@@ -32,21 +31,25 @@ const NavbarCom = () => {
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls='responsive-navbar-nav' />
 				<Navbar.Collapse id='responsive-navbar-nav'>
-					<Nav className='me-auto'>
-					</Nav>
+					<Nav className='me-auto'></Nav>
 					<Nav className='mx-4'>
 						<NavLink
 							style={{ textDecoration: "none" }}
 							to={"/perfil"}>
 							<div
-								className={`${pathName == "/perfil" && "Nav-after"
-									} text-white d-flex align-items-center`}>
+								className={`${
+									pathName == "/perfil" && "Nav-after"
+								} text-white d-flex align-items-center`}>
 								{profileItem?.name}
 								<Nav.Link>
 									<img
 										src={profileItem.profileImage}
 										alt=''
-										style={{ height: '50px', width: '50px', borderRadius: '50%' }}
+										style={{
+											height: "50px",
+											width: "50px",
+											borderRadius: "50%",
+										}}
 									/>
 								</Nav.Link>
 							</div>

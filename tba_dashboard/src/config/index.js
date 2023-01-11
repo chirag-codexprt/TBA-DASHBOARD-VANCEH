@@ -23,6 +23,6 @@ export const BASE_URL = envData(
 	""
 );
 
-export const LINK_URL = "localhost:3002/document-verification/";
+export const LINK_URL = "localhost:3001/document-verification/";
 
 export default config;

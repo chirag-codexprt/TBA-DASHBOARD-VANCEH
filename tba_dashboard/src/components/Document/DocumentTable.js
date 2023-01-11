@@ -4,8 +4,10 @@ import Button from "react-bootstrap/Button";
 
 import Table from "react-bootstrap/Table";
 import RecordFound from "../RecordFound";
+import AddressProofModal from "./AddressProofModal";
 import GenerateLinkModal from "./GenerateLinkModal";
 import ImageUploadModal from "./ImageUploadModal";
+import SocialContractBtn from "./SocialContractBtn";
 
 const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 	const [open, setOpen] = useState(false);
@@ -15,6 +17,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 	const [editData, setEditData] = useState(null);
 	const [tableData, setTableData] = useState(tableRow);
 	const [document, setDocument] = useState();
+	const [addDocument, setAddDocument] = useState();
 	let PageSize = 10;
 	console.log("id", id);
 	useEffect(() => {
@@ -22,6 +25,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 	}, [tableRow]);
 
 	const [currentPage, setCurrentPage] = useState(1);
+	const [openAddressModal, setOpenAddressModal] = useState(false);
 
 	const currentTableData = useMemo(() => {
 		const firstPageIndex = (currentPage - 1) * PageSize;
@@ -35,11 +39,23 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 	};
 
 	const handleShowImageModal = (data, type) => {
-		setOpenImageModal(true);
-		setDocument({
-			...data,
-			type,
-		});
+		if (data.socialContract) {
+			setOpenImageModal(true);
+			setDocument({
+				...data,
+				type,
+			});
+		}
+	};
+
+	const handleShowAddressModal = (data, type) => {
+		if (data.addressProof) {
+			setOpenAddressModal(true);
+			setAddDocument({
+				...data,
+				type,
+			});
+		}
 	};
 
 	const handleShowLinkModal = (val) => {
@@ -75,13 +91,13 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 								className={
 									id === obj.id &&
 										open &&
-										obj.allStatus === "pending"
+										obj?.allStatus === "pending"
 										? "row-height"
 										: ""
 								}>
 								<td
 									onClick={
-										obj.allStatus === "pending"
+										obj?.allStatus === "pending"
 											? () => handleShowRow(obj.id)
 											: null
 									}>
@@ -89,7 +105,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 								</td>
 								<td
 									onClick={
-										obj.allStatus === "pending"
+										obj?.allStatus === "pending"
 											? () => handleShowRow(obj.id)
 											: null
 									}>
@@ -97,15 +113,15 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 								</td>
 								<td
 									onClick={
-										obj.allStatus === "pending"
+										obj?.allStatus === "pending"
 											? () => handleShowRow(obj.id)
 											: null
 									}>
-									{obj.email}
+									{obj.email ? obj.email : obj.phone}
 								</td>
 								<td
 									onClick={
-										obj.allStatus === "pending"
+										obj?.allStatus === "pending"
 											? () => handleShowRow(obj.id)
 											: null
 									}>
@@ -113,7 +129,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 								</td>
 								<td
 									onClick={
-										obj.allStatus === "pending"
+										obj?.allStatus === "pending"
 											? () => handleShowRow(obj.id)
 											: null
 									}>
@@ -133,7 +149,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 										}>
 										{obj.allStatus === "pending"
 											? "Pendente"
-											: "Respondido"}
+											: "Concluded"}
 									</Button>
 								</td>
 								{obj.allStatus === "pending" && (
@@ -170,17 +186,16 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 														</Button>
 													</Col>
 												</Col>
-
-												{(!obj.socialContract
-													.approved || obj.socialContract == null) && (
-														<Col>
-															<Col
-																style={{
-																	color: "#B5B6B7",
-																}}>
-																Contrato social
-															</Col>
-															<Col>
+												<Col>
+													<Col
+														style={{
+															color: "#B5B6B7",
+														}}>
+														Contrato social
+													</Col>
+													<Col>
+														{obj?.socialContract ===
+															null && (
 																<Button
 																	className='w-100 p-0 ms-0'
 																	onClick={() =>
@@ -189,8 +204,13 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 																			"socialContract"
 																		)
 																	}
-																	variant='outline-warning'>
-																	<i class='bi bi-clock-fill fs-1'></i>
+																	variant='outline-secondary'>
+																	<label
+																		style={{
+																			rotate: "45deg",
+																		}}>
+																		<i class='bi bi-paperclip fs-1'></i>
+																	</label>
 																	<h6
 																		style={{
 																			color: "#C4CCD2",
@@ -202,51 +222,160 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 																		visualizar?
 																	</h6>
 																</Button>
-															</Col>
-														</Col>
-													)}
+															)}
+														{obj?.socialContract &&
+															!obj?.socialContract
+																?.approved && (
+																<Button
+																	className='w-100 p-0 ms-0'
+																	onClick={() =>
+																		handleShowImageModal(
+																			obj,
+																			"socialContract"
+																		)
+																	}
+																	variant='outline-warning'>
+																	<i class='bi bi-clock-fill fs-1'></i>
 
-												{(obj.addressProof == null || !obj.addressProof.approved) && (
-													<Col>
-														<Col
-															style={{
-																color: "#B5B6B7",
-															}}>
-															Comprovante de
-															residência
-														</Col>
-														<Col>
-															<Button
-																className='w-100 p-0'
-																variant='outline-secondary'
-																onClick={() =>
-																	handleShowImageModal(
-																		obj,
-																		"addressProof"
-																	)
-																}>
-																<label
-																	style={{
-																		rotate: "45deg",
-																	}}>
-																	<i class='bi bi-paperclip fs-1'></i>
-																</label>
-																<h6
-																	style={{
-																		color: "#C4CCD2",
-																		fontSize:
-																			"11px",
-																	}}>
-																	Arraste e
-																	solte aqui
-																	ou importe
-																	dos seus
-																	arquivos
-																</h6>
-															</Button>
-														</Col>
+																	<h6
+																		style={{
+																			color: "#C4CCD2",
+																			fontSize:
+																				"11px",
+																		}}>
+																		Aguardando
+																		análise,
+																		visualizar?
+																	</h6>
+																</Button>
+															)}
+
+														{obj?.socialContract &&
+															obj?.socialContract
+																?.approved && (
+																<Button
+																	className='w-100 p-0 ms-0'
+																	onClick={() =>
+																		handleShowImageModal(
+																			obj,
+																			"socialContract"
+																		)
+																	}
+																	variant='outline-success'>
+																	<i class='bi bi-check-lg fs-1'></i>
+
+																	<h6
+																		style={{
+																			color: "#C4CCD2",
+																			fontSize:
+																				"11px",
+																		}}>
+																		Aguardando
+																		análise,
+																		visualizar?
+																	</h6>
+																</Button>
+															)}
 													</Col>
-												)}
+												</Col>
+												<Col>
+													<Col
+														style={{
+															color: "#B5B6B7",
+														}}>
+														Comprovante de
+														residência
+													</Col>
+													<Col>
+														{obj?.addressProof ===
+															null && (
+																<Button
+																	className='w-100 p-0 ms-0'
+																	onClick={() =>
+																		handleShowAddressModal(
+																			obj,
+																			"addressProof"
+																		)
+																	}
+																	variant='outline-secondary'>
+																	<label
+																		style={{
+																			rotate: "45deg",
+																		}}>
+																		<i class='bi bi-paperclip fs-1'></i>
+																	</label>
+																	<h6
+																		style={{
+																			color: "#C4CCD2",
+																			fontSize:
+																				"11px",
+																		}}>
+																		Arraste e
+																		solte aqui
+																		ou importe
+																		dos seus
+																		arquivos
+																	</h6>
+																</Button>
+															)}
+														{obj?.addressProof &&
+															!obj?.addressProof
+																?.approved && (
+																<Button
+																	className='w-100 p-0 ms-0'
+																	onClick={() =>
+																		handleShowAddressModal(
+																			obj,
+																			"addressProof"
+																		)
+																	}
+																	variant='outline-warning'>
+																	<i class='bi bi-clock-fill fs-1'></i>
+
+																	<h6
+																		style={{
+																			color: "#C4CCD2",
+																			fontSize:
+																				"11px",
+																		}}>
+																		Arraste
+																		e solte
+																		aqui ou
+																		importe
+																		dos seus
+																		arquivos
+																	</h6>
+																</Button>
+															)}
+
+														{obj?.addressProof &&
+															obj?.addressProof
+																?.approved && (
+																<Button
+																	className='w-100 p-0 ms-0'
+																	onClick={() =>
+																		handleShowAddressModal(
+																			obj,
+																			"addressProof"
+																		)
+																	}
+																	variant='outline-success'>
+																	<i class='bi bi-check-lg fs-1'></i>
+
+																	<h6
+																		style={{
+																			color: "#C4CCD2",
+																			fontSize:
+																				"11px",
+																		}}>
+																		Aguardando
+																		análise,
+																		visualizar?
+																	</h6>
+																</Button>
+															)}
+													</Col>
+												</Col>
 
 												<Row>
 													<Col
@@ -270,23 +399,34 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 				) : (
 					<RecordFound label='Nenhum Registro Encontrado' />
 				)}
+				{openImageModal && (
+					<ImageUploadModal
+						open={openImageModal}
+						handleClose={() => setOpenImageModal(false)}
+						document={document}
+						refresh={refresh}
+						setRefresh={setRefresh}
+					/>
+				)}
+				{openAddressModal && (
+					<AddressProofModal
+						open={openAddressModal}
+						handleClose={() => setOpenAddressModal(false)}
+						document={addDocument}
+						refresh={refresh}
+						setRefresh={setRefresh}
+					/>
+				)}
+				{openLinkModal && (
+					<GenerateLinkModal
+						open={openLinkModal}
+						handleClose={() => setOpenLinkModal(false)}
+						editData={editData}
+						refresh={refresh}
+						setRefresh={setRefresh}
+					/>
+				)}
 			</Table>
-			{openImageModal && (
-				<ImageUploadModal
-					open={openImageModal}
-					handleClose={() => setOpenImageModal(false)}
-					document={document}
-					refresh={refresh}
-					setRefresh={setRefresh}
-				/>
-			)}
-			{openLinkModal && (
-				<GenerateLinkModal
-					open={openLinkModal}
-					handleClose={() => setOpenLinkModal(false)}
-					editData={editData}
-				/>
-			)}
 		</div>
 	);
 };

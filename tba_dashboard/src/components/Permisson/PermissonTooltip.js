@@ -114,11 +114,8 @@ const PermissonTooltip = ({
 					<Popover id='popover-contained'>
 						<Popover.Body>
 							<Row>
-								<Col md={12}>
-									<i
-										onClick={handleClose}
-										className='bi bi-x fs-4 d-flex justify-content-end'
-										style={{ color: "lightgray" }}></i>
+								<Col md={12} className='d-flex justify-content-end'>
+									<img onClick={handleClose} style={{ cursor: 'pointer' }} src="assets/img/close.png"></img>
 								</Col>
 								<Col md={4}>
 									<img src='/assets/img/madam.png'></img>

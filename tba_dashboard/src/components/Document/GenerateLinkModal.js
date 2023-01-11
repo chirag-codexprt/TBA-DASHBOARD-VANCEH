@@ -69,8 +69,8 @@ const GenerateLinkModal = ({
 					<Col>
 						<Button
 							onClick={handleClose}
-							className='bg-white border text-dark'>
-							X
+							className='bg-white border-0 text-dark'>
+							<img src="assets/img/close.png"></img>
 						</Button>
 					</Col>
 				</Row>

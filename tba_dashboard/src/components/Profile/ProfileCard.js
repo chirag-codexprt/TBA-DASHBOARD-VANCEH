@@ -39,7 +39,7 @@ const ProfileCard = ({
 				setLoading(false);
 			}
 		});
-	}, []);
+	}, [refresh]);
 
 	const onEnter = (e) => {
 		if (e.key === "Enter") {
@@ -69,7 +69,7 @@ const ProfileCard = ({
 						<Row>
 							{/* image */}
 							<Col xs={12} sm={12} md={12} lg={5} className=''>
-								<div >
+								<div>
 									<img
 										src={
 											profile?.profileImage
@@ -84,7 +84,8 @@ const ProfileCard = ({
 										className='position-relative px-0'
 									/>
 									<div>
-										<Button className=''
+										<Button
+											className=''
 											onClick={showProfilePicture}
 											style={{
 												position: "absolute",
@@ -99,25 +100,35 @@ const ProfileCard = ({
 								</div>
 							</Col>
 							{/* content */}
-							<Col xs={12} sm={12} md={12} lg={7} className="px-0 d-flex">
-								<div className="align-item-center ">
+							<Col
+								xs={12}
+								sm={12}
+								md={12}
+								lg={7}
+								className='px-0 d-flex'>
+								<div className='align-item-center '>
 									<div className='border-left px-2'>
-										<span >
+										<span>
 											<p className='fs-6 fw-bolder mb-0'>
 												{profile?.name}
 											</p>
-											<p className="small  mb-0">CEO</p>
-											<p className="small  mb-0">{profile?.email}</p>
+											<p className='small  mb-0'>CEO</p>
+											<p className='small  mb-0'>
+												{profile?.email}
+											</p>
 										</span>
 									</div>
 									<Button
 										onClick={showChangePassword}
 										className='bg-white border-0 p-0'
-										style={{ color: "#85A6A2", fontSize: '12px' }}>
+										style={{
+											color: "#85A6A2",
+											fontSize: "12px",
+										}}>
 										Alterar senha
 									</Button>
-								</div></Col>
-
+								</div>
+							</Col>
 						</Row>
 					</Col>
 					<Col md={6} className='text-end'>

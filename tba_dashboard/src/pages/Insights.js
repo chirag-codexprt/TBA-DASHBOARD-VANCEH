@@ -14,7 +14,13 @@ import Container from "react-bootstrap/Container";
 import NavbarCom from "../components/NavbarCom";
 import Sidebar from "../components/Sidebar";
 import AfterAuth from "../HOC/AfterAuth";
-
+import DateRangePicker from "react-bootstrap-daterangepicker";
+// you will need the css that comes with bootstrap@3. if you are using
+// a tool like webpack, you can do the following:
+import "bootstrap/dist/css/bootstrap.css";
+// you will also need the css that comes with bootstrap-daterangepicker
+import "bootstrap-daterangepicker/daterangepicker.css";
+import moment from "moment";
 const Insights = () => {
 	const TABLE = () => {
 		return (
@@ -100,6 +106,7 @@ const Insights = () => {
 		month: true,
 		year: false,
 		week: false,
+		date: false,
 	});
 	const handleToggle = (status) => {
 		if (status === "month") {
@@ -107,20 +114,43 @@ const Insights = () => {
 				month: true,
 				year: false,
 				week: false,
+				date: false,
 			});
 		} else if (status === "yearly") {
 			setActive({
 				month: false,
 				year: true,
 				week: false,
+				date: false,
+			});
+		} else if (status === "date") {
+			setActive({
+				month: false,
+				year: false,
+				week: false,
+				date: true,
 			});
 		} else {
 			setActive({
 				month: false,
 				year: false,
 				week: true,
+				date: false,
 			});
 		}
+	};
+
+	const handleEvent = (start, end, label) => {
+		console.log("start", start._d);
+		console.log("end", end._d);
+		console.log("label", label);
+		const startDate = moment(start._d).format("YYYY-MM-DD");
+		const endDate = moment(end._d).format("YYYY-MM-DD");
+		console.log("startDate", startDate);
+		console.log("endDate", endDate);
+	};
+	const handleCallback = (start, end, label) => {
+		// console.log(start, end, label);
 	};
 
 	return (
@@ -175,11 +205,23 @@ const Insights = () => {
 										Semana
 									</Button>
 									<div className='vr' />
-									<Button
-										className='fs-color btnn m-1 '
-										variant='light '>
-										<i className='bi bi-calendar-fill fs-color'></i>
-									</Button>
+									<DateRangePicker
+										onCallback={(start, end, label) =>
+											handleEvent(start, end, label)
+										}>
+										<Button
+											className={`fs-color  mx-1 border-0 ${
+												active.date
+													? "activeBtnTable"
+													: "inActiveBtnTable"
+											}`}
+											onClick={(e) =>
+												handleToggle("date")
+											}
+											variant='light '>
+											<i className='bi bi-calendar-fill fs-color'></i>
+										</Button>
+									</DateRangePicker>
 								</Navbar.Collapse>
 							</Container>
 						</Navbar>

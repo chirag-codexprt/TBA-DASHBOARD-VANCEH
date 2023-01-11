@@ -65,60 +65,60 @@ const Insights = () => {
 				className='p-3 table-fit text-wrap tbl-color-text'
 				responsive>
 				<thead>
-					<tr>
-						<th className='tbl-head-color '>Nome </th>
+					<tr className="">
+						<th className='tbl-head-color  '>Nome </th>
 						<th className='tbl-head-color '>CPF/CNPJ</th>
 						<th className='tbl-head-color '>Email/Telefone </th>
 						<th className='tbl-head-color '>Data</th>
-						<th className='tbl-head-color text-center'>Hora </th>
-						<th className='tbl-head-color text-center'>Status </th>
+						<th className='tbl-head-color text-center '>Hora </th>
+						<th className='tbl-head-color text-center '>Status </th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td className='fw-bold'>Ana Júlia Garcia</td>
+					<tr className="small">
+						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
+						<td className='text-center' >13:04 </td>
 						<td className='text-end'>
-							<Button variant='warning' size='lg'>
+							<Button variant='warning' size='sm' className="text-white border-0 px-3">
 								Pendente
 							</Button>
 						</td>
 					</tr>
-					<tr>
-						<td className='fw-bold'>Ana Júlia Garcia</td>
+					<tr className="small">
+						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
+						<td className='text-center' >13:04 </td>
 						<td className='text-end'>
-							<Button variant='success' size='lg'>
+							<Button variant='warning' size='sm' className="text-white border-0 px-3">
 								Pendente
 							</Button>
 						</td>
 					</tr>
-					<tr>
-						<td className='fw-bold'>Ana Júlia Garcia</td>
+					<tr className="small">
+						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
+						<td className='text-center' >13:04 </td>
 						<td className='text-end'>
-							<Button variant='success' size='lg'>
+							<Button variant='warning' size='sm' className="text-white border-0 px-3">
 								Pendente
 							</Button>
 						</td>
 					</tr>
-					<tr>
-						<td className='fw-bold'>Ana Júlia Garcia</td>
+					<tr className="small">
+						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
+						<td className='text-center' >13:04 </td>
 						<td className='text-end'>
-							<Button variant='success' size='lg'>
+							<Button variant='warning' size='sm' className="text-white border-0 px-3">
 								Pendente
 							</Button>
 						</td>

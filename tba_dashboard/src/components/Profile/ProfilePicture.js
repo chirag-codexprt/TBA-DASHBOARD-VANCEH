@@ -153,7 +153,7 @@ const ProfilePicture = ({ open, handleClose }) => {
 						<Col className='mx-auto' sm={6}>
 							<Button
 								onClick={onEditProfile}
-								className='fw-bolder fs-6 w-100'
+								className='fw-bolder fs-6 w-100 border-0'
 								style={{ backgroundColor: "#1C3D59" }}>
 								Atualizar
 							</Button>

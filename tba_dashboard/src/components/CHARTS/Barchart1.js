@@ -47,7 +47,7 @@ const data = [
 
 function BarChartCounter() {
   const [focusBar, setFocusBar] = useState(null);
-  const [mouseLeave, setMouseLeave] = useState(true);
+  // const [mouseLeave, setMouseLeave] = useState(true);
 
 
   return (
@@ -64,10 +64,10 @@ function BarChartCounter() {
         onMouseMove={(state) => {
           if (state.isTooltipActive) {
             setFocusBar(state.activeTooltipIndex);
-            setMouseLeave(false);
+            // setmouseOver(false);
           } else {
             setFocusBar(null);
-            setMouseLeave(true);
+            // setmouseOver(true);
           }
         }}
       >
@@ -88,9 +88,9 @@ function BarChartCounter() {
           {data.map((entry, index) => (
             <Cell
               fill={
-                focusBar === index || mouseLeave
-                  ? "#1C3D59"
-                  : "#1C3D5980"
+                focusBar === index
+                  ? "rgba(28, 61, 89, 1)"
+                  : "rgba(28, 61, 89, 0.8)"
               }
             />
           ))}

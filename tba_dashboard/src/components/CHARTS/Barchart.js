@@ -9,7 +9,8 @@ import {
   Tooltip,
   Legend,
   Cell,
-  ResponsiveContainer
+  ResponsiveContainer,
+
 } from "recharts";
 
 
@@ -47,7 +48,7 @@ const data = [
 
 function BarChartVisitor() {
   const [focusBar, setFocusBar] = useState(null);
-  const [mouseLeave, setMouseLeave] = useState(true);
+  // const [mouseOver, setmouseOver] = useState(true);
 
 
   return (
@@ -64,10 +65,10 @@ function BarChartVisitor() {
         onMouseMove={(state) => {
           if (state.isTooltipActive) {
             setFocusBar(state.activeTooltipIndex);
-            setMouseLeave(false);
+            // setmouseOver(false);
           } else {
             setFocusBar(null);
-            setMouseLeave(true);
+            // setmouseOver(true);
           }
         }}
       >
@@ -84,13 +85,13 @@ function BarChartVisitor() {
           }} />
 
 
-        <Bar dataKey="uv" fill="#1C3D5980" radius={5}>
+        <Bar dataKey="uv" radius={5}>
           {data.map((entry, index) => (
             <Cell
               fill={
-                focusBar === index || mouseLeave
-                  ? "#1C3D59"
-                  : "#1C3D5980"
+                focusBar === index
+                  ? "rgba(28, 61, 89, 1)"
+                  : "rgba(28, 61, 89, 0.8)"
               }
             />
           ))}

@@ -166,15 +166,16 @@ const Insights = () => {
 										sm={12}
 										md={6}
 										className='text-center'>
-										<Row className=" text-center pt-3">
-											<Col className="d-flex flex-wrap ">
+										<Row className="pt-3">
+											<Col md={5} className="">
 												<img src='/assets/img/eye.png' style={{ height: "5rem", width: "5rem" }} />
-
-												<span className="fs-color mx-2 mb-0">Total&nbsp;de&nbsp;visitas
-													<p className='fs-color-fill'>
+											</Col>
+											<Col md={7} className='d-flex justify-content-center'>
+												<h6 className="fs-color  mb-0" style={{ fontSize: '12px' }}>Total de visitas
+													<p className='fs-color-fill px-0'>
 														149
 													</p>
-												</span>
+												</h6>
 											</Col>
 										</Row>
 									</Col>
@@ -207,15 +208,16 @@ const Insights = () => {
 										sm={12}
 										md={6}
 										className='text-center'>
-										<Row className=" text-center pt-3">
-											<Col className="d-flex flex-wrap ">
+										<Row className="pt-3">
+											<Col md={5} className="">
 												<img src='/assets/img/file.png' style={{ height: "5rem", width: "5rem" }} />
-
-												<span className="fs-color mx-1 mb-0">Total&nbsp;de&nbsp;contatos
-													<p className='fs-color-fill'>
+											</Col>
+											<Col md={7} className='d-flex justify-content-center'>
+												<h6 className="fs-color  mb-0" style={{ fontSize: '12px' }}>Total de contatos
+													<p className='fs-color-fill px-0'>
 														17
 													</p>
-												</span>
+												</h6>
 											</Col>
 										</Row>
 									</Col>

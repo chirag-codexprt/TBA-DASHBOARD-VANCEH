@@ -99,9 +99,9 @@ const ProfileCard = ({
 								</div>
 							</Col>
 							{/* content */}
-							<Col xs={12} sm={12} md={12} lg={7} className="px-0 d-flex">
-								<div className="align-item-center ">
-									<div className='border-left px-2'>
+							<Col xs={12} sm={12} md={12} lg={7} className=" d-flex align-items-center">
+								<div className=" ">
+									<div className='border-left px-2 mx-2'>
 										<span >
 											<p className='fs-6 fw-bolder mb-0'>
 												{profile?.name}
@@ -112,11 +112,12 @@ const ProfileCard = ({
 									</div>
 									<Button
 										onClick={showChangePassword}
-										className='bg-white border-0 p-0'
+										className='bg-white border-0 '
 										style={{ color: "#85A6A2", fontSize: '12px' }}>
 										Alterar senha
 									</Button>
-								</div></Col>
+								</div>
+							</Col>
 
 						</Row>
 					</Col>

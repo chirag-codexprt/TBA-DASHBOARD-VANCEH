@@ -69,7 +69,7 @@ const ProfileCard = ({
 						<Row>
 							{/* image */}
 							<Col xs={12} sm={12} md={12} lg={5} className=''>
-								<div>
+								<div >
 									<img
 										src={
 											profile?.profileImage
@@ -77,49 +77,47 @@ const ProfileCard = ({
 												: "assets/img/noUser.png"
 										}
 										style={{
-											height: "150px",
-											width: "150px",
+											height: "180px",
+											width: "180px",
 											borderRadius: "10px",
 										}}
-										className='position-relative'
+										className='position-relative px-0'
 									/>
 									<div>
-										<Button
+										<Button className=''
 											onClick={showProfilePicture}
 											style={{
 												position: "absolute",
 												backgroundColor: "#85A6A2",
 												marginTop: "-25px",
-												marginLeft: "125px",
+												marginLeft: "150px",
 												border: "0",
 											}}>
 											<i className='bi bi-camera-fill'></i>
-											{/* <img src="./assets/camera.png" className='position-absolute' style={{ marginTop: '-50px', marginLeft: '100px' }} /> */}
 										</Button>
 									</div>
 								</div>
 							</Col>
 							{/* content */}
-							<Col xs={12} sm={12} md={12} lg={7}>
-								<div className='border-left px-2'>
-									<span>
-										<h3 className='fw-bolder'>
-											{profile?.name}
-										</h3>
-										<p>CEO</p>
-										<p>{profile?.email}</p>
-									</span>
-								</div>
-								<Button
-									onClick={showChangePassword}
-									className='bg-white border-0'
-									style={{ color: "#85A6A2" }}>
-									Alterar senha
-								</Button>
-								{/* <small style={{
-                                            color: '#85A6A2'
-                                        }}>Alterar senha</small> */}
-							</Col>
+							<Col xs={12} sm={12} md={12} lg={7} className="px-0 d-flex">
+								<div className="align-item-center ">
+									<div className='border-left px-2'>
+										<span >
+											<p className='fs-6 fw-bolder mb-0'>
+												{profile?.name}
+											</p>
+											<p className="small  mb-0">CEO</p>
+											<p className="small  mb-0">{profile?.email}</p>
+										</span>
+									</div>
+									<Button
+										onClick={showChangePassword}
+										className='bg-white border-0 p-0'
+										style={{ color: "#85A6A2", fontSize: '12px' }}>
+										Alterar senha
+									</Button>
+								</div></Col>
+
 						</Row>
 					</Col>
 					<Col md={6} className='text-end'>
@@ -127,7 +125,7 @@ const ProfileCard = ({
 						<Button
 							size='lg'
 							onClick={showAddAdmin}
-							className='border-0'
+							className='border-0 fs-6'
 							style={{ backgroundColor: "#C4CCD2" }}>
 							<i className='bi bi-link-45deg mx-1'></i>
 							Gerar código pra nova conta

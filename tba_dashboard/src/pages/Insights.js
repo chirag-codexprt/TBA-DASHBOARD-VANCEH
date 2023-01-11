@@ -16,56 +16,13 @@ import Sidebar from "../components/Sidebar";
 import AfterAuth from "../HOC/AfterAuth";
 
 const Insights = () => {
-	const NAVBAR = () => {
-		return (
-			<Navbar expand='lg'>
-				<Container fluid>
-					<Navbar.Brand className='fw-bolder' href='#'>
-						<p className='fw-bolder'>Visitas ao site</p>
-						<p className=' fs-color'>11 dez - 17 dez</p>
-					</Navbar.Brand>
-					<Navbar.Toggle aria-controls='navbarScroll' />
-					<Navbar.Collapse id='navbarScroll'>
-						{/* searchbar */}
-						<Nav
-							className='me-auto my-2 my-lg-0'
-							style={{ maxHeight: "100px" }}
-							navbarScroll>
-							<InputGroup></InputGroup>
-						</Nav>
-						{/* button */}
-						<Button
-							className='fs-color btnn m-1 border-0'
-							style={{ background: "#FBFBFB" }}>
-							Ano
-						</Button>
-						<Button
-							className='fs-color btnn m-1 border-0'
-							style={{ background: "#FBFBFB" }}>
-							Mês
-						</Button>
-						<Button
-							className='fs-color btnn m-1 border-0'
-							style={{ background: "#FBFBFB" }}>
-							Semana
-						</Button>
-						<div className='vr' />
-						<Button className='fs-color btnn m-1 ' variant='light '>
-							<i className='bi bi-calendar-fill fs-color'></i>
-						</Button>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
-		);
-	};
-
 	const TABLE = () => {
 		return (
 			<Table
 				className='p-3 table-fit text-wrap tbl-color-text'
 				responsive>
 				<thead>
-					<tr className="">
+					<tr className=''>
 						<th className='tbl-head-color  '>Nome </th>
 						<th className='tbl-head-color '>CPF/CNPJ</th>
 						<th className='tbl-head-color '>Email/Telefone </th>
@@ -75,50 +32,62 @@ const Insights = () => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr className="small">
+					<tr className='small'>
 						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center' >13:04 </td>
+						<td className='text-center'>13:04 </td>
 						<td className='text-end'>
-							<Button variant='warning' size='sm' className="text-white border-0 px-3">
+							<Button
+								variant='warning'
+								size='sm'
+								className='text-white border-0 px-3'>
 								Pendente
 							</Button>
 						</td>
 					</tr>
-					<tr className="small">
+					<tr className='small'>
 						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center' >13:04 </td>
+						<td className='text-center'>13:04 </td>
 						<td className='text-end'>
-							<Button variant='warning' size='sm' className="text-white border-0 px-3">
+							<Button
+								variant='warning'
+								size='sm'
+								className='text-white border-0 px-3'>
 								Pendente
 							</Button>
 						</td>
 					</tr>
-					<tr className="small">
+					<tr className='small'>
 						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center' >13:04 </td>
+						<td className='text-center'>13:04 </td>
 						<td className='text-end'>
-							<Button variant='warning' size='sm' className="text-white border-0 px-3">
+							<Button
+								variant='warning'
+								size='sm'
+								className='text-white border-0 px-3'>
 								Pendente
 							</Button>
 						</td>
 					</tr>
-					<tr className="small">
+					<tr className='small'>
 						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center' >13:04 </td>
+						<td className='text-center'>13:04 </td>
 						<td className='text-end'>
-							<Button variant='warning' size='sm' className="text-white border-0 px-3">
+							<Button
+								variant='warning'
+								size='sm'
+								className='text-white border-0 px-3'>
 								Pendente
 							</Button>
 						</td>
@@ -136,29 +105,51 @@ const Insights = () => {
 					className='p-4 m-5 my-3'
 					style={{ backgroundColor: "#FBFBFB" }}>
 					<Row>
-						{/* Dates and Button */}
-						{/* <div className="d-flex justify-content-between">
-              <div className="">
-                <p className="fw-bolder">Visitas ao site</p>
-                <p className=" fs-color">11 dez - 17 dez</p>
-              </div>
-              <div className="d-flex  flex-wrap">
-                <Button className="fs-color btnn m-1" variant="light ">Ano</Button>
-                <Button className="fs-color btnn m-1" variant="light ">Mês</Button>
-                <Button className="fs-color btnn m-1" variant="light ">Semana</Button>
-                <div className="vr" />
-                <Button className="fs-color btnn m-1 " variant="light ">
-                  <i className="bi bi-calendar-fill fs-color"></i>
-                </Button>
-              </div>
-            </div> */}
-						{/* navbar */}
-						<NAVBAR />
+						<Navbar expand='lg'>
+							<Container fluid>
+								<Navbar.Brand className='fw-bolder' href='#'>
+									<p className='fw-bolder'>Visitas ao site</p>
+									<p className=' fs-color'>11 dez - 17 dez</p>
+								</Navbar.Brand>
+								<Navbar.Toggle aria-controls='navbarScroll' />
+								<Navbar.Collapse id='navbarScroll'>
+									{/* searchbar */}
+									<Nav
+										className='me-auto my-2 my-lg-0'
+										style={{ maxHeight: "100px" }}
+										navbarScroll>
+										<InputGroup></InputGroup>
+									</Nav>
+
+									<Button
+										className='fs-color btnn m-1 border-0'
+										style={{ background: "#FBFBFB" }}>
+										Ano
+									</Button>
+									<Button
+										className='fs-color btnn m-1 border-0'
+										style={{ background: "#FBFBFB" }}>
+										Mês
+									</Button>
+									<Button
+										className='fs-color btnn m-1 border-0'
+										style={{ background: "#FBFBFB" }}>
+										Semana
+									</Button>
+									<div className='vr' />
+									<Button
+										className='fs-color btnn m-1 '
+										variant='light '>
+										<i className='bi bi-calendar-fill fs-color'></i>
+									</Button>
+								</Navbar.Collapse>
+							</Container>
+						</Navbar>
 					</Row>
 					{/* charts */}
 					<Row className='my-3'>
 						{/* first card */}
-						<Col md={6} >
+						<Col md={6}>
 							<Card>
 								<Row className='p-3'>
 									<Col
@@ -166,12 +157,25 @@ const Insights = () => {
 										sm={12}
 										md={6}
 										className='text-center'>
-										<Row className="pt-3">
-											<Col md={5} className="">
-												<img src='/assets/img/eye.png' style={{ height: "5rem", width: "5rem" }} />
+										<Row className='pt-3'>
+											<Col md={5} className=''>
+												<img
+													src='/assets/img/eye.png'
+													style={{
+														height: "5rem",
+														width: "5rem",
+													}}
+												/>
 											</Col>
-											<Col md={7} className='d-flex justify-content-center'>
-												<h6 className="fs-color  mb-0" style={{ fontSize: '12px' }}>Total de visitas
+											<Col
+												md={7}
+												className='d-flex justify-content-center'>
+												<h6
+													className='fs-color  mb-0'
+													style={{
+														fontSize: "12px",
+													}}>
+													Total de visitas
 													<p className='fs-color-fill px-0'>
 														149
 													</p>
@@ -208,12 +212,25 @@ const Insights = () => {
 										sm={12}
 										md={6}
 										className='text-center'>
-										<Row className="pt-3">
-											<Col md={5} className="">
-												<img src='/assets/img/file.png' style={{ height: "5rem", width: "5rem" }} />
+										<Row className='pt-3'>
+											<Col md={5} className=''>
+												<img
+													src='/assets/img/file.png'
+													style={{
+														height: "5rem",
+														width: "5rem",
+													}}
+												/>
 											</Col>
-											<Col md={7} className='d-flex justify-content-center'>
-												<h6 className="fs-color  mb-0" style={{ fontSize: '12px' }}>Total de contatos
+											<Col
+												md={7}
+												className='d-flex justify-content-center'>
+												<h6
+													className='fs-color  mb-0'
+													style={{
+														fontSize: "12px",
+													}}>
+													Total de contatos
 													<p className='fs-color-fill px-0'>
 														17
 													</p>

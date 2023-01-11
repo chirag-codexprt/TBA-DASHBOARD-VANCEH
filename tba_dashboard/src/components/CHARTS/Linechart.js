@@ -39,7 +39,7 @@ const data = [
 const Linechart = () => {
   return (
     <>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={220}>
         {/* <LineChart data={data} width={100} height={100}> */}
         <LineChart data={data} >
           <Line
@@ -58,6 +58,7 @@ const Linechart = () => {
           </XAxis>
 
           <Tooltip
+
             itemStyle={{ color: '#1A1D1F', fontWeight: 'bold' }}
             labelStyle={{ fontWeight: 'lighter', color: '#6F767E' }}
             contentStyle={{

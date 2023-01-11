@@ -158,7 +158,7 @@ const Insights = () => {
 					{/* charts */}
 					<Row className='my-3'>
 						{/* first card */}
-						<Col md={6} className=''>
+						<Col md={6} >
 							<Card>
 								<Row className='p-3'>
 									<Col
@@ -166,20 +166,24 @@ const Insights = () => {
 										sm={12}
 										md={6}
 										className='text-center'>
-										<img src='/assets/img/eye.png' />
-										<p className='m-2 fs-color'>
-											Total de visitas
-										</p>
-										<p className='fs-color-fill m-2 '>
-											149
-										</p>
+										<Row className=" text-center pt-3">
+											<Col className="d-flex flex-wrap ">
+												<img src='/assets/img/eye.png' style={{ height: "5rem", width: "5rem" }} />
+
+												<span className="fs-color mx-2 mb-0">Total&nbsp;de&nbsp;visitas
+													<p className='fs-color-fill'>
+														149
+													</p>
+												</span>
+											</Col>
+										</Row>
 									</Col>
 									{/* linechart left */}
 									<Col
 										xs={12}
 										sm={12}
 										md={6}
-										className='p-3 justify-content-center align-items-center d-flex'>
+										className=' justify-content-center align-items-center '>
 										<Linechart />
 									</Col>
 								</Row>
@@ -197,24 +201,30 @@ const Insights = () => {
 						{/* third card */}
 						<Col md={6}>
 							<Card>
-								<Row className='p-3 '>
+								<Row className='p-3'>
 									<Col
 										xs={12}
 										sm={12}
 										md={6}
-										className='text-center  '>
-										<img src='/assets/img/file.png' />
-										<p className='m-2fs-color'>
-											Total de contatos
-										</p>
-										<p className='m-2 fs-color-fill'>17</p>
+										className='text-center'>
+										<Row className=" text-center pt-3">
+											<Col className="d-flex flex-wrap ">
+												<img src='/assets/img/file.png' style={{ height: "5rem", width: "5rem" }} />
+
+												<span className="fs-color mx-1 mb-0">Total&nbsp;de&nbsp;contatos
+													<p className='fs-color-fill'>
+														17
+													</p>
+												</span>
+											</Col>
+										</Row>
 									</Col>
 									{/* linechart left */}
 									<Col
 										xs={12}
 										sm={12}
 										md={6}
-										className='p-3 justify-content-center align-items-center   d-flex'>
+										className='justify-content-center align-items-center   '>
 										<Linechart1 />
 									</Col>
 								</Row>

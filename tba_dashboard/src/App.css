@@ -231,8 +231,8 @@ body {
 }
 
 .fs-color-fill {
-  color: #1A1D1F;
-  font-size: 3rem;
+  color: #1A1D1F !important;
+  font-size: 2.8rem;
   font-weight: 900;
 }
 
@@ -371,7 +371,7 @@ body {
 }
 
 .active-page {
-  color: #1C3D59;
+  color: rgba(28, 61, 89, 0.8);
   font-weight: bold;
   cursor: pointer;
 }

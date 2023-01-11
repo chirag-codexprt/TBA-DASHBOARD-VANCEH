@@ -74,7 +74,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 							<th>Email/Telefone</th>
 							<th>Data</th>
 							<th>Hora</th>
-							<th>Status</th>
+							<th className="text-center">Status</th>
 						</tr>
 					</thead>
 				) : (
@@ -139,8 +139,9 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 								>
 									{obj.time}
 								</td>
-								<td className="position-relative" style={{ zIndex: 1000 }}>
+								<td className="position-relative text-end" style={{ zIndex: 1000, }}>
 									<Button
+										style={{ width: '120px' }}
 										variant={
 											obj.allStatus === "pending" ? "warning" : "success"
 										}

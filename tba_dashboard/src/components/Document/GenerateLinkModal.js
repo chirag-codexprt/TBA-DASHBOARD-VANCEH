@@ -69,11 +69,7 @@ const GenerateLinkModal = ({
 						<h3>Link para solicitação de documentos</h3>
 					</Col>
 					<Col>
-						<Button
-							onClick={handleClose}
-							className='bg-white border-0 text-dark'>
-							<img src="assets/img/close.png"></img>
-						</Button>
+						<img style={{ cursor: 'pointer' }} onClick={handleClose} src="assets/img/close.png"></img>
 					</Col>
 				</Row>
 				<Row className='flex-column px-4'>

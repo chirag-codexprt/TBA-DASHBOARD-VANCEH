@@ -25,12 +25,12 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 	const currentTableData = useMemo(() => {
 		const firstPageIndex = (currentPage - 1) * PageSize;
 		const lastPageIndex = firstPageIndex + PageSize;
-		return tableData.slice(firstPageIndex, lastPageIndex);
-	}, [currentPage]);
+		return tableData?.slice(firstPageIndex, lastPageIndex);
+	}, [tableData, currentPage]);
 
 	const handleShowRow = (id) => {
 		setId(id);
-		console.log("id", id);
+		// console.log("id", id);
 		setOpen(!open);
 	};
 

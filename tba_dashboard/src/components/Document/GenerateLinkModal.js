@@ -11,6 +11,7 @@ const GenerateLinkModal = ({
 	refresh,
 	setRefresh,
 }) => {
+	console.log("editData", editData);
 	const [copy, setCopy] = useState(false);
 	const [formValues, setFormValues] = useState({
 		cpf: true,
@@ -18,8 +19,7 @@ const GenerateLinkModal = ({
 		proofOfAddress: false,
 	});
 
-	const link = `${LINK_URL}${editData.id}/${editData.documentRequest}`;
-	console.log("link", link);
+	const link = `${LINK_URL}${editData.id}/${editData.documentRequest.id}`;
 
 	const handleCheck = (e) => {
 		setFormValues({
@@ -29,14 +29,16 @@ const GenerateLinkModal = ({
 	};
 
 	const submitForm = (e) => {
+		console.log("editData", editData);
 		const submitData = {
 			permission: {
 				...formValues,
 			},
 			contactId: editData.id,
-			requestId: editData.documentRequest,
+			requestId: editData.documentRequest.id,
 			generateLink: link,
 		};
+		console.log("submitData", submitData);
 		generateLink(submitData).then((res) => {
 			if (res.success) {
 				setRefresh(refresh + 1);

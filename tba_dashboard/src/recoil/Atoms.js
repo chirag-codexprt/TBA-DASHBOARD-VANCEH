@@ -20,3 +20,15 @@ export const profileAtom = atom({
 	default: "",
 	effects_UNSTABLE: [persistAtom],
 });
+
+export const contactTableData = atom({
+	key: "contactTableData",
+	default: "",
+	effects_UNSTABLE: [persistAtom],
+});
+
+export const documentTableData = atom({
+	key: "documentTableData",
+	default: "",
+	effects_UNSTABLE: [persistAtom],
+});

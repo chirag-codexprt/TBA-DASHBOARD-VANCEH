@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import AfterAuth from "../HOC/AfterAuth";
 import TableNavbar from "../components/TableNavbar";
 import ContactTable from "../components/Contact/ContactTable";
 import { getContactList } from "../helper/API/contact";
 import Loader from "../components/Loader";
+import { useRecoilState } from "recoil";
+import { contactTableData } from "../recoil/Atoms";
 
 const Contact = () => {
 	const [tableRow, setTableRow] = useState([]);
 	const [refresh, setRefresh] = useState(0);
 	const [loading, setLoading] = useState(false);
+	const [active, setActive] = useState({
+		pending: false,
+		approved: false,
+		all: true,
+	});
 
-	const [search, setSearch] = useState()
-	console.log('search', search)
+	const [search, setSearch] = useState();
+	const [newTableRow, setNewtableRow] = useState([]);
+	const [table, setTable] = useRecoilState(contactTableData);
+	console.log("search", search);
 
 	useEffect(() => {
 		setLoading(true);
 		const submitData = {
-			search
+			search,
 		};
 		getContactList(submitData).then((res) => {
 			console.log("res contact :: ", res);
 			if (res.success) {
+				setTable(res.data);
 				setTableRow(res.data);
 				setLoading(false);
 			} else {
+				setTable([]);
 				setTableRow([]);
 				setLoading(false);
 			}
@@ -33,11 +44,11 @@ const Contact = () => {
 	console.log("tableRow", tableRow);
 
 	const onEnter = (e) => {
-		if (e.key === 'Enter') {
-			console.log('clicked enter')
+		if (e.key === "Enter") {
+			console.log("clicked enter");
 			setLoading(true);
 			const submitData = {
-				search
+				search,
 			};
 			getContactList(submitData).then((res) => {
 				console.log("res contact :: enter ", res);
@@ -45,13 +56,48 @@ const Contact = () => {
 					setTableRow(res.data);
 					setLoading(false);
 				} else {
-
 					setLoading(false);
 				}
 			});
 		}
-	}
+	};
 
+	const handleToggle = (status) => {
+		if (status === "Pending") {
+			setActive({
+				pending: true,
+				approved: false,
+				all: false,
+			});
+
+			const newData = table.filter((obj) => {
+				if (obj.status === "pending") {
+					return obj;
+				}
+			});
+			setTableRow(newData);
+		} else if (status === "Approved") {
+			setActive({
+				pending: false,
+				approved: true,
+				all: false,
+			});
+			const newData = table.filter((obj) => {
+				if (obj.status === "approved") {
+					return obj;
+				}
+			});
+			setTableRow(newData);
+		} else {
+			setActive({
+				pending: false,
+				approved: false,
+				all: true,
+			});
+			setTableRow(table);
+		}
+	};
+	console.log("table", table);
 	return (
 		<>
 			<AfterAuth>
@@ -60,15 +106,41 @@ const Contact = () => {
 					{/* <NAVBAR /> */}
 					<TableNavbar
 						title={"Contatos"}
-						btn1Text='Pendentes'
-						btn2Text='Respondidas'
-						btn3Text='Todas'
 						setSearch={setSearch}
 						onEnter={onEnter}
 						refresh={refresh}
 						setRefresh={setRefresh}
 						search={search}
-					/>
+						setActive={setActive}
+						active={active}>
+						<Button
+							className={`fs-color  mx-1 border-0 ${
+								active.pending
+									? "activeBtnTable"
+									: "inActiveBtnTable"
+							}`}
+							onClick={(e) => handleToggle("Pending")}>
+							Pendentes
+						</Button>
+						<Button
+							className={`fs-color  mx-1 border-0 ${
+								active.approved
+									? "activeBtnTable"
+									: "inActiveBtnTable"
+							}`}
+							onClick={(e) => handleToggle("Approved")}>
+							Respondidas
+						</Button>
+						<Button
+							className={`fs-color  mx-1 border-0 ${
+								active.all
+									? "activeBtnTable"
+									: "inActiveBtnTable"
+							}`}
+							onClick={(e) => handleToggle("All")}>
+							Todos
+						</Button>
+					</TableNavbar>
 
 					{loading ? (
 						<Loader />

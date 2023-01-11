@@ -1,11 +1,21 @@
 import React from "react";
 import { Button, Form, InputGroup, Nav, Navbar } from "react-bootstrap";
 
-const TableNavbar = ({ title, btn1Text, btn2Text, btn3Text, setSearch, onEnter, refresh, setRefresh, search }) => {
+const TableNavbar = ({
+	children,
+	title,
+	setSearch,
+	onEnter,
+	refresh,
+	setRefresh,
+	search,
+	setActive,
+	active,
+}) => {
 	const onClose = () => {
-		setSearch("")
-		setRefresh(refresh + 1)
-	}
+		setSearch("");
+		setRefresh(refresh + 1);
+	};
 	return (
 		<div>
 			<Navbar className='my-2' expand='lg'>
@@ -26,7 +36,6 @@ const TableNavbar = ({ title, btn1Text, btn2Text, btn3Text, setSearch, onEnter, 
 								<i className='bi bi-search'></i>
 							</InputGroup.Text>
 
-
 							<Form.Control
 								type='Search'
 								placeholder='Procurar....'
@@ -34,28 +43,21 @@ const TableNavbar = ({ title, btn1Text, btn2Text, btn3Text, setSearch, onEnter, 
 								aria-describedby='basic-addon1'
 								className='border-0 ps-0'
 								value={search}
-								name="search"
+								name='search'
 								onChange={(e) => setSearch(e.target.value)}
 								onKeyPress={onEnter}
 							/>
-							{!search == "" && <InputGroup.Text onClick={onClose} id="basic-addon2" className='border-0'
-							>
-								<i class="bi bi-x"></i>
-							</InputGroup.Text>}
-
+							{!search == "" && (
+								<InputGroup.Text
+									onClick={onClose}
+									id='basic-addon2'
+									className='border-0'>
+									<i class='bi bi-x'></i>
+								</InputGroup.Text>
+							)}
 						</InputGroup>
 					</Nav>
-					<Button className='fs-color btnn mx-1 border-0 bg-white'>
-						{btn1Text}
-					</Button>
-					<Button className='fs-color btnn mx-1 border-0 bg-white'>
-						{btn2Text}
-					</Button>
-					<Button
-						className='fs-color mx-1 border-0 fw-bold text-white'
-						style={{ background: "#85A6A2" }}>
-						{btn3Text}
-					</Button>
+					{children}
 				</Navbar.Collapse>
 			</Navbar>
 		</div>

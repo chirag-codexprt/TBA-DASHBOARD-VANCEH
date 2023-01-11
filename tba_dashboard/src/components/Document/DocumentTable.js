@@ -3,6 +3,7 @@ import { Card, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 import Table from "react-bootstrap/Table";
+import Pagination from "../Pagination";
 import RecordFound from "../RecordFound";
 import AddressProofModal from "./AddressProofModal";
 import GenerateLinkModal from "./GenerateLinkModal";
@@ -31,7 +32,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 		const firstPageIndex = (currentPage - 1) * PageSize;
 		const lastPageIndex = firstPageIndex + PageSize;
 		return tableData.slice(firstPageIndex, lastPageIndex);
-	}, [currentPage]);
+	}, [tableData, currentPage]);
 
 	const handleShowRow = (data) => {
 		setOpen(true);
@@ -62,7 +63,6 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 		setOpenLinkModal(true);
 		setEditData(val);
 	};
-
 	return (
 		<div>
 			<Table responsive>
@@ -144,8 +144,10 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 												? "warning"
 												: "success"
 										}
-										onClick={() =>
-											handleShowLinkModal(obj)
+										onClick={
+											!obj.allStatus
+												? () => handleShowLinkModal(obj)
+												: null
 										}>
 										{obj.allStatus === "pending"
 											? "Pendente"
@@ -427,6 +429,13 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 					/>
 				)}
 			</Table>
+			<Pagination
+				className='pagination-bar'
+				currentPage={currentPage}
+				totalCount={tableData.length}
+				pageSize={PageSize}
+				onPageChange={(page) => setCurrentPage(page)}
+			/>
 		</div>
 	);
 };

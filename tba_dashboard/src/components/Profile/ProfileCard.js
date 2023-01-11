@@ -11,6 +11,7 @@ import { useRecoilValue } from "recoil";
 import ProfileTable from "./ProfileTable";
 import { profileHistory } from "../../helper/API/Profile";
 import Loader from "../Loader";
+import TableNavbar from "../TableNavbar";
 
 const ProfileCard = ({
 	showProfilePicture,
@@ -18,14 +19,17 @@ const ProfileCard = ({
 	showAddAdmin,
 }) => {
 	const profile = useRecoilValue(profileAtom);
-	// console.log('profile', profile)
-
+	const [search, setSearch] = useState();
+	const [refresh, setRefresh] = useState(0);
 	const [tableRow, setTableRow] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		setLoading(true);
-		profileHistory().then((res) => {
+		const submitData = {
+			search,
+		};
+		profileHistory(submitData).then((res) => {
 			console.log("res hello", res);
 			if (res.success) {
 				setLoading(false);
@@ -36,6 +40,25 @@ const ProfileCard = ({
 			}
 		});
 	}, []);
+
+	const onEnter = (e) => {
+		if (e.key === "Enter") {
+			setLoading(true);
+			const submitData = {
+				search,
+			};
+			profileHistory(submitData).then((res) => {
+				console.log("res hello", res);
+				if (res.success) {
+					setLoading(false);
+					setTableRow(res.data);
+				} else {
+					setTableRow([]);
+					setLoading(false);
+				}
+			});
+		}
+	};
 	console.log("tableRow", tableRow);
 
 	return (
@@ -48,7 +71,11 @@ const ProfileCard = ({
 							<Col xs={12} sm={12} md={12} lg={5} className=''>
 								<div >
 									<img
-										src={profile?.profileImage ? profile?.profileImage : 'assets/img/noUser.png'}
+										src={
+											profile?.profileImage
+												? profile?.profileImage
+												: "assets/img/noUser.png"
+										}
 										style={{
 											height: "180px",
 											width: "180px",
@@ -110,32 +137,17 @@ const ProfileCard = ({
 				<Row>
 					<Col md={12} className='my-4'>
 						<Row>
-							<Col xs={12} sm={12} md={4} lg={3}>
-								<p className='fw-bolder fs-6'>Histórico</p>
+							<Col xs={12} sm={12} md={2} lg={2}>
+								<h3 className='fw-bolder mt-3'>Histórico</h3>
 							</Col>
-							<Col xs={12} sm={12} md={4} lg={4}>
-								<form>
-									<InputGroup className='rounded'>
-										<InputGroup.Text
-											id='basic-addon1'
-											style={{
-												background: "#F4F4F4",
-											}}
-											className='border-0'>
-											<i className='bi bi-search '></i>
-										</InputGroup.Text>
-										<Form.Control
-											style={{
-												background: "#F4F4F4",
-											}}
-											type='Search'
-											placeholder='Procurar....'
-											aria-label='Search'
-											aria-describedby='basic-addon1'
-											className='border-0 ps-0'
-										/>
-									</InputGroup>
-								</form>
+							<Col xs={12} sm={12} md={10} lg={10}>
+								<TableNavbar
+									setSearch={setSearch}
+									onEnter={onEnter}
+									refresh={refresh}
+									setRefresh={setRefresh}
+									search={search}
+								/>
 							</Col>
 						</Row>
 					</Col>

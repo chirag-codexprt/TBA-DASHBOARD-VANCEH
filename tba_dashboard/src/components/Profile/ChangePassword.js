@@ -59,7 +59,7 @@ const ChangePassword = ({ open, handleClose }) => {
 				centered>
 				<Modal.Body>
 					<Row>
-						<Col md={9} className='fw-bolder fs-3 m-3'>
+						<Col md={9} className='fw-bolder fs-5 m-3'>
 							Alterar senha
 						</Col>
 						<Col md={2} className='d-flex justify-content-end'>
@@ -73,8 +73,8 @@ const ChangePassword = ({ open, handleClose }) => {
 					</Row>
 					<Row className=''>
 						<Col md={10} className='mx-auto my-2'>
-							<p className='fw-bold my-1'>Senha atual</p>
-							<InputGroup className='mb-3 border rounded'>
+							<p className='fw-bold my-1 small'>Senha atual</p>
+							<InputGroup className='mb-3 border-0 rounded'>
 								<InputGroup.Text
 									className='border-0'
 									style={{ backgroundColor: "#F4F6F8" }}>
@@ -92,7 +92,7 @@ const ChangePassword = ({ open, handleClose }) => {
 							</InputGroup>
 						</Col>
 						<Col md={10} className='mx-auto my-2'>
-							<Form.Label className='fs-6'>Senha</Form.Label>
+							<Form.Label className='small fw-bold'>Senha</Form.Label>
 							<InputGroup className='mb-3'>
 								<InputGroup.Text
 									id='basic-addon1'
@@ -133,10 +133,10 @@ const ChangePassword = ({ open, handleClose }) => {
 							</InputGroup>
 						</Col>
 						<Col md={10} className='mx-auto my-2'>
-							<Form.Label className='fs-6'>
+							<Form.Label className='small fw-bold'>
 								Repetir senha
 							</Form.Label>
-							<InputGroup className='mb-3'>
+							<InputGroup className='mb-3 border-0'>
 								<InputGroup.Text
 									id='basic-addon1'
 									className='p-2'>

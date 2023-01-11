@@ -193,22 +193,22 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 				{currentTableData.length ? (
 					<thead>
 						<tr>
-							<th className='tbl-head-color text-center'>
+							<th className='tbl-head-color'>
 								Nome{" "}
 							</th>
-							<th className='tbl-head-color text-center'>
+							<th className='tbl-head-color'>
 								Email/Telefone{" "}
 							</th>
-							<th className='tbl-head-color text-center'>
+							<th className='tbl-head-color'>
 								Função{" "}
 							</th>
-							<th className='tbl-head-color text-center'>
+							<th className='tbl-head-color'>
 								Contatos
 							</th>
-							<th className='tbl-head-color text-center'>
+							<th className='tbl-head-color'>
 								Documentos
 							</th>
-							<th className='tbl-head-color text-center'>
+							<th className='tbl-head-color'>
 								Nova conta{" "}
 							</th>
 						</tr>

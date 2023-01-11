@@ -379,6 +379,7 @@ body {
 .activeBtnTable{
   background: #85A6A2 !important;
   color : white !important;
+  font-weight: bold !important;
 }
 
 .inActiveBtnTable{

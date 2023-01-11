@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
 import Barchart1 from "../components/CHARTS/Barchart1";
@@ -96,6 +96,32 @@ const Insights = () => {
 			</Table>
 		);
 	};
+	const [active, setActive] = useState({
+		month: true,
+		year: false,
+		week: false,
+	});
+	const handleToggle = (status) => {
+		if (status === "month") {
+			setActive({
+				month: true,
+				year: false,
+				week: false,
+			});
+		} else if (status === "yearly") {
+			setActive({
+				month: false,
+				year: true,
+				week: false,
+			});
+		} else {
+			setActive({
+				month: false,
+				year: false,
+				week: true,
+			});
+		}
+	};
 
 	return (
 		<>
@@ -122,18 +148,30 @@ const Insights = () => {
 									</Nav>
 
 									<Button
-										className='fs-color btnn m-1 border-0'
-										style={{ background: "#FBFBFB" }}>
+										className={`fs-color  mx-1 border-0 ${
+											active.year
+												? "activeBtnTable"
+												: "inActiveBtnTable"
+										}`}
+										onClick={(e) => handleToggle("yearly")}>
 										Ano
 									</Button>
 									<Button
-										className='fs-color btnn m-1 border-0'
-										style={{ background: "#FBFBFB" }}>
+										className={`fs-color  mx-1 border-0 ${
+											active.month
+												? "activeBtnTable"
+												: "inActiveBtnTable"
+										}`}
+										onClick={(e) => handleToggle("month")}>
 										Mês
 									</Button>
 									<Button
-										className='fs-color btnn m-1 border-0'
-										style={{ background: "#FBFBFB" }}>
+										className={`fs-color  mx-1 border-0 ${
+											active.week
+												? "activeBtnTable"
+												: "inActiveBtnTable"
+										}`}
+										onClick={(e) => handleToggle("weekly")}>
 										Semana
 									</Button>
 									<div className='vr' />

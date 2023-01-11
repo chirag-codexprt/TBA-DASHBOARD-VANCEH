@@ -44,7 +44,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 			<Table responsive>
 				{currentTableData.length ? (
 					<thead>
-						<tr>
+						<tr style={{ color: '#B5B6B7', fontSize: '12px' }}>
 							<th>Nome</th>
 							<th>CPF/CNPJ</th>
 							<th>Email/Telefone</th>
@@ -65,8 +65,8 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								<td>{obj.name}</td>
 								<td>{obj.CpfOrCnpj}</td>
 								<td>{obj.email}</td>
-								<td>13 dez 2022</td>
-								<td>13:04</td>
+								<td>{obj.date}</td>
+								<td>{obj.time}</td>
 								<td className='position-relative'>
 									<Button
 										variant={

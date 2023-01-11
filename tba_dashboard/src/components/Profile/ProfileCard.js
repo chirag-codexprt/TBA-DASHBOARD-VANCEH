@@ -48,7 +48,7 @@ const ProfileCard = ({
 							<Col xs={12} sm={12} md={12} lg={5} className=''>
 								<div>
 									<img
-										src={profile?.profileImage}
+										src={profile?.profileImage ? profile?.profileImage : 'assets/img/noUser.png'}
 										style={{
 											height: "150px",
 											width: "150px",

@@ -65,60 +65,60 @@ const Insights = () => {
 				className='p-3 table-fit text-wrap tbl-color-text'
 				responsive>
 				<thead>
-					<tr>
-						<th className='tbl-head-color '>Nome </th>
+					<tr className="">
+						<th className='tbl-head-color  '>Nome </th>
 						<th className='tbl-head-color '>CPF/CNPJ</th>
-						<th className='tbl-head-color '>Email </th>
+						<th className='tbl-head-color '>Email/Telefone </th>
 						<th className='tbl-head-color '>Data</th>
-						<th className='tbl-head-color text-center'>Hora </th>
-						<th className='tbl-head-color text-center'>Status </th>
+						<th className='tbl-head-color text-center '>Hora </th>
+						<th className='tbl-head-color text-center '>Status </th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td className='fw-bold'>Ana Júlia Garcia</td>
+					<tr className="small">
+						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
+						<td className='text-center' >13:04 </td>
 						<td className='text-end'>
-							<Button variant='warning' size='lg'>
+							<Button variant='warning' size='sm' className="text-white border-0 px-3">
 								Pendente
 							</Button>
 						</td>
 					</tr>
-					<tr>
-						<td className='fw-bold'>Ana Júlia Garcia</td>
+					<tr className="small">
+						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
+						<td className='text-center' >13:04 </td>
 						<td className='text-end'>
-							<Button variant='success' size='lg'>
+							<Button variant='warning' size='sm' className="text-white border-0 px-3">
 								Pendente
 							</Button>
 						</td>
 					</tr>
-					<tr>
-						<td className='fw-bold'>Ana Júlia Garcia</td>
+					<tr className="small">
+						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
+						<td className='text-center' >13:04 </td>
 						<td className='text-end'>
-							<Button variant='success' size='lg'>
+							<Button variant='warning' size='sm' className="text-white border-0 px-3">
 								Pendente
 							</Button>
 						</td>
 					</tr>
-					<tr>
-						<td className='fw-bold'>Ana Júlia Garcia</td>
+					<tr className="small">
+						<td className='fw-bold  '>Ana Júlia Garcia</td>
 						<td>000.000.000-00</td>
 						<td>anajulia@vanceh.com </td>
 						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
+						<td className='text-center' >13:04 </td>
 						<td className='text-end'>
-							<Button variant='success' size='lg'>
+							<Button variant='warning' size='sm' className="text-white border-0 px-3">
 								Pendente
 							</Button>
 						</td>
@@ -158,7 +158,7 @@ const Insights = () => {
 					{/* charts */}
 					<Row className='my-3'>
 						{/* first card */}
-						<Col md={6} className=''>
+						<Col md={6} >
 							<Card>
 								<Row className='p-3'>
 									<Col
@@ -166,20 +166,25 @@ const Insights = () => {
 										sm={12}
 										md={6}
 										className='text-center'>
-										<img src='/assets/img/eye.png' />
-										<p className='m-2 fs-color'>
-											Total de visitas
-										</p>
-										<p className='fs-color-fill m-2 '>
-											149
-										</p>
+										<Row className="pt-3">
+											<Col md={5} className="">
+												<img src='/assets/img/eye.png' style={{ height: "5rem", width: "5rem" }} />
+											</Col>
+											<Col md={7} className='d-flex justify-content-center'>
+												<h6 className="fs-color  mb-0" style={{ fontSize: '12px' }}>Total de visitas
+													<p className='fs-color-fill px-0'>
+														149
+													</p>
+												</h6>
+											</Col>
+										</Row>
 									</Col>
 									{/* linechart left */}
 									<Col
 										xs={12}
 										sm={12}
 										md={6}
-										className='p-3 justify-content-center align-items-center d-flex'>
+										className=' justify-content-center align-items-center '>
 										<Linechart />
 									</Col>
 								</Row>
@@ -197,24 +202,31 @@ const Insights = () => {
 						{/* third card */}
 						<Col md={6}>
 							<Card>
-								<Row className='p-3 '>
+								<Row className='p-3'>
 									<Col
 										xs={12}
 										sm={12}
 										md={6}
-										className='text-center  '>
-										<img src='/assets/img/file.png' />
-										<p className='m-2fs-color'>
-											Total de contatos
-										</p>
-										<p className='m-2 fs-color-fill'>17</p>
+										className='text-center'>
+										<Row className="pt-3">
+											<Col md={5} className="">
+												<img src='/assets/img/file.png' style={{ height: "5rem", width: "5rem" }} />
+											</Col>
+											<Col md={7} className='d-flex justify-content-center'>
+												<h6 className="fs-color  mb-0" style={{ fontSize: '12px' }}>Total de contatos
+													<p className='fs-color-fill px-0'>
+														17
+													</p>
+												</h6>
+											</Col>
+										</Row>
 									</Col>
 									{/* linechart left */}
 									<Col
 										xs={12}
 										sm={12}
 										md={6}
-										className='p-3 justify-content-center align-items-center   d-flex'>
+										className='justify-content-center align-items-center   '>
 										<Linechart1 />
 									</Col>
 								</Row>

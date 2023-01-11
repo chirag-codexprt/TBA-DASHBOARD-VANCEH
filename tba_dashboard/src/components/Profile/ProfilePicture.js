@@ -72,7 +72,7 @@ const ProfilePicture = ({ open, handleClose }) => {
 							<Button
 								onClick={handleClose}
 								className='border-0 text-dark p-0 mx-4 fs-4 bg-white'>
-								x
+								<img src="assets/img/close.png"></img>
 							</Button>
 						</Col>
 					</Row>
@@ -97,7 +97,7 @@ const ProfilePicture = ({ open, handleClose }) => {
 										alignItems: "center",
 										flexDirection: "column",
 									}}>
-									<img src={changeImg.profileImage} style={{ height: '180px', width: '180px', borderRadius: '10px' }} />
+									<img src={changeImg.profileImage ? changeImg.profileImage : 'assets/img/noUser.png'} style={{ height: '257px', width: '257px', borderRadius: '10px' }} />
 									<div
 										style={{
 											display: "flex",
@@ -107,7 +107,7 @@ const ProfilePicture = ({ open, handleClose }) => {
 										}}>
 										{!imagePreview && (
 											<span>
-												<i className='bi bi-camera-fill'></i>
+												<img src="assets/img/proImg.png"></img>
 											</span>
 										)}
 										{imagePreview && (

@@ -71,7 +71,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 						<tr>
 							<th>Nome</th>
 							<th>CPF/CNPJ</th>
-							<th>Email</th>
+							<th>Email/Telefone</th>
 							<th>Data</th>
 							<th>Hora</th>
 							<th>Status</th>
@@ -90,8 +90,8 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 								}}
 								className={
 									id === obj.id &&
-									open &&
-									obj?.allStatus === "pending"
+										open &&
+										obj?.allStatus === "pending"
 										? "row-height"
 										: ""
 								}>
@@ -198,33 +198,33 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 													<Col>
 														{obj?.socialContract ===
 															null && (
-															<Button
-																className='w-100 p-0 ms-0'
-																onClick={() =>
-																	handleShowImageModal(
-																		obj,
-																		"socialContract"
-																	)
-																}
-																variant='outline-secondary'>
-																<label
-																	style={{
-																		rotate: "45deg",
-																	}}>
-																	<i class='bi bi-paperclip fs-1'></i>
-																</label>
-																<h6
-																	style={{
-																		color: "#C4CCD2",
-																		fontSize:
-																			"11px",
-																	}}>
-																	Aguardando
-																	análise,
-																	visualizar?
-																</h6>
-															</Button>
-														)}
+																<Button
+																	className='w-100 p-0 ms-0'
+																	onClick={() =>
+																		handleShowImageModal(
+																			obj,
+																			"socialContract"
+																		)
+																	}
+																	variant='outline-secondary'>
+																	<label
+																		style={{
+																			rotate: "45deg",
+																		}}>
+																		<i class='bi bi-paperclip fs-1'></i>
+																	</label>
+																	<h6
+																		style={{
+																			color: "#C4CCD2",
+																			fontSize:
+																				"11px",
+																		}}>
+																		Aguardando
+																		análise,
+																		visualizar?
+																	</h6>
+																</Button>
+															)}
 														{obj?.socialContract &&
 															!obj?.socialContract
 																?.approved && (
@@ -291,35 +291,35 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 													<Col>
 														{obj?.addressProof ===
 															null && (
-															<Button
-																className='w-100 p-0 ms-0'
-																onClick={() =>
-																	handleShowAddressModal(
-																		obj,
-																		"addressProof"
-																	)
-																}
-																variant='outline-secondary'>
-																<label
-																	style={{
-																		rotate: "45deg",
-																	}}>
-																	<i class='bi bi-paperclip fs-1'></i>
-																</label>
-																<h6
-																	style={{
-																		color: "#C4CCD2",
-																		fontSize:
-																			"11px",
-																	}}>
-																	Arraste e
-																	solte aqui
-																	ou importe
-																	dos seus
-																	arquivos
-																</h6>
-															</Button>
-														)}
+																<Button
+																	className='w-100 p-0 ms-0'
+																	onClick={() =>
+																		handleShowAddressModal(
+																			obj,
+																			"addressProof"
+																		)
+																	}
+																	variant='outline-secondary'>
+																	<label
+																		style={{
+																			rotate: "45deg",
+																		}}>
+																		<i class='bi bi-paperclip fs-1'></i>
+																	</label>
+																	<h6
+																		style={{
+																			color: "#C4CCD2",
+																			fontSize:
+																				"11px",
+																		}}>
+																		Arraste e
+																		solte aqui
+																		ou importe
+																		dos seus
+																		arquivos
+																	</h6>
+																</Button>
+															)}
 														{obj?.addressProof &&
 															!obj?.addressProof
 																?.approved && (

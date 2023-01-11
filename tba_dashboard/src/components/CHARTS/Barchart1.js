@@ -1,14 +1,18 @@
-import React, { useState, useCallback } from "react";
 
+import React, { useState } from "react";
 import {
   BarChart,
   Bar,
-  Tooltip,
-  Cell,
-  ResponsiveContainer,
   XAxis,
   YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  Cell,
+  ResponsiveContainer
 } from "recharts";
+
+
 const data = [
   {
     name: "Seg",
@@ -39,30 +43,62 @@ const data = [
     uv: 27,
   },
 ];
-const Barchart1 = () => {
+
+
+function BarChartCounter() {
+  const [focusBar, setFocusBar] = useState(null);
+  // const [mouseLeave, setMouseLeave] = useState(true);
+
+
   return (
     <ResponsiveContainer width="100%" height={220}>
-      <BarChart data={data}>
-        <XAxis
-          dataKey="name"
+      <BarChart
+
+        data={data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5
+        }}
+        onMouseMove={(state) => {
+          if (state.isTooltipActive) {
+            setFocusBar(state.activeTooltipIndex);
+            // setmouseOver(false);
+          } else {
+            setFocusBar(null);
+            // setmouseOver(true);
+          }
+        }}
+      >
+        <XAxis dataKey="name"
           axisLine={false}
           tickMargin="10"
-          tickLine={false}
-        />
+          tickLine={false} />
 
-        <Bar dataKey="uv" fill="#1C3D5980"></Bar>
-        <Tooltip
-          cursor={{ fill: "#1C3D59" }}
-          itemStyle={{ color: '#1A1D1F', fontWeight: 'bold' }}
-          labelStyle={{ fontWeight: 'lighter', color: '#6F767E' }}
+        <Tooltip cursor={false}
+          itemStyle={{ color: '#1A1D1F', fontWeight: 'bolder' }}
+          labelStyle={{ fontWeight: 'normal', color: '#6F767E' }}
           contentStyle={{
-            border: 'none', borderRadius: '10px', boxShadow: 'rgba(238, 238, 239, 1) 0px 8px 30px 5px'
-          }}
-        />
+            border: 'none', borderRadius: '10px', boxShadow: '0px, 4px,rgba(0, 0, 0, 0.15)'
+          }} />
 
+
+        <Bar dataKey="uv" radius={5}>
+          {data.map((entry, index) => (
+            <Cell
+              fill={
+                focusBar === index
+                  ? "rgba(28, 61, 89, 1)"
+                  : "rgba(28, 61, 89, 0.8)"
+              }
+            />
+          ))}
+        </Bar>
       </BarChart>
-    </ResponsiveContainer >
-  );
-};
+    </ResponsiveContainer>
 
-export default Barchart1;
+  );
+}
+
+export default BarChartCounter;

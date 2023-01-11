@@ -68,13 +68,13 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 			<Table responsive>
 				{currentTableData.length ? (
 					<thead>
-						<tr>
+						<tr style={{ color: "#B5B6B7", fontSize: "12px" }}>
 							<th>Nome</th>
 							<th>CPF/CNPJ</th>
 							<th>Email/Telefone</th>
 							<th>Data</th>
 							<th>Hora</th>
-							<th>Status</th>
+							<th className='text-center'>Status</th>
 						</tr>
 					</thead>
 				) : (
@@ -125,7 +125,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 											? () => handleShowRow(obj.id)
 											: null
 									}>
-									13 dez 2022
+									{obj.date}
 								</td>
 								<td
 									onClick={
@@ -133,12 +133,13 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 											? () => handleShowRow(obj.id)
 											: null
 									}>
-									13:04
+									{obj.time}
 								</td>
 								<td
-									className='position-relative'
+									className='position-relative text-end'
 									style={{ zIndex: 1000 }}>
 									<Button
+										style={{ width: "120px" }}
 										variant={
 											obj.allStatus === "pending"
 												? "warning"

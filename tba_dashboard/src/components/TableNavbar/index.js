@@ -18,7 +18,7 @@ const TableNavbar = ({
 	};
 	return (
 		<div>
-			<Navbar className='my-2' expand='lg'>
+			<Navbar className='my-2 px-4 ps-2' expand='lg'>
 				<Navbar.Brand className='fw-bolder' href='#'>
 					{title}
 				</Navbar.Brand>

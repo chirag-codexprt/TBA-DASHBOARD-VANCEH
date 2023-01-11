@@ -44,13 +44,13 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 			<Table responsive>
 				{currentTableData.length ? (
 					<thead>
-						<tr>
+						<tr style={{ color: '#B5B6B7', fontSize: '12px' }}>
 							<th>Nome</th>
 							<th>CPF/CNPJ</th>
 							<th>Email/Telefone</th>
 							<th>Data</th>
 							<th>Hora</th>
-							<th>Status</th>
+							<th className="text-end" style={{ paddingRight: '3.5rem' }} >Status</th>
 						</tr>
 					</thead>
 				) : (
@@ -65,10 +65,11 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								<td>{obj.name}</td>
 								<td>{obj.CpfOrCnpj}</td>
 								<td>{obj.email}</td>
-								<td>13 dez 2022</td>
-								<td>13:04</td>
-								<td className='position-relative'>
+								<td>{obj.date}</td>
+								<td>{obj.time}</td>
+								<td className='position-relative text-end'>
 									<Button
+										style={{ width: '130px' }}
 										variant={
 											obj.status === "pending"
 												? "warning"
@@ -85,66 +86,67 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 									</Button>
 								</td>
 								{obj.status === "pending" && (
-									<div>
-										{id === obj.id && open ? (
-											<Row
-												style={{
-													width: "600px",
-													position: "absolute",
-													right: "1.3%",
-													bottom: "0px",
-												}}>
-												{/* <Row> */}
-												<Col
-													md={4}
-													className='opacity-25'>
-													Entrar em contato por:
-												</Col>
+									// <div>
+									id === obj.id && open ? (
+										<Row
+											style={{
+												width: "600px",
+												position: "absolute",
+												right: "-3rem",
+												bottom: "0%",
+											}}>
+											{/* <Row> */}
+											<Col
+												md={4}
+												className='opacity-25'>
+												Entrar em contato por:
+											</Col>
 
-												<Col md={1}>
-													<Button
-														style={{
-															background:
-																"#1C3D59",
-														}}>
-														<i class='bi bi-whatsapp'></i>
-													</Button>
-												</Col>
-												<Col md={1}>
-													<Button
-														style={{
-															background:
-																"#1C3D59",
-														}}>
-														<i class='bi bi-envelope'></i>
-													</Button>
-												</Col>
-												<Col
-													md={2}
-													className='opacity-25 text-center'>
-													ou
-												</Col>
-												<Col md={3} className='ps-0'>
-													<Button
-														onClick={() =>
-															handleShowLinkModal(
-																obj
-															)
-														}
-														className='border-0'
-														style={{
-															background:
-																"#C4CCD2",
-														}}>
-														Gerar link
-													</Button>
-												</Col>
-												{/* </Row> */}
-											</Row>
-										) : (
-											""
-										)}
-									</div>
+											<Col md={1}>
+												<Button
+													style={{
+														background:
+															"#1C3D59",
+													}}>
+													<i class='bi bi-whatsapp'></i>
+												</Button>
+											</Col>
+											<Col md={1}>
+												<Button
+													style={{
+														background:
+															"#1C3D59",
+													}}>
+													<i class='bi bi-envelope'></i>
+												</Button>
+											</Col>
+											<Col
+												md={2}
+												className='opacity-25 text-center'>
+												ou
+											</Col>
+											<Col md={3} className='ps-0'>
+												<Button
+													onClick={() =>
+														handleShowLinkModal(
+															obj
+														)
+													}
+													className='border-0'
+													style={{
+														background:
+															"#C4CCD2",
+														width: '100%'
+													}}>
+													Gerar link
+												</Button>
+											</Col>
+											{/* </Row> */}
+										</Row>
+									) : (
+										""
+									)
+									// </div>
 								)}
 							</tr>
 						))}
@@ -160,16 +162,18 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 				pageSize={PageSize}
 				onPageChange={(page) => setCurrentPage(page)}
 			/>
-			{openLinkModal && (
-				<GenerateLinkModal
-					open={openLinkModal}
-					handleClose={() => setOpenLinkModal(false)}
-					editData={editData}
-					refresh={refresh}
-					setRefresh={setRefresh}
-				/>
-			)}
-		</div>
+			{
+				openLinkModal && (
+					<GenerateLinkModal
+						open={openLinkModal}
+						handleClose={() => setOpenLinkModal(false)}
+						editData={editData}
+						refresh={refresh}
+						setRefresh={setRefresh}
+					/>
+				)
+			}
+		</div >
 	);
 };
 

@@ -63,14 +63,23 @@ const AddAdmin = ({ open, handleClose }) => {
 				backdrop='static'
 				keyboard={false}
 				centered>
-				<Modal.Header closeButton className='border-0'>
-					<Modal.Title className='fw-bolder'>
-						Código para nova conta
+				<Modal.Header className='border-0'>
+					<Modal.Title className='fw-bolder fs-5'>
+						<Row>
+							<Col sm={11} md={11}>Código para nova conta</Col>
+							<Col sm={1} md={1} className='text-end'><Button
+								onClick={handleClose}
+								className=' border-0 text-dark p-0 mx-4  fs-4 bg-white'>
+								<img src="assets/img/close.png"></img>
+							</Button></Col>
+						</Row>
+
+
 					</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>
-					<Row>
-						<Col md={12} className='my-2'>
+				<Modal.Body className="">
+					<Row className="px-1 py-0">
+						<Col md={12} className=''>
 							<p className='fs-6 fw-bold'>
 								Qual o cargo da pessoa?
 							</p>
@@ -79,8 +88,7 @@ const AddAdmin = ({ open, handleClose }) => {
 								style={{ backgroundColor: "#F4F6F8" }}>
 								<InputGroup.Text
 									className=' border-0'
-									style={{ backgroundColor: "#F4F6F8" }}>
-									<i class='bi bi-briefcase-fill'></i>
+								><img src="assets/img/briefcase.png " />
 								</InputGroup.Text>
 								<Form.Control
 									style={{ backgroundColor: "#F4F6F8" }}
@@ -93,10 +101,10 @@ const AddAdmin = ({ open, handleClose }) => {
 							</InputGroup>
 						</Col>
 						<Col md={12}>
-							<p className='fw-bold fs-6'>Autorizações</p>
-							<Table className='p-3 table-fit text-wrap tbl-color-text text-center '>
-								<thead className='small'>
-									<tr>
+							<p className='fw-bold fs-6 mb-0'>Autorizações</p>
+							<Table className='border-white p-3 table-fit text-wrap tbl-color-text text-center  '>
+								<thead className='border-white small fw-normal'>
+									<tr className="text-start">
 										<th style={{ color: "#B5B6B7" }}>
 											Contatos{" "}
 										</th>
@@ -109,7 +117,7 @@ const AddAdmin = ({ open, handleClose }) => {
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr className="text-start">
 										<td className='fw-bold p-0'>
 											{contact ? (
 												<Button
@@ -117,7 +125,7 @@ const AddAdmin = ({ open, handleClose }) => {
 														setContact(!contact)
 													}
 													variant=' success'
-													className='mx-1 button-green  fw-bolder text-success  border-0 '>
+													className=' button-green  fw-bold text-success small p-0  border-0 '>
 													<small>
 														<i className='bi bi-check'></i>
 														Autorizar
@@ -129,7 +137,7 @@ const AddAdmin = ({ open, handleClose }) => {
 														setContact(!contact)
 													}
 													variant='danger'
-													className='mx-1 fw-bolder text-danger button-red '>
+													className=' fw-bold small text-danger button-red p-0'>
 													<i className='bi bi-x'></i>
 													Remover
 												</Button>
@@ -142,7 +150,7 @@ const AddAdmin = ({ open, handleClose }) => {
 														setDocument(!document)
 													}
 													variant=' success'
-													className='mx-1 button-green  fw-bolder text-success  border-0 '>
+													className='small button-green  fw-bold text-success p-0 border-0 '>
 													<small>
 														<i className='bi bi-check'></i>
 														Autorizar
@@ -154,7 +162,7 @@ const AddAdmin = ({ open, handleClose }) => {
 														setDocument(!document)
 													}
 													variant='danger'
-													className='mx-1 fw-bolder text-danger button-red '>
+													className='small fw-bold text-danger button-red p-0'>
 													<i className='bi bi-x'></i>
 													Remover
 												</Button>
@@ -167,7 +175,7 @@ const AddAdmin = ({ open, handleClose }) => {
 														setNewAdmin(!newAdmin)
 													}
 													variant=' success'
-													className='mx-1 button-green  fw-bolder text-success  border-0 '>
+													className='small button-green  fw-bold text-success p-0 border-0 '>
 													<small>
 														<i className='bi bi-check'></i>
 														Autorizar
@@ -179,7 +187,7 @@ const AddAdmin = ({ open, handleClose }) => {
 														setNewAdmin(!newAdmin)
 													}
 													variant='danger'
-													className='mx-1 fw-bolder text-danger button-red '>
+													className='small fw-bold text-danger button-red p-0'>
 													<i className='bi bi-x'></i>
 													Remover
 												</Button>
@@ -196,15 +204,16 @@ const AddAdmin = ({ open, handleClose }) => {
 							<InputGroup className='mb-3'>
 								<Form.Control
 									placeholder='89C8217J91OAI'
-									className='p-2 border-0 shadow-none'
+									className='p-2 border-0 fw-bold shadow-none'
 									style={{ backgroundColor: "#F4F6F8" }}
 									value={code}
 								/>
 								<InputGroup.Text
-									className='border-0'
+									className='border-0 small fw-bold'
 									style={{
 										backgroundColor: "#F4F6F8",
 										cursor: "pointer",
+										color: "#85A6A2"
 									}}
 									onClick={() => handleCopy(code)}>
 									{copy ? "Copiada" : "Copiar"}

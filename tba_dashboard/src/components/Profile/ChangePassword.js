@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, ModalTitle } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 // import { ButtonGreen, ButtonRed } from './buttons/Button';
 import Modal from "react-bootstrap/Modal";
@@ -57,9 +57,12 @@ const ChangePassword = ({ open, handleClose }) => {
 				backdrop='static'
 				keyboard={false}
 				centered>
+				<ModalTitle>
+
+				</ModalTitle>
 				<Modal.Body>
 					<Row>
-						<Col md={9} className='fw-bolder fs-5 m-3'>
+						<Col md={9} className='fw-bolder fs-5 m-3 '>
 							Alterar senha
 						</Col>
 						<Col md={2} className='d-flex justify-content-end'>
@@ -67,7 +70,6 @@ const ChangePassword = ({ open, handleClose }) => {
 								onClick={handleClose}
 								className='border-0 text-dark p-0 mx-4 fs-4 bg-white'>
 								<img src="assets/img/close.png"></img>
-
 							</Button>
 						</Col>
 					</Row>
@@ -92,26 +94,26 @@ const ChangePassword = ({ open, handleClose }) => {
 							</InputGroup>
 						</Col>
 						<Col md={10} className='mx-auto my-2'>
-							<Form.Label className='small fw-bold'>Senha</Form.Label>
-							<InputGroup className='mb-3'>
+							<Form.Label className='small fw-bold'>Nova senha</Form.Label>
+							<InputGroup className='mb-3 rounded'>
 								<InputGroup.Text
-									id='basic-addon1'
-									className='p-2'>
+									className='border-0'
+									style={{ backgroundColor: "#F4F6F8" }}>
 									<i
 										class='bi bi-lock-fill'
 										style={{ color: "#CED4DB" }}></i>
 								</InputGroup.Text>
+
 								<Form.Control
-									placeholder='Sua senha'
-									className='eye-logo ps-0'
+									placeholder='Nova senha'
+									className='eye-logo ps-0 border-0'
 									name='passwords'
 									type={hidePassword ? "text" : "password"}
 									onChange={(e) => handledataValue(e)}
 									aria-describedby='basic-addon1'
 								/>
 								<InputGroup.Text
-									id='basic-addon1'
-									className='p-2'>
+									className='p-2 border-0'>
 									{hidePassword && (
 										<i
 											class='bi bi-eye-slash-fill'
@@ -134,19 +136,18 @@ const ChangePassword = ({ open, handleClose }) => {
 						</Col>
 						<Col md={10} className='mx-auto my-2'>
 							<Form.Label className='small fw-bold'>
-								Repetir senha
+								Repetir nova senha
 							</Form.Label>
-							<InputGroup className='mb-3 border-0'>
+							<InputGroup className='mb-3 border-0 rounded'>
 								<InputGroup.Text
-									id='basic-addon1'
-									className='p-2'>
+									className='p-2 border-0' >
 									<i
 										class='bi bi-lock-fill'
 										style={{ color: "#CED4DB" }}></i>
 								</InputGroup.Text>
 								<Form.Control
-									placeholder='Sua senha'
-									className='eye-logo ps-0'
+									placeholder='Repetir nova senha'
+									className='eye-logo ps-0 border-0'
 									aria-describedby='basic-addon1'
 									name='confirmPasswords'
 									type={
@@ -160,8 +161,7 @@ const ChangePassword = ({ open, handleClose }) => {
 									}}
 								/>
 								<InputGroup.Text
-									id='basic-addon1'
-									className='p-2'>
+									className='p-2 border-0'>
 									{hideConfirmPassword && (
 										<i
 											class='bi bi-eye-slash-fill'
@@ -190,7 +190,7 @@ const ChangePassword = ({ open, handleClose }) => {
 						<Col md={11} className='mx-auto my-2 text-center'>
 							<Button
 								onClick={dataSubmit}
-								className='fw-bolder fs-6 w-50'
+								className='fw-bolder fs-6 w-50 border-0	'
 								style={{ backgroundColor: "#1C3D59" }}>
 								Alterar
 							</Button>

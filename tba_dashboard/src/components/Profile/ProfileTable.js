@@ -52,8 +52,8 @@ const ProfileTable = ({ tableRow }) => {
 								<td className='fw-bold'>{obj.name}</td>
 								<td>{obj.CpfOrCnpj}</td>
 								<td>{obj.email}</td>
-								<td>date</td>
-								<td className='text-center'>13:04 </td>
+								<td>{obj.date}</td>
+								<td className='text-center'>{obj.time}</td>
 								<td className='text-end'>
 									<Button
 										variant='success'

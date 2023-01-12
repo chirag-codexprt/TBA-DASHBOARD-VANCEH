@@ -237,7 +237,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant=' success'
 												size='lg'
-												className='p-0 fw-bolder text-success  border-0'>
+												className='p-0 fs-6 fw-bolder text-success  border-0'>
 												<i className='bi bi-check'></i>
 												Autorizar
 											</Button>
@@ -253,7 +253,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant='danger'
 												size='lg'
-												className='p-0 fw-bolder text-danger button-red'>
+												className='p-0 fs-6 fw-bolder text-danger button-red'>
 												<i className='bi bi-x'></i>
 												Remover
 											</Button>
@@ -273,7 +273,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant=' success'
 												size='lg'
-												className='p-0 fw-bolder text-success  border-0'>
+												className='p-0 fs-6 fw-bolder text-success  border-0'>
 												<i className='bi bi-check'></i>
 												Autorizar
 											</Button>
@@ -289,7 +289,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant='danger'
 												size='lg'
-												className='p-0 fw-bolder text-danger button-red'>
+												className='p-0 fs-6 fw-bolder text-danger button-red'>
 												<i className='bi bi-x'></i>
 												Remover
 											</Button>
@@ -308,7 +308,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant=' success'
 												size='lg'
-												className='p-0 fw-bolder text-success  border-0'>
+												className='p-0 fs-6 fw-bolder text-success  border-0'>
 												<i className='bi bi-check'></i>
 												Autorizar
 											</Button>
@@ -324,7 +324,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant='danger'
 												size='lg'
-												className='p-0 fw-bolder text-danger button-red'>
+												className='p-0 fs-6 fw-bolder text-danger button-red'>
 												<i className='bi bi-x'></i>
 												Remover
 											</Button>

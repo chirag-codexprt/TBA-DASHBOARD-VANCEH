@@ -50,7 +50,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 							<th>Email/Telefone</th>
 							<th>Data</th>
 							<th>Hora</th>
-							<th className="text-end" style={{ paddingRight: '3.5rem' }} >Status</th>
+							<th className="text-center" style={{ paddingRight: '-2rem' }} >Status</th>
 						</tr>
 					</thead>
 				) : (

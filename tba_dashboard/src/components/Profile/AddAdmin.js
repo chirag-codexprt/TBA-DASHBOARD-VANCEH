@@ -203,7 +203,6 @@ const AddAdmin = ({ open, handleClose }) => {
 							</p>
 							<InputGroup className='mb-3'>
 								<Form.Control
-									placeholder='89C8217J91OAI'
 									className='p-2 border-0 fw-bold shadow-none'
 									style={{ backgroundColor: "#F4F6F8" }}
 									value={code}

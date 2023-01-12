@@ -51,8 +51,8 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 							<th>Data</th>
 							<th>Hora</th>
 							<th
-								className='text-end'
-								style={{ paddingRight: "3.5rem" }}>
+								className='text-center'
+								style={{ paddingRight: "-2rem" }}>
 								Status
 							</th>
 						</tr>
@@ -89,60 +89,68 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 											: "respondidas"}
 									</Button>
 								</td>
-								{obj.status === "pending" &&
-									// <div>
-									(id === obj.id && open ? (
-										<Row
-											style={{
-												width: "600px",
-												position: "absolute",
-												right: "-3rem",
-												bottom: "0%",
-											}}>
-											{/* <Row> */}
-											<Col md={4} className='opacity-25'>
-												Entrar em contato por:
-											</Col>
+								{
+									obj.status === "pending" &&
+										// <div>
+										(id === obj.id && open ? (
+											<Row
+												style={{
+													width: "600px",
+													position: "absolute",
+													right: "-3rem",
+													bottom: "0%",
+												}}>
+												{/* <Row> */}
+												<Col
+													md={4}
+													className='opacity-25'>
+													Entrar em contato por:
+												</Col>
 
-											<Col md={1}>
-												<Button
-													style={{
-														background: "#1C3D59",
-													}}>
-													<i class='bi bi-whatsapp'></i>
-												</Button>
-											</Col>
-											<Col md={1}>
-												<Button
-													style={{
-														background: "#1C3D59",
-													}}>
-													<i class='bi bi-envelope'></i>
-												</Button>
-											</Col>
-											<Col
-												md={2}
-												className='opacity-25 text-center'>
-												ou
-											</Col>
-											<Col md={3} className='ps-0'>
-												<Button
-													onClick={() =>
-														handleShowLinkModal(obj)
-													}
-													className='border-0'
-													style={{
-														background: "#C4CCD2",
-														width: "100%",
-													}}>
-													Gerar link
-												</Button>
-											</Col>
-											{/* </Row> */}
-										</Row>
-									) : (
-										""
-									))
+												<Col md={1}>
+													<Button
+														style={{
+															background:
+																"#1C3D59",
+														}}>
+														<i class='bi bi-whatsapp'></i>
+													</Button>
+												</Col>
+												<Col md={1}>
+													<Button
+														style={{
+															background:
+																"#1C3D59",
+														}}>
+														<i class='bi bi-envelope'></i>
+													</Button>
+												</Col>
+												<Col
+													md={2}
+													className='opacity-25 text-center'>
+													ou
+												</Col>
+												<Col md={3} className='ps-0'>
+													<Button
+														onClick={() =>
+															handleShowLinkModal(
+																obj
+															)
+														}
+														className='border-0'
+														style={{
+															background:
+																"#C4CCD2",
+															width: "100%",
+														}}>
+														Gerar link
+													</Button>
+												</Col>
+												{/* </Row> */}
+											</Row>
+										) : (
+											""
+										))
 									// </div>
 								}
 							</tr>

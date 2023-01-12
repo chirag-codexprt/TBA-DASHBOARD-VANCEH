@@ -1,105 +1,140 @@
-
 import React, { useState } from "react";
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  Cell,
-  ResponsiveContainer,
-
+	BarChart,
+	Bar,
+	XAxis,
+	YAxis,
+	CartesianGrid,
+	Tooltip,
+	Legend,
+	Cell,
+	ResponsiveContainer,
 } from "recharts";
-
-
-const data = [
-  {
-    name: "Seg",
-    uv: 8,
-  },
-  {
-    name: " Ter",
-    uv: 14,
-  },
-  {
-    name: " Qua",
-    uv: 25,
-  },
-  {
-    name: " Qui ",
-    uv: 17,
-  },
-  {
-    name: " Sex",
-    uv: 20,
-  },
-  {
-    name: " Sab",
-    uv: 16,
-  },
-  {
-    name: " Dom ",
-    uv: 27,
-  },
-];
-
+import { useRecoilValue } from "recoil";
+import { getAllChartData } from "../../recoil/Atoms";
 
 function BarChartVisitor() {
-  const [focusBar, setFocusBar] = useState(null);
-  // const [mouseOver, setmouseOver] = useState(true);
+	const [focusBar, setFocusBar] = useState(null);
 
+	const contactData = useRecoilValue(getAllChartData);
+	console.log("contactData", contactData);
 
-  return (
-    <ResponsiveContainer width="100%" height={220}>
-      <BarChart
+	let data;
+	const getData = () => {
+		if (contactData?.chartDataStatus === "yearly") {
+			data = contactData?.contactData?.map((obj) => {
+				return {
+					month: obj?.month,
+					Contatos: obj?.count,
+					week: obj?.month,
+				};
+			});
+		} else if (contactData?.chartDataStatus === "monthly") {
+			data = contactData?.contactData?.map((obj) => {
+				return {
+					month: obj?.month,
+					Contatos: obj?.count,
+					week: obj?.week,
+				};
+			});
+		} else if (contactData?.chartDataStatus === "week") {
+			data = contactData?.contactData?.map((obj) => {
+				return {
+					month: obj?.month,
+					Contatos: obj?.count,
+					week: obj?.sortWeek,
+				};
+			});
+		} else {
+			data = [];
+		}
+	};
+	getData();
 
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5
-        }}
-        onMouseMove={(state) => {
-          if (state.isTooltipActive) {
-            setFocusBar(state.activeTooltipIndex);
-            // setmouseOver(false);
-          } else {
-            setFocusBar(null);
-            // setmouseOver(true);
-          }
-        }}
-      >
-        <XAxis dataKey="name"
-          axisLine={false}
-          tickMargin="10"
-          tickLine={false} />
+	const CustomTooltip = ({ active, payload, label }) => {
+		console.log("payload", payload);
+		if (active && payload && payload.length) {
+			return (
+				<div className='custom-tooltip'>
+					<div>
+						{payload.map((pld) => (
+							<div
+								style={{
+									display: "inline-block",
+									padding: 10,
+									background: "#fff",
+									borderRadius: "10px",
+								}}>
+								<div>{pld.payload.week}</div>
+								<div
+									style={{
+										fontWeight: 900,
+									}}>
+									{" "}
+									{`${pld.value} ${pld.payload.Contatos}`}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			);
+		}
 
-        <Tooltip cursor={false}
-          itemStyle={{ color: '#1A1D1F', fontWeight: 'bolder' }}
-          labelStyle={{ fontWeight: 'normal', color: '#6F767E' }}
-          contentStyle={{
-            border: 'none', borderRadius: '10px', boxShadow: '0px, 4px,rgba(0, 0, 0, 0.15)'
-          }} />
+		return null;
+	};
 
+	return (
+		<ResponsiveContainer width='100%' height={220}>
+			<BarChart
+				data={data}
+				margin={{
+					top: 5,
+					right: 30,
+					left: 20,
+					bottom: 5,
+				}}
+				onMouseMove={(state) => {
+					if (state.isTooltipActive) {
+						setFocusBar(state.activeTooltipIndex);
+						// setmouseOver(false);
+					} else {
+						setFocusBar(null);
+						// setmouseOver(true);
+					}
+				}}>
+				<XAxis
+					dataKey='week'
+					axisLine={false}
+					tickMargin='10'
+					tickLine={false}
+				/>
 
-        <Bar dataKey="uv" radius={5}>
-          {data.map((entry, index) => (
-            <Cell
-              fill={
-                focusBar === index
-                  ? "rgba(28, 61, 89, 1)"
-                  : "rgba(28, 61, 89, 0.8)"
-              }
-            />
-          ))}
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+				<Tooltip
+					cursor={false}
+					itemStyle={{ color: "#1A1D1F", fontWeight: "bolder" }}
+					labelStyle={{ fontWeight: "normal", color: "#6F767E" }}
+					contentStyle={{
+						border: "none",
+						borderRadius: "10px",
+						boxShadow: "0px, 4px,rgba(0, 0, 0, 0.15)",
+					}}
+					content={<CustomTooltip />}
+				/>
 
-  );
+				<Bar dataKey='Contatos' radius={5}>
+					{data?.map((entry, index) => (
+						<Cell
+							fill={
+								focusBar === index
+									? "rgba(28, 61, 89, 1)"
+									: "rgba(28, 61, 89, 0.8)"
+							}
+						/>
+					))}
+				</Bar>
+			</BarChart>
+		</ResponsiveContainer>
+	);
 }
 
 export default BarChartVisitor;

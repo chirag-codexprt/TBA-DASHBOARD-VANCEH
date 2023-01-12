@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Form, InputGroup, Row, Spinner } from "react-bootstrap";
 
 const RegisterForm = ({
 	handleRegisterForm,
@@ -10,12 +10,13 @@ const RegisterForm = ({
 	hideCnfrmPwd,
 	confirmPassword,
 	setConfirmPassword,
+	loading,
 }) => {
 	return (
 		<div>
-			<Row>
-				<Col md={12} className='mt-3'>
-					<Form>
+			<form onSubmit={registerUser}>
+				<Row>
+					<Col md={12} className='mt-3'>
 						<Form.Label className='fs-6'>
 							Link para criação
 						</Form.Label>
@@ -147,17 +148,25 @@ const RegisterForm = ({
 								)}
 							</InputGroup.Text>
 						</InputGroup>
-					</Form>
-				</Col>
-				<Col className='d-flex mt-1 justify-content-center'>
-					<Button
-						className='login-btn px-5 py-2 fw-bold fs-4'
-						onClick={registerUser}
-						type='submit'>
-						Criar conta
-					</Button>
-				</Col>
-			</Row>
+					</Col>
+					<Col className='d-flex mt-1 justify-content-center'>
+						<Button
+							className='login-btn px-5 py-2 fw-bold fs-4'
+							onClick={registerUser}
+							disabled={loading}
+							type='submit'>
+							Criar conta
+							{loading && (
+								<Spinner
+									animation='grow'
+									variant='light'
+									className='ms-3 py-2 fw-bold fs-4'
+								/>
+							)}
+						</Button>
+					</Col>
+				</Row>
+			</form>
 		</div>
 	);
 };

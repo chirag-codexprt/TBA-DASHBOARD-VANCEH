@@ -44,13 +44,17 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 			<Table responsive>
 				{currentTableData.length ? (
 					<thead>
-						<tr style={{ color: '#B5B6B7', fontSize: '12px' }}>
+						<tr style={{ color: "#B5B6B7", fontSize: "12px" }}>
 							<th>Nome</th>
 							<th>CPF/CNPJ</th>
 							<th>Email/Telefone</th>
 							<th>Data</th>
 							<th>Hora</th>
-							<th className="text-end" style={{ paddingRight: '3.5rem' }} >Status</th>
+							<th
+								className='text-end'
+								style={{ paddingRight: "3.5rem" }}>
+								Status
+							</th>
 						</tr>
 					</thead>
 				) : (
@@ -64,12 +68,12 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								height={id === obj.id && open ? "100px" : ""}>
 								<td>{obj.name}</td>
 								<td>{obj.CpfOrCnpj}</td>
-								<td>{obj.email}</td>
+								<td>{obj.email ? obj.email : obj.phone}</td>
 								<td>{obj.date}</td>
 								<td>{obj.time}</td>
 								<td className='position-relative text-end'>
 									<Button
-										style={{ width: '130px' }}
+										style={{ width: "130px" }}
 										variant={
 											obj.status === "pending"
 												? "warning"
@@ -85,9 +89,9 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 											: "respondidas"}
 									</Button>
 								</td>
-								{obj.status === "pending" && (
+								{obj.status === "pending" &&
 									// <div>
-									id === obj.id && open ? (
+									(id === obj.id && open ? (
 										<Row
 											style={{
 												width: "600px",
@@ -96,17 +100,14 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 												bottom: "0%",
 											}}>
 											{/* <Row> */}
-											<Col
-												md={4}
-												className='opacity-25'>
+											<Col md={4} className='opacity-25'>
 												Entrar em contato por:
 											</Col>
 
 											<Col md={1}>
 												<Button
 													style={{
-														background:
-															"#1C3D59",
+														background: "#1C3D59",
 													}}>
 													<i class='bi bi-whatsapp'></i>
 												</Button>
@@ -114,8 +115,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 											<Col md={1}>
 												<Button
 													style={{
-														background:
-															"#1C3D59",
+														background: "#1C3D59",
 													}}>
 													<i class='bi bi-envelope'></i>
 												</Button>
@@ -128,15 +128,12 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 											<Col md={3} className='ps-0'>
 												<Button
 													onClick={() =>
-														handleShowLinkModal(
-															obj
-														)
+														handleShowLinkModal(obj)
 													}
 													className='border-0'
 													style={{
-														background:
-															"#C4CCD2",
-														width: '100%'
+														background: "#C4CCD2",
+														width: "100%",
 													}}>
 													Gerar link
 												</Button>
@@ -145,9 +142,9 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 										</Row>
 									) : (
 										""
-									)
+									))
 									// </div>
-								)}
+								}
 							</tr>
 						))}
 					</tbody>
@@ -162,18 +159,16 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 				pageSize={PageSize}
 				onPageChange={(page) => setCurrentPage(page)}
 			/>
-			{
-				openLinkModal && (
-					<GenerateLinkModal
-						open={openLinkModal}
-						handleClose={() => setOpenLinkModal(false)}
-						editData={editData}
-						refresh={refresh}
-						setRefresh={setRefresh}
-					/>
-				)
-			}
-		</div >
+			{openLinkModal && (
+				<GenerateLinkModal
+					open={openLinkModal}
+					handleClose={() => setOpenLinkModal(false)}
+					editData={editData}
+					refresh={refresh}
+					setRefresh={setRefresh}
+				/>
+			)}
+		</div>
 	);
 };
 

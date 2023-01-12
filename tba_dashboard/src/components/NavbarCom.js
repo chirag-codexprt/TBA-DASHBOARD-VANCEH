@@ -13,7 +13,6 @@ const NavbarCom = () => {
 
 	useEffect(() => {
 		profileData().then((res) => {
-			console.log("res", res);
 			if (res.success) {
 				setProfileItem(res.data);
 			}
@@ -37,12 +36,17 @@ const NavbarCom = () => {
 							style={{ textDecoration: "none" }}
 							to={"/perfil"}>
 							<div
-								className={`${pathName == "/perfil" && "Nav-after"
-									} text-white d-flex align-items-center`}>
+								className={`${
+									pathName == "/perfil" && "Nav-after"
+								} text-white d-flex align-items-center`}>
 								{profileItem?.name}
 								<Nav.Link>
 									<img
-										src={profileItem.profileImage ? profileItem.profileImage : 'assets/img/noUser.png'}
+										src={
+											profileItem.profileImage
+												? profileItem.profileImage
+												: "assets/img/noUser.png"
+										}
 										alt=''
 										style={{
 											height: "50px",

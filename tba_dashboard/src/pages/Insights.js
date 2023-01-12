@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
 import Barchart1 from "../components/CHARTS/Barchart1";
@@ -21,6 +21,9 @@ import "bootstrap/dist/css/bootstrap.css";
 // you will also need the css that comes with bootstrap-daterangepicker
 import "bootstrap-daterangepicker/daterangepicker.css";
 import moment from "moment";
+import { getChartData } from "../helper/API/insight";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { getAllChartData } from "../recoil/Atoms";
 const Insights = () => {
 	const TABLE = () => {
 		return (
@@ -108,8 +111,31 @@ const Insights = () => {
 		week: false,
 		date: false,
 	});
+	const [status, setStatus] = useState("monthly");
+	const [startDate, setStartDate] = useState("");
+	const [endDate, setEndDate] = useState("");
+	const [recoilChartData, setRecoilChartData] =
+		useRecoilState(getAllChartData);
+	useEffect(() => {
+		// if (status === "monthly" || status === "yearly" || status === "week") {
+		const submitData = { filter: status };
+		getChartData(submitData).then((res) => {
+			console.log("res chartData", res);
+			if (res.success) {
+				setRecoilChartData({
+					...res.data,
+					chartDataStatus: status,
+				});
+			}
+		});
+		// } else {
+
+		// }
+	}, [status]);
+
 	const handleToggle = (status) => {
-		if (status === "month") {
+		if (status === "monthly") {
+			setStatus(status);
 			setActive({
 				month: true,
 				year: false,
@@ -117,42 +143,54 @@ const Insights = () => {
 				date: false,
 			});
 		} else if (status === "yearly") {
+			setStatus(status);
 			setActive({
 				month: false,
 				year: true,
 				week: false,
 				date: false,
 			});
-		} else if (status === "date") {
-			setActive({
-				month: false,
-				year: false,
-				week: false,
-				date: true,
-			});
-		} else {
+		} else if (status === "week") {
+			// setStatus(status)
+			setStatus(status);
 			setActive({
 				month: false,
 				year: false,
 				week: true,
 				date: false,
 			});
+		} else {
+			setActive({
+				month: false,
+				year: false,
+				week: false,
+				date: true,
+			});
 		}
 	};
 
 	const handleEvent = (start, end, label) => {
-		console.log("start", start._d);
-		console.log("end", end._d);
-		console.log("label", label);
-		const startDate = moment(start._d).format("YYYY-MM-DD");
-		const endDate = moment(end._d).format("YYYY-MM-DD");
-		console.log("startDate", startDate);
-		console.log("endDate", endDate);
-	};
-	const handleCallback = (start, end, label) => {
-		// console.log(start, end, label);
+		// setStartDate(moment(start._d).format("YYYY-MM-DD"));
+		// setEndDate(moment(end._d).format("YYYY-MM-DD"));
+
+		const submitData = {
+			filter: {
+				startDate: moment(start._d).format("YYYY-MM-DD"),
+				endDate: moment(end._d).format("YYYY-MM-DD"),
+			},
+		};
+		getChartData(submitData).then((res) => {
+			console.log("res chartData", res);
+			if (res.success) {
+				setRecoilChartData({
+					...res.data,
+					chartDataStatus: status,
+				});
+			}
+		});
 	};
 
+	console.log("recoilChartData", recoilChartData);
 	return (
 		<>
 			<AfterAuth>
@@ -192,7 +230,9 @@ const Insights = () => {
 												? "activeBtnTable"
 												: "inActiveBtnTable"
 										}`}
-										onClick={(e) => handleToggle("month")}>
+										onClick={(e) =>
+											handleToggle("monthly")
+										}>
 										Mês
 									</Button>
 									<Button
@@ -201,7 +241,7 @@ const Insights = () => {
 												? "activeBtnTable"
 												: "inActiveBtnTable"
 										}`}
-										onClick={(e) => handleToggle("weekly")}>
+										onClick={(e) => handleToggle("week")}>
 										Semana
 									</Button>
 									<div className='vr' />

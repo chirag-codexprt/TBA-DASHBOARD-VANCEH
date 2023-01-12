@@ -16,6 +16,7 @@ const Login = () => {
 	const [JWT, setJwt] = useRecoilState(jwtAtom);
 
 	const [login, setLogin] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const [account, setAccount] = useState(false);
 	const [hidePassword, setHidePassword] = useState(false);
 	const [hideConfirmPassword, setHideConfirmPassword] = useState(false);
@@ -70,10 +71,13 @@ const Login = () => {
 		});
 	};
 
-	const ProLogin = () => {
+	const ProLogin = (event) => {
+		event.preventDefault();
+		setLoading(true);
 		loginAdmin(formValues).then((res) => {
 			console.log("res", res);
 			if (res.success) {
+				setLoading(false);
 				localStorage.setItem("login", true);
 				setLoginData(res.data);
 				localStorage.setItem(
@@ -84,21 +88,25 @@ const Login = () => {
 				navigate("/Insights");
 				toast.success(res.message);
 			} else {
+				setLoading(false);
 				toast.error(res.message);
 			}
 		});
 	};
-	const registerUser = () => {
+	const registerUser = (event) => {
+		setLoading(true);
+		event.preventDefault();
 		registerAdmin(registerFormValues).then((res) => {
 			console.log("res", res);
 			if (res.success) {
-				Login()
-				toast.success(res.message)
-				navigate('/login')
+				setLoading(false);
+				Login();
+				toast.success(res.message);
+				navigate("/login");
+			} else {
+				setLoading(false);
+				toast.error(res.message);
 			}
-			else (
-				toast.error(res.message)
-			)
 		});
 		console.log("registerFormValues", registerFormValues);
 	};
@@ -155,6 +163,7 @@ const Login = () => {
 								ProLogin={ProLogin}
 								hidePassword={hidePassword}
 								hidePwd={() => setHidePassword(!hidePassword)}
+								loading={loading}
 							/>
 						)}
 						{account && (
@@ -169,6 +178,7 @@ const Login = () => {
 								}
 								setConfirmPassword={setConfirmPassword}
 								confirmPassword={confirmPassword}
+								loading={loading}
 							/>
 						)}
 					</Col>

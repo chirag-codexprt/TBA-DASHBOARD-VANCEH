@@ -32,3 +32,9 @@ export const documentTableData = atom({
 	default: "",
 	effects_UNSTABLE: [persistAtom],
 });
+
+export const getAllChartData = atom({
+	key: "getAllChartData",
+	default: null,
+	effects_UNSTABLE: [persistAtom],
+});

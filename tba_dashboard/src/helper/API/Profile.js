@@ -33,7 +33,7 @@ export const profileData = (submitData) => {
 };
 
 export const editProfile = (submitData) => {
-	console.log("su", submitData);
+	// console.log("su", submitData);
 	return new Promise((resolve, reject) => {
 		AfterAuthApi(EDIT_PROFILE, "post", submitData)
 			.then((res) => {

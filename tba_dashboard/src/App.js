@@ -12,6 +12,7 @@ import Perfil from "./pages/Perfil";
 import Logout from "./pages/Logout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./helper/prototype";
 
 function App() {
 	return (

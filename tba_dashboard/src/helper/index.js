@@ -21,7 +21,7 @@ export const ApiCall = (url, method, data = null, headers = {}) => {
 export const AfterAuthApi = (url, method, data = null, headers = {}) => {
 	return new Promise((resolve, reject) => {
 		const token = JSON.parse(localStorage.getItem("accessToken"));
-		console.log("token", token);
+		// console.log("token", token);
 		axios({
 			method,
 			url: `${BASE_URL}${url}`,

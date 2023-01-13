@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
 import Barchart1 from "../components/CHARTS/Barchart1";
@@ -14,16 +14,15 @@ import Container from "react-bootstrap/Container";
 import NavbarCom from "../components/NavbarCom";
 import Sidebar from "../components/Sidebar";
 import AfterAuth from "../HOC/AfterAuth";
-import DateRangePicker from "react-bootstrap-daterangepicker";
-// you will need the css that comes with bootstrap@3. if you are using
-// a tool like webpack, you can do the following:
-import "bootstrap/dist/css/bootstrap.css";
-// you will also need the css that comes with bootstrap-daterangepicker
-import "bootstrap-daterangepicker/daterangepicker.css";
 import moment from "moment";
 import { getChartData } from "../helper/API/insight";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getAllChartData } from "../recoil/Atoms";
+import DatePicker from "react-datepicker";
+import { registerLocale, setDefaultLocale } from "react-datepicker";
+import pt from "date-fns/locale/pt-BR";
+import "react-datepicker/dist/react-datepicker.css";
+
 const Insights = () => {
 	const TABLE = () => {
 		return (
@@ -105,6 +104,7 @@ const Insights = () => {
 			</Table>
 		);
 	};
+	registerLocale("pt-BR", pt);
 	const [active, setActive] = useState({
 		month: true,
 		year: false,
@@ -112,8 +112,7 @@ const Insights = () => {
 		date: false,
 	});
 	const [status, setStatus] = useState("monthly");
-	const [startDate, setStartDate] = useState("");
-	const [endDate, setEndDate] = useState("");
+	const [open, setOpen] = useState(true);
 	const [recoilChartData, setRecoilChartData] =
 		useRecoilState(getAllChartData);
 	useEffect(() => {
@@ -159,24 +158,35 @@ const Insights = () => {
 				week: true,
 				date: false,
 			});
-		} else {
+		} else if (status === "date") {
+			setStatus(status);
+			setRecoilChartData({
+				...recoilChartData,
+				chartDataStatus: status,
+			});
 			setActive({
 				month: false,
 				year: false,
 				week: false,
 				date: true,
 			});
+		} else {
+			return null;
 		}
 	};
-
-	const handleEvent = (start, end, label) => {
-		// setStartDate(moment(start._d).format("YYYY-MM-DD"));
-		// setEndDate(moment(end._d).format("YYYY-MM-DD"));
-
+	console.log("status", status);
+	const [startDate, setStartDate] = useState(new Date());
+	const [endDate, setEndDate] = useState(null);
+	const onChange = (dates) => {
+		const [start, end] = dates;
+		setStartDate(start);
+		setEndDate(end);
+	};
+	const handleCalendarClose = () => {
 		const submitData = {
 			filter: {
-				startDate: moment(start._d).format("YYYY-MM-DD"),
-				endDate: moment(end._d).format("YYYY-MM-DD"),
+				startDate: moment(startDate).format("YYYY-MM-DD"),
+				endDate: moment(endDate).format("YYYY-MM-DD"),
 			},
 		};
 		getChartData(submitData).then((res) => {
@@ -190,7 +200,20 @@ const Insights = () => {
 		});
 	};
 
-	console.log("recoilChartData", recoilChartData);
+	console.log("recoilChartData ::::", recoilChartData);
+
+	const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+		<Button
+			className={`fs-color  mx-1 border-0 example-custom-input ${
+				active.date ? "activeBtnTable" : "inActiveBtnTable"
+			}`}
+			onClick={onClick}
+			ref={ref}>
+			<i
+				className='bi bi-calendar-fill fs-color'
+				onClick={(e) => handleToggle("date")}></i>
+		</Button>
+	));
 	return (
 		<>
 			<AfterAuth>
@@ -245,23 +268,35 @@ const Insights = () => {
 										Semana
 									</Button>
 									<div className='vr' />
-									<DateRangePicker
-										onCallback={(start, end, label) =>
-											handleEvent(start, end, label)
-										}>
-										<Button
-											className={`fs-color  mx-1 border-0 ${
-												active.date
-													? "activeBtnTable"
-													: "inActiveBtnTable"
-											}`}
-											onClick={(e) =>
-												handleToggle("date")
+
+									{open && (
+										<DatePicker
+											style={{ border: "5px solid red" }}
+											selected={startDate}
+											onChange={onChange}
+											startDate={startDate}
+											endDate={endDate}
+											locale='pt-BR'
+											onCalendarClose={
+												handleCalendarClose
 											}
-											variant='light '>
-											<i className='bi bi-calendar-fill fs-color'></i>
-										</Button>
-									</DateRangePicker>
+											// onCalendarOpen={handleCalendarOpen}
+											selectsRange
+											selectsDisabledDaysInRange
+											customInput={
+												<ExampleCustomInput />
+											}>
+											<div
+												className='text-end m-3'
+												style={{ color: "red" }}>
+												<button
+													variant='primary'
+													className='btn btn-primary px-1 py-0'>
+													Aplicar
+												</button>
+											</div>
+										</DatePicker>
+									)}
 								</Navbar.Collapse>
 							</Container>
 						</Navbar>

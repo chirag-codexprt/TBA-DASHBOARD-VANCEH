@@ -18,7 +18,7 @@ const NavbarCom = () => {
 			}
 		});
 	}, []);
-	console.log(profileItem);
+	// console.log(profileItem);
 
 	let pathName = window.location.pathname;
 

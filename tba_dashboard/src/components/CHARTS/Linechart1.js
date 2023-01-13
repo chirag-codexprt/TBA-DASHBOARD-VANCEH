@@ -42,7 +42,13 @@ const Linechart = () => {
 				};
 			});
 		} else {
-			data = [];
+			if (contactData.length >= 30) {
+				console.log("30");
+			} else if (contactData.length >= 30 && contactData.length <= 60) {
+				console.log("60");
+			} else {
+				console.log("60+");
+			}
 		}
 	};
 	getData();

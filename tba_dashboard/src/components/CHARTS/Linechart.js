@@ -84,7 +84,13 @@ const Linechart = () => {
 				return { month: obj?.month, count: obj?.count };
 			});
 		} else {
-			data = [];
+			if (visitorData.length >= 30) {
+				console.log("30");
+			} else if (visitorData.length >= 30 && visitorData.length <= 60) {
+				console.log("60");
+			} else {
+				console.log("60+");
+			}
 		}
 	};
 	getData();

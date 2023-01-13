@@ -22,10 +22,10 @@ body {
 }
 
 .mainPage {
-  animation: show 1s 1s linear;
+  /* animation: show 1s 1s linear; */
 }
 
-@keyframes show {
+/* @keyframes show {
   from {
     scale: 1;
   }
@@ -33,7 +33,7 @@ body {
   to {
     scale: 0;
   }
-}
+} */
 
 .TBA-Logo {
   width: 20rem;

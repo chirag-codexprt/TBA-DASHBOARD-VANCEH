@@ -286,7 +286,7 @@ const Insights = () => {
 											customInput={
 												<ExampleCustomInput />
 											}>
-											<div
+											{/* <div
 												className='text-end m-3'
 												style={{ color: "red" }}>
 												<button
@@ -294,7 +294,7 @@ const Insights = () => {
 													className='btn btn-primary px-1 py-0'>
 													Aplicar
 												</button>
-											</div>
+											</div> */}
 										</DatePicker>
 									)}
 								</Navbar.Collapse>

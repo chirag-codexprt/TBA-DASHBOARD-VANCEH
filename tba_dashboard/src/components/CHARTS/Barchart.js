@@ -97,7 +97,6 @@ function BarChartVisitor() {
 					});
 				}
 
-				// console.log("fdsf", groupWeeks(contactData?.contactData));
 				data = groupWeeks(contactData?.contactData).filter(function (
 					el
 				) {
@@ -105,7 +104,6 @@ function BarChartVisitor() {
 				});
 				// console.log("60");
 			} else {
-				// console.log("60+");
 			}
 		}
 	};

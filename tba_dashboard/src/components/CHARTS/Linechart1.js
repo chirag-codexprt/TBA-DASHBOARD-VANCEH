@@ -13,7 +13,7 @@ import { getAllChartData } from "../../recoil/Atoms";
 
 const Linechart = () => {
 	const contactData = useRecoilValue(getAllChartData);
-	console.log("contactData", contactData);
+	// console.log("contactData", contactData);
 
 	let data;
 	const getData = () => {
@@ -21,7 +21,7 @@ const Linechart = () => {
 			data = contactData?.contactData?.map((obj) => {
 				return {
 					month: obj?.month,
-					count: obj?.count,
+					Contatos: obj?.count,
 					week: obj?.month,
 				};
 			});
@@ -29,7 +29,7 @@ const Linechart = () => {
 			data = contactData?.contactData?.map((obj) => {
 				return {
 					month: obj?.month,
-					count: obj?.count,
+					Contatos: obj?.count,
 					week: obj?.week,
 				};
 			});
@@ -37,7 +37,7 @@ const Linechart = () => {
 			data = contactData?.contactData?.map((obj) => {
 				return {
 					month: obj?.month,
-					count: obj?.count,
+					coContatos: obj?.count,
 					week: obj?.sortWeek,
 				};
 			});
@@ -46,6 +46,38 @@ const Linechart = () => {
 		}
 	};
 	getData();
+	const CustomTooltip = ({ active, payload, label }) => {
+		// console.log("payload", payload);
+		if (active && payload && payload.length) {
+			return (
+				<div className='custom-tooltip'>
+					<div>
+						{payload.map((pld) => (
+							<div
+								style={{
+									display: "inline-block",
+									padding: 10,
+									background: "#fff",
+									borderRadius: "10px",
+									boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.15)"
+								}}>
+								<div style={{ color: "#6F767E" }}>{pld.payload.week}</div>
+								<div
+									style={{
+										fontWeight: 900, color: "#1A1D1F"
+									}}>
+									{" "}
+									{`${pld.value} ${pld.dataKey}`}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			);
+		}
+
+		return null;
+	};
 
 	return (
 		<ResponsiveContainer width='100%' height={220}>
@@ -53,7 +85,7 @@ const Linechart = () => {
 			<LineChart data={data}>
 				<Line
 					type='monotone'
-					dataKey='count'
+					dataKey='Contatos'
 					r={false}
 					stroke=' #A43D3D   '
 					strokeWidth={3}
@@ -73,7 +105,9 @@ const Linechart = () => {
 						border: "none",
 						borderRadius: "10px",
 						boxShadow: "rgba(238, 238, 239, 1) 0px 8px 30px 5px",
-					}}></Tooltip>
+					}}
+					content={<CustomTooltip />}
+				></Tooltip>
 			</LineChart>
 		</ResponsiveContainer>
 	);

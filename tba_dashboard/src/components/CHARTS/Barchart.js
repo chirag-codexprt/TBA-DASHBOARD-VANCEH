@@ -17,7 +17,7 @@ function BarChartVisitor() {
 	const [focusBar, setFocusBar] = useState(null);
 
 	const contactData = useRecoilValue(getAllChartData);
-	console.log("contactData", contactData);
+	// console.log("contactData", contactData);
 
 	let data;
 	const getData = () => {
@@ -52,7 +52,7 @@ function BarChartVisitor() {
 	getData();
 
 	const CustomTooltip = ({ active, payload, label }) => {
-		console.log("payload", payload);
+		// console.log("payload", payload);
 		if (active && payload && payload.length) {
 			return (
 				<div className='custom-tooltip'>
@@ -64,14 +64,16 @@ function BarChartVisitor() {
 									padding: 10,
 									background: "#fff",
 									borderRadius: "10px",
+									boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.15)"
+
 								}}>
-								<div>{pld.payload.week}</div>
+								<div style={{ color: "#6F767E" }}>{pld.payload.week}</div>
 								<div
 									style={{
-										fontWeight: 900,
+										fontWeight: 900, color: "#1A1D1F"
 									}}>
 									{" "}
-									{`${pld.value} ${pld.payload.Contatos}`}
+									{`${pld.value} ${pld.dataKey}`}
 								</div>
 							</div>
 						))}

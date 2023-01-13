@@ -48,7 +48,7 @@ function BarChartCounter() {
 	const [focusBar, setFocusBar] = useState(null);
 	// const [mouseLeave, setMouseLeave] = useState(true);
 	const visitorData = useRecoilValue(getAllChartData);
-	console.log("visitorData", visitorData);
+	// console.log("visitorDataBarchart", visitorData);
 	let data;
 	const getData = () => {
 		if (visitorData?.chartDataStatus === "yearly") {
@@ -83,22 +83,25 @@ function BarChartCounter() {
 	getData();
 
 	const CustomTooltip = ({ active, payload, label }) => {
+		console.log('payload+', payload)
 		if (active && payload && payload.length) {
 			return (
 				<div className='custom-tooltip'>
 					<div>
 						{payload.map((pld) => (
-							<div
+							<div div
 								style={{
 									display: "inline-block",
 									padding: 10,
 									background: "#fff",
 									borderRadius: "10px",
+									boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.15)"
+
 								}}>
-								<div>{pld.payload.week}</div>
+								<div style={{ color: "#6F767E" }}>{pld.payload.week}</div>
 								<div
 									style={{
-										fontWeight: 900,
+										fontWeight: 900, color: "#1A1D1F"
 									}}>
 									{" "}
 									{`${pld.value} ${pld.dataKey}`}
@@ -106,7 +109,7 @@ function BarChartCounter() {
 							</div>
 						))}
 					</div>
-				</div>
+				</div >
 			);
 		}
 

@@ -15,46 +15,12 @@ import { useRecoilValue } from "recoil";
 import { getAllChartData } from "../../recoil/Atoms";
 import _ from "lodash";
 
-// const data = [
-//   {
-//     name: "Seg",
-//     uv: 8,
-//   },
-//   {
-//     name: " Ter",
-//     uv: 14,
-//   },
-//   {
-//     name: " Qua",
-//     uv: 25,
-//   },
-//   {
-//     name: " Qui ",
-//     uv: 17,
-//   },
-//   {
-//     name: " Sex",
-//     uv: 20,
-//   },
-//   {
-//     name: " Sab",
-//     uv: 16,
-//   },
-//   {
-//     name: " Dom ",
-//     uv: 27,
-//   },
-// ];
-
 function BarChartCounter() {
 	const [focusBar, setFocusBar] = useState(null);
-	// const [mouseLeave, setMouseLeave] = useState(true);
 	const visitorData = useRecoilValue(getAllChartData);
-	// console.log("visitorData?.chartDataStatus", visitorData?.chartDataStatus);
 	let data;
 	const getData = () => {
 		if (visitorData?.chartDataStatus === "yearly") {
-			// console.log("1");
 			data = visitorData?.visitorData?.map((obj) => {
 				return {
 					month: obj?.month,
@@ -63,16 +29,13 @@ function BarChartCounter() {
 				};
 			});
 		} else if (visitorData?.chartDataStatus === "monthly") {
-			// console.log("2");
 			data = visitorData?.visitorData?.map((obj) => {
 				return {
 					month: obj?.month,
 					visitas: obj?.count,
-					week: obj?.week,
 				};
 			});
 		} else if (visitorData?.chartDataStatus === "week") {
-			// console.log("3");
 			data = visitorData?.visitorData?.map((obj) => {
 				return {
 					month: obj?.month,
@@ -81,7 +44,6 @@ function BarChartCounter() {
 				};
 			});
 		} else {
-			// console.log("4");
 			if (visitorData?.visitorData?.length <= 30) {
 				data = visitorData?.visitorData?.map((obj) => {
 					return {
@@ -95,8 +57,6 @@ function BarChartCounter() {
 				visitorData?.visitorData?.length <= 60
 			) {
 				Date.prototype.getWeek = function (dowOffset) {
-					/*getWeek() was developed by Nick Baicoianu at MeanFreePath: http://www.epoch-calendar.com */
-
 					dowOffset = typeof dowOffset == "int" ? dowOffset : 0; //default dowOffset to zero
 					var newYear = new Date(this.getFullYear(), 0, 1);
 					var day = newYear.getDay() - dowOffset; //the day of week the year begins on
@@ -166,17 +126,17 @@ function BarChartCounter() {
 					});
 				}
 
-				console.log("fdsf", groupWeeks(visitorData?.visitorData));
+				// console.log("fdsf", groupWeeks(visitorData?.visitorData));
 				data = groupWeeks(visitorData?.visitorData).filter(function (
 					el
 				) {
 					return el != null;
 				});
-				console.log("filtered", data);
+				// console.log("filtered", data);
 
-				console.log("60");
+				// console.log("60");
 			} else {
-				console.log("60+");
+				// console.log("60+");
 			}
 		}
 	};
@@ -189,16 +149,22 @@ function BarChartCounter() {
 					<div>
 						{payload.map((pld) => (
 							<div
+								div
 								style={{
 									display: "inline-block",
 									padding: 10,
 									background: "#fff",
 									borderRadius: "10px",
+									boxShadow:
+										"0px 0px 10px rgba(0, 0, 0, 0.15)",
 								}}>
-								<div>{pld.payload.week}</div>
+								<div style={{ color: "#6F767E" }}>
+									{pld.payload.week}
+								</div>
 								<div
 									style={{
 										fontWeight: 900,
+										color: "#1A1D1F",
 									}}>
 									{" "}
 									{`${pld.value} ${pld.dataKey}`}
@@ -212,7 +178,7 @@ function BarChartCounter() {
 
 		return null;
 	};
-
+	console.log("data", data);
 	return (
 		<ResponsiveContainer width='100%' height={220}>
 			<BarChart

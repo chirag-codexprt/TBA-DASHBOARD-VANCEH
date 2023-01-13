@@ -46,7 +46,14 @@ function BarChartVisitor() {
 				};
 			});
 		} else {
-			if (contactData.length >= 30) {
+			if (contactData.length <= 30) {
+				data = contactData?.contactData?.map((obj) => {
+					return {
+						month: obj?.month,
+						Contatos: obj?.count,
+						week: obj?.sortWeek,
+					};
+				});
 				console.log("30");
 			} else if (contactData.length >= 30 && contactData.length <= 60) {
 				Date.prototype.getWeek = function (dowOffset) {
@@ -121,15 +128,15 @@ function BarChartVisitor() {
 					});
 				}
 
-				console.log("fdsf", groupWeeks(contactData?.contactData));
+				// console.log("fdsf", groupWeeks(contactData?.contactData));
 				data = groupWeeks(contactData?.contactData).filter(function (
 					el
 				) {
 					return el != null;
 				});
-				console.log("60");
+				// console.log("60");
 			} else {
-				console.log("60+");
+				// console.log("60+");
 			}
 		}
 	};
@@ -148,14 +155,19 @@ function BarChartVisitor() {
 									padding: 10,
 									background: "#fff",
 									borderRadius: "10px",
+									boxShadow:
+										"0px 0px 10px rgba(0, 0, 0, 0.15)",
 								}}>
-								<div>{pld.payload.week}</div>
+								<div style={{ color: "#6F767E" }}>
+									{pld.payload.week}
+								</div>
 								<div
 									style={{
 										fontWeight: 900,
+										color: "#1A1D1F",
 									}}>
 									{" "}
-									{`${pld.value} ${pld.payload.Contatos}`}
+									{`${pld.value} ${pld.dataKey}`}
 								</div>
 							</div>
 						))}

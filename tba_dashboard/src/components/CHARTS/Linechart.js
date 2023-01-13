@@ -11,37 +11,8 @@ import {
 import { useRecoilValue } from "recoil";
 import { getAllChartData } from "../../recoil/Atoms";
 
-// const data = [
-// 	{
-// 		name: "Page A",
-// 		uv: 4000,
-// 		pv: 2400,
-// 		amt: 2400,
-// 	},
-// 	{
-// 		name: "Page B",
-// 		uv: 3000,
-// 		pv: 1398,
-// 		amt: 2210,
-// 	},
-// 	{
-// 		name: "Page C",
-// 		uv: 2000,
-// 		pv: 9800,
-// 		amt: 2290,
-// 	},
-// 	{
-// 		name: "Page D",
-// 		uv: 2780,
-// 		pv: 3908,
-// 		amt: 2000,
-// 	},
-// ];
-
 const Linechart = () => {
 	const visitorData = useRecoilValue(getAllChartData);
-	// console.log("visitorData", visitorData);
-	// const newDataForMonth = vis
 	const organizedTransactions = Object.fromEntries(
 		[
 			...new Set(
@@ -73,30 +44,167 @@ const Linechart = () => {
 	const getData = () => {
 		if (visitorData?.chartDataStatus === "yearly") {
 			data = visitorData?.visitorData?.map((obj) => {
-				return { month: obj?.month, count: obj?.count };
+				return {
+					month: obj?.month,
+					visitas: obj?.count,
+					week: obj?.month,
+				};
 			});
 		} else if (visitorData?.chartDataStatus === "monthly") {
 			data = visitorData?.visitorData?.map((obj) => {
-				return { month: obj?.month, count: obj?.count };
+				return {
+					month: obj?.month,
+					visitas: obj?.count,
+					week: obj?.week,
+				};
 			});
 		} else if (visitorData?.chartDataStatus === "week") {
 			data = visitorData?.visitorData?.map((obj) => {
-				return { month: obj?.month, count: obj?.count };
+				return {
+					month: obj?.month,
+					visitas: obj?.count,
+					week: obj?.sortWeek,
+				};
 			});
 		} else {
-			if (visitorData.length >= 30) {
-				console.log("30");
-			} else if (visitorData.length >= 30 && visitorData.length <= 60) {
-				console.log("60");
+			if (visitorData?.visitorData?.length <= 30) {
+				data = visitorData?.visitorData?.map((obj) => {
+					return {
+						month: obj?.month,
+						visitas: obj?.count,
+						week: obj?.sortWeek,
+					};
+				});
+				// console.log("30");
+				// console.log("data ::;: 30 ", data);
+			} else if (
+				visitorData?.visitorData?.length >= 30 &&
+				visitorData?.visitorData?.length <= 60
+			) {
+				Date.prototype.getWeek = function (dowOffset) {
+					/*getWeek() was developed by Nick Baicoianu at MeanFreePath: http://www.epoch-calendar.com */
+
+					dowOffset = typeof dowOffset == "int" ? dowOffset : 0; //default dowOffset to zero
+					var newYear = new Date(this.getFullYear(), 0, 1);
+					var day = newYear.getDay() - dowOffset; //the day of week the year begins on
+					day = day >= 0 ? day : day + 7;
+					var daynum =
+						Math.floor(
+							(this.getTime() -
+								newYear.getTime() -
+								(this.getTimezoneOffset() -
+									newYear.getTimezoneOffset()) *
+									60000) /
+								86400000
+						) + 1;
+					var weeknum;
+					//if the year starts before the middle of a week
+					if (day < 4) {
+						weeknum = Math.floor((daynum + day - 1) / 7) + 1;
+						if (weeknum > 52) {
+							let nYear = new Date(this.getFullYear() + 1, 0, 1);
+							let nday = nYear.getDay() - dowOffset;
+							nday = nday >= 0 ? nday : nday + 7;
+							/*if the next year starts before the middle of
+									 the week, it is week #1 of that year*/
+							weeknum = nday < 4 ? 1 : 53;
+						}
+					} else {
+						weeknum = Math.floor((daynum + day - 1) / 7);
+					}
+					return weeknum;
+				};
+
+				function getWeekStart(date) {
+					var offset = new Date(date).getDay();
+					return new Date(
+						new Date(date) - offset * 24 * 60 * 60 * 1000
+					)
+						.toISOString()
+						.slice(0, 10);
+				}
+
+				function groupWeeks(dates) {
+					const groupsByWeekNumber = dates.reduce(function (
+						acc,
+						item
+					) {
+						const today = new Date(item._id);
+						const weekNumber = today.getWeek();
+
+						// check if the week number exists
+						if (typeof acc[weekNumber] === "undefined") {
+							acc[weekNumber] = [];
+						}
+
+						acc[weekNumber].push(item);
+
+						return acc;
+					},
+					[]);
+
+					return groupsByWeekNumber.map(function (group) {
+						return {
+							weekStart: getWeekStart(group[0]._id),
+							visitas: group.reduce(function (acc, item) {
+								return acc + item.count;
+							}, 0),
+						};
+					});
+				}
+
+				// console.log("fdsf", groupWeeks(visitorData?.visitorData));
+				data = groupWeeks(visitorData?.visitorData).filter(function (
+					el
+				) {
+					return el != null;
+				});
+				// console.log("60");
 			} else {
-				console.log("60+");
+				// console.log("60+");
 			}
 		}
 	};
 	getData();
 
-	console.log("organizedTransactions", organizedTransactions);
-	console.log("visitorChart", data);
+	// console.log("organizedTransactions", organizedTransactions);
+	// console.log("visitorLineChart", data);
+
+	const CustomTooltip = ({ active, payload, label }) => {
+		if (active && payload && payload.length) {
+			return (
+				<div className='custom-tooltip'>
+					<div>
+						{payload.map((pld) => (
+							<div
+								style={{
+									display: "inline-block",
+									padding: 10,
+									background: "#fff",
+									borderRadius: "10px",
+									boxShadow:
+										"0px 0px 10px rgba(0, 0, 0, 0.15)",
+								}}>
+								<div style={{ color: "#6F767E" }}>
+									{pld.payload.week}
+								</div>
+								<div
+									style={{
+										fontWeight: 900,
+										color: "#1A1D1F",
+									}}>
+									{" "}
+									{`${pld.value} ${pld.dataKey}  `}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			);
+		}
+
+		return null;
+	};
 
 	return (
 		<>
@@ -105,7 +213,7 @@ const Linechart = () => {
 				<LineChart data={data}>
 					<Line
 						type='monotone'
-						dataKey='count'
+						dataKey='visitas'
 						stroke='#58A43D'
 						strokeWidth={3}
 						r={false}
@@ -126,7 +234,8 @@ const Linechart = () => {
 							borderRadius: "10px",
 							boxShadow:
 								"rgba(238, 238, 239, 1) 0px 8px 30px 5px",
-						}}></Tooltip>
+						}}
+						content={<CustomTooltip />}></Tooltip>
 				</LineChart>
 			</ResponsiveContainer>
 		</>

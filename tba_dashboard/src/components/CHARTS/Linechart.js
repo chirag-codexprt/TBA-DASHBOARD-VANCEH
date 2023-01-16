@@ -238,7 +238,12 @@ const Linechart = () => {
 					<Line
 						type='monotone'
 						dataKey='visitas'
-						stroke='#58A43D'
+						stroke={
+							visitorData?.growth?.visitorIndication ===
+							"increment"
+								? "#58A43D"
+								: "#A43D3D"
+						}
 						strokeWidth={3}
 						r={false}
 						activeDot={{ r: 8 }}

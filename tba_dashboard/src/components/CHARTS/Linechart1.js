@@ -183,7 +183,11 @@ const Linechart = () => {
 					type='monotone'
 					dataKey='Contatos'
 					r={false}
-					stroke=' #A43D3D   '
+					stroke={
+						contactData?.growth?.contactIndication === "increment"
+							? "#58A43D"
+							: "#A43D3D"
+					}
 					strokeWidth={3}
 					activeDot={{ r: 8 }}
 					offset={20}

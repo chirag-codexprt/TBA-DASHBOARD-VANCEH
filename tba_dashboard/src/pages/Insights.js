@@ -40,17 +40,22 @@ const Insights = () => {
 	const [tableRow, setTableRow] = useState([]);
 	const [refresh, setRefresh] = useState(0);
 	const [loading, setLoading] = useState(false);
+	const [cardLoading, setCardLoading] = useState(false);
 	const [recoilChartData, setRecoilChartData] =
 		useRecoilState(getAllChartData);
 	useEffect(() => {
+		setCardLoading(true);
 		const submitData = { filter: status };
 		getChartData(submitData).then((res) => {
 			console.log("res chartData", res);
 			if (res.success) {
+				setCardLoading(false);
 				setRecoilChartData({
 					...res.data,
 					chartDataStatus: status,
 				});
+			} else {
+				setCardLoading(false);
 			}
 		});
 	}, [status]);
@@ -72,6 +77,7 @@ const Insights = () => {
 	}, [refresh]);
 
 	const handleToggle = (status) => {
+		setCardLoading(true);
 		if (status === "monthly") {
 			setStatus(status);
 			setActive({
@@ -80,6 +86,7 @@ const Insights = () => {
 				week: false,
 				date: false,
 			});
+			setCardLoading(false);
 		} else if (status === "yearly") {
 			setStatus(status);
 			setActive({
@@ -88,6 +95,7 @@ const Insights = () => {
 				week: false,
 				date: false,
 			});
+			setCardLoading(false);
 		} else if (status === "week") {
 			// setStatus(status)
 			setStatus(status);
@@ -97,6 +105,7 @@ const Insights = () => {
 				week: true,
 				date: false,
 			});
+			setCardLoading(false);
 		} else if (status === "date") {
 			setStatus(status);
 			setRecoilChartData({
@@ -109,8 +118,9 @@ const Insights = () => {
 				week: false,
 				date: true,
 			});
+			setCardLoading(false);
 		} else {
-			return null;
+			return setCardLoading(false);
 		}
 	};
 	console.log("status", status);
@@ -122,6 +132,7 @@ const Insights = () => {
 		setEndDate(end);
 	};
 	const handleCalendarClose = () => {
+		setCardLoading(true);
 		const submitData = {
 			filter: {
 				startDate: moment(startDate).format("YYYY-MM-DD"),
@@ -131,10 +142,13 @@ const Insights = () => {
 		getChartData(submitData).then((res) => {
 			console.log("res chartData", res);
 			if (res.success) {
+				setCardLoading(false);
 				setRecoilChartData({
 					...res.data,
 					chartDataStatus: status,
 				});
+			} else {
+				setCardLoading(false);
 			}
 		});
 	};
@@ -241,120 +255,129 @@ const Insights = () => {
 						</Navbar>
 					</Row>
 					{/* charts */}
-					<Row className='my-3'>
-						{/* first card */}
-						<Col md={6}>
-							<Card>
-								<Row className='p-3'>
-									<Col
-										xs={12}
-										sm={12}
-										md={6}
-										className='text-center'>
-										<Row className='pt-3'>
-											<Col md={5} className=''>
-												<img
-													src='/assets/img/eye.png'
-													style={{
-														height: "5rem",
-														width: "5rem",
-													}}
-												/>
-											</Col>
+					<></>
+					{cardLoading ? (
+						<Loader />
+					) : (
+						<>
+							<Row className='my-3'>
+								<Col md={6}>
+									<Card>
+										<Row className='p-3'>
 											<Col
-												md={7}
-												className='d-flex justify-content-center'>
-												<h6
-													className='fs-color  mb-0'
-													style={{
-														fontSize: "12px",
-													}}>
-													Total de visitas
-													<p className='fs-color-fill px-0'>
-														{
-															recoilChartData?.totalVisitor
-														}
-													</p>
-												</h6>
+												xs={12}
+												sm={12}
+												md={6}
+												className='text-center'>
+												<Row className='pt-3'>
+													<Col md={5} className=''>
+														<img
+															src='/assets/img/eye.png'
+															style={{
+																height: "5rem",
+																width: "5rem",
+															}}
+														/>
+													</Col>
+													<Col
+														md={7}
+														className='d-flex justify-content-center'>
+														<h6
+															className='fs-color  mb-0'
+															style={{
+																fontSize:
+																	"12px",
+															}}>
+															Total de visitas
+															<p className='fs-color-fill px-0'>
+																{
+																	recoilChartData?.totalVisitor
+																}
+															</p>
+														</h6>
+													</Col>
+												</Row>
+											</Col>
+											{/* linechart left */}
+											<Col
+												xs={12}
+												sm={12}
+												md={6}
+												className=' justify-content-center align-items-center '>
+												<Linechart />
 											</Col>
 										</Row>
-									</Col>
-									{/* linechart left */}
-									<Col
-										xs={12}
-										sm={12}
-										md={6}
-										className=' justify-content-center align-items-center '>
-										<Linechart />
-									</Col>
-								</Row>
-							</Card>
-						</Col>
-						{/* second card */}
-						<Col md={6}>
-							{/* barchart right */}
-							<Card className='p-3'>
-								<Barchart1 />
-							</Card>
-						</Col>
-					</Row>
-					<Row className='my-3'>
-						{/* third card */}
-						<Col md={6}>
-							<Card>
-								<Row className='p-3'>
-									<Col
-										xs={12}
-										sm={12}
-										md={6}
-										className='text-center'>
-										<Row className='pt-3'>
-											<Col md={5} className=''>
-												<img
-													src='/assets/img/file.png'
-													style={{
-														height: "5rem",
-														width: "5rem",
-													}}
-												/>
-											</Col>
+									</Card>
+									{/* )} */}
+								</Col>
+								{/* second card */}
+								<Col md={6}>
+									{/* barchart right */}
+									<Card className='p-3'>
+										<Barchart1 />
+									</Card>
+								</Col>
+							</Row>
+							<Row className='my-3'>
+								{/* third card */}
+								<Col md={6}>
+									<Card>
+										<Row className='p-3'>
 											<Col
-												md={7}
-												className='d-flex justify-content-center'>
-												<h6
-													className='fs-color  mb-0'
-													style={{
-														fontSize: "12px",
-													}}>
-													Total de contatos
-													<p className='fs-color-fill px-0'>
-														{
-															recoilChartData?.totalContact
-														}
-													</p>
-												</h6>
+												xs={12}
+												sm={12}
+												md={6}
+												className='text-center'>
+												<Row className='pt-3'>
+													<Col md={5} className=''>
+														<img
+															src='/assets/img/file.png'
+															style={{
+																height: "5rem",
+																width: "5rem",
+															}}
+														/>
+													</Col>
+													<Col
+														md={7}
+														className='d-flex justify-content-center'>
+														<h6
+															className='fs-color  mb-0'
+															style={{
+																fontSize:
+																	"12px",
+															}}>
+															Total de contatos
+															<p className='fs-color-fill px-0'>
+																{
+																	recoilChartData?.totalContact
+																}
+															</p>
+														</h6>
+													</Col>
+												</Row>
+											</Col>
+											{/* linechart left */}
+											<Col
+												xs={12}
+												sm={12}
+												md={6}
+												className='justify-content-center align-items-center   '>
+												<Linechart1 />
 											</Col>
 										</Row>
-									</Col>
-									{/* linechart left */}
-									<Col
-										xs={12}
-										sm={12}
-										md={6}
-										className='justify-content-center align-items-center   '>
-										<Linechart1 />
-									</Col>
-								</Row>
-							</Card>
-						</Col>
-						{/* fourth card */}
-						<Col md={6}>
-							{/* barchart right */}
-							<Card className='p-3'>
-								<Barchart />
-							</Card>
-						</Col>
-					</Row>
+									</Card>
+								</Col>
+								{/* fourth card */}
+								<Col md={6}>
+									{/* barchart right */}
+									<Card className='p-3'>
+										<Barchart />
+									</Card>
+								</Col>
+							</Row>
+						</>
+					)}
 					{/* tabels */}
 					{loading ? (
 						<Loader />

@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useState, useCallback } from "react";
 import {
 	LineChart,
@@ -93,7 +94,46 @@ const Linechart = () => {
 					return el != null;
 				});
 			} else {
-				// console.log("60+");
+				function getMonthStart(date) {
+					var offset = new Date(date).getMonth();
+					return new Date(new Date(date) - offset);
+				}
+
+				function groupMonths(dates) {
+					const groupsByMonthNumber = dates.reduce(function (
+						acc,
+						item
+					) {
+						const today = new Date(item._id);
+						const monthNumber = today.getMonth();
+
+						// check if the week number exists
+						if (typeof acc[monthNumber] === "undefined") {
+							acc[monthNumber] = [];
+						}
+
+						acc[monthNumber].push(item);
+
+						return acc;
+					},
+					[]);
+
+					return groupsByMonthNumber.map(function (group) {
+						return {
+							week: moment(getMonthStart(group[0]._id)).format(
+								"DD-MM-YYYY"
+							),
+							Contatos: group.reduce(function (acc, item) {
+								return acc + item.count;
+							}, 0),
+						};
+					});
+				}
+				data = groupMonths(contactData?.contactData).filter(function (
+					el
+				) {
+					return el != null;
+				});
 			}
 		}
 	};
@@ -150,7 +190,7 @@ const Linechart = () => {
 				/>
 				<XAxis tick={false} axisLine={false}>
 					<Label
-						value='2.1% nessa semana'
+						value={contactData?.growth?.contact}
 						offset={0}
 						position='insideBottom'></Label>
 				</XAxis>

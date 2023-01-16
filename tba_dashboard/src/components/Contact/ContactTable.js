@@ -107,24 +107,46 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 													Entrar em contato por:
 												</Col>
 
-												<Col md={1}>
-													<Button
-														style={{
-															background:
-																"#1C3D59",
-														}}>
-														<i class='bi bi-whatsapp'></i>
-													</Button>
-												</Col>
-												<Col md={1}>
-													<Button
-														style={{
-															background:
-																"#1C3D59",
-														}}>
-														<i class='bi bi-envelope'></i>
-													</Button>
-												</Col>
+												{obj?.phone && (
+													<Col md={1}>
+														<Button
+															style={{
+																background:
+																	"#1C3D59",
+															}}>
+															<a
+																href={`https://wa.me/${obj.phone}`}
+																target='_blank'
+																style={{
+																	textDecoration:
+																		"none",
+																	color: "#fff",
+																}}>
+																<i class='bi bi-whatsapp'></i>
+															</a>
+														</Button>
+													</Col>
+												)}
+												{obj?.email && (
+													<Col md={1}>
+														<Button
+															style={{
+																background:
+																	"#1C3D59",
+															}}>
+															<a
+																href={`mailto:${obj.email}`}
+																target='_blank'
+																style={{
+																	textDecoration:
+																		"none",
+																	color: "#fff",
+																}}>
+																<i class='bi bi-envelope'></i>
+															</a>
+														</Button>
+													</Col>
+												)}
 												<Col
 													md={2}
 													className='opacity-25 text-center'>

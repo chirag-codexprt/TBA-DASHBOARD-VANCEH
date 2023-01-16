@@ -22,88 +22,12 @@ import DatePicker from "react-datepicker";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import pt from "date-fns/locale/pt-BR";
 import "react-datepicker/dist/react-datepicker.css";
+import InsightTable from "../components/CHARTS/InsightTable";
+import { Link, Navigate } from "react-router-dom";
+import { getContactList } from "../helper/API/contact";
+import Loader from "../components/Loader";
 
 const Insights = () => {
-	const TABLE = () => {
-		return (
-			<Table
-				className='p-3 table-fit text-wrap tbl-color-text'
-				responsive>
-				<thead>
-					<tr className=''>
-						<th className='tbl-head-color  '>Nome </th>
-						<th className='tbl-head-color '>CPF/CNPJ</th>
-						<th className='tbl-head-color '>Email/Telefone </th>
-						<th className='tbl-head-color '>Data</th>
-						<th className='tbl-head-color text-center '>Hora </th>
-						<th className='tbl-head-color text-center '>Status </th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr className='small'>
-						<td className='fw-bold  '>Ana Júlia Garcia</td>
-						<td>000.000.000-00</td>
-						<td>anajulia@vanceh.com </td>
-						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
-						<td className='text-end'>
-							<Button
-								variant='warning'
-								size='sm'
-								className='text-white border-0 px-3'>
-								Pendente
-							</Button>
-						</td>
-					</tr>
-					<tr className='small'>
-						<td className='fw-bold  '>Ana Júlia Garcia</td>
-						<td>000.000.000-00</td>
-						<td>anajulia@vanceh.com </td>
-						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
-						<td className='text-end'>
-							<Button
-								variant='warning'
-								size='sm'
-								className='text-white border-0 px-3'>
-								Pendente
-							</Button>
-						</td>
-					</tr>
-					<tr className='small'>
-						<td className='fw-bold  '>Ana Júlia Garcia</td>
-						<td>000.000.000-00</td>
-						<td>anajulia@vanceh.com </td>
-						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
-						<td className='text-end'>
-							<Button
-								variant='warning'
-								size='sm'
-								className='text-white border-0 px-3'>
-								Pendente
-							</Button>
-						</td>
-					</tr>
-					<tr className='small'>
-						<td className='fw-bold  '>Ana Júlia Garcia</td>
-						<td>000.000.000-00</td>
-						<td>anajulia@vanceh.com </td>
-						<td>13 dez 2022</td>
-						<td className='text-center'>13:04 </td>
-						<td className='text-end'>
-							<Button
-								variant='warning'
-								size='sm'
-								className='text-white border-0 px-3'>
-								Pendente
-							</Button>
-						</td>
-					</tr>
-				</tbody>
-			</Table>
-		);
-	};
 	registerLocale("pt-BR", pt);
 	const [active, setActive] = useState({
 		month: true,
@@ -113,10 +37,12 @@ const Insights = () => {
 	});
 	const [status, setStatus] = useState("monthly");
 	const [open, setOpen] = useState(true);
+	const [tableRow, setTableRow] = useState([]);
+	const [refresh, setRefresh] = useState(0);
+	const [loading, setLoading] = useState(false);
 	const [recoilChartData, setRecoilChartData] =
 		useRecoilState(getAllChartData);
 	useEffect(() => {
-		// if (status === "monthly" || status === "yearly" || status === "week") {
 		const submitData = { filter: status };
 		getChartData(submitData).then((res) => {
 			console.log("res chartData", res);
@@ -127,10 +53,23 @@ const Insights = () => {
 				});
 			}
 		});
-		// } else {
-
-		// }
 	}, [status]);
+	useEffect(() => {
+		setLoading(true);
+		const submitData = {
+			search: "",
+		};
+		getContactList(submitData).then((res) => {
+			console.log("res contact :: ", res);
+			if (res.success) {
+				setTableRow(res.data);
+				setLoading(false);
+			} else {
+				setTableRow([]);
+				setLoading(false);
+			}
+		});
+	}, [refresh]);
 
 	const handleToggle = (status) => {
 		if (status === "monthly") {
@@ -332,7 +271,9 @@ const Insights = () => {
 													}}>
 													Total de visitas
 													<p className='fs-color-fill px-0'>
-														149
+														{
+															recoilChartData?.totalVisitor
+														}
 													</p>
 												</h6>
 											</Col>
@@ -387,7 +328,9 @@ const Insights = () => {
 													}}>
 													Total de contatos
 													<p className='fs-color-fill px-0'>
-														17
+														{
+															recoilChartData?.totalContact
+														}
 													</p>
 												</h6>
 											</Col>
@@ -413,7 +356,15 @@ const Insights = () => {
 						</Col>
 					</Row>
 					{/* tabels */}
-					<TABLE />
+					{loading ? (
+						<Loader />
+					) : (
+						<InsightTable
+							tableRow={tableRow}
+							refresh={refresh}
+							setRefresh={setRefresh}
+						/>
+					)}
 					<div className='text-end mx-2'>
 						<Button
 							className='px-5 py-2'
@@ -421,7 +372,15 @@ const Insights = () => {
 								backgroundColor: "#C4CCD2",
 								border: "none",
 							}}>
-							Ver tudo
+							<Link
+								to='/Contatos'
+								style={{
+									textDecoration: "none",
+									color: "#fff",
+									fontWeight: 700,
+								}}>
+								Ver tudo
+							</Link>
 						</Button>
 					</div>
 				</Card>

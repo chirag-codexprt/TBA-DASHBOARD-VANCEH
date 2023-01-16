@@ -86,7 +86,7 @@ function BarChartVisitor() {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -111,7 +111,7 @@ function BarChartVisitor() {
 				}
 
 				function groupMonths(dates) {
-					const groupsByMonthNumber = dates.reduce(function (
+					const groupsByMonthNumber = dates?.reduce(function (
 						acc,
 						item
 					) {
@@ -127,9 +127,9 @@ function BarChartVisitor() {
 
 						return acc;
 					},
-					[]);
+						[]);
 
-					return groupsByMonthNumber.map(function (group) {
+					return groupsByMonthNumber?.map(function (group) {
 						return {
 							week: moment(getMonthStart(group[0]._id)).format(
 								"DD-MM-YYYY"
@@ -140,7 +140,7 @@ function BarChartVisitor() {
 						};
 					});
 				}
-				data = groupMonths(contactData?.contactData).filter(function (
+				data = groupMonths(contactData?.contactData)?.filter(function (
 					el
 				) {
 					return el != null;

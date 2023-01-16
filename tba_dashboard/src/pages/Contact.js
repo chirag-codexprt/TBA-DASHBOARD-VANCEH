@@ -113,33 +113,32 @@ const Contact = () => {
 						search={search}
 						setActive={setActive}
 						active={active}>
-						<Button
-							className={`fs-color  mx-1 border-0 ${
-								active.pending
+						<div className="" >
+							<Button
+								className={`fs-color mx-2 border-0 ${active.pending
 									? "activeBtnTable"
 									: "inActiveBtnTable"
-							}`}
-							onClick={(e) => handleToggle("Pending")}>
-							Pendentes
-						</Button>
-						<Button
-							className={`fs-color  mx-1 border-0 ${
-								active.approved
+									}`}
+								onClick={(e) => handleToggle("Pending")}>
+								Pendentes
+							</Button>
+							<Button
+								className={`fs-color  mx-2 border-0 ${active.approved
 									? "activeBtnTable"
 									: "inActiveBtnTable"
-							}`}
-							onClick={(e) => handleToggle("Approved")}>
-							Respondidas
-						</Button>
-						<Button
-							className={`fs-color  mx-1 border-0 ${
-								active.all
+									}`}
+								onClick={(e) => handleToggle("Approved")}>
+								Respondidas
+							</Button>
+							<Button
+								className={`fs-color px-4 border-0 ${active.all
 									? "activeBtnTable"
 									: "inActiveBtnTable"
-							}`}
-							onClick={(e) => handleToggle("All")}>
-							Todos
-						</Button>
+									}`}
+								onClick={(e) => handleToggle("All")}>
+								Todos
+							</Button>
+						</div>
 					</TableNavbar>
 
 					{loading ? (

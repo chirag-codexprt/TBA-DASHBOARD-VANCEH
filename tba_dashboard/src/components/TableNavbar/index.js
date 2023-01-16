@@ -18,8 +18,8 @@ const TableNavbar = ({
 	};
 	return (
 		<div>
-			<Navbar className='my-2 px-4 ps-2' expand='lg'>
-				<Navbar.Brand className='fw-bolder' href='#'>
+			<Navbar className='my-2 px-2 ps-1' expand='lg'>
+				<Navbar.Brand className='fw-bolder'>
 					{title}
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls='navbarScroll' />

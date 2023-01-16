@@ -109,7 +109,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -136,7 +136,7 @@ const Linechart = () => {
 				}
 
 				function groupMonths(dates) {
-					const groupsByMonthNumber = dates.reduce(function (
+					const groupsByMonthNumber = dates?.reduce(function (
 						acc,
 						item
 					) {
@@ -152,9 +152,9 @@ const Linechart = () => {
 
 						return acc;
 					},
-					[]);
+						[]);
 
-					return groupsByMonthNumber.map(function (group) {
+					return groupsByMonthNumber?.map(function (group) {
 						return {
 							week: moment(getMonthStart(group[0]._id)).format(
 								"DD-MM-YYYY"
@@ -165,7 +165,7 @@ const Linechart = () => {
 						};
 					});
 				}
-				data = groupMonths(visitorData?.visitorData).filter(function (
+				data = groupMonths(visitorData?.visitorData)?.filter(function (
 					el
 				) {
 					return el != null;

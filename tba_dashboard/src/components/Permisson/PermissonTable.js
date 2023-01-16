@@ -220,7 +220,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 					<tbody>
 						{currentTableData.map((val, i) => {
 							return (
-								<tr key={i}>
+								<tr key={i} style={{ fontSize: '14px' }}>
 									<td className='fw-bold'>{val.name}</td>
 									<td>{val.email}</td>
 									<td>{val.designation}</td>
@@ -237,9 +237,12 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant=' success'
 												size='lg'
-												className='p-0 fs-6 fw-bolder text-success  border-0'>
-												<i className='bi bi-check'></i>
-												Autorizar
+												style={{ fontSize: '14px' }}
+												className='p-0 fw-bolder text-success border-0'>
+												<span className="d-flex" >
+													<i className='bi bi-check'></i>
+													Autorizar
+												</span>
 											</Button>
 										) : (
 											<Button
@@ -253,9 +256,12 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant='danger'
 												size='lg'
-												className='p-0 fs-6 fw-bolder text-danger button-red'>
-												<i className='bi bi-x'></i>
-												Remover
+												style={{ fontSize: '14px' }}
+												className='p-0 fw-bolder text-danger button-red'>
+												<span className="d-flex">
+													<i className='bi bi-x'></i>
+													Remover
+												</span>
 											</Button>
 										)}
 									</td>
@@ -273,7 +279,8 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant=' success'
 												size='lg'
-												className='p-0 fs-6 fw-bolder text-success  border-0'>
+												style={{ fontSize: '14px' }}
+												className='p-0 fw-bolder text-success  border-0'>
 												<i className='bi bi-check'></i>
 												Autorizar
 											</Button>
@@ -289,7 +296,8 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant='danger'
 												size='lg'
-												className='p-0 fs-6 fw-bolder text-danger button-red'>
+												style={{ fontSize: '14px' }}
+												className='p-0 fw-bolder text-danger button-red'>
 												<i className='bi bi-x'></i>
 												Remover
 											</Button>
@@ -308,9 +316,12 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant=' success'
 												size='lg'
-												className='p-0 fs-6 fw-bolder text-success  border-0'>
-												<i className='bi bi-check'></i>
-												Autorizar
+												style={{ fontSize: '14px' }}
+												className='p-0 fw-bolder text-success  border-0'>
+												<span className="d-flex">
+													<i className='bi bi-check'></i>
+													Autorizar
+												</span>
 											</Button>
 										) : (
 											<Button
@@ -324,9 +335,12 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant='danger'
 												size='lg'
-												className='p-0 fs-6 fw-bolder text-danger button-red'>
-												<i className='bi bi-x'></i>
-												Remover
+												style={{ fontSize: '14px' }}
+												className='p-0 fw-bolder text-danger button-red'>
+												<span className="d-flex">
+													<i className='bi bi-x'></i>
+													Remover
+												</span>
 											</Button>
 										)}
 										<PermissonTooltip

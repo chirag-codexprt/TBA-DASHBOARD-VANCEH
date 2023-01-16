@@ -29,7 +29,7 @@ const ProfileTable = ({ tableRow }) => {
 				responsive>
 				{currentTableData.length ? (
 					<thead>
-						<tr>
+						<tr style={{ fontSize: '12px' }}>
 							<th className='tbl-head-color '>Nome </th>
 							<th className='tbl-head-color '>CPF/CNPJ</th>
 							<th className='tbl-head-color '>Email </th>
@@ -48,7 +48,7 @@ const ProfileTable = ({ tableRow }) => {
 				{currentTableData.length ? (
 					<tbody>
 						{currentTableData?.map((obj, i) => (
-							<tr>
+							<tr style={{ fontSize: '14px' }}>
 								<td className='fw-bold'>{obj.name}</td>
 								<td>{obj.CpfOrCnpj}</td>
 								<td>{obj.email}</td>
@@ -57,7 +57,8 @@ const ProfileTable = ({ tableRow }) => {
 								<td className='text-end'>
 									<Button
 										variant='success'
-										className='border-0'
+										style={{ width: '100px', fontSize: '14px' }}
+										className='border-0 p-0'
 										size='md'>
 										Respondido
 									</Button>

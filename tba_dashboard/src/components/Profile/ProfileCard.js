@@ -149,7 +149,7 @@ const ProfileCard = ({
 					<Col md={12} className='my-4'>
 						<Row>
 							<Col xs={12} sm={12} md={2} lg={2}>
-								<h3 className='fw-bolder mt-3'>Histórico</h3>
+								<h4 className='fw-bolder mt-3'>Histórico</h4>
 							</Col>
 							<Col xs={12} sm={12} md={10} lg={10}>
 								<TableNavbar

@@ -100,44 +100,43 @@ const Documents = () => {
 			<AfterAuth>
 				<h2 className='mt-3 ms-5'>Documentos</h2>
 				<Card className='m-5 my-3 p-3 px-4'>
-					<TableNavbar
-						title={"Documentos"}
-						btn1Text='Concluídos'
-						btn2Text='Pendentes'
-						btn3Text='Todas'
-						setSearch={setSearch}
-						onEnter={onEnter}
-						refresh={refresh}
-						setRefresh={setRefresh}
-						search={search}>
-						<Button
-							className={`fs-color  mx-1 border-0 ${
-								active.approved
+					<div style={{ paddingRight: '2%' }} >
+						<TableNavbar
+							title={"Documentos"}
+							btn1Text='Concluídos'
+							btn2Text='Pendentes'
+							btn3Text='Todas'
+							setSearch={setSearch}
+							onEnter={onEnter}
+							refresh={refresh}
+							setRefresh={setRefresh}
+							search={search}>
+							<Button
+								className={`fs-color  mx-1 border-0 ${active.approved
 									? "activeBtnTable"
 									: "inActiveBtnTable"
-							}`}
-							onClick={(e) => handleToggle("Approved")}>
-							Concluídos
-						</Button>
-						<Button
-							className={`fs-color  mx-1 border-0 ${
-								active.pending
+									}`}
+								onClick={(e) => handleToggle("Approved")}>
+								Concluídos
+							</Button>
+							<Button
+								className={`fs-color  mx-1 border-0 ${active.pending
 									? "activeBtnTable"
 									: "inActiveBtnTable"
-							}`}
-							onClick={(e) => handleToggle("Pending")}>
-							Pendentes
-						</Button>
-						<Button
-							className={`fs-color  mx-1 border-0 ${
-								active.all
+									}`}
+								onClick={(e) => handleToggle("Pending")}>
+								Pendentes
+							</Button>
+							<Button
+								className={`fs-color px-4 mx-1 border-0 ${active.all
 									? "activeBtnTable"
 									: "inActiveBtnTable"
-							}`}
-							onClick={(e) => handleToggle("All")}>
-							Todas
-						</Button>
-					</TableNavbar>
+									}`}
+								onClick={(e) => handleToggle("All")}>
+								Todas
+							</Button>
+						</TableNavbar>
+					</div>
 					{loading ? (
 						<Loader />
 					) : (

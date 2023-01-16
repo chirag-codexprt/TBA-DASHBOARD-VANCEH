@@ -64,16 +64,17 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 					<tbody>
 						{currentTableData?.map((obj, i) => (
 							<tr
-								style={{ position: "relative" }}
+								style={{ position: "relative", fontSize: '14px' }}
 								height={id === obj.id && open ? "100px" : ""}>
-								<td>{obj.name}</td>
+								<td className='fw-bold'>{obj.name}</td>
 								<td>{obj.CpfOrCnpj}</td>
 								<td>{obj.email ? obj.email : obj.phone}</td>
 								<td>{obj.date}</td>
 								<td>{obj.time}</td>
 								<td className='position-relative text-end'>
 									<Button
-										style={{ width: "130px" }}
+										className="py-0 px-0 fw-bold text-white"
+										style={{ width: "100px", fontSize: '12px' }}
 										variant={
 											obj.status === "pending"
 												? "warning"
@@ -86,71 +87,71 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 										}>
 										{obj.status === "pending"
 											? "Pendente"
-											: "respondidas"}
+											: "Respondido"}
 									</Button>
 								</td>
 								{
 									obj.status === "pending" &&
-										// <div>
-										(id === obj.id && open ? (
-											<Row
-												style={{
-													width: "600px",
-													position: "absolute",
-													right: "-3rem",
-													bottom: "0%",
-												}}>
-												{/* <Row> */}
-												<Col
-													md={4}
-													className='opacity-25'>
-													Entrar em contato por:
-												</Col>
+									// <div>
+									(id === obj.id && open ? (
+										<Row
+											style={{
+												width: "600px",
+												position: "absolute",
+												right: "-3rem",
+												bottom: "0%",
+											}}>
+											{/* <Row> */}
+											<Col
+												md={4}
+												className='opacity-25'>
+												Entrar em contato por:
+											</Col>
 
-												<Col md={1}>
-													<Button
-														style={{
-															background:
-																"#1C3D59",
-														}}>
-														<i class='bi bi-whatsapp'></i>
-													</Button>
-												</Col>
-												<Col md={1}>
-													<Button
-														style={{
-															background:
-																"#1C3D59",
-														}}>
-														<i class='bi bi-envelope'></i>
-													</Button>
-												</Col>
-												<Col
-													md={2}
-													className='opacity-25 text-center'>
-													ou
-												</Col>
-												<Col md={3} className='ps-0'>
-													<Button
-														onClick={() =>
-															handleShowLinkModal(
-																obj
-															)
-														}
-														className='border-0'
-														style={{
-															background:
-																"#C4CCD2",
-															width: "100%",
-														}}>
-														Gerar link
-													</Button>
-												</Col>
-												{/* </Row> */}
-											</Row>
-										) : (
-											""
-										))
+											<Col md={1}>
+												<Button
+													style={{
+														background:
+															"#1C3D59",
+													}}>
+													<i class='bi bi-whatsapp'></i>
+												</Button>
+											</Col>
+											<Col md={1}>
+												<Button
+													style={{
+														background:
+															"#1C3D59",
+													}}>
+													<i class='bi bi-envelope'></i>
+												</Button>
+											</Col>
+											<Col
+												md={2}
+												className='opacity-25 text-center'>
+												ou
+											</Col>
+											<Col md={3} className='ps-0'>
+												<Button
+													onClick={() =>
+														handleShowLinkModal(
+															obj
+														)
+													}
+													className='border-0'
+													style={{
+														background:
+															"#C4CCD2",
+														width: "100%",
+													}}>
+													Gerar link
+												</Button>
+											</Col>
+											{/* </Row> */}
+										</Row>
+									) : (
+										""
+									))
 									// </div>
 								}
 							</tr>

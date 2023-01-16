@@ -87,6 +87,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 								style={{
 									position: "relative",
 									cursor: "pointer",
+									fontSize: '14px'
 								}}
 								className={
 									id === obj.id &&
@@ -100,7 +101,9 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 										obj?.allStatus === "pending"
 											? () => handleShowRow(obj.id)
 											: null
-									}>
+									}
+									className="fw-bold"
+								>
 									{obj.name}
 								</td>
 								<td
@@ -139,7 +142,8 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 									className='position-relative text-end'
 									style={{ zIndex: 1000 }}>
 									<Button
-										style={{ width: "120px" }}
+										className="text-white fw-bold p-0"
+										style={{ width: "100px", fontSize: '12px' }}
 										variant={
 											obj.allStatus === "pending"
 												? "warning"

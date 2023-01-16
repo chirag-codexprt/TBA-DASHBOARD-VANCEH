@@ -64,7 +64,10 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 					<tbody>
 						{currentTableData?.map((obj, i) => (
 							<tr
-								style={{ position: "relative", fontSize: '14px' }}
+								style={{
+									position: "relative",
+									fontSize: "14px",
+								}}
 								height={id === obj.id && open ? "100px" : ""}>
 								<td className='fw-bold'>{obj.name}</td>
 								<td>{obj.CpfOrCnpj}</td>
@@ -73,8 +76,11 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								<td>{obj.time}</td>
 								<td className='position-relative text-end'>
 									<Button
-										className="py-0 px-0 fw-bold text-white"
-										style={{ width: "100px", fontSize: '12px' }}
+										className='py-0 px-0 fw-bold text-white'
+										style={{
+											width: "100px",
+											fontSize: "12px",
+										}}
 										variant={
 											obj.status === "pending"
 												? "warning"
@@ -92,88 +98,88 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								</td>
 								{
 									obj.status === "pending" &&
-									// <div>
-									(id === obj.id && open ? (
-										<Row
-											style={{
-												width: "600px",
-												position: "absolute",
-												right: "-3rem",
-												bottom: "0%",
-											}}>
-											{/* <Row> */}
-											<Col
-												md={4}
-												className='opacity-25'>
-												Entrar em contato por:
-											</Col>
+										// <div>
+										(id === obj.id && open ? (
+											<Row
+												style={{
+													width: "600px",
+													position: "absolute",
+													right: "-7%",
+													bottom: "0%",
+												}}>
+												{/* <Row> */}
+												<Col
+													md={4}
+													className='opacity-25'>
+													Entrar em contato por:
+												</Col>
 
-											{obj?.phone && (
-												<Col md={1}>
+												{obj?.phone && (
+													<Col md={1}>
+														<Button
+															style={{
+																background:
+																	"#1C3D59",
+															}}>
+															<a
+																href={`https://wa.me/${obj.phone}`}
+																target='_blank'
+																style={{
+																	textDecoration:
+																		"none",
+																	color: "#fff",
+																}}>
+																<i class='bi bi-whatsapp'></i>
+															</a>
+														</Button>
+													</Col>
+												)}
+												{obj?.email && (
+													<Col md={1}>
+														<Button
+															style={{
+																background:
+																	"#1C3D59",
+															}}>
+															<a
+																href={`mailto:${obj.email}`}
+																target='_blank'
+																style={{
+																	textDecoration:
+																		"none",
+																	color: "#fff",
+																}}>
+																<i class='bi bi-envelope'></i>
+															</a>
+														</Button>
+													</Col>
+												)}
+												<Col
+													md={2}
+													className='opacity-25 text-center'>
+													ou
+												</Col>
+												<Col md={3} className='ps-0'>
 													<Button
+														onClick={() =>
+															handleShowLinkModal(
+																obj
+															)
+														}
+														className='border-0'
 														style={{
 															background:
-																"#1C3D59",
+																"#C4CCD2",
+															width: "100%",
 														}}>
-														<a
-															href={`https://wa.me/${obj.phone}`}
-															target='_blank'
-															style={{
-																textDecoration:
-																	"none",
-																color: "#fff",
-															}}>
-															<i class='bi bi-whatsapp'></i>
-														</a>
+														Gerar link
 													</Button>
 												</Col>
-											)}
-											{obj?.email && (
-												<Col md={1}>
-													<Button
-														style={{
-															background:
-																"#1C3D59",
-														}}>
-														<a
-															href={`mailto:${obj.email}`}
-															target='_blank'
-															style={{
-																textDecoration:
-																	"none",
-																color: "#fff",
-															}}>
-															<i class='bi bi-envelope'></i>
-														</a>
-													</Button>
-												</Col>
-											)}
-											<Col
-												md={2}
-												className='opacity-25 text-center'>
-												ou
-											</Col>
-											<Col md={3} className='ps-0'>
-												<Button
-													onClick={() =>
-														handleShowLinkModal(
-															obj
-														)
-													}
-													className='border-0'
-													style={{
-														background:
-															"#C4CCD2",
-														width: "100%",
-													}}>
-													Gerar link
-												</Button>
-											</Col>
-											{/* </Row> */}
-										</Row>
-									) : (
-										""
-									))
+												{/* </Row> */}
+											</Row>
+										) : (
+											""
+										))
 									// </div>
 								}
 							</tr>

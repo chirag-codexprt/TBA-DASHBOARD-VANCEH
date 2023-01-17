@@ -22,7 +22,13 @@ export const BASE_URL = envData(
 	"",
 	""
 );
+export const LINK_URL = envData(
+	ENV_TYPE,
+	"localhost:3003/document-verification/",
+	"",
+	""
+);
 
-export const LINK_URL = "localhost:3001/document-verification/";
+// export const LINK_URL = "localhost:3003/document-verification/";
 
 export default config;

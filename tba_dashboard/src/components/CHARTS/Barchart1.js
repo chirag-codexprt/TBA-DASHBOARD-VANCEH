@@ -57,6 +57,10 @@ function BarChartCounter() {
 			) {
 				function getWeekStart(date) {
 					var offset = new Date(date).getDay();
+					console.log(
+						"new Date",
+						new Date(new Date(date) - offset * 24 * 60 * 60 * 1000)
+					);
 					return new Date(
 						new Date(date) - offset * 24 * 60 * 60 * 1000
 					)
@@ -81,7 +85,7 @@ function BarChartCounter() {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -93,17 +97,53 @@ function BarChartCounter() {
 					});
 				}
 
-				// console.log("fdsf", groupWeeks(visitorData?.visitorData));
 				data = groupWeeks(visitorData?.visitorData).filter(function (
 					el
 				) {
 					return el != null;
 				});
-				// console.log("filtered", data);
-
-				// console.log("60");
 			} else {
-				// console.log("60+");
+				console.log("60+");
+				function getMonthStart(date) {
+					var offset = new Date(date).getMonth();
+					return new Date(new Date(date) - offset);
+				}
+
+				function groupMonths(dates) {
+					const groupsByMonthNumber = dates?.reduce(function (
+						acc,
+						item
+					) {
+						const today = new Date(item._id);
+						const monthNumber = today.getMonth();
+
+						// check if the week number exists
+						if (typeof acc[monthNumber] === "undefined") {
+							acc[monthNumber] = [];
+						}
+
+						acc[monthNumber].push(item);
+
+						return acc;
+					},
+						[]);
+
+					return groupsByMonthNumber?.map(function (group) {
+						return {
+							week: moment(getMonthStart(group[0]._id)).format(
+								"DD-MM-YYYY"
+							),
+							visitas: group.reduce(function (acc, item) {
+								return acc + item.count;
+							}, 0),
+						};
+					});
+				}
+				data = groupMonths(visitorData?.visitorData)?.filter(function (
+					el
+				) {
+					return el != null;
+				});
 			}
 		}
 	};

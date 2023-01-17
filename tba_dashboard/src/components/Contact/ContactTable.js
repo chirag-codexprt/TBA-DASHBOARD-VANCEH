@@ -64,16 +64,23 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 					<tbody>
 						{currentTableData?.map((obj, i) => (
 							<tr
-								style={{ position: "relative" }}
+								style={{
+									position: "relative",
+									fontSize: "14px",
+								}}
 								height={id === obj.id && open ? "100px" : ""}>
-								<td>{obj.name}</td>
+								<td className='fw-bold'>{obj.name}</td>
 								<td>{obj.CpfOrCnpj}</td>
 								<td>{obj.email ? obj.email : obj.phone}</td>
 								<td>{obj.date}</td>
 								<td>{obj.time}</td>
 								<td className='position-relative text-end'>
 									<Button
-										style={{ width: "130px" }}
+										className='py-0 px-0 fw-bold text-white'
+										style={{
+											width: "100px",
+											fontSize: "12px",
+										}}
 										variant={
 											obj.status === "pending"
 												? "warning"
@@ -86,7 +93,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 										}>
 										{obj.status === "pending"
 											? "Pendente"
-											: "respondidas"}
+											: "Respondido"}
 									</Button>
 								</td>
 								{
@@ -97,7 +104,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 												style={{
 													width: "600px",
 													position: "absolute",
-													right: "-3rem",
+													right: "-7%",
 													bottom: "0%",
 												}}>
 												{/* <Row> */}
@@ -107,24 +114,46 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 													Entrar em contato por:
 												</Col>
 
-												<Col md={1}>
-													<Button
-														style={{
-															background:
-																"#1C3D59",
-														}}>
-														<i class='bi bi-whatsapp'></i>
-													</Button>
-												</Col>
-												<Col md={1}>
-													<Button
-														style={{
-															background:
-																"#1C3D59",
-														}}>
-														<i class='bi bi-envelope'></i>
-													</Button>
-												</Col>
+												{obj?.phone && (
+													<Col md={1}>
+														<Button
+															style={{
+																background:
+																	"#1C3D59",
+															}}>
+															<a
+																href={`https://wa.me/${obj.phone}`}
+																target='_blank'
+																style={{
+																	textDecoration:
+																		"none",
+																	color: "#fff",
+																}}>
+																<i class='bi bi-whatsapp'></i>
+															</a>
+														</Button>
+													</Col>
+												)}
+												{obj?.email && (
+													<Col md={1}>
+														<Button
+															style={{
+																background:
+																	"#1C3D59",
+															}}>
+															<a
+																href={`mailto:${obj.email}`}
+																target='_blank'
+																style={{
+																	textDecoration:
+																		"none",
+																	color: "#fff",
+																}}>
+																<i class='bi bi-envelope'></i>
+															</a>
+														</Button>
+													</Col>
+												)}
 												<Col
 													md={2}
 													className='opacity-25 text-center'>

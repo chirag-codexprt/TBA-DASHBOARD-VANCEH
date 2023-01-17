@@ -18,11 +18,17 @@ export const ENV_TYPE = "local"; // local // test // production
 
 export const BASE_URL = envData(
 	ENV_TYPE,
-	"http://192.168.1.107:3007/api/v1/",
+	"http://192.168.1.106:3007/api/v1/",
+	"",
+	""
+);
+export const LINK_URL = envData(
+	ENV_TYPE,
+	"localhost:3003/document-verification/",
 	"",
 	""
 );
 
-export const LINK_URL = "localhost:3001/document-verification/";
+// export const LINK_URL = "localhost:3003/document-verification/";
 
 export default config;

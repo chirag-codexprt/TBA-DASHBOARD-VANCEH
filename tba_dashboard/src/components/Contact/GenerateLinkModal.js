@@ -64,9 +64,9 @@ const GenerateLinkModal = ({
 				onHide={handleClose}>
 				<Row className='p-3 px-4'>
 					<Col md={10} xs={9}>
-						<h3>Link para solicitação de documentos</h3>
+						<h5 className="fw-bolder">Link para solicitação de documentos</h5>
 					</Col>
-					<Col>
+					<Col className="text-end" >
 						<img style={{ cursor: 'pointer' }} onClick={handleClose} src="assets/img/close.png"></img>
 					</Col>
 				</Row>
@@ -117,22 +117,22 @@ const GenerateLinkModal = ({
 						<h6>Link para compartilhar com o cliente</h6>
 					</Col>
 					<Col className='p-2'>
-						<InputGroup className='border-0 rounded mb-3'>
+						<InputGroup className='border-0 rounded '>
 							<Form.Control
-								className='border-0 p-3'
+								className='border-0 p-3 fw-bold'
 								value={link}
 							/>
 							<InputGroup.Text
 								id='basic-addon2'
-								className='border-0 c-point'
+								className='border-0 c-point fw-normal'
 								style={{ color: "#85A6A2" }}
 								onClick={() => handleCopy(link)}>
 								{copy ? "Copiada" : "Copiar"}
 							</InputGroup.Text>
 						</InputGroup>
 					</Col>
-					<Col className='my-3 w-100 d-flex justify-content-center'>
-						<Button
+					<Col className='my-2 w-100 d-flex justify-content-center'>
+						<Button className="border-0"
 							style={{ background: "#1C3D59" }}
 							onClick={submitForm}>
 							Encaminhar

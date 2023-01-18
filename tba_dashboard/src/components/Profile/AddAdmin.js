@@ -63,21 +63,20 @@ const AddAdmin = ({ open, handleClose }) => {
 				backdrop='static'
 				keyboard={false}
 				centered>
-				<Modal.Header className='border-0'>
-					<Modal.Title className='fw-bolder fs-5'>
-						<Row>
-							<Col sm={11} md={11}>Código para nova conta</Col>
-							<Col sm={1} md={1} className='text-end'><Button
-								onClick={handleClose}
-								className=' border-0 text-dark p-0 mx-4  fs-4 bg-white'>
-								<img src="assets/img/close.png"></img>
-							</Button></Col>
-						</Row>
 
-
-					</Modal.Title>
-				</Modal.Header>
 				<Modal.Body className="">
+					<Row>
+						<Col md={10} className='fw-bolder fs-5 my-3 '>
+							Código para nova conta
+						</Col>
+						<Col md={2} className=''>
+							<Button
+								onClick={handleClose}
+								className='border-0 text-dark p-0 mx-4 fs-4 bg-white '>
+								<img src="assets/img/close.png"></img>
+							</Button>
+						</Col>
+					</Row>
 					<Row className="px-1 py-0">
 						<Col md={12} className=''>
 							<p className='fs-6 fw-bold'>
@@ -87,7 +86,7 @@ const AddAdmin = ({ open, handleClose }) => {
 								className='mb-3 border-0 rounded '
 								style={{ backgroundColor: "#F4F6F8" }}>
 								<InputGroup.Text
-									className=' border-0'
+									className=' border-0 '
 								><img src="assets/img/briefcase.png " />
 								</InputGroup.Text>
 								<Form.Control
@@ -118,16 +117,16 @@ const AddAdmin = ({ open, handleClose }) => {
 								</thead>
 								<tbody>
 									<tr className="text-start">
-										<td className='fw-bold p-0'>
+										<td className='fw-bold small p-0'>
 											{contact ? (
 												<Button
 													onClick={() =>
 														setContact(!contact)
 													}
 													variant=' success'
-													className=' button-green  fw-bold text-success small p-0  border-0 '>
-													<small>
-														<i className='bi bi-check'></i>
+													className=' button-green  fw-bold text-success p-0  border-0 '>
+													<small className="d-flex align-items-center">
+														<i className='bi bi-check fw-bold fs-5'></i>
 														Autorizar
 													</small>
 												</Button>
@@ -138,8 +137,10 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant='danger'
 													className=' fw-bold small text-danger button-red p-0'>
-													<i className='bi bi-x'></i>
-													Remover
+													<small className="d-flex align-items-center">
+														<i className='bi bi-x fw-bold fs-5' ></i>
+														Remover
+													</small>
 												</Button>
 											)}
 										</td>
@@ -151,8 +152,8 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant=' success'
 													className='small button-green  fw-bold text-success p-0 border-0 '>
-													<small>
-														<i className='bi bi-check'></i>
+													<small className="d-flex align-items-center">
+														<i className='bi bi-check fs-5 fw-bold'></i>
 														Autorizar
 													</small>
 												</Button>
@@ -163,8 +164,10 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant='danger'
 													className='small fw-bold text-danger button-red p-0'>
-													<i className='bi bi-x'></i>
-													Remover
+													<small className="d-flex align-items-center">
+														<i className='bi bi-x fs-5 fw-bold'></i>
+														Remover
+													</small>
 												</Button>
 											)}
 										</td>
@@ -176,8 +179,8 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant=' success'
 													className='small button-green  fw-bold text-success p-0 border-0 '>
-													<small>
-														<i className='bi bi-check'></i>
+													<small className="d-flex align-items-center">
+														<i className='bi bi-check fs-5 fw-bold' ></i>
 														Autorizar
 													</small>
 												</Button>
@@ -188,8 +191,10 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant='danger'
 													className='small fw-bold text-danger button-red p-0'>
-													<i className='bi bi-x'></i>
-													Remover
+													<small className="d-flex align-items-center">
+														<i className='bi bi-x fs-5 fw-bold'></i>
+														Remover
+													</small>
 												</Button>
 											)}
 										</td>

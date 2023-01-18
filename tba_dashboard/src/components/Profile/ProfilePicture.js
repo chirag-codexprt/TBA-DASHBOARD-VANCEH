@@ -64,22 +64,20 @@ const ProfilePicture = ({ open, handleClose }) => {
 				<Modal.Body>
 					<Row>
 						<Col
-							className=' fs-5 ms-3 mb-3'
+							className=' fs-5 ms-3 mb-2'
 							style={{ fontWeight: 900 }}>
 							Alterar foto
 						</Col>
-						<Col className='d-flex justify-content-end mb-3'>
+						<Col className='d-flex justify-content-end mb-2'>
 							<Button
 								onClick={handleClose}
-								className='border-0 text-dark p-0 mx-4 fs-4 bg-white'>
+								className='border-0 text-dark p-0 mx-2 fs-4 bg-white'>
 								<img src="assets/img/close.png" style={{ objectFit: "cover" }}   ></img>
 							</Button>
 						</Col>
 					</Row>
 					<Row className='text-center'>
-						{/* <Col md={12} className='my-3'>
-							<img src='/assets/img/madam2.png' />
-						</Col> */}
+
 						<Col
 							sm={12}
 							md={12}
@@ -144,16 +142,11 @@ const ProfilePicture = ({ open, handleClose }) => {
 								</div>
 							</div>
 						</Col>
-						<div>
-							<hr
-								className='w-50 mx-auto'
-								style={{ color: "#B5B6B7" }}
-							/>
-						</div>
+
 						<Col className='mx-auto' sm={6}>
 							<Button
 								onClick={onEditProfile}
-								className='fw-bolder fs-6 w-100 border-0'
+								className='fw-bolder fs-6 w-100 border-0 mt-2'
 								style={{ backgroundColor: "#1C3D59" }}>
 								Atualizar
 							</Button>

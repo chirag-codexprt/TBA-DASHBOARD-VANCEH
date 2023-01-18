@@ -24,6 +24,7 @@ const Linechart = () => {
 					month: obj?.month,
 					Contatos: obj?.count,
 					week: obj?.month,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (contactData?.chartDataStatus === "monthly") {
@@ -32,6 +33,7 @@ const Linechart = () => {
 					month: obj?.month,
 					Contatos: obj?.count,
 					week: obj?.week,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (contactData?.chartDataStatus === "week") {
@@ -40,11 +42,21 @@ const Linechart = () => {
 					month: obj?.month,
 					Contatos: obj?.count,
 					week: obj?.sortWeek,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else {
 			if (contactData?.contactData?.length >= 30) {
 				console.log("30");
+
+				data = contactData?.contactData?.map((obj) => {
+					return {
+						month: obj?.month,
+						Contatos: obj?.count,
+						week: obj?.week,
+						date: moment(obj?._id).format("DD-MM-YYYY"),
+					};
+				});
 			} else if (
 				contactData?.contactData?.length >= 30 &&
 				contactData?.contactData?.length <= 60
@@ -75,7 +87,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-						[]);
+					[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -116,7 +128,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-						[]);
+					[]);
 
 					return groupsByMonthNumber?.map(function (group) {
 						return {
@@ -156,6 +168,8 @@ const Linechart = () => {
 								}}>
 								<div style={{ color: "#6F767E" }}>
 									{pld.payload.week}
+									<br />
+									{pld.payload.date}
 								</div>
 								<div
 									style={{
@@ -199,6 +213,7 @@ const Linechart = () => {
 						position='insideBottom'></Label>
 				</XAxis>
 				<Tooltip
+					cursor={false}
 					itemStyle={{ color: "#1A1D1F", fontWeight: "bold" }}
 					labelStyle={{ fontWeight: "lighter", color: "#6F767E" }}
 					contentStyle={{

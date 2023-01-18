@@ -50,6 +50,7 @@ const Linechart = () => {
 					month: obj?.month,
 					visitas: obj?.count,
 					week: obj?.month,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (visitorData?.chartDataStatus === "monthly") {
@@ -58,6 +59,7 @@ const Linechart = () => {
 					month: obj?.month,
 					visitas: obj?.count,
 					week: obj?.week,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (visitorData?.chartDataStatus === "week") {
@@ -66,6 +68,7 @@ const Linechart = () => {
 					month: obj?.month,
 					visitas: obj?.count,
 					week: obj?.sortWeek,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else {
@@ -109,7 +112,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-						[]);
+					[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -152,7 +155,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-						[]);
+					[]);
 
 					return groupsByMonthNumber?.map(function (group) {
 						return {
@@ -195,6 +198,8 @@ const Linechart = () => {
 								}}>
 								<div style={{ color: "#6F767E" }}>
 									{pld.payload.week}
+									<br />
+									{pld.payload.date}
 								</div>
 								<div
 									style={{
@@ -212,22 +217,6 @@ const Linechart = () => {
 		}
 
 		return null;
-	};
-
-	const value = () => {
-		<>
-			{visitorData?.growth?.visitorIndication === "decrement" ? (
-				<div>
-					<i class='bi bi-arrow-down-short'></i>
-					{visitorData?.growth?.visitor}
-				</div>
-			) : (
-				<div>
-					<i class='bi bi-arrow-up-short'></i>
-					{visitorData?.growth?.visitor}
-				</div>
-			)}
-		</>;
 	};
 
 	return (
@@ -256,6 +245,7 @@ const Linechart = () => {
 					</XAxis>
 
 					<Tooltip
+						cursor={false}
 						itemStyle={{ color: "#1A1D1F", fontWeight: "bold" }}
 						labelStyle={{ fontWeight: "lighter", color: "#6F767E" }}
 						contentStyle={{

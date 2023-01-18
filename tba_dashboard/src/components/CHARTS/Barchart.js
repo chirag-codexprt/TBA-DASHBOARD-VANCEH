@@ -24,10 +24,12 @@ function BarChartVisitor() {
 	const getData = () => {
 		if (contactData?.chartDataStatus === "yearly") {
 			data = contactData?.contactData?.map((obj) => {
+				console.log("obj", obj);
 				return {
 					month: obj?.month,
 					Contatos: obj?.count,
 					week: obj?.month,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (contactData?.chartDataStatus === "monthly") {
@@ -36,6 +38,7 @@ function BarChartVisitor() {
 					month: obj?.month,
 					Contatos: obj?.count,
 					week: obj?.week,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (contactData?.chartDataStatus === "week") {
@@ -44,6 +47,7 @@ function BarChartVisitor() {
 					month: obj?.month,
 					Contatos: obj?.count,
 					week: obj?.sortWeek,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else {
@@ -53,6 +57,7 @@ function BarChartVisitor() {
 						month: obj?.month,
 						Contatos: obj?.count,
 						week: obj?.sortWeek,
+						date: moment(obj?._id).format("DD-MM-YYYY"),
 					};
 				});
 				console.log("30");
@@ -86,7 +91,7 @@ function BarChartVisitor() {
 
 						return acc;
 					},
-						[]);
+					[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -127,7 +132,7 @@ function BarChartVisitor() {
 
 						return acc;
 					},
-						[]);
+					[]);
 
 					return groupsByMonthNumber?.map(function (group) {
 						return {
@@ -168,6 +173,8 @@ function BarChartVisitor() {
 								}}>
 								<div style={{ color: "#6F767E" }}>
 									{pld.payload.week}
+									<br />
+									{pld.payload.date}
 								</div>
 								<div
 									style={{
@@ -186,7 +193,7 @@ function BarChartVisitor() {
 
 		return null;
 	};
-
+	console.log("data contact", data);
 	return (
 		<ResponsiveContainer width='100%' height={220}>
 			<BarChart

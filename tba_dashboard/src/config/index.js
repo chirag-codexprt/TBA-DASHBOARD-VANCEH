@@ -21,10 +21,14 @@ export const BASE_URL = envData(
   "http://192.168.1.105:3007/api/v1/",
   "",
   ""
+	ENV_TYPE,
+	"http://192.168.1.105:3007/api/v1/",
+	"",
+	""
 );
 export const LINK_URL = envData(
   ENV_TYPE,
-  "localhost:3003/document-verification/",
+  "localhost:3000/document-verification/",
   "",
   ""
 );

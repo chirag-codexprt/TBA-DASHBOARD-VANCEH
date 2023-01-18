@@ -17,17 +17,17 @@ const RegisterForm = ({
 			<form onSubmit={registerUser}>
 				<Row>
 					<Col md={12} className='mt-3'>
-						<Form.Label className='fs-6'>
-							Link para criação
+						<Form.Label className='fs-6 fw-bold'>
+							Código para criação
 						</Form.Label>
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
-									class='bi bi-link-45deg'
+									class='bi bi-hash'
 									style={{ color: "#CED4DB" }}></i>
 							</InputGroup.Text>
 							<Form.Control
-								placeholder='Link que você recebeu'
+								placeholder=' Código que você recebeu'
 								className='ps-0'
 								name='code'
 								onChange={handleRegisterForm}
@@ -35,7 +35,7 @@ const RegisterForm = ({
 							/>
 						</InputGroup>
 
-						<Form.Label className='fs-6'>Seu cargo</Form.Label>
+						<Form.Label className='fs-6 fw-bold'>Seu cargo</Form.Label>
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
@@ -51,7 +51,7 @@ const RegisterForm = ({
 							/>
 						</InputGroup>
 
-						<Form.Label className='fs-6'>Nome</Form.Label>
+						<Form.Label className='fs-6 fw-bold'>Nome</Form.Label>
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
@@ -67,7 +67,7 @@ const RegisterForm = ({
 							/>
 						</InputGroup>
 
-						<Form.Label className='fs-6'>E-mail</Form.Label>
+						<Form.Label className='fs-6 fw-bold'>E-mail</Form.Label>
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
@@ -83,7 +83,7 @@ const RegisterForm = ({
 							/>
 						</InputGroup>
 
-						<Form.Label className='fs-6'>Senha</Form.Label>
+						<Form.Label className='fs-6 fw-bold'>Senha</Form.Label>
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
@@ -115,7 +115,7 @@ const RegisterForm = ({
 							</InputGroup.Text>
 						</InputGroup>
 
-						<Form.Label className='fs-6'>Repetir senha</Form.Label>
+						<Form.Label className='fs-6 fw-bold'>Repetir senha</Form.Label>
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i

@@ -123,9 +123,9 @@ const PermissonTooltip = ({
 								<Col md={8}>
 									<label
 										className='mt-2'
-										style={{ fontSize: "14px" }}>
-										Autorizar Ana Júlia Garcia a ter acesso
-										aos Insights da empresa?
+										style={{ fontSize: "12px" }}>
+										Autorizar <span className="fw-bold">Ana Júlia Garcia</span> a ter acesso
+										aos <span className="fw-bold">Insights</span> da empresa?
 									</label>
 								</Col>
 							</Row>

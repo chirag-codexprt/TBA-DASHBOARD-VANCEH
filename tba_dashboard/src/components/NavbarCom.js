@@ -36,9 +36,8 @@ const NavbarCom = () => {
 							style={{ textDecoration: "none" }}
 							to={"/perfil"}>
 							<div
-								className={`${
-									pathName == "/perfil" && "Nav-after"
-								} text-white d-flex align-items-center`}>
+								className={`${pathName == "/perfil" && "Nav-after"
+									} text-white d-flex align-items-center`}>
 								{profileItem?.name}
 								<Nav.Link>
 									<img
@@ -52,6 +51,7 @@ const NavbarCom = () => {
 											height: "50px",
 											width: "50px",
 											borderRadius: "50%",
+											objectFit: "contain"
 										}}
 									/>
 								</Nav.Link>

@@ -80,6 +80,7 @@ const ProfileCard = ({
 											height: "180px",
 											width: "180px",
 											borderRadius: "10px",
+											objectFit: "cover"
 										}}
 										className='position-relative px-0'
 									/>

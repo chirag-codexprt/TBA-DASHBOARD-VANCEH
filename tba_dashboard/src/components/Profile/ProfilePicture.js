@@ -72,7 +72,7 @@ const ProfilePicture = ({ open, handleClose }) => {
 							<Button
 								onClick={handleClose}
 								className='border-0 text-dark p-0 mx-4 fs-4 bg-white'>
-								<img src="assets/img/close.png"></img>
+								<img src="assets/img/close.png" style={{ objectFit: "cover" }}   ></img>
 							</Button>
 						</Col>
 					</Row>

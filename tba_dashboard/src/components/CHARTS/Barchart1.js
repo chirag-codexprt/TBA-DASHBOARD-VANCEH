@@ -25,6 +25,7 @@ function BarChartCounter() {
 					month: obj?.month,
 					visitas: obj?.count,
 					week: obj?.month,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (visitorData?.chartDataStatus === "monthly") {
@@ -32,6 +33,7 @@ function BarChartCounter() {
 				return {
 					month: obj?.month,
 					visitas: obj?.count,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (visitorData?.chartDataStatus === "week") {
@@ -40,6 +42,7 @@ function BarChartCounter() {
 					month: obj?.month,
 					visitas: obj?.count,
 					week: obj?.sortWeek,
+					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else {
@@ -49,6 +52,7 @@ function BarChartCounter() {
 						month: obj?.month,
 						visitas: obj?.count,
 						week: obj?.sortWeek,
+						date: moment(obj?._id).format("DD-MM-YYYY"),
 					};
 				});
 			} else if (
@@ -57,10 +61,7 @@ function BarChartCounter() {
 			) {
 				function getWeekStart(date) {
 					var offset = new Date(date).getDay();
-					console.log(
-						"new Date",
-						new Date(new Date(date) - offset * 24 * 60 * 60 * 1000)
-					);
+
 					return new Date(
 						new Date(date) - offset * 24 * 60 * 60 * 1000
 					)
@@ -85,7 +86,7 @@ function BarChartCounter() {
 
 						return acc;
 					},
-						[]);
+					[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -126,7 +127,7 @@ function BarChartCounter() {
 
 						return acc;
 					},
-						[]);
+					[]);
 
 					return groupsByMonthNumber?.map(function (group) {
 						return {
@@ -150,6 +151,7 @@ function BarChartCounter() {
 	getData();
 
 	const CustomTooltip = ({ active, payload, label }) => {
+		// console.log("payload", payload);
 		if (active && payload && payload.length) {
 			return (
 				<div className='custom-tooltip'>
@@ -167,6 +169,8 @@ function BarChartCounter() {
 								}}>
 								<div style={{ color: "#6F767E" }}>
 									{pld.payload.week}
+									<br />
+									{pld.payload.date}
 								</div>
 								<div
 									style={{

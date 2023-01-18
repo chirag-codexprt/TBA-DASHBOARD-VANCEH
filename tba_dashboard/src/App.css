@@ -229,6 +229,9 @@ body {
 .fs-color {
   color: #6F767E !important;
 }
+.border-class {
+  border:1px solid #6F767E !important;
+}
 
 .fs-color-fill {
   color: #1A1D1F !important;

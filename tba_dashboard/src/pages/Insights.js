@@ -26,6 +26,7 @@ import InsightTable from "../components/CHARTS/InsightTable";
 import { Link, Navigate } from "react-router-dom";
 import { getContactList } from "../helper/API/contact";
 import Loader from "../components/Loader";
+import { toast } from "react-toastify";
 
 const Insights = () => {
 	registerLocale("pt-BR", pt);
@@ -127,39 +128,61 @@ const Insights = () => {
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(null);
 	const onChange = (dates) => {
-		const [start, end] = dates;
-		setStartDate(start);
-		setEndDate(end);
+		// const [start, end] = dates;
+		console.log("dates", dates);
+		setStartDate(dates[0]);
+		setEndDate(dates[1]);
 	};
 	const handleCalendarClose = () => {
-		setCardLoading(true);
+		// setCardLoading(true);
+		// setStartDate(moment(startDate).format("YYYY-MM-DD"));
+		// setEndDate(moment(endDate).format("YYYY-MM-DD"));
 		const submitData = {
 			filter: {
 				startDate: moment(startDate).format("YYYY-MM-DD"),
 				endDate: moment(endDate).format("YYYY-MM-DD"),
 			},
 		};
-		getChartData(submitData).then((res) => {
-			console.log("res chartData", res);
-			if (res.success) {
-				setCardLoading(false);
-				setRecoilChartData({
-					...res.data,
-					chartDataStatus: status,
-				});
-			} else {
-				setCardLoading(false);
-			}
-		});
+
+		console.log("called", submitData);
+		// console.log("called endDate", endDate);
+		if (
+			!submitData?.filter?.startDate ||
+			submitData?.filter?.startDate === "Invalid date" ||
+			!submitData?.filter?.endDate ||
+			submitData?.filter?.endDate === "Invalid date" ||
+			submitData?.filter?.startDate === submitData?.filter?.endDate
+		) {
+			// console.log("called", startDate);
+			console.log("called endDate");
+			toast.error("please select proper date");
+		} else {
+			console.log("called 1");
+			getChartData(submitData).then((res) => {
+				console.log("res chartData", res);
+				if (res.success) {
+					setCardLoading(false);
+					setStartDate(new Date());
+					setEndDate(null);
+					setRecoilChartData({
+						...res.data,
+						chartDataStatus: status,
+					});
+				} else {
+					setCardLoading(false);
+				}
+			});
+		}
 	};
 
 	console.log("recoilChartData ::::", recoilChartData);
 
 	const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
 		<Button
-			className={`fs-color  mx-1 border-0 example-custom-input ${
+			className={`fs-color  mx-1 example-custom-input border-class ${
 				active.date ? "activeBtnTable" : "inActiveBtnTable"
 			}`}
+			// style={{ border: "5px solid #000 !important" }}
 			onClick={onClick}
 			ref={ref}>
 			<i
@@ -221,25 +244,29 @@ const Insights = () => {
 										Semana
 									</Button>
 									<div className='vr' />
-
-									{open && (
-										<DatePicker
-											style={{ border: "5px solid red" }}
-											selected={startDate}
-											onChange={onChange}
-											startDate={startDate}
-											endDate={endDate}
-											locale='pt-BR'
-											onCalendarClose={
-												handleCalendarClose
-											}
-											// onCalendarOpen={handleCalendarOpen}
-											selectsRange
-											selectsDisabledDaysInRange
-											customInput={
-												<ExampleCustomInput />
-											}>
-											{/* <div
+									<div
+										style={{
+											border: "1px solid #DCDFE6 !important",
+										}}>
+										{open && (
+											<DatePicker
+												className='border-1'
+												selected={startDate}
+												onChange={onChange}
+												startDate={startDate}
+												endDate={endDate}
+												locale='pt-BR'
+												// maxDate={new Date()}
+												onCalendarClose={
+													handleCalendarClose
+												}
+												// onCalendarOpen={handleCalendarOpen}
+												selectsRange
+												selectsDisabledDaysInRange
+												customInput={
+													<ExampleCustomInput />
+												}>
+												{/* <div
 												className='text-end m-3'
 												style={{ color: "red" }}>
 												<button
@@ -248,8 +275,9 @@ const Insights = () => {
 													Aplicar
 												</button>
 											</div> */}
-										</DatePicker>
-									)}
+											</DatePicker>
+										)}
+									</div>
 								</Navbar.Collapse>
 							</Container>
 						</Navbar>

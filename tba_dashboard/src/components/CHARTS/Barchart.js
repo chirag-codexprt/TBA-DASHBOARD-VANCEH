@@ -37,12 +37,13 @@ function BarChartVisitor() {
 				return {
 					month: obj?.month,
 					Contatos: obj?.count,
-					week: obj?.week,
+					// week: obj?.week,
 					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (contactData?.chartDataStatus === "week") {
 			data = contactData?.contactData?.map((obj) => {
+				console.log("obj", obj);
 				return {
 					month: obj?.month,
 					Contatos: obj?.count,

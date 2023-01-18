@@ -15,7 +15,9 @@ const LoginForm = ({
 				<Row>
 					<Col md={12} className='mt-4'>
 						<Form.Group className='mb-3' controlId='formBasicEmail'>
-							<Form.Label className='fs-5'>Email</Form.Label>
+							<Form.Label className='fs-5 fw-bold'>
+								Email
+							</Form.Label>
 							<InputGroup className='mb-4'>
 								<InputGroup.Text
 									id='basic-addon1'
@@ -38,7 +40,9 @@ const LoginForm = ({
 						<Form.Group
 							className='mb-3'
 							controlId='formBasicPassword'>
-							<Form.Label className='fs-5'>Senha</Form.Label>
+							<Form.Label className='fs-5 fw-bold'>
+								Senha
+							</Form.Label>
 							<InputGroup className='mb-4'>
 								<InputGroup.Text
 									id='basic-addon1'
@@ -85,7 +89,7 @@ const LoginForm = ({
 							className='login-btn px-5 py-2 fw-bold fs-4 d-flex align-items-center'
 							type='submit'
 							disabled={loading}>
-							Submit
+							Enviar
 							{loading && (
 								<Spinner
 									animation='grow'

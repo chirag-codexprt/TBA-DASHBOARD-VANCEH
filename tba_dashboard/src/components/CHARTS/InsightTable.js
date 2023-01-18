@@ -15,7 +15,7 @@ const InsightTable = ({ tableRow, refresh, setRefresh }) => {
 						<th className='tbl-head-color '>Email/Telefone </th>
 						<th className='tbl-head-color '>Data</th>
 						<th className='tbl-head-color text-center '>Hora </th>
-						<th className='tbl-head-color text-end'>Status </th>
+						<th className='tbl-head-color text-center'>Status </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,8 +28,8 @@ const InsightTable = ({ tableRow, refresh, setRefresh }) => {
 							<td className='text-center'>{obj?.time} </td>
 							<td className='text-end position-relative'>
 								<Button
-									className="p-0 text-white fw-bold"
-									style={{ width: "100px", fontSize: '12px' }}
+									className='p-0 text-white fw-bold'
+									style={{ width: "100px", fontSize: "12px" }}
 									variant={
 										obj.status === "pending"
 											? "warning"

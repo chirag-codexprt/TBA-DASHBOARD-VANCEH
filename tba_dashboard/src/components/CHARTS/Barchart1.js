@@ -33,6 +33,7 @@ function BarChartCounter() {
 				return {
 					month: obj?.month,
 					visitas: obj?.count,
+					// week: obj?.sortWeek,
 					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});

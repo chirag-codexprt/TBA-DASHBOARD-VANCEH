@@ -178,17 +178,19 @@ const Insights = () => {
 	console.log("recoilChartData ::::", recoilChartData);
 
 	const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-		<Button
-			className={`fs-color  mx-1 example-custom-input border-class ${
-				active.date ? "activeBtnTable" : "inActiveBtnTable"
-			}`}
-			// style={{ border: "5px solid #000 !important" }}
-			onClick={onClick}
-			ref={ref}>
-			<i
-				className='bi bi-calendar-fill fs-color'
-				onClick={(e) => handleToggle("date")}></i>
-		</Button>
+		<div onClick={(e) => handleToggle("date")}>
+			<Button
+				className={`fs-color  mx-1 example-custom-input border-class ${
+					active.date ? "activeBtnTable" : "inActiveBtnTable"
+				}`}
+				style={{ border: "5px solid #000 !important" }}
+				onClick={onClick}
+				ref={ref}>
+				<i
+					className='bi bi-calendar-fill fs-color'
+					onClick={(e) => handleToggle("date")}></i>
+			</Button>
+		</div>
 	));
 	return (
 		<>

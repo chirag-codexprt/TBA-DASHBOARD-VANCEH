@@ -115,12 +115,17 @@ const Sidebar = () => {
 						}
 					})}
 					<Row
-						className=' mt-5 align-items-end flex-column'
-						style={{ height: "200px" }}>
+						className=' mt-5 d-flex align-items-end flex-column'
+						style={{
+							// height: "200px",
+							position: "fixed",
+							bottom: "10%",
+							left: "5%",
+						}}>
 						<Col className='d-flex justify-content-center align-items-end'>
 							<div className='border-div'></div>
 						</Col>
-						<Col className='mt-5 c-point d-flex justify-content-center'>
+						<Col className='mt-3 c-point d-flex justify-content-center'>
 							<Row className='mt-4'>
 								<Col md={1} xs={1}>
 									<img src='/assets/img/side-4.png'></img>

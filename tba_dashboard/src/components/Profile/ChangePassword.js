@@ -31,7 +31,7 @@ const ChangePassword = ({ open, handleClose }) => {
 			toast.error("Digite a nova senha");
 		} else if (!formValues.confirmPasswords) {
 			toast.error("Por favor, digite a senha de confirmação");
-		} else if (formValues.confirmPasswords === formValues.oldPasswords) {
+		} else if (formValues.confirmPasswords !== formValues.passwords) {
 			toast.error("Senha não coincide");
 		} else {
 			const submitData = {
@@ -57,9 +57,7 @@ const ChangePassword = ({ open, handleClose }) => {
 				backdrop='static'
 				keyboard={false}
 				centered>
-				<ModalTitle>
-
-				</ModalTitle>
+				<ModalTitle></ModalTitle>
 				<Modal.Body>
 					<Row>
 						<Col md={9} className='fw-bolder fs-5 m-3 '>
@@ -69,7 +67,7 @@ const ChangePassword = ({ open, handleClose }) => {
 							<Button
 								onClick={handleClose}
 								className='border-0 text-dark p-0 mx-4 fs-4 bg-white'>
-								<img src="assets/img/close.png"></img>
+								<img src='assets/img/close.png'></img>
 							</Button>
 						</Col>
 					</Row>
@@ -94,7 +92,9 @@ const ChangePassword = ({ open, handleClose }) => {
 							</InputGroup>
 						</Col>
 						<Col md={10} className='mx-auto my-2'>
-							<Form.Label className='small fw-bold'>Nova senha</Form.Label>
+							<Form.Label className='small fw-bold'>
+								Nova senha
+							</Form.Label>
 							<InputGroup className='mb-3 rounded'>
 								<InputGroup.Text
 									className='border-0'
@@ -112,8 +112,7 @@ const ChangePassword = ({ open, handleClose }) => {
 									onChange={(e) => handledataValue(e)}
 									aria-describedby='basic-addon1'
 								/>
-								<InputGroup.Text
-									className='p-2 border-0'>
+								<InputGroup.Text className='p-2 border-0'>
 									{hidePassword && (
 										<i
 											class='bi bi-eye-slash-fill'
@@ -139,8 +138,7 @@ const ChangePassword = ({ open, handleClose }) => {
 								Repetir nova senha
 							</Form.Label>
 							<InputGroup className='mb-3 border-0 rounded'>
-								<InputGroup.Text
-									className='p-2 border-0' >
+								<InputGroup.Text className='p-2 border-0'>
 									<i
 										class='bi bi-lock-fill'
 										style={{ color: "#CED4DB" }}></i>
@@ -160,8 +158,7 @@ const ChangePassword = ({ open, handleClose }) => {
 										handledataValue(e);
 									}}
 								/>
-								<InputGroup.Text
-									className='p-2 border-0'>
+								<InputGroup.Text className='p-2 border-0'>
 									{hideConfirmPassword && (
 										<i
 											class='bi bi-eye-slash-fill'

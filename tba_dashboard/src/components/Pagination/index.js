@@ -41,10 +41,16 @@ const Pagination = (props) => {
 			})}>
 			{currentPage !== 1 ? (
 				<li className='pagination-btn' onClick={onPrevious}>
-					<div>prev</div>
+					<div>
+						<i class='bi bi-arrow-left-short fs-5 pagination-btn-shadow'></i>
+					</div>
 				</li>
 			) : (
-				""
+				<li className='pagination-btn opacity-50'>
+					<div>
+						<i class='bi bi-arrow-left-short fs-5 pagination-btn-shadow'></i>
+					</div>
+				</li>
 			)}
 			{paginationRange.map((pageNumber) => {
 				if (pageNumber === DOTS) {
@@ -65,10 +71,18 @@ const Pagination = (props) => {
 			})}
 			{currentPage !== lastPage ? (
 				<li className='pagination-btn' onClick={onNext}>
-					<div>next</div>
+					<div>
+						<i class='bi bi-arrow-right-short fs-5 pagination-btn-shadow'></i>
+						{/* <i class='bi bi-arrow-right-circle fs-5'></i> */}
+					</div>
 				</li>
 			) : (
-				""
+				<li className='pagination-btn opacity-50'>
+					<div>
+						<i class='bi bi-arrow-right-short fs-5 pagination-btn-shadow'></i>
+						{/* <i class='bi bi-arrow-right-circle fs-5'></i> */}
+					</div>
+				</li>
 			)}
 		</ul>
 	);

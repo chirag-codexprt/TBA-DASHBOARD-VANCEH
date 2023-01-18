@@ -81,7 +81,7 @@ body {
   width: fit-content;
 }
 
-.login-enter::after {
+/* .login-enter::after {
   content: "";
   position: absolute;
   height: 3px;
@@ -92,17 +92,25 @@ body {
   bottom: -5px;
   background: #85A6A2;
   transition: 200ms;
-}
+} */
 
-.login-enter:hover::after {
+/* .login-enter:hover::after {
   width: 100%;
-}
+} */
 
 .login-btn {
   background-color: #1C3D59 !important;
 }
 
 .active {
+  color: #000;
+  /* border-bottom: 3px solid #85A6A2 !important; */
+}
+.actives {
+  color: #000;
+  border-bottom: 3px solid #85A6A2 !important;
+}
+.inactive {
   color: #CED4DB;
 }
 
@@ -230,7 +238,7 @@ body {
   color: #6F767E !important;
 }
 .border-class {
-  border:1px solid #6F767E !important;
+  border:2px solid #6F767E60 !important;
 }
 
 .fs-color-fill {
@@ -430,4 +438,10 @@ body {
 .react-datepicker-wrapper {
  
   width: 4% !important;
+}
+
+.pagination-btn-shadow{
+border:1px solid #EFEFEF;
+border-radius: 50%;
+padding: 3px;
 }

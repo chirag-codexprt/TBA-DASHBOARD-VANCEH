@@ -96,19 +96,41 @@ const Login = () => {
 	const registerUser = (event) => {
 		setLoading(true);
 		event.preventDefault();
-		registerAdmin(registerFormValues).then((res) => {
-			console.log("res", res);
-			if (res.success) {
-				setLoading(false);
-				Login();
-				toast.success(res.message);
-				navigate("/login");
-			} else {
-				setLoading(false);
-				toast.error(res.message);
-			}
-		});
-		console.log("registerFormValues", registerFormValues);
+		if (!registerFormValues.code) {
+			toast.error("Por favor insira o código");
+			setLoading(false);
+		} else if (!registerFormValues.designation) {
+			toast.error("Insira a designação");
+			setLoading(false);
+		} else if (!registerFormValues.name) {
+			toast.error("Por favor, insira o nome");
+			setLoading(false);
+		} else if (!registerFormValues.email) {
+			toast.error("Por favor, insira o e-mail");
+			setLoading(false);
+		} else if (!registerFormValues.password) {
+			toast.error("Por favor, digite a senha");
+			setLoading(false);
+		} else if (!confirmPassword) {
+			toast.error("Por favor, digite a senha de confirmação");
+			setLoading(false);
+		} else if (registerFormValues.password !== confirmPassword) {
+			toast.error("Senha não corresponde");
+			setLoading(false);
+		} else {
+			registerAdmin(registerFormValues).then((res) => {
+				console.log("res", res);
+				if (res.success) {
+					setLoading(false);
+					Login();
+					toast.success(res.message);
+					navigate("/login");
+				} else {
+					setLoading(false);
+					toast.error(res.message);
+				}
+			});
+		}
 	};
 
 	return (
@@ -128,13 +150,13 @@ const Login = () => {
 						<Row>
 							<Col md={3} sm={6} xs={4}>
 								{login && (
-									<div className='login-enter fw-bold fs-4'>
+									<div className='login-enter fw-bold fs-4 actives'>
 										Entrar
 									</div>
 								)}
 								{account && (
 									<div
-										className='login-enter fw-bold fs-4 active'
+										className='login-enter fw-bold fs-4 inactive'
 										onClick={Login}>
 										Entrar
 									</div>
@@ -143,13 +165,13 @@ const Login = () => {
 							<Col md={9} sm={6} xs={6}>
 								{login && (
 									<div
-										className='login-enter ms-2 fw-bold fs-4 active'
+										className='login-enter fw-bold fs-4 inactive'
 										onClick={Account}>
 										Criar conta
 									</div>
 								)}
 								{account && (
-									<div className='login-enter ms-2 fw-bold fs-4'>
+									<div className='login-enter fw-bold fs-4 actives'>
 										Criar conta
 									</div>
 								)}

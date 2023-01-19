@@ -29,8 +29,10 @@ const ProfileTable = ({ tableRow }) => {
 				responsive>
 				{currentTableData.length ? (
 					<thead>
-						<tr style={{ fontSize: '12px' }}>
-							<th className='tbl-head-color '>Nome </th>
+						<tr style={{ fontSize: "12px" }}>
+							<th className='tbl-head-color ' width={"25%"}>
+								Nome{" "}
+							</th>
 							<th className='tbl-head-color '>CPF/CNPJ</th>
 							<th className='tbl-head-color '>Email </th>
 							<th className='tbl-head-color '>Data</th>
@@ -48,7 +50,7 @@ const ProfileTable = ({ tableRow }) => {
 				{currentTableData.length ? (
 					<tbody>
 						{currentTableData?.map((obj, i) => (
-							<tr style={{ fontSize: '14px' }}>
+							<tr style={{ fontSize: "14px" }}>
 								<td className='fw-bold'>{obj.name}</td>
 								<td>{obj.CpfOrCnpj}</td>
 								<td>{obj.email}</td>
@@ -57,7 +59,10 @@ const ProfileTable = ({ tableRow }) => {
 								<td className='text-end'>
 									<Button
 										variant='success'
-										style={{ width: '100px', fontSize: '14px' }}
+										style={{
+											width: "100px",
+											fontSize: "14px",
+										}}
 										className='border-0 p-0'
 										size='md'>
 										Respondido

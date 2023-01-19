@@ -102,6 +102,16 @@ const PermissonTooltip = ({
 		});
 	};
 
+	const translator = (data) => {
+		if (data === "document") {
+			return "Documentos";
+		} else if (data === "contact") {
+			return "Contatos";
+		} else {
+			return "Nova conta";
+		}
+	};
+
 	return (
 		<div>
 			<div ref={ref}>
@@ -114,18 +124,38 @@ const PermissonTooltip = ({
 					<Popover id='popover-contained'>
 						<Popover.Body>
 							<Row>
-								<Col md={12} className='d-flex justify-content-end'>
-									<img onClick={handleClose} src="assets/img/close.png"></img>
+								<Col
+									md={12}
+									className='d-flex justify-content-end'>
+									<img
+										onClick={handleClose}
+										src='assets/img/close.png'></img>
 								</Col>
 								<Col md={4}>
-									<img src='/assets/img/madam.png'></img>
+									<img
+										src={
+											editData?.profileImage
+												? editData?.profileImage
+												: "/assets/img/noUser.png"
+										}
+										style={{
+											width: "80px",
+											borderRadius: "50%",
+										}}></img>
 								</Col>
 								<Col md={8}>
 									<label
 										className='mt-2'
 										style={{ fontSize: "12px" }}>
-										Autorizar <span className="fw-bold">Ana Júlia Garcia</span> a ter acesso
-										aos <span className="fw-bold">Insights</span> da empresa?
+										Autorizar{" "}
+										<span className='fw-bold'>
+											{editData?.name}
+										</span>{" "}
+										a ter acesso aos{" "}
+										<span className='fw-bold'>
+											{translator(editData?.type)}
+										</span>{" "}
+										da empresa?
 									</label>
 								</Col>
 							</Row>

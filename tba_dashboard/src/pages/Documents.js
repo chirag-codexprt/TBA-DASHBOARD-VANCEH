@@ -19,6 +19,9 @@ const Documents = () => {
 		all: true,
 	});
 	const [search, setSearch] = useState();
+	const [id, setId] = useState(null);
+	const [open, setOpen] = useState(false);
+
 	// console.log('search', search)
 
 	useEffect(() => {
@@ -94,13 +97,18 @@ const Documents = () => {
 			setTableRow(table);
 		}
 	};
-	console.log("tableRow", tableRow);
+
+	const handleShowRow = (data) => {
+		setOpen(!open);
+		setId(data);
+	};
+
 	return (
 		<>
 			<AfterAuth>
 				<h2 className='mt-3 ms-5'>Documentos</h2>
 				<Card className='m-5 my-3 p-3 px-4'>
-					<div style={{ paddingRight: '2%' }} >
+					<div style={{ paddingRight: "2%" }}>
 						<TableNavbar
 							title={"Documentos"}
 							btn1Text='Concluídos'
@@ -112,26 +120,29 @@ const Documents = () => {
 							setRefresh={setRefresh}
 							search={search}>
 							<Button
-								className={`fs-color  mx-1 border-0 ${active.approved
-									? "activeBtnTable"
-									: "inActiveBtnTable"
-									}`}
+								className={`fs-color  mx-1 border-0 ${
+									active.approved
+										? "activeBtnTable"
+										: "inActiveBtnTable"
+								}`}
 								onClick={(e) => handleToggle("Approved")}>
 								Concluídos
 							</Button>
 							<Button
-								className={`fs-color  mx-1 border-0 ${active.pending
-									? "activeBtnTable"
-									: "inActiveBtnTable"
-									}`}
+								className={`fs-color  mx-1 border-0 ${
+									active.pending
+										? "activeBtnTable"
+										: "inActiveBtnTable"
+								}`}
 								onClick={(e) => handleToggle("Pending")}>
 								Pendentes
 							</Button>
 							<Button
-								className={`fs-color px-4 mx-1 border-0 ${active.all
-									? "activeBtnTable"
-									: "inActiveBtnTable"
-									}`}
+								className={`fs-color px-4 mx-1 border-0 ${
+									active.all
+										? "activeBtnTable"
+										: "inActiveBtnTable"
+								}`}
 								onClick={(e) => handleToggle("All")}>
 								Todas
 							</Button>
@@ -144,6 +155,11 @@ const Documents = () => {
 							tableRow={tableRow}
 							refresh={refresh}
 							setRefresh={setRefresh}
+							id={id}
+							setId={setId}
+							open={open}
+							setOpen={setOpen}
+							handleShowRow={handleShowRow}
 						/>
 					)}
 				</Card>

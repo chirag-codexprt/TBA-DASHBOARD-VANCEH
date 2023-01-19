@@ -17,6 +17,9 @@ import { getAllChartData } from "../../recoil/Atoms";
 function BarChartCounter() {
 	const [focusBar, setFocusBar] = useState(null);
 	const visitorData = useRecoilValue(getAllChartData);
+	function capitalizeFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
 	let data;
 	const getData = () => {
 		if (visitorData?.chartDataStatus === "yearly") {
@@ -24,14 +27,14 @@ function BarChartCounter() {
 				return {
 					month: obj?.month,
 					visitas: obj?.count,
-					week: obj?.month,
+					week: capitalizeFirstLetter(obj?.month),
 					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (visitorData?.chartDataStatus === "monthly") {
 			data = visitorData?.visitorData?.map((obj) => {
 				return {
-					month: obj?.month,
+					month: capitalizeFirstLetter(obj?.month),
 					visitas: obj?.count,
 					// week: obj?.sortWeek,
 					date: moment(obj?._id).format("DD-MM-YYYY"),
@@ -42,7 +45,7 @@ function BarChartCounter() {
 				return {
 					month: obj?.month,
 					visitas: obj?.count,
-					week: obj?.sortWeek,
+					week: capitalizeFirstLetter(obj?.sortWeek),
 					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
@@ -52,7 +55,7 @@ function BarChartCounter() {
 					return {
 						month: obj?.month,
 						visitas: obj?.count,
-						week: obj?.sortWeek,
+						// week: obj?.sortWeek,
 						date: moment(obj?._id).format("DD-MM-YYYY"),
 					};
 				});

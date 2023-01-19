@@ -10,17 +10,23 @@ import GenerateLinkModal from "./GenerateLinkModal";
 import ImageUploadModal from "./ImageUploadModal";
 import SocialContractBtn from "./SocialContractBtn";
 
-const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
-	const [open, setOpen] = useState(false);
+const DocumentTable = ({
+	tableRow,
+	refresh,
+	setRefresh,
+	id,
+	setId,
+	open,
+	setOpen,
+	handleShowRow,
+}) => {
 	const [openImageModal, setOpenImageModal] = useState(false);
 	const [openLinkModal, setOpenLinkModal] = useState(false);
-	const [id, setId] = useState(null);
 	const [editData, setEditData] = useState(null);
 	const [tableData, setTableData] = useState(tableRow);
 	const [document, setDocument] = useState();
 	const [addDocument, setAddDocument] = useState();
 	let PageSize = 10;
-	console.log("id", id);
 	useEffect(() => {
 		setTableData(tableRow);
 	}, [tableRow]);
@@ -33,11 +39,6 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 		const lastPageIndex = firstPageIndex + PageSize;
 		return tableData.slice(firstPageIndex, lastPageIndex);
 	}, [tableData, currentPage]);
-
-	const handleShowRow = (data) => {
-		setOpen(!open);
-		setId(data);
-	};
 
 	const handleShowImageModal = (data, type) => {
 		if (data.socialContract) {
@@ -69,7 +70,7 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 				{currentTableData.length ? (
 					<thead>
 						<tr style={{ color: "#B5B6B7", fontSize: "12px" }}>
-							<th>Nome</th>
+							<th width={"25%"}>Nome</th>
 							<th>CPF/CNPJ</th>
 							<th>Email/Telefone</th>
 							<th>Data</th>
@@ -92,49 +93,26 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 								className={
 									id === obj.id &&
 									open &&
-									obj?.allStatus === "pending"
+									(obj?.allStatus === "pending" ||
+										obj?.allStatus === "approved")
 										? "row-height"
 										: ""
 								}>
 								<td
-									onClick={
-										obj?.allStatus === "pending"
-											? () => handleShowRow(obj.id)
-											: null
-									}
+									onClick={() => handleShowRow(obj.id)}
 									className='fw-bold'>
 									{obj.name}
 								</td>
-								<td
-									onClick={
-										obj?.allStatus === "pending"
-											? () => handleShowRow(obj.id)
-											: null
-									}>
+								<td onClick={() => handleShowRow(obj.id)}>
 									{obj.CpfOrCnpj}
 								</td>
-								<td
-									onClick={
-										obj?.allStatus === "pending"
-											? () => handleShowRow(obj.id)
-											: null
-									}>
+								<td onClick={() => handleShowRow(obj.id)}>
 									{obj.email ? obj.email : obj.phone}
 								</td>
-								<td
-									onClick={
-										obj?.allStatus === "pending"
-											? () => handleShowRow(obj.id)
-											: null
-									}>
+								<td onClick={() => handleShowRow(obj.id)}>
 									{obj.date}
 								</td>
-								<td
-									onClick={
-										obj?.allStatus === "pending"
-											? () => handleShowRow(obj.id)
-											: null
-									}>
+								<td onClick={() => handleShowRow(obj.id)}>
 									{obj.time}
 								</td>
 								<td
@@ -161,7 +139,8 @@ const DocumentTable = ({ tableRow, refresh, setRefresh }) => {
 											: "Concluded"}
 									</Button>
 								</td>
-								{obj.allStatus === "pending" && (
+								{(obj.allStatus === "pending" ||
+									obj.allStatus === "approved") && (
 									<div>
 										{id === obj.id && open ? (
 											<Row

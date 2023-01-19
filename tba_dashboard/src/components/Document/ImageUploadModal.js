@@ -66,7 +66,7 @@ const ImageUploadModal = ({
 						<Button
 							onClick={handleClose}
 							className='bg-white border-0 text-dark'>
-							<img src="assets/img/close.png"></img>
+							<img src='assets/img/close.png'></img>
 						</Button>
 					</Col>
 				</Row>
@@ -128,7 +128,8 @@ const ImageUploadModal = ({
 						<Button
 							className='w-100 p-0 py-2 border-0'
 							style={{ background: "#C4CCD2" }}
-							onClick={() => handleSubmit("reject")}>
+							onClick={() => handleSubmit("reject")}
+							disabled={document?.socialContract?.approved}>
 							<i class='bi bi-x'></i>Solicitar outra foto
 						</Button>
 					</Col>
@@ -136,6 +137,7 @@ const ImageUploadModal = ({
 						<Button
 							className='p-0 py-2 w-100 border-0'
 							style={{ backgroundColor: "#1C3D59" }}
+							disabled={document?.socialContract?.approved}
 							onClick={() => handleSubmit("approved")}>
 							<i class='bi bi-check'></i>Aprovar documento
 						</Button>

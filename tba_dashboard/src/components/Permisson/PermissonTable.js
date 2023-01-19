@@ -193,24 +193,14 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 				{currentTableData.length ? (
 					<thead>
 						<tr>
-							<th className='tbl-head-color'>
+							<th className='tbl-head-color' width={"25%"}>
 								Nome{" "}
 							</th>
-							<th className='tbl-head-color'>
-								Email/Telefone{" "}
-							</th>
-							<th className='tbl-head-color'>
-								Função{" "}
-							</th>
-							<th className='tbl-head-color'>
-								Contatos
-							</th>
-							<th className='tbl-head-color'>
-								Documentos
-							</th>
-							<th className='tbl-head-color'>
-								Nova conta{" "}
-							</th>
+							<th className='tbl-head-color'>Email/Telefone </th>
+							<th className='tbl-head-color'>Função </th>
+							<th className='tbl-head-color'>Contatos</th>
+							<th className='tbl-head-color'>Documentos</th>
+							<th className='tbl-head-color'>Nova conta </th>
 						</tr>
 					</thead>
 				) : (
@@ -220,7 +210,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 					<tbody>
 						{currentTableData.map((val, i) => {
 							return (
-								<tr key={i} style={{ fontSize: '14px' }}>
+								<tr key={i} style={{ fontSize: "14px" }}>
 									<td className='fw-bold'>{val.name}</td>
 									<td>{val.email}</td>
 									<td>{val.designation}</td>
@@ -237,9 +227,9 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant=' success'
 												size='lg'
-												style={{ fontSize: '14px' }}
+												style={{ fontSize: "14px" }}
 												className='p-0 fw-bolder text-success border-0'>
-												<span className="d-flex align-items-center" >
+												<span className='d-flex align-items-center'>
 													<i className='bi bi-check fw-bold fs-5'></i>
 													Autorizar
 												</span>
@@ -256,9 +246,9 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant='danger'
 												size='lg'
-												style={{ fontSize: '14px' }}
+												style={{ fontSize: "14px" }}
 												className='p-0 fw-bolder text-danger button-red'>
-												<span className="d-flex align-items-center">
+												<span className='d-flex align-items-center'>
 													<i className='bi bi-x fw-bold fs-5'></i>
 													Remover
 												</span>
@@ -279,7 +269,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant=' success'
 												size='lg'
-												style={{ fontSize: '14px' }}
+												style={{ fontSize: "14px" }}
 												className='align-items-center d-flex p-0 fw-bolder text-success  border-0'>
 												<i className='bi bi-check fw-bold fs-5'></i>
 												Autorizar
@@ -296,7 +286,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant='danger'
 												size='lg'
-												style={{ fontSize: '14px' }}
+												style={{ fontSize: "14px" }}
 												className='p-0 fw-bolder text-danger       align-items-center d-flex button-red'>
 												<i className='bi bi-x fw-bold fs-5'></i>
 												Remover
@@ -316,9 +306,9 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant=' success'
 												size='lg'
-												style={{ fontSize: '14px' }}
+												style={{ fontSize: "14px" }}
 												className='p-0 fw-bolder text-success  border-0'>
-												<span className="d-flex align-items-center">
+												<span className='d-flex align-items-center'>
 													<i className='bi bi-check fw-bold fs-5'></i>
 													Autorizar
 												</span>
@@ -335,9 +325,9 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant='danger'
 												size='lg'
-												style={{ fontSize: '14px' }}
+												style={{ fontSize: "14px" }}
 												className='p-0 fw-bolder text-danger button-red'>
-												<span className="d-flex align-items-center">
+												<span className='d-flex align-items-center'>
 													<i className='bi bi-x fw-bold fs-5'></i>
 													Remover
 												</span>

@@ -19,7 +19,9 @@ function BarChartVisitor() {
 
 	const contactData = useRecoilValue(getAllChartData);
 	// console.log("contactData", contactData);
-
+	function capitalizeFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
 	let data;
 	const getData = () => {
 		if (contactData?.chartDataStatus === "yearly") {
@@ -28,14 +30,14 @@ function BarChartVisitor() {
 				return {
 					month: obj?.month,
 					Contatos: obj?.count,
-					week: obj?.month,
+					week: capitalizeFirstLetter(obj?.month),
 					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
 		} else if (contactData?.chartDataStatus === "monthly") {
 			data = contactData?.contactData?.map((obj) => {
 				return {
-					month: obj?.month,
+					month: capitalizeFirstLetter(obj?.month),
 					Contatos: obj?.count,
 					// week: obj?.week,
 					date: moment(obj?._id).format("DD-MM-YYYY"),
@@ -47,7 +49,7 @@ function BarChartVisitor() {
 				return {
 					month: obj?.month,
 					Contatos: obj?.count,
-					week: obj?.sortWeek,
+					week: capitalizeFirstLetter(obj?.sortWeek),
 					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
@@ -57,7 +59,7 @@ function BarChartVisitor() {
 					return {
 						month: obj?.month,
 						Contatos: obj?.count,
-						week: obj?.sortWeek,
+						// week: capitalizeFirstLetter(obj?.sortWeek),
 						date: moment(obj?._id).format("DD-MM-YYYY"),
 					};
 				});

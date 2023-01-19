@@ -204,7 +204,10 @@ const Insights = () => {
 							<Container fluid>
 								<Navbar.Brand className='fw-bolder' href='#'>
 									<p className='fw-bolder'>Visitas ao site</p>
-									<p className=' fs-color'>11 dez - 17 dez</p>
+									<p className=' fs-color'>
+										{recoilChartData?.reqDate?.startingDate}
+										- {recoilChartData?.reqDate?.endingDate}
+									</p>
 								</Navbar.Brand>
 								<Navbar.Toggle aria-controls='navbarScroll' />
 								<Navbar.Collapse id='navbarScroll'>

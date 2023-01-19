@@ -26,7 +26,7 @@ const NavbarCom = () => {
 		<>
 			<Navbar collapseOnSelect expand='lg' className='nav px-3'>
 				<Navbar.Brand href='#home' className='ps-0'>
-					<img src='/assets/img/TBA-C.png'></img>
+					<img src='/assets/img/tbaconsulting.png'></img>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls='responsive-navbar-nav' />
 				<Navbar.Collapse id='responsive-navbar-nav'>

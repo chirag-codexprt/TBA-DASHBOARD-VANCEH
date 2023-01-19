@@ -63,16 +63,16 @@ const ChangePassword = ({ open, handleClose }) => {
 						<Col md={9} className='fw-bolder fs-5 m-3 '>
 							Alterar senha
 						</Col>
-						<Col md={2} className='d-flex justify-content-end'>
+						<Col md={2} className='text-center'>
 							<Button
 								onClick={handleClose}
-								className='border-0 text-dark p-0 mx-4 fs-4 bg-white'>
+								className='border-0 text-dark p-0  fs-4 bg-white'>
 								<img src='assets/img/close.png'></img>
 							</Button>
 						</Col>
 					</Row>
 					<Row className=''>
-						<Col md={10} className='mx-auto my-2'>
+						<Col md={10} className='mx-auto px-0 my-2'>
 							<p className='fw-bold my-1 small'>Senha atual</p>
 							<InputGroup className='mb-3 border-0 rounded'>
 								<InputGroup.Text
@@ -91,7 +91,7 @@ const ChangePassword = ({ open, handleClose }) => {
 								/>
 							</InputGroup>
 						</Col>
-						<Col md={10} className='mx-auto my-2'>
+						<Col md={10} className='mx-auto px-0  my-2'>
 							<Form.Label className='small fw-bold'>
 								Nova senha
 							</Form.Label>
@@ -133,7 +133,7 @@ const ChangePassword = ({ open, handleClose }) => {
 								</InputGroup.Text>
 							</InputGroup>
 						</Col>
-						<Col md={10} className='mx-auto my-2'>
+						<Col md={10} className='mx-auto px-0  my-2'>
 							<Form.Label className='small fw-bold'>
 								Repetir nova senha
 							</Form.Label>

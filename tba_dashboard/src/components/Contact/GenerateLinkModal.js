@@ -74,7 +74,7 @@ const GenerateLinkModal = ({
 					<Col>
 						<h6>De quais documentos você precisa?</h6>
 					</Col>
-					<Col className='mt-2 ps-4'>
+					<Col className='mt-2 '>
 						<Form className='d-flex align-items-center'>
 							<Form.Check
 								className='chack-item input-check fs-5 border-0'
@@ -87,7 +87,7 @@ const GenerateLinkModal = ({
 							<label>CPF/CNPJ</label>
 						</Form>
 					</Col>
-					<Col className='mt-2 ps-4'>
+					<Col className='mt-2 '>
 						<Form className='d-flex align-items-center'>
 							<Form.Check
 								className='fs-5 border-0 input-check'
@@ -100,7 +100,7 @@ const GenerateLinkModal = ({
 							<label>Contrato social</label>
 						</Form>
 					</Col>
-					<Col className='mt-2 ps-4'>
+					<Col className='mt-2 '>
 						<Form className='d-flex align-items-center'>
 							<Form.Check
 								className='fs-5 border-0 input-check'
@@ -131,7 +131,7 @@ const GenerateLinkModal = ({
 							</InputGroup.Text>
 						</InputGroup>
 					</Col>
-					<Col className='my-2 w-100 d-flex justify-content-center'>
+					<Col className='my-4 w-100 d-flex justify-content-center'>
 						<Button className="border-0"
 							style={{ background: "#1C3D59" }}
 							onClick={submitForm}>

@@ -64,11 +64,12 @@ const GenerateLinkModal = ({
 				className='d-flex mt-5 align-items-center'
 				show={open}
 				onHide={handleClose}>
+
 				<Row className='p-3 px-4'>
 					<Col md={10} xs={9}>
-						<h3>Link para solicitação de documentos</h3>
+						<h5 className="fw-bolder">Link para solicitação de documentos</h5>
 					</Col>
-					<Col>
+					<Col className="text-end" >
 						<img style={{ cursor: 'pointer' }} onClick={handleClose} src="assets/img/close.png"></img>
 					</Col>
 				</Row>
@@ -76,7 +77,7 @@ const GenerateLinkModal = ({
 					<Col>
 						<h6>De quais documentos você precisa?</h6>
 					</Col>
-					<Col className='mt-2 ps-4'>
+					<Col className='mt-2 '>
 						<Form className='d-flex align-items-center'>
 							<Form.Check
 								className='chack-item input-check fs-5 border-0'
@@ -89,7 +90,7 @@ const GenerateLinkModal = ({
 							<label>CPF/CNPJ</label>
 						</Form>
 					</Col>
-					<Col className='mt-2 ps-4'>
+					<Col className='mt-2 '>
 						<Form className='d-flex align-items-center'>
 							<Form.Check
 								className='fs-5 border-0 input-check'
@@ -102,7 +103,7 @@ const GenerateLinkModal = ({
 							<label>Contrato social</label>
 						</Form>
 					</Col>
-					<Col className='mt-2 ps-4'>
+					<Col className='mt-2 '>
 						<Form className='d-flex align-items-center'>
 							<Form.Check
 								className='fs-5 border-0 input-check'
@@ -119,9 +120,9 @@ const GenerateLinkModal = ({
 						<h6>Link para compartilhar com o cliente</h6>
 					</Col>
 					<Col className='p-2'>
-						<InputGroup className='border-0 rounded mb-3'>
+						<InputGroup className='border-0 rounded '>
 							<Form.Control
-								className='border-0 p-3'
+								className='border-0 p-3 fw-bold'
 								value={link}
 							/>
 							<InputGroup.Text

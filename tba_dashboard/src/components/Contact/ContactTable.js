@@ -90,85 +90,85 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
                 </td>
                 {
                   obj.status === "pending" &&
-                    // <div>
-                    (id === obj.id && open ? (
-                      <Row
-                        style={{
-                          width: "600px",
-                          position: "absolute",
-                          right: "-15.3%",
-                          bottom: "0%",
-                        }}
+                  // <div>
+                  (id === obj.id && open ? (
+                    <Row
+                      style={{
+                        width: "600px",
+                        position: "absolute",
+                        right: "-15.3%",
+                        bottom: "0%",
+                      }}
+                    >
+                      {/* <Row> */}
+                      <Col
+                        md={4}
+                        className="opacity-25 px-1"
+                        style={{ textAlign: "right" }}
                       >
-                        {/* <Row> */}
-                        <Col
-                          md={4}
-                          className="opacity-25 px-1"
-                          style={{ textAlign: "right" }}
-                        >
-                          Entrar em contato por:
-                        </Col>
+                        Entrar em contato por:
+                      </Col>
 
-                        {obj?.phone && (
-                          <Col md={1} className="px-1">
-                            <Button
-                              style={{
-                                background: "#1C3D59",
-                              }}
-                            >
-                              <a
-                                href={`https://wa.me/${obj.phone}`}
-                                target="_blank"
-                                style={{
-                                  textDecoration: "none",
-                                  color: "#fff",
-                                }}
-                              >
-                                <i class="bi bi-whatsapp"></i>
-                              </a>
-                            </Button>
-                          </Col>
-                        )}
-                        {obj?.email && (
-                          <Col md={1} className="px-1">
-                            <Button
-                              style={{
-                                background: "#1C3D59",
-                              }}
-                            >
-                              <a
-                                href={`mailto:${obj.email}`}
-                                target="_blank"
-                                style={{
-                                  textDecoration: "none",
-                                  color: "#fff",
-                                }}
-                              >
-                                <i class="bi bi-envelope"></i>
-                              </a>
-                            </Button>
-                          </Col>
-                        )}
-                        <Col md={1} className="opacity-25 text-center">
-                          ou
-                        </Col>
-                        <Col md={3} className="ps-0">
+                      {obj?.phone && (
+                        <Col md={1} className="px-1">
                           <Button
-                            onClick={() => handleShowLinkModal(obj)}
-                            className="border-0"
                             style={{
-                              background: "#C4CCD2",
-                              width: "100%",
+                              background: "#1C3D59",
                             }}
                           >
-                            Gerar link
+                            <a
+                              href={`https://wa.me/${obj.phone}`}
+                              target="_blank"
+                              style={{
+                                textDecoration: "none",
+                                color: "#fff",
+                              }}
+                            >
+                              <i class="bi bi-whatsapp"></i>
+                            </a>
                           </Button>
                         </Col>
-                        {/* </Row> */}
-                      </Row>
-                    ) : (
-                      ""
-                    ))
+                      )}
+                      {obj?.email && (
+                        <Col md={1} className="px-1">
+                          <Button
+                            style={{
+                              background: "#1C3D59",
+                            }}
+                          >
+                            <a
+                              href={`mailto:${obj.email}`}
+                              target="_blank"
+                              style={{
+                                textDecoration: "none",
+                                color: "#fff",
+                              }}
+                            >
+                              <i class="bi bi-envelope"></i>
+                            </a>
+                          </Button>
+                        </Col>
+                      )}
+                      <Col md={1} className="opacity-25 text-center">
+                        ou
+                      </Col>
+                      <Col md={3} className="ps-0">
+                        <Button
+                          onClick={() => handleShowLinkModal(obj)}
+                          className="border-0"
+                          style={{
+                            background: "#C4CCD2",
+                            width: "100%",
+                          }}
+                        >
+                          Gerar link
+                        </Button>
+                      </Col>
+                      {/* </Row> */}
+                    </Row>
+                  ) : (
+                    ""
+                  ))
                   // </div>
                 }
               </tr>

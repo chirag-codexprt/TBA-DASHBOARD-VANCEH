@@ -39,7 +39,8 @@ function BarChartVisitor() {
 				return {
 					month: capitalizeFirstLetter(obj?.month),
 					Contatos: obj?.count,
-					// week: obj?.week,
+					week: capitalizeFirstLetter(obj?.sortWeek?.charAt(0)),
+					tooltipWeek: capitalizeFirstLetter(obj?.sortWeek),
 					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
@@ -55,13 +56,58 @@ function BarChartVisitor() {
 			});
 		} else {
 			if (contactData?.contactData?.length <= 30) {
-				data = contactData?.contactData?.map((obj) => {
-					return {
-						month: obj?.month,
-						Contatos: obj?.count,
-						// week: capitalizeFirstLetter(obj?.sortWeek),
-						date: moment(obj?._id).format("DD-MM-YYYY"),
-					};
+				// data = contactData?.contactData?.map((obj) => {
+				// 	return {
+				// 		month: obj?.month,
+				// 		Contatos: obj?.count,
+				// 		week: capitalizeFirstLetter(obj?.sortWeek?.charAt(0)),
+				// 		tooltipWeek: capitalizeFirstLetter(obj?.sortWeek),
+				// 		date: moment(obj?._id).format("DD-MM-YYYY"),
+				// 	};
+				// });
+				function getWeekStart(date) {
+					var offset = new Date(date).getDay();
+					return new Date(
+						new Date(date) - offset * 24 * 60 * 60 * 1000
+					)
+						.toISOString()
+						.slice(0, 10);
+				}
+
+				function groupWeeks(dates) {
+					const groupsByWeekNumber = dates.reduce(function (
+						acc,
+						item
+					) {
+						const today = new Date(item._id);
+						const weekNumber = today.getWeek();
+
+						// check if the week number exists
+						if (typeof acc[weekNumber] === "undefined") {
+							acc[weekNumber] = [];
+						}
+
+						acc[weekNumber].push(item);
+
+						return acc;
+					},
+					[]);
+
+					return groupsByWeekNumber.map(function (group) {
+						return {
+							weekStart: getWeekStart(group[0]._id),
+							week: capitalizeFirstLetter(group[0]?.sortWeek),
+							Contatos: group.reduce(function (acc, item) {
+								return acc + item.count;
+							}, 0),
+						};
+					});
+				}
+
+				data = groupWeeks(contactData?.contactData).filter(function (
+					el
+				) {
+					return el != null;
 				});
 				console.log("30");
 			} else if (
@@ -142,6 +188,7 @@ function BarChartVisitor() {
 							week: moment(getMonthStart(group[0]._id)).format(
 								"DD-MM-YYYY"
 							),
+							month: group?.month,
 							Contatos: group.reduce(function (acc, item) {
 								return acc + item.count;
 							}, 0),
@@ -175,7 +222,9 @@ function BarChartVisitor() {
 										"0px 0px 10px rgba(0, 0, 0, 0.15)",
 								}}>
 								<div style={{ color: "#6F767E" }}>
-									{pld.payload.week}
+									{pld?.payload?.week?.length === 1
+										? pld?.payload?.tooltipWeek
+										: pld?.payload?.week}
 									<br />
 									{pld.payload.date}
 								</div>

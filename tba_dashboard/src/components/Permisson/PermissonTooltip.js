@@ -132,16 +132,23 @@ const PermissonTooltip = ({
 										src='assets/img/close.png'></img>
 								</Col>
 								<Col md={4}>
-									<img
-										src={
-											editData?.profileImage
-												? editData?.profileImage
-												: "/assets/img/noUser.png"
-										}
+									<div
 										style={{
 											width: "80px",
 											borderRadius: "50%",
-										}}></img>
+										}}>
+										<img
+											src={
+												editData?.profileImage
+													? editData?.profileImage
+													: "/assets/img/noUser.png"
+											}
+											style={{
+												width: "80px",
+												borderRadius: "50%",
+											}}
+										/>
+									</div>
 								</Col>
 								<Col md={8}>
 									<label

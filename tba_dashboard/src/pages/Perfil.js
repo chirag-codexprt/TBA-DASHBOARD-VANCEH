@@ -11,6 +11,8 @@ import ProfilePicture from "../components/Profile/ProfilePicture";
 import ChangePassword from "../components/Profile/ChangePassword";
 import AddAdmin from "../components/Profile/AddAdmin";
 import ProfileCard from "../components/Profile/ProfileCard";
+import { useRecoilValue } from "recoil";
+import { loginAtom } from "../recoil/Atoms";
 
 const Perfil = () => {
 	let active = 2;
@@ -26,7 +28,8 @@ const Perfil = () => {
 	const [profilePicture, setProfilePicture] = useState(false);
 	const [changePassword, setChangePassword] = useState(false);
 	const [addAdmin, setAddAdmin] = useState(false);
-
+	const login = useRecoilValue(loginAtom);
+	const permissions = login?.permissions;
 
 	const showProfilePicture = () => {
 		setProfilePicture(true);
@@ -35,7 +38,9 @@ const Perfil = () => {
 		setChangePassword(true);
 	};
 	const showAddAdmin = () => {
-		setAddAdmin(true);
+		if (permissions.newAdmin) {
+			setAddAdmin(true);
+		}
 	};
 
 	return (
@@ -46,6 +51,7 @@ const Perfil = () => {
 					showProfilePicture={showProfilePicture}
 					showChangePassword={showChangePassword}
 					showAddAdmin={showAddAdmin}
+					permissions={permissions}
 				/>
 				{profilePicture && (
 					<ProfilePicture

@@ -15,6 +15,9 @@ import { getAllChartData } from "../../recoil/Atoms";
 const Linechart = () => {
 	const contactData = useRecoilValue(getAllChartData);
 	// console.log("contactData", contactData);
+	function capitalizeFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
 
 	let data;
 	const getData = () => {
@@ -32,7 +35,8 @@ const Linechart = () => {
 				return {
 					month: obj?.month,
 					Contatos: obj?.count,
-					week: obj?.week,
+					week: capitalizeFirstLetter(obj?.sortWeek),
+					tooltipWeek: capitalizeFirstLetter(obj?.sortWeek),
 					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
@@ -46,16 +50,61 @@ const Linechart = () => {
 				};
 			});
 		} else {
-			if (contactData?.contactData?.length >= 30) {
+			if (contactData?.contactData?.length <= 30) {
 				console.log("30");
 
-				data = contactData?.contactData?.map((obj) => {
-					return {
-						month: obj?.month,
-						Contatos: obj?.count,
-						week: obj?.week,
-						date: moment(obj?._id).format("DD-MM-YYYY"),
-					};
+				// data = contactData?.contactData?.map((obj) => {
+				// 	return {
+				// 		month: obj?.month,
+				// 		Contatos: obj?.count,
+				// 		week: obj?.week,
+				// 		date: moment(obj?._id).format("DD-MM-YYYY"),
+				// 	};
+				// });
+				function getWeekStart(date) {
+					var offset = new Date(date).getDay();
+					return new Date(
+						new Date(date) - offset * 24 * 60 * 60 * 1000
+					)
+						.toISOString()
+						.slice(0, 10);
+				}
+
+				function groupWeeks(dates) {
+					const groupsByWeekNumber = dates.reduce(function (
+						acc,
+						item
+					) {
+						const today = new Date(item._id);
+						const weekNumber = today.getWeek();
+
+						// check if the week number exists
+						if (typeof acc[weekNumber] === "undefined") {
+							acc[weekNumber] = [];
+						}
+
+						acc[weekNumber].push(item);
+
+						return acc;
+					},
+					[]);
+
+					return groupsByWeekNumber.map(function (group) {
+						return {
+							weekStart: getWeekStart(group[0]._id),
+							week: capitalizeFirstLetter(group[0]?.sortWeek),
+							Contatos: group.reduce(function (acc, item) {
+								return acc + item.count;
+							}, 0),
+						};
+					});
+				}
+
+				// console.log("fdsf", groupWeeks(contactData?.contactData));
+				data = groupWeeks(contactData?.contactData).filter(function (
+					el
+				) {
+					return el != null;
 				});
 			} else if (
 				contactData?.contactData?.length >= 30 &&
@@ -167,7 +216,9 @@ const Linechart = () => {
 										"0px 0px 10px rgba(0, 0, 0, 0.15)",
 								}}>
 								<div style={{ color: "#6F767E" }}>
-									{pld.payload.week}
+									{pld?.payload?.week?.length === 1
+										? pld?.payload?.tooltipWeek
+										: pld?.payload?.week}
 									<br />
 									{pld.payload.date}
 								</div>

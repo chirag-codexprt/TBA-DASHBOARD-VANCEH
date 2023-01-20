@@ -19,6 +19,7 @@ const DocumentTable = ({
 	open,
 	setOpen,
 	handleShowRow,
+	idArray,
 }) => {
 	const [openImageModal, setOpenImageModal] = useState(false);
 	const [openLinkModal, setOpenLinkModal] = useState(false);
@@ -26,6 +27,7 @@ const DocumentTable = ({
 	const [tableData, setTableData] = useState(tableRow);
 	const [document, setDocument] = useState();
 	const [addDocument, setAddDocument] = useState();
+
 	let PageSize = 10;
 	useEffect(() => {
 		setTableData(tableRow);
@@ -64,6 +66,7 @@ const DocumentTable = ({
 		setOpenLinkModal(true);
 		setEditData(val);
 	};
+	console.log("idArray.includes(id)", idArray);
 	return (
 		<div>
 			<Table responsive>
@@ -91,12 +94,7 @@ const DocumentTable = ({
 									fontSize: "14px",
 								}}
 								className={
-									id === obj.id &&
-									open &&
-									(obj?.allStatus === "pending" ||
-										obj?.allStatus === "approved")
-										? "row-height"
-										: ""
+									idArray.includes(obj.id) ? "row-height" : ""
 								}>
 								<td
 									onClick={() => handleShowRow(obj.id)}
@@ -142,7 +140,7 @@ const DocumentTable = ({
 								{(obj.allStatus === "pending" ||
 									obj.allStatus === "approved") && (
 									<div>
-										{id === obj.id && open ? (
+										{idArray.includes(obj.id) ? (
 											<Row
 												className='position-absolute'
 												style={{

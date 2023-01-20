@@ -17,6 +17,7 @@ const ProfileCard = ({
 	showProfilePicture,
 	showChangePassword,
 	showAddAdmin,
+	permissions,
 }) => {
 	const profile = useRecoilValue(profileAtom);
 	const [search, setSearch] = useState();
@@ -80,7 +81,7 @@ const ProfileCard = ({
 											height: "180px",
 											width: "180px",
 											borderRadius: "10px",
-											objectFit: "cover"
+											objectFit: "cover",
 										}}
 										className='position-relative px-0'
 									/>
@@ -132,57 +133,63 @@ const ProfileCard = ({
 							</Col>
 						</Row>
 					</Col>
-					<Col md={6} className='text-end'>
-						{/* <div className='d-flex justify-content-end  p-3'> */}
-						<Button
-							size='lg'
-							onClick={showAddAdmin}
-							className='border-0 fs-6'
-							style={{ backgroundColor: "#C4CCD2" }}>
-							<i className='bi bi-link-45deg mx-1'></i>
-							Gerar código pra nova conta
-						</Button>
-						{/* </div> */}
-					</Col>
+					{permissions.newAdmin && (
+						<Col md={6} className='text-end'>
+							{/* <div className='d-flex justify-content-end  p-3'> */}
+							<Button
+								size='lg'
+								onClick={showAddAdmin}
+								className='border-0 fs-6'
+								style={{ backgroundColor: "#C4CCD2" }}>
+								<i className='bi bi-link-45deg mx-1'></i>
+								Gerar código pra nova conta
+							</Button>
+							{/* </div> */}
+						</Col>
+					)}
 				</Row>
 				{/* tabel */}
-				<Row>
-					<Col md={12} className='my-4'>
-						<Row>
-							<Col xs={12} sm={12} md={2} lg={2}>
-								<h4 className='fw-bolder mt-3'>Histórico</h4>
-							</Col>
-							<Col xs={12} sm={12} md={10} lg={10}>
-								<TableNavbar
-									setSearch={setSearch}
-									onEnter={onEnter}
-									refresh={refresh}
-									setRefresh={setRefresh}
-									search={search}
-								/>
-							</Col>
-						</Row>
-					</Col>
-					{/* tabel */}
-					<Col md={12}>
-						{loading ? (
-							<Loader />
-						) : (
-							<ProfileTable tableRow={tableRow} />
-						)}
-					</Col>
-					{/* pagination */}
-					<Col
-						className='d-flex justify-content-center me-auto '
-						md={12}>
-						{/* <Pagination>
+				{permissions.document && (
+					<Row>
+						<Col md={12} className='my-4'>
+							<Row>
+								<Col xs={12} sm={12} md={2} lg={2}>
+									<h4 className='fw-bolder mt-3'>
+										Histórico
+									</h4>
+								</Col>
+								<Col xs={12} sm={12} md={10} lg={10}>
+									<TableNavbar
+										setSearch={setSearch}
+										onEnter={onEnter}
+										refresh={refresh}
+										setRefresh={setRefresh}
+										search={search}
+									/>
+								</Col>
+							</Row>
+						</Col>
+						{/* tabel */}
+						<Col md={12}>
+							{loading ? (
+								<Loader />
+							) : (
+								<ProfileTable tableRow={tableRow} />
+							)}
+						</Col>
+						{/* pagination */}
+						<Col
+							className='d-flex justify-content-center me-auto '
+							md={12}>
+							{/* <Pagination>
 							<Pagination.Prev />
 							{items}
 							<Pagination.Ellipsis />
 							<Pagination.Next />
 						</Pagination> */}
-					</Col>
-				</Row>
+						</Col>
+					</Row>
+				)}
 			</Card>
 		</div>
 	);

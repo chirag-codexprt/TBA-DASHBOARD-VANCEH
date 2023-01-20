@@ -14,10 +14,21 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 	const [id, setId] = useState(null);
 	const [editData, setEditData] = useState(null);
 	const [tableData, setTableData] = useState(tableRow);
+	const [idArray, setIdArray] = useState([]);
 	let PageSize = 10;
 
+	// let ab = [];
+
+	console.log("idArray", idArray);
 	useEffect(() => {
 		setTableData(tableRow);
+
+		tableRow?.filter((obj, index) => {
+			// console.log("obj", obj.status === "pending");
+			if (obj.status === "pending") {
+				setIdArray((old) => [...old, obj.id]);
+			}
+		});
 	}, [tableRow]);
 
 	const [currentPage, setCurrentPage] = useState(1);
@@ -32,13 +43,25 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 		setId(id);
 		// console.log("id", id);
 		setOpen(!open);
+		// const index = idArray.findIndex((i) => i === id);
+		if (idArray.includes(id)) {
+			var index = idArray.indexOf(id);
+			if (index !== -1) {
+				idArray.splice(index, 1);
+			}
+		} else {
+			setIdArray((old) => [...old, id]);
+		}
+
+		console.log("index ::", index);
 	};
 
 	const handleShowLinkModal = (val) => {
 		setOpenLinkModal(true);
 		setEditData(val);
 	};
-	console.log("currentTableData", currentTableData);
+
+	console.log("idArray", idArray);
 	return (
 		<div>
 			<Table responsive>
@@ -64,7 +87,9 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 									position: "relative",
 									fontSize: "14px",
 								}}
-								height={id === obj.id && open ? "100px" : ""}>
+								height={
+									idArray.includes(obj.id) ? "100px" : ""
+								}>
 								<td className='fw-bold'>{obj.name}</td>
 								<td>{obj.CpfOrCnpj}</td>
 								<td>{obj.email ? obj.email : obj.phone}</td>
@@ -95,7 +120,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								{
 									obj.status === "pending" &&
 										// <div>
-										(id === obj.id && open ? (
+										(idArray.includes(obj.id) ? (
 											<Row
 												style={{
 													width: "600px",

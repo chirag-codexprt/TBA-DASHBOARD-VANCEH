@@ -17,7 +17,7 @@ import AfterAuth from "../HOC/AfterAuth";
 import moment from "moment";
 import { getChartData } from "../helper/API/insight";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { getAllChartData } from "../recoil/Atoms";
+import { getAllChartData, loginAtom } from "../recoil/Atoms";
 import DatePicker from "react-datepicker";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import pt from "date-fns/locale/pt-BR";
@@ -36,6 +36,8 @@ const Insights = () => {
 		week: false,
 		date: false,
 	});
+	const login = useRecoilValue(loginAtom);
+	const permissions = login?.permissions;
 	const [status, setStatus] = useState("monthly");
 	const [open, setOpen] = useState(true);
 	const [tableRow, setTableRow] = useState([]);
@@ -144,7 +146,15 @@ const Insights = () => {
 			},
 		};
 
-		console.log("called", submitData);
+		const diffTime = Math.abs(new Date(startDate) - new Date(endDate));
+
+		const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+		console.log("recoilChartData ::::", recoilChartData);
+		console.log("diffDays+ ::::", diffDays);
+		console.log("endDate+ ::::", endDate);
+		console.log("startDate+ ::::", startDate);
+
 		// console.log("called endDate", endDate);
 		if (
 			!submitData?.filter?.startDate ||
@@ -153,9 +163,9 @@ const Insights = () => {
 			submitData?.filter?.endDate === "Invalid date" ||
 			submitData?.filter?.startDate === submitData?.filter?.endDate
 		) {
-			// console.log("called", startDate);
-			console.log("called endDate");
-			toast.error("please select proper date");
+			toast.error("Please select proper date");
+		} else if (diffDays >= 30) {
+			toast.error("Please  select only 30 days");
 		} else {
 			console.log("called 1");
 			getChartData(submitData).then((res) => {
@@ -174,8 +184,6 @@ const Insights = () => {
 			});
 		}
 	};
-
-	console.log("recoilChartData ::::", recoilChartData);
 
 	const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
 		<div onClick={(e) => handleToggle("date")}>
@@ -218,7 +226,6 @@ const Insights = () => {
 										navbarScroll>
 										<InputGroup></InputGroup>
 									</Nav>
-
 									<Button
 										className={`fs-color  mx-1 border-0 ${
 											active.year
@@ -261,7 +268,12 @@ const Insights = () => {
 												startDate={startDate}
 												endDate={endDate}
 												locale='pt-BR'
-												// maxDate={new Date()}
+												maxDate={new Date()}
+												// minDate={
+												// 	new Date(
+												// 		startDate.setDate(30)
+												// 	)
+												// }
 												onCalendarClose={
 													handleCalendarClose
 												}
@@ -342,7 +354,7 @@ const Insights = () => {
 													?.visitor && (
 													<div className='d-flex justify-content-center'>
 														<div
-															className='px-2 fw-bold d-flex align-items-center border-chart-label1'
+															className='px-3 fw-bold d-flex align-items-center border-chart-label1'
 															style={{
 																color:
 																	recoilChartData
@@ -449,7 +461,7 @@ const Insights = () => {
 													?.contact && (
 													<div className='d-flex justify-content-center'>
 														<div
-															className='px-2 fw-bold d-flex align-items-center border-chart-label1'
+															className='px-3 fw-bold d-flex align-items-center border-chart-label1'
 															style={{
 																color:
 																	recoilChartData
@@ -507,14 +519,18 @@ const Insights = () => {
 						</>
 					)}
 					{/* tabels */}
-					{loading ? (
-						<Loader />
+					{permissions.contact ? (
+						loading ? (
+							<Loader />
+						) : (
+							<InsightTable
+								tableRow={tableRow}
+								refresh={refresh}
+								setRefresh={setRefresh}
+							/>
+						)
 					) : (
-						<InsightTable
-							tableRow={tableRow}
-							refresh={refresh}
-							setRefresh={setRefresh}
-						/>
+						""
 					)}
 					<div className='text-end mx-2'>
 						<Button

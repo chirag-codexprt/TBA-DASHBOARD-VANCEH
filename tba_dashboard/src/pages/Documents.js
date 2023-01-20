@@ -21,6 +21,7 @@ const Documents = () => {
 	const [search, setSearch] = useState();
 	const [id, setId] = useState(null);
 	const [open, setOpen] = useState(false);
+	const [idArray, setIdArray] = useState([]);
 
 	// console.log('search', search)
 
@@ -35,6 +36,9 @@ const Documents = () => {
 				setTable(res.data);
 				setTableRow(res.data);
 				setLoading(false);
+				res.data?.filter((obj, index) => {
+					setIdArray((old) => [...old, obj.id]);
+				});
 			} else {
 				setTableRow([]);
 				setLoading(false);
@@ -98,9 +102,18 @@ const Documents = () => {
 		}
 	};
 
-	const handleShowRow = (data) => {
+	const handleShowRow = (id) => {
 		setOpen(!open);
-		setId(data);
+		setId(id);
+
+		if (idArray.includes(id)) {
+			var index = idArray.indexOf(id);
+			if (index !== -1) {
+				idArray.splice(index, 1);
+			}
+		} else {
+			setIdArray((old) => [...old, id]);
+		}
 	};
 
 	return (
@@ -160,6 +173,7 @@ const Documents = () => {
 							open={open}
 							setOpen={setOpen}
 							handleShowRow={handleShowRow}
+							idArray={idArray}
 						/>
 					)}
 				</Card>

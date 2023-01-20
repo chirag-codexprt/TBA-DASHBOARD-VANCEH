@@ -36,7 +36,8 @@ function BarChartCounter() {
 				return {
 					month: capitalizeFirstLetter(obj?.month),
 					visitas: obj?.count,
-					// week: obj?.sortWeek,
+					week: capitalizeFirstLetter(obj?.sortWeek?.charAt(0)),
+					tooltipWeek: capitalizeFirstLetter(obj?.sortWeek),
 					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
@@ -51,13 +52,60 @@ function BarChartCounter() {
 			});
 		} else {
 			if (visitorData?.visitorData?.length <= 30) {
-				data = visitorData?.visitorData?.map((obj) => {
-					return {
-						month: obj?.month,
-						visitas: obj?.count,
-						// week: obj?.sortWeek,
-						date: moment(obj?._id).format("DD-MM-YYYY"),
-					};
+				// data = visitorData?.visitorData?.map((obj) => {
+				// 	return {
+				// 		month: obj?.month,
+				// 		visitas: obj?.count,
+				// 		week: capitalizeFirstLetter(obj?.sortWeek?.charAt(0)),
+				// 	tooltipWeek: capitalizeFirstLetter(obj?.sortWeek),
+				// 		date: moment(obj?._id).format("DD-MM-YYYY"),
+				// 	};
+				// });
+				function getWeekStart(date) {
+					var offset = new Date(date).getDay();
+
+					return new Date(
+						new Date(date) - offset * 24 * 60 * 60 * 1000
+					)
+						.toISOString()
+						.slice(0, 10);
+				}
+
+				function groupWeeks(dates) {
+					const groupsByWeekNumber = dates.reduce(function (
+						acc,
+						item
+					) {
+						const today = new Date(item._id);
+						const weekNumber = today.getWeek();
+
+						// check if the week number exists
+						if (typeof acc[weekNumber] === "undefined") {
+							acc[weekNumber] = [];
+						}
+
+						acc[weekNumber].push(item);
+
+						return acc;
+					},
+					[]);
+
+					return groupsByWeekNumber.map(function (group) {
+						console.log("group", group);
+						return {
+							weekStart: getWeekStart(group[0]._id),
+							week: capitalizeFirstLetter(group[0]?.sortWeek),
+							visitas: group.reduce(function (acc, item) {
+								return acc + item.count;
+							}, 0),
+						};
+					});
+				}
+
+				data = groupWeeks(visitorData?.visitorData).filter(function (
+					el
+				) {
+					return el != null;
 				});
 			} else if (
 				visitorData?.visitorData?.length >= 30 &&
@@ -134,10 +182,13 @@ function BarChartCounter() {
 					[]);
 
 					return groupsByMonthNumber?.map(function (group) {
+						console.log("group", group);
 						return {
 							week: moment(getMonthStart(group[0]._id)).format(
 								"DD-MM-YYYY"
 							),
+							month: group?.month,
+							// week: group?.month,
 							visitas: group.reduce(function (acc, item) {
 								return acc + item.count;
 							}, 0),
@@ -172,7 +223,10 @@ function BarChartCounter() {
 										"0px 0px 10px rgba(0, 0, 0, 0.15)",
 								}}>
 								<div style={{ color: "#6F767E" }}>
-									{pld.payload.week}
+									{pld?.payload?.week?.length === 1
+										? pld?.payload?.tooltipWeek
+										: pld?.payload?.week}
+
 									<br />
 									{pld.payload.date}
 								</div>

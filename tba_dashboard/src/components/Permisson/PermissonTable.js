@@ -230,7 +230,10 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												style={{ fontSize: "14px" }}
 												className='p-0 fw-bolder text-success border-0'>
 												<span className='d-flex align-items-center'>
-													<i className='bi bi-check fw-bold fs-5'></i>
+													<img
+														src='/assets/img/right 2.png'
+														className='px-1'
+													/>
 													Autorizar
 												</span>
 											</Button>
@@ -248,8 +251,15 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												size='lg'
 												style={{ fontSize: "14px" }}
 												className='p-0 fw-bolder text-danger button-red'>
-												<span className='d-flex align-items-center'>
-													<i className='bi bi-x fw-bold fs-5'></i>
+												<span
+													className='d-flex align-items-center'
+													style={{
+														color: "#A43D3D",
+													}}>
+													<img
+														src='/assets/img/wrong.png'
+														className='px-1'
+													/>
 													Remover
 												</span>
 											</Button>
@@ -271,7 +281,10 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												size='lg'
 												style={{ fontSize: "14px" }}
 												className='align-items-center d-flex p-0 fw-bolder text-success  border-0'>
-												<i className='bi bi-check fw-bold fs-5'></i>
+												<img
+													src='/assets/img/right 2.png'
+													className='px-1'
+												/>
 												Autorizar
 											</Button>
 										) : (
@@ -286,9 +299,15 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												}
 												variant='danger'
 												size='lg'
-												style={{ fontSize: "14px" }}
-												className='p-0 fw-bolder text-danger       align-items-center d-flex button-red'>
-												<i className='bi bi-x fw-bold fs-5'></i>
+												style={{
+													color: "#A43D3D",
+													fontSize: "14px",
+												}}
+												className='p-0 fw-bolder       align-items-center d-flex button-red'>
+												<img
+													src='/assets/img/wrong.png'
+													className='px-1'
+												/>
 												Remover
 											</Button>
 										)}
@@ -309,7 +328,10 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												style={{ fontSize: "14px" }}
 												className='p-0 fw-bolder text-success  border-0'>
 												<span className='d-flex align-items-center'>
-													<i className='bi bi-check fw-bold fs-5'></i>
+													<img
+														src='/assets/img/right 2.png'
+														className='px-1'
+													/>
 													Autorizar
 												</span>
 											</Button>
@@ -327,8 +349,15 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 												size='lg'
 												style={{ fontSize: "14px" }}
 												className='p-0 fw-bolder text-danger button-red'>
-												<span className='d-flex align-items-center'>
-													<i className='bi bi-x fw-bold fs-5'></i>
+												<span
+													className='d-flex align-items-center'
+													style={{
+														color: "#A43D3D",
+													}}>
+													<img
+														src='/assets/img/wrong.png'
+														className='px-1'
+													/>
 													Remover
 												</span>
 											</Button>

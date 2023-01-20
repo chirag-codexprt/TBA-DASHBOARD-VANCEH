@@ -14,34 +14,9 @@ import { getAllChartData } from "../../recoil/Atoms";
 
 const Linechart = () => {
 	const visitorData = useRecoilValue(getAllChartData);
-	const organizedTransactions = Object.fromEntries(
-		[
-			...new Set(
-				visitorData?.visitorData.map((t) =>
-					parseInt(t._id.split("-")[0])
-				)
-			),
-		].map((yr) => [
-			yr,
-			Object.fromEntries(
-				[
-					...new Set(
-						visitorData?.visitorData
-							.filter((t) => parseInt(t._id.split("-")[0]) === yr)
-							.map((t) => parseInt(t._id.split("-")[1]))
-					),
-				].map((mo) => [
-					mo,
-					visitorData?.visitorData.filter(
-						(t) =>
-							parseInt(t._id.split("-")[0]) === yr &&
-							parseInt(t._id.split("-")[1]) === mo
-					),
-				])
-			),
-		])
-	);
-	console.log("organizedTransactions", organizedTransactions);
+	function capitalizeFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
 	let data;
 	const getData = () => {
 		if (visitorData?.chartDataStatus === "yearly") {
@@ -58,7 +33,8 @@ const Linechart = () => {
 				return {
 					month: obj?.month,
 					visitas: obj?.count,
-					week: obj?.week,
+					week: capitalizeFirstLetter(obj?.sortWeek),
+					tooltipWeek: capitalizeFirstLetter(obj?.sortWeek),
 					date: moment(obj?._id).format("DD-MM-YYYY"),
 				};
 			});
@@ -73,12 +49,57 @@ const Linechart = () => {
 			});
 		} else {
 			if (visitorData?.visitorData?.length <= 30) {
-				data = visitorData?.visitorData?.map((obj) => {
-					return {
-						month: obj?.month,
-						visitas: obj?.count,
-						week: obj?.sortWeek,
-					};
+				// data = visitorData?.visitorData?.map((obj) => {
+				// 	return {
+				// 		month: obj?.month,
+				// 		visitas: obj?.count,
+				// 		week: obj?.sortWeek,
+				// 	};
+				// });
+				function getWeekStart(date) {
+					var offset = new Date(date).getDay();
+					return new Date(
+						new Date(date) - offset * 24 * 60 * 60 * 1000
+					)
+						.toISOString()
+						.slice(0, 10);
+				}
+
+				function groupWeeks(dates) {
+					const groupsByWeekNumber = dates.reduce(function (
+						acc,
+						item
+					) {
+						const today = new Date(item._id);
+						const weekNumber = today.getWeek();
+
+						// check if the week number exists
+						if (typeof acc[weekNumber] === "undefined") {
+							acc[weekNumber] = [];
+						}
+
+						acc[weekNumber].push(item);
+
+						return acc;
+					},
+					[]);
+
+					return groupsByWeekNumber.map(function (group) {
+						return {
+							weekStart: getWeekStart(group[0]._id),
+							week: capitalizeFirstLetter(group[0]?.sortWeek),
+							visitas: group.reduce(function (acc, item) {
+								return acc + item.count;
+							}, 0),
+						};
+					});
+				}
+
+				// console.log("fdsf", groupWeeks(visitorData?.visitorData));
+				data = groupWeeks(visitorData?.visitorData).filter(function (
+					el
+				) {
+					return el != null;
 				});
 				// console.log("30");
 				// console.log("data ::;: 30 ", data);
@@ -197,7 +218,9 @@ const Linechart = () => {
 										"0px 0px 10px rgba(0, 0, 0, 0.15)",
 								}}>
 								<div style={{ color: "#6F767E" }}>
-									{pld.payload.week}
+									{pld?.payload?.week?.length === 1
+										? pld?.payload?.tooltipWeek
+										: pld?.payload?.week}
 									<br />
 									{pld.payload.date}
 								</div>

@@ -338,6 +338,53 @@ const Insights = () => {
 												md={6}
 												className=' justify-content-center align-items-center '>
 												<Linechart />
+												{recoilChartData?.growth
+													?.visitor && (
+													<div className='d-flex justify-content-center'>
+														<div
+															className='px-2 fw-bold d-flex align-items-center border-chart-label1'
+															style={{
+																color:
+																	recoilChartData
+																		?.growth
+																		?.visitorIndication ===
+																	"increment"
+																		? "#58A43D"
+																		: "#A43D3D",
+															}}>
+															{recoilChartData
+																?.growth
+																?.visitorIndication ===
+															"increment" ? (
+																<img
+																	src='assets/img/up.png'
+																	className='px-1'
+																/>
+															) : (
+																<img
+																	src='assets/img/down.png'
+																	className='px-1'
+																/>
+															)}
+															{
+																recoilChartData?.growth?.visitor.split(
+																	" "
+																)[0]
+															}
+														</div>{" "}
+														<div
+															className='border-chart-label2'
+															style={{
+																color: "#6F767E",
+															}}>
+															{recoilChartData?.growth?.visitor.slice(
+																recoilChartData?.growth?.visitor.indexOf(
+																	" "
+																) + 1
+															)}
+														</div>
+													</div>
+												)}
 											</Col>
 										</Row>
 									</Card>
@@ -397,6 +444,54 @@ const Insights = () => {
 												md={6}
 												className='justify-content-center align-items-center   '>
 												<Linechart1 />
+
+												{recoilChartData?.growth
+													?.contact && (
+													<div className='d-flex justify-content-center'>
+														<div
+															className='px-2 fw-bold d-flex align-items-center border-chart-label1'
+															style={{
+																color:
+																	recoilChartData
+																		?.growth
+																		?.contactIndication ===
+																	"increment"
+																		? "#58A43D"
+																		: "#A43D3D",
+															}}>
+															{recoilChartData
+																?.growth
+																?.contactIndication ===
+															"increment" ? (
+																<img
+																	src='assets/img/up.png'
+																	className='px-1'
+																/>
+															) : (
+																<img
+																	src='assets/img/down.png'
+																	className='px-1'
+																/>
+															)}
+															{
+																recoilChartData?.growth?.contact.split(
+																	" "
+																)[0]
+															}
+														</div>{" "}
+														<div
+															className='border-chart-label2'
+															style={{
+																color: "#6F767E",
+															}}>
+															{recoilChartData?.growth?.contact.slice(
+																recoilChartData?.growth?.contact.indexOf(
+																	" "
+																) + 1
+															)}
+														</div>
+													</div>
+												)}
 											</Col>
 										</Row>
 									</Card>

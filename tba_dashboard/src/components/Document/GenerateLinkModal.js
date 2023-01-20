@@ -61,7 +61,7 @@ const GenerateLinkModal = ({
 	return (
 		<div>
 			<Modal
-				className='d-flex mt-5 align-items-center'
+				className='d-flex mt-5 align-items-center zindex'
 				show={open}
 				onHide={handleClose}>
 

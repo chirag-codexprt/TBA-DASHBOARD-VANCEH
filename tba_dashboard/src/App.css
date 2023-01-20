@@ -106,10 +106,12 @@ body {
   color: #000;
   /* border-bottom: 3px solid #85A6A2 !important; */
 }
+
 .actives {
   color: #000;
   border-bottom: 3px solid #85A6A2 !important;
 }
+
 .inactive {
   color: #CED4DB;
 }
@@ -237,8 +239,9 @@ body {
 .fs-color {
   color: #6F767E !important;
 }
+
 .border-class {
-  border:2px solid #6F767E60 !important;
+  border: 2px solid #6F767E60 !important;
 }
 
 .fs-color-fill {
@@ -387,15 +390,15 @@ body {
   cursor: pointer;
 }
 
-.activeBtnTable{
+.activeBtnTable {
   background: #85A6A2 !important;
-  color : white !important;
+  color: white !important;
   font-weight: bold !important;
 }
 
-.inActiveBtnTable{
+.inActiveBtnTable {
   background: transparent !important;
-  color : black !important;
+  color: black !important;
 }
 
 .Custom-Tooltip {
@@ -435,33 +438,38 @@ body {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
 }
+
 .react-datepicker-wrapper {
- 
+
   width: 4% !important;
 }
 
-.pagination-btn-shadow{
-border:1px solid #EFEFEF;
-border-radius: 50%;
-padding: 3px;
+.pagination-btn-shadow {
+  border: 1px solid #EFEFEF;
+  border-radius: 50%;
+  padding: 3px;
 }
 
-.border-chart-label1{
+.border-chart-label1 {
 
-    border-top:1px solid #85A6A2;
-    border-bottom:1px solid #85A6A2;
-    border-left:1px solid #85A6A2;
-    border-right: 0px;
-    padding-left: 2rem !important;
-    border-radius: 5px 0px 0px 5px;
+  border-top: 1px solid #85A6A2;
+  border-bottom: 1px solid #85A6A2;
+  border-left: 1px solid #85A6A2;
+  border-right: 0px;
+  padding-left: 2rem !important;
+  border-radius: 5px 0px 0px 5px;
 }
 
-.border-chart-label2{
+.border-chart-label2 {
 
-    border-top:1px solid #85A6A2;
-    border-bottom:1px solid #85A6A2;
-    border-left:0px;
-    border-right: 1px solid #85A6A2;
-    padding-right: 1rem;
-    border-radius: 0px 5px 5px 0px;
+  border-top: 1px solid #85A6A2;
+  border-bottom: 1px solid #85A6A2;
+  border-left: 0px;
+  border-right: 1px solid #85A6A2;
+  padding-right: 1rem;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.zindex {
+  z-index: 50000 !important;
 }

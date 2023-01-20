@@ -55,16 +55,19 @@ const ProfilePicture = ({ open, handleClose }) => {
 
 	return (
 		<>
+
 			<Modal
+				className="zindex mt-5"
 				show={open}
 				onHide={handleClose}
 				backdrop='static'
 				keyboard={false}
 				centered>
+
 				<Modal.Body>
 					<Row>
 						<Col
-							className=' fs-5 ms-3 mb-2'
+							className=' fs-5 my-3 ms-3 '
 							style={{ fontWeight: 900 }}>
 							Alterar foto
 						</Col>
@@ -143,7 +146,7 @@ const ProfilePicture = ({ open, handleClose }) => {
 							</div>
 						</Col>
 
-						<Col className='mx-auto' sm={6}>
+						<Col className='mx-auto mb-3' sm={6}>
 							<Button
 								onClick={onEditProfile}
 								className='fw-bolder fs-6 w-100 border-0 mt-2'

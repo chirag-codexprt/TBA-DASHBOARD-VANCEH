@@ -58,6 +58,7 @@ const AddAdmin = ({ open, handleClose }) => {
 	return (
 		<>
 			<Modal
+				className="mt-5 zindex"
 				show={open}
 				onHide={handleClose}
 				backdrop='static'
@@ -100,8 +101,8 @@ const AddAdmin = ({ open, handleClose }) => {
 							</InputGroup>
 						</Col>
 						<Col md={12}>
-							<p className='fw-bold fs-6 mb-0'>Autorizações</p>
-							<Table className='border-white p-3 table-fit text-wrap tbl-color-text text-center  '>
+							<p className='fw-bold fs-6 mt-2 mb-0'>Autorizações</p>
+							<Table className='border-white p-3 table-fit text-wrap tbl-color-text text-center mb-4 '>
 								<thead className='border-white small fw-normal'>
 									<tr className="text-start">
 										<th style={{ color: "#B5B6B7" }}>
@@ -225,7 +226,7 @@ const AddAdmin = ({ open, handleClose }) => {
 							</InputGroup>
 						</Col>
 						{/* button */}
-						<Col className='text-center'>
+						<Col className='text-center my-3'>
 							<Button
 								onClick={submitAdmin}
 								className='fw-bolder fs-6 w-50 border-0'

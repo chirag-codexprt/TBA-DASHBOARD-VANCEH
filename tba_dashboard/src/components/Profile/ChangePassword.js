@@ -52,6 +52,7 @@ const ChangePassword = ({ open, handleClose }) => {
 	return (
 		<>
 			<Modal
+				className="zindex mt-5"
 				show={open}
 				onHide={handleClose}
 				backdrop='static'

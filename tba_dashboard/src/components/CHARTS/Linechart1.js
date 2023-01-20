@@ -207,10 +207,10 @@ const Linechart = () => {
 					offset={20}
 				/>
 				<XAxis tick={false} axisLine={false}>
-					<Label
+					{/* <Label
 						value={contactData?.growth?.contact}
 						offset={0}
-						position='insideBottom'></Label>
+						position='insideBottom'></Label> */}
 				</XAxis>
 				<Tooltip
 					cursor={false}

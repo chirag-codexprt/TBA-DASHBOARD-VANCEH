@@ -444,6 +444,7 @@ body {
   width: 4% !important;
 }
 
+<<<<<<< HEAD
 .pagination-btn-shadow {
   border: 1px solid #EFEFEF;
   border-radius: 50%;
@@ -452,4 +453,30 @@ body {
 
 .zindex {
   z-index: 50000 !important;
+=======
+.pagination-btn-shadow{
+border:1px solid #EFEFEF;
+border-radius: 50%;
+padding: 3px;
+}
+
+.border-chart-label1{
+
+    border-top:1px solid #85A6A2;
+    border-bottom:1px solid #85A6A2;
+    border-left:1px solid #85A6A2;
+    border-right: 0px;
+    padding-left: 2rem !important;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.border-chart-label2{
+
+    border-top:1px solid #85A6A2;
+    border-bottom:1px solid #85A6A2;
+    border-left:0px;
+    border-right: 1px solid #85A6A2;
+    padding-right: 1rem;
+    border-radius: 0px 5px 5px 0px;
+>>>>>>> 9cfc2b052343dfd292be70757f2ba601446f3d19
 }

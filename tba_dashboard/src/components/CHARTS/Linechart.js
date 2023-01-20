@@ -112,7 +112,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-						[]);
+					[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -155,7 +155,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-						[]);
+					[]);
 
 					return groupsByMonthNumber?.map(function (group) {
 						return {
@@ -229,7 +229,7 @@ const Linechart = () => {
 						dataKey='visitas'
 						stroke={
 							visitorData?.growth?.visitorIndication ===
-								"increment"
+							"increment"
 								? "#58A43D"
 								: "#A43D3D"
 						}
@@ -238,11 +238,11 @@ const Linechart = () => {
 						activeDot={{ r: 8 }}
 						offset={20}></Line>
 					<XAxis tick={false} axisLine={false}>
-						<Label
+						{/* <Label
 							value={visitorData?.growth?.visitor}
 							offset={0}
 							position='insideBottom'>
-						</Label>
+						</Label> */}
 					</XAxis>
 
 					<Tooltip

@@ -7,9 +7,10 @@ import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import { generateCode, inviteAdmin } from "../../helper/API/auth";
 import { toast } from "react-toastify";
+import copy from "copy-to-clipboard";
 
 const AddAdmin = ({ open, handleClose }) => {
-	const [copy, setCopy] = useState(false);
+	const [copyText, setCopyText] = useState(false);
 	const [contact, setContact] = useState(false);
 	const [document, setDocument] = useState(false);
 	const [newAdmin, setNewAdmin] = useState(false);
@@ -47,25 +48,26 @@ const AddAdmin = ({ open, handleClose }) => {
 	};
 
 	const handleCopy = (code) => {
-		if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-			return { i: navigator.clipboard.writeText(code), j: setCopy(true) };
-			// return Promise.reject("The Clipboard API is not available.");
-		} else {
-			return setCopy(false);
+		if (code) {
+			copy(code);
+			setCopyText(true);
+			setTimeout(() => {
+				setCopyText(false);
+				console.log("called time out");
+			}, 1000);
 		}
 	};
 
 	return (
 		<>
 			<Modal
-				className="mt-5 zindex"
+				className='mt-5 zindex'
 				show={open}
 				onHide={handleClose}
 				backdrop='static'
 				keyboard={false}
 				centered>
-
-				<Modal.Body className="">
+				<Modal.Body className=''>
 					<Row>
 						<Col md={10} className='fw-bolder fs-5 my-3 '>
 							Código para nova conta
@@ -74,11 +76,11 @@ const AddAdmin = ({ open, handleClose }) => {
 							<Button
 								onClick={handleClose}
 								className='border-0 text-dark p-0 mx-4 fs-4 bg-white '>
-								<img src="assets/img/close.png"></img>
+								<img src='assets/img/close.png'></img>
 							</Button>
 						</Col>
 					</Row>
-					<Row className="px-1 py-0">
+					<Row className='px-1 py-0'>
 						<Col md={12} className=''>
 							<p className='fs-6 fw-bold'>
 								Qual o cargo da pessoa?
@@ -86,9 +88,8 @@ const AddAdmin = ({ open, handleClose }) => {
 							<InputGroup
 								className='mb-3 border-0 rounded '
 								style={{ backgroundColor: "#F4F6F8" }}>
-								<InputGroup.Text
-									className=' border-0 '
-								><img src="assets/img/briefcase.png " />
+								<InputGroup.Text className=' border-0 '>
+									<img src='assets/img/briefcase.png ' />
 								</InputGroup.Text>
 								<Form.Control
 									style={{ backgroundColor: "#F4F6F8" }}
@@ -101,10 +102,12 @@ const AddAdmin = ({ open, handleClose }) => {
 							</InputGroup>
 						</Col>
 						<Col md={12}>
-							<p className='fw-bold fs-6 mt-3 mb-0'>Autorizações</p>
+							<p className='fw-bold fs-6 mt-3 mb-0'>
+								Autorizações
+							</p>
 							<Table className='border-white p-3 table-fit text-wrap tbl-color-text text-center mb-4 '>
 								<thead className='border-white small fw-normal'>
-									<tr className="text-start">
+									<tr className='text-start'>
 										<th style={{ color: "#B5B6B7" }}>
 											Contatos{" "}
 										</th>
@@ -117,7 +120,7 @@ const AddAdmin = ({ open, handleClose }) => {
 									</tr>
 								</thead>
 								<tbody>
-									<tr className="text-start">
+									<tr className='text-start'>
 										<td className='fw-bold small p-0'>
 											{contact ? (
 												<Button
@@ -126,7 +129,7 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant=' success'
 													className=' button-green  fw-bold text-success p-0  border-0 '>
-													<small className="d-flex align-items-center">
+													<small className='d-flex align-items-center'>
 														<i className='bi bi-check fw-bold fs-5'></i>
 														Autorizar
 													</small>
@@ -138,8 +141,8 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant='danger'
 													className=' fw-bold small text-danger button-red p-0'>
-													<small className="d-flex align-items-center">
-														<i className='bi bi-x fw-bold fs-5' ></i>
+													<small className='d-flex align-items-center'>
+														<i className='bi bi-x fw-bold fs-5'></i>
 														Remover
 													</small>
 												</Button>
@@ -153,7 +156,7 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant=' success'
 													className='small button-green  fw-bold text-success p-0 border-0 '>
-													<small className="d-flex align-items-center">
+													<small className='d-flex align-items-center'>
 														<i className='bi bi-check fs-5 fw-bold'></i>
 														Autorizar
 													</small>
@@ -165,7 +168,7 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant='danger'
 													className='small fw-bold text-danger button-red p-0'>
-													<small className="d-flex align-items-center">
+													<small className='d-flex align-items-center'>
 														<i className='bi bi-x fs-5 fw-bold'></i>
 														Remover
 													</small>
@@ -180,8 +183,8 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant=' success'
 													className='small button-green  fw-bold text-success p-0 border-0 '>
-													<small className="d-flex align-items-center">
-														<i className='bi bi-check fs-5 fw-bold' ></i>
+													<small className='d-flex align-items-center'>
+														<i className='bi bi-check fs-5 fw-bold'></i>
 														Autorizar
 													</small>
 												</Button>
@@ -192,7 +195,7 @@ const AddAdmin = ({ open, handleClose }) => {
 													}
 													variant='danger'
 													className='small fw-bold text-danger button-red p-0'>
-													<small className="d-flex align-items-center">
+													<small className='d-flex align-items-center'>
 														<i className='bi bi-x fs-5 fw-bold'></i>
 														Remover
 													</small>
@@ -218,10 +221,10 @@ const AddAdmin = ({ open, handleClose }) => {
 									style={{
 										backgroundColor: "#F4F6F8",
 										cursor: "pointer",
-										color: "#85A6A2"
+										color: "#85A6A2",
 									}}
 									onClick={() => handleCopy(code)}>
-									{copy ? "Copiada" : "Copiar"}
+									{copyText ? "Copiada" : "Copiar"}
 								</InputGroup.Text>
 							</InputGroup>
 						</Col>

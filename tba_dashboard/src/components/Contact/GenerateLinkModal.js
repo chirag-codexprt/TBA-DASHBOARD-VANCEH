@@ -3,6 +3,7 @@ import { Button, Col, Form, InputGroup, Modal, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { LINK_URL } from "../../config";
 import { generateLink } from "../../helper/API/contact";
+import copy from "copy-to-clipboard";
 
 const GenerateLinkModal = ({
 	open,
@@ -11,7 +12,7 @@ const GenerateLinkModal = ({
 	refresh,
 	setRefresh,
 }) => {
-	const [copy, setCopy] = useState(false);
+	const [copyText, setCopyText] = useState(false);
 	const [formValues, setFormValues] = useState({
 		cpf: true,
 		socialContract: true,
@@ -49,10 +50,13 @@ const GenerateLinkModal = ({
 	};
 
 	const handleCopy = (code) => {
-		if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-			return { i: navigator.clipboard.writeText(code), j: setCopy(true) };
-		} else {
-			return setCopy(false);
+		if (code) {
+			copy(code);
+			setCopyText(true);
+			setTimeout(() => {
+				setCopyText(false);
+				console.log("called time out");
+			}, 1000);
 		}
 	};
 
@@ -64,10 +68,15 @@ const GenerateLinkModal = ({
 				onHide={handleClose}>
 				<Row className='p-3 px-4 mt-2'>
 					<Col md={10} xs={9}>
-						<h5 className="fw-bolder">Link para solicitação de documentos</h5>
+						<h5 className='fw-bolder'>
+							Link para solicitação de documentos
+						</h5>
 					</Col>
-					<Col className="text-end" >
-						<img style={{ cursor: 'pointer' }} onClick={handleClose} src="assets/img/close.png"></img>
+					<Col className='text-end'>
+						<img
+							style={{ cursor: "pointer" }}
+							onClick={handleClose}
+							src='assets/img/close.png'></img>
 					</Col>
 				</Row>
 				<Row className='flex-column px-4'>
@@ -127,12 +136,13 @@ const GenerateLinkModal = ({
 								className='border-0 c-point fw-normal'
 								style={{ color: "#85A6A2" }}
 								onClick={() => handleCopy(link)}>
-								{copy ? "Copiada" : "Copiar"}
+								{copyText ? "Copiada" : "Copiar"}
 							</InputGroup.Text>
 						</InputGroup>
 					</Col>
 					<Col className='my-4 w-100 d-flex justify-content-center'>
-						<Button className="border-0"
+						<Button
+							className='border-0'
 							style={{ background: "#1C3D59" }}
 							onClick={submitForm}>
 							Encaminhar

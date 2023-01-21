@@ -137,7 +137,8 @@ const PermissonTooltip = ({
 											width: "80px",
 											height: "80px",
 											borderRadius: "50%",
-											objectFit: "cover"
+											objectFit: "cover",
+											display: "flex",
 										}}>
 										<img
 											src={

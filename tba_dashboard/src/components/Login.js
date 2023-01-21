@@ -136,12 +136,9 @@ const Login = () => {
 	return (
 		<>
 			<div className='Dashboard d-flex align-items-center '>
-				<Row className='w-100 m-1 d-flex align-items-center justify-content-around'>
-					<Col
-						md={4}
-						sm={4}
-						xs={12}
-						className='d-flex mb-3 justify-content-center'>
+				<Row className='w-100 m-1 d-flex align-items-center justify-content-center'>
+					<Col md={4} sm={4} xs={12}
+						className='d-flex mb-3 justify-content-start'>
 						<div className='TBA-Logo d-flex align-items-center justify-content-center'>
 							<img src='/assets/img/TBA-Logo.png'></img>
 						</div>

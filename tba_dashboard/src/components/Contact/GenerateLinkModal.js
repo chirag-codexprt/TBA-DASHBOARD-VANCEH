@@ -62,7 +62,7 @@ const GenerateLinkModal = ({
 				className='d-flex mt-5 align-items-center zindex'
 				show={open}
 				onHide={handleClose}>
-				<Row className='p-3 px-4'>
+				<Row className='p-3 px-4 mt-2'>
 					<Col md={10} xs={9}>
 						<h5 className="fw-bolder">Link para solicitação de documentos</h5>
 					</Col>

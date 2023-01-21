@@ -135,7 +135,9 @@ const PermissonTooltip = ({
 									<div
 										style={{
 											width: "80px",
+											height: "80px",
 											borderRadius: "50%",
+											objectFit: "cover"
 										}}>
 										<img
 											src={

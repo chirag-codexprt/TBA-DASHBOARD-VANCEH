@@ -101,7 +101,7 @@ const AddAdmin = ({ open, handleClose }) => {
 							</InputGroup>
 						</Col>
 						<Col md={12}>
-							<p className='fw-bold fs-6 mt-2 mb-0'>Autorizações</p>
+							<p className='fw-bold fs-6 mt-3 mb-0'>Autorizações</p>
 							<Table className='border-white p-3 table-fit text-wrap tbl-color-text text-center mb-4 '>
 								<thead className='border-white small fw-normal'>
 									<tr className="text-start">

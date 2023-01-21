@@ -4,6 +4,7 @@ import {
 	REGISTER_ADMIN,
 	GENERATE_NEW_CODE,
 	INVITE_NEW_ADMIN,
+	GENERATE_DESIGNATION,
 } from "../url";
 
 export const loginAdmin = (submitData) => {
@@ -23,6 +24,19 @@ export const registerAdmin = (submitData) => {
 	// console.log("submitData", submitData);
 	return new Promise((resolve, reject) => {
 		ApiCall(REGISTER_ADMIN, "post", submitData)
+			.then((res) => {
+				resolve(res.data);
+			})
+			.catch((err) => {
+				reject();
+			});
+	});
+};
+
+export const getDesignation = (submitData) => {
+	console.log("submitData", submitData);
+	return new Promise((resolve, reject) => {
+		ApiCall(GENERATE_DESIGNATION, "post", submitData)
 			.then((res) => {
 				resolve(res.data);
 			})

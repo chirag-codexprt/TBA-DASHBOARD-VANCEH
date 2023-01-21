@@ -11,6 +11,8 @@ const RegisterForm = ({
 	confirmPassword,
 	setConfirmPassword,
 	loading,
+	registerFormValues,
+	getDesignaition,
 }) => {
 	return (
 		<div>
@@ -32,10 +34,13 @@ const RegisterForm = ({
 								name='code'
 								onChange={handleRegisterForm}
 								aria-describedby='basic-addon1'
+								onBlur={getDesignaition}
 							/>
 						</InputGroup>
 
-						<Form.Label className='fs-6 fw-bold'>Seu cargo</Form.Label>
+						<Form.Label className='fs-6 fw-bold'>
+							Seu cargo
+						</Form.Label>
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
@@ -43,10 +48,12 @@ const RegisterForm = ({
 									style={{ color: "#CED4DB" }}></i>
 							</InputGroup.Text>
 							<Form.Control
-								placeholder='Marketing'
+								placeholder='Sua função'
 								name='designation'
 								className='ps-0'
 								onChange={handleRegisterForm}
+								disabled
+								defaultValue={registerFormValues.designation}
 								aria-describedby='basic-addon1'
 							/>
 						</InputGroup>
@@ -115,7 +122,9 @@ const RegisterForm = ({
 							</InputGroup.Text>
 						</InputGroup>
 
-						<Form.Label className='fs-6 fw-bold'>Repetir senha</Form.Label>
+						<Form.Label className='fs-6 fw-bold'>
+							Repetir senha
+						</Form.Label>
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i

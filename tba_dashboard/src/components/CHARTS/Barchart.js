@@ -270,6 +270,7 @@ function BarChartVisitor() {
 					axisLine={false}
 					tickMargin='10'
 					tickLine={false}
+					interval={0}
 				/>
 
 				<Tooltip

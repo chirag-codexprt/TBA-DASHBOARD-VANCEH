@@ -36,9 +36,9 @@ const Documents = () => {
 				setTable(res.data);
 				setTableRow(res.data);
 				setLoading(false);
-				res.data?.filter((obj, index) => {
-					setIdArray((old) => [...old, obj.id]);
-				});
+				// res.data?.filter((obj, index) => {
+				// 	setIdArray((old) => [...old, obj.id]);
+				// });
 			} else {
 				setTableRow([]);
 				setLoading(false);

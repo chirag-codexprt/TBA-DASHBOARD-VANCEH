@@ -23,12 +23,12 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 	useEffect(() => {
 		setTableData(tableRow);
 
-		tableRow?.filter((obj, index) => {
-			// console.log("obj", obj.status === "pending");
-			if (obj.status === "pending") {
-				setIdArray((old) => [...old, obj.id]);
-			}
-		});
+		// tableRow?.filter((obj, index) => {
+		// 	// console.log("obj", obj.status === "pending");
+		// 	if (obj.status === "pending") {
+		// 		setIdArray((old) => [...old, obj.id]);
+		// 	}
+		// });
 	}, [tableRow]);
 
 	const [currentPage, setCurrentPage] = useState(1);

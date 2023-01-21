@@ -38,7 +38,7 @@ function App() {
 					path='/Insights'
 					element={<Protected Component={Insights} />}
 				/>
-				{permissions.contact ? (
+				{permissions?.contact ? (
 					<Route
 						path='/Contatos'
 						element={<Protected Component={Contact} />}
@@ -46,7 +46,7 @@ function App() {
 				) : (
 					<Route path='error' element={<ErrorPage />} />
 				)}
-				{permissions.document ? (
+				{permissions?.document ? (
 					<Route
 						path='/Documentos'
 						element={<Protected Component={Documents} />}
@@ -54,7 +54,7 @@ function App() {
 				) : (
 					<Route path='error' element={<ErrorPage />} />
 				)}
-				{permissions.newAdmin ? (
+				{permissions?.newAdmin ? (
 					<Route
 						path='/Permissoes'
 						element={<Protected Component={Permissões} />}

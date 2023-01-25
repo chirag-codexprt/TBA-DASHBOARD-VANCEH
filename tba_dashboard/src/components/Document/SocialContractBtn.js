@@ -16,7 +16,7 @@ const SocialContractBtn = ({ handleShowImageModal, obj }) => {
 							color: "#C4CCD2",
 							fontSize: "11px",
 						}}>
-						Aguardando análise, visualizar?
+						Já anexada, visualizar?
 					</h6>
 				</Button>
 			)}

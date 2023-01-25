@@ -261,6 +261,11 @@ body {
   font-size: 0.8rem !important;
 }
 
+.Doc-Font-Color {
+  font-size: 16px;
+  color: #B5B6B7;
+}
+
 /* pagination */
 
 .page-link {
@@ -486,6 +491,7 @@ body {
   box-shadow: none !important;
   border-top-right-radius: 6px !important;
   border-bottom-right-radius: 6px !important;
+
 }
 
 .CardBtn:hover {
@@ -512,4 +518,19 @@ body {
 
 .accordion-button {
   display: block;
+}
+
+.bg-f4f4f4 {
+  background-color: #F4F4F4 !important;
+}
+
+.badge-relative {
+  position: relative;
+}
+
+.badge-absolute {
+  z-index: 1000;
+  position: absolute;
+  margin-top: -2.9rem;
+  margin-left: 18rem;
 }

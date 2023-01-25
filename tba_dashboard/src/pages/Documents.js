@@ -7,6 +7,7 @@ import { getDocumentList } from "../helper/API/document";
 import Loader from "../components/Loader";
 import { documentTableData } from "../recoil/Atoms";
 import { useRecoilState } from "recoil";
+import NewMemberAdd from "../components/Document/NewMemberAdd";
 
 const Documents = () => {
 	const [tableRow, setTableRow] = useState([]);
@@ -22,6 +23,7 @@ const Documents = () => {
 	const [id, setId] = useState(null);
 	const [open, setOpen] = useState(false);
 	const [idArray, setIdArray] = useState([]);
+	const [show, setShow] = useState(false);
 
 	// console.log('search', search)
 
@@ -159,6 +161,17 @@ const Documents = () => {
 								onClick={(e) => handleToggle("All")}>
 								Todas
 							</Button>
+							<Button
+								onClick={() => {
+									setShow(true);
+								}}
+								style={{
+									backgroundColor: "#1C3D59",
+									marginLeft: "2.5rem",
+								}}
+								className='fw-bold align-items-center border-0'>
+								+ Novo cliente
+							</Button>
 						</TableNavbar>
 					</div>
 					{loading ? (
@@ -177,6 +190,14 @@ const Documents = () => {
 						/>
 					)}
 				</Card>
+				{show && (
+					<NewMemberAdd
+						show={show}
+						handleClose={() => setShow(false)}
+						// email={email}
+						// setEmail={setEmail}
+					/>
+				)}
 			</AfterAuth>
 		</>
 	);

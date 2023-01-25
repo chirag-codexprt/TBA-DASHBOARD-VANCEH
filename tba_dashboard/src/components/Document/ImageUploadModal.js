@@ -74,8 +74,7 @@ const ImageUploadModal = ({
 					<Col className='mx-4'>
 						<div
 							className='border d-flex align-items-center justify-content-center position-relative rounded-2 mb-4'
-							style={{ height: "400px" }}
-							onClick={handleClick}>
+							style={{ height: "400px" }}>
 							<img
 								src={
 									imagePreview
@@ -89,7 +88,7 @@ const ImageUploadModal = ({
 								}}
 							/>
 
-							<div
+							{/* <div
 								style={{
 									height: "0px",
 									width: "0px",
@@ -102,7 +101,7 @@ const ImageUploadModal = ({
 									onChange={handleImageChange}
 									style={{ display: "none" }}
 								/>
-							</div>
+							</div> */}
 						</div>
 						<div>
 							<a

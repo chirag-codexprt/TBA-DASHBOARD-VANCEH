@@ -17,8 +17,13 @@ import SocialContractCard from "./SocialContractCard";
 import AddressProofCard from "./AddressProofCard";
 import { toast } from "react-toastify";
 import CpfCard from "./CpfCard";
+import { contactForm } from "../../helper/API/contact";
+import {
+	submitAddressDocument,
+	submitDocument,
+} from "../../helper/API/document";
 
-const NewMemberAdd = ({ show }) => {
+const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState(null);
 	const [images, setImages] = React.useState("");
@@ -62,11 +67,85 @@ const NewMemberAdd = ({ show }) => {
 			[e.target.name]: e.target.value,
 		});
 	};
-	console.log("formValues", formValues);
+
+	const submitDocumentForm = () => {
+		// console.log("formValues", formValues);
+		if (!formValues.name) {
+			toast.error("Digite o nome");
+		} else if (!formValues.cpfOrCnpj) {
+			toast.error("Digite cnpj ou cpf");
+		} else if (!formValues.emailOrPhone) {
+			toast.error("Por favor insira e-mail ou telefone");
+		} else if (!images) {
+			toast.error("Selecione o documento");
+		} else if (!addressImages) {
+			toast.error("Selecione o documento");
+		} else {
+			contactForm(formValues).then((res) => {
+				// console.log("first form", res);
+				if (res.success) {
+					if (images) {
+						setLoading(true);
+						let formData = new FormData();
+						formData.append("socialContract", images);
+						formData.append("id", res.data.id);
+						submitDocument(formData).then((resp) => {
+							// console.log("resp img::", resp);
+							if (resp.success) {
+								setImages("");
+								setAddressImagePreview("");
+								if (addressImages) {
+									setLoading(true);
+									let formDataAddress = new FormData();
+									formDataAddress.append(
+										"addressProof",
+										addressImages
+									);
+									formDataAddress.append("id", res.data.id);
+									submitAddressDocument(formDataAddress).then(
+										(res) => {
+											// console.log(
+											// 	"resp Address ::",
+											// 	resp
+											// );
+											if (res.success) {
+												setLoading(false);
+												setAddressImages("");
+												setImagePreview("");
+												toast.success(res.message);
+												setRefresh(refresh + 1);
+												handleClose();
+											} else {
+												setLoading(false);
+												toast.error(res.message);
+											}
+										}
+									);
+								}
+							} else {
+								toast.error(res.message);
+							}
+						});
+					}
+				} else {
+					toast.error(res.message);
+					// console.log("res", res);
+				}
+			});
+		}
+	};
 	return (
-		<Modal show={show} className='zindex' size='xl'>
+		<Modal
+			show={show}
+			onHide={handleClose}
+			className='zindex'
+			size='xl'
+			aria-labelledby='contained-modal-title-vcenter'
+			centered>
 			<ModalHeader className='border-0' closeButton>
-				<Modal.Title>Criar novo cliente</Modal.Title>
+				<Modal.Title id='contained-modal-title-vcenter'>
+					Criar novo cliente
+				</Modal.Title>
 			</ModalHeader>
 			<ModalBody>
 				<Row className='mt-3'>
@@ -155,26 +234,23 @@ const NewMemberAdd = ({ show }) => {
 					/>
 				</Row>
 				<div className='d-flex justify-content-end'>
-					{/* {(data?.addressProof === null ||
-            data?.socialContract === null) && ( */}
 					<Button
-						// onClick={handleSubmit}
+						onClick={submitDocumentForm}
 						className='mt-4 m-2 p-3 px-4 fw-bold border-0'
-						// disabled={loading}
+						disabled={loading}
 						style={{
 							width: "fit-content",
 							background: "#1C3D59",
 						}}>
 						Encaminhar
-						{/* {loading && (
-                        <Spinner
-                            animation='grow'
-                            variant='light'
-                            className='ms-3 py-2 fw-bold fs-4'
-                        />
-                    )} */}
+						{loading && (
+							<Spinner
+								animation='grow'
+								variant='light'
+								className='ms-3 py-2 fw-bold fs-4'
+							/>
+						)}
 					</Button>
-					{/* )} */}
 				</div>
 			</ModalBody>
 		</Modal>

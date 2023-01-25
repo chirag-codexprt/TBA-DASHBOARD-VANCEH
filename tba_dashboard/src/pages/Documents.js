@@ -194,8 +194,8 @@ const Documents = () => {
 					<NewMemberAdd
 						show={show}
 						handleClose={() => setShow(false)}
-						// email={email}
-						// setEmail={setEmail}
+						refresh={refresh}
+						setRefresh={setRefresh}
 					/>
 				)}
 			</AfterAuth>

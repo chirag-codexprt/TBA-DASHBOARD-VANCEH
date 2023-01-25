@@ -446,12 +446,12 @@ body {
 
 .pagination-btn-shadow {
   border: 1px solid #EFEFEF;
-height: 30px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-width: 30px;
-justify-content: center;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  width: 30px;
+  justify-content: center;
 }
 
 .border-chart-label1 {
@@ -476,4 +476,40 @@ justify-content: center;
 
 .zindex {
   z-index: 5000 !important;
+}
+
+
+/* document */
+.Cardinput {
+  background-color: #F4F6F8 !important;
+  padding: 10px 0px !important;
+  box-shadow: none !important;
+  border-top-right-radius: 6px !important;
+  border-bottom-right-radius: 6px !important;
+}
+
+.CardBtn:hover {
+  background-color: transparent !important;
+}
+
+
+.right-icon::before {
+  color: green !important
+}
+
+.pending-icon::before {
+  color: #ffc107 !important
+}
+
+.link-icon::before {
+  color: gray !important;
+}
+
+/* 
+/* .modal-dialog{
+  width: 450px !important;
+} */
+
+.accordion-button {
+  display: block;
 }

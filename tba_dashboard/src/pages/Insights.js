@@ -188,9 +188,8 @@ const Insights = () => {
 	const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
 		<div onClick={(e) => handleToggle("date")}>
 			<Button
-				className={`fs-color  mx-1 example-custom-input border-class ${
-					active.date ? "activeBtnTable" : "inActiveBtnTable"
-				}`}
+				className={`fs-color  mx-1 example-custom-input border-class ${active.date ? "activeBtnTable" : "inActiveBtnTable"
+					}`}
 				style={{ border: "5px solid #000 !important" }}
 				onClick={onClick}
 				ref={ref}>
@@ -227,31 +226,28 @@ const Insights = () => {
 										<InputGroup></InputGroup>
 									</Nav>
 									<Button
-										className={`fs-color  mx-1 border-0 ${
-											active.year
+										className={`fs-color  mx-1 border-0 ${active.year
 												? "activeBtnTable"
 												: "inActiveBtnTable"
-										}`}
+											}`}
 										onClick={(e) => handleToggle("yearly")}>
 										Ano
 									</Button>
 									<Button
-										className={`fs-color  mx-1 border-0 ${
-											active.month
+										className={`fs-color  mx-1 border-0 ${active.month
 												? "activeBtnTable"
 												: "inActiveBtnTable"
-										}`}
+											}`}
 										onClick={(e) =>
 											handleToggle("monthly")
 										}>
 										Mês
 									</Button>
 									<Button
-										className={`fs-color  mx-1 border-0 ${
-											active.week
+										className={`fs-color  mx-1 border-0 ${active.week
 												? "activeBtnTable"
 												: "inActiveBtnTable"
-										}`}
+											}`}
 										onClick={(e) => handleToggle("week")}>
 										Semana
 									</Button>
@@ -352,51 +348,51 @@ const Insights = () => {
 												<Linechart />
 												{recoilChartData?.growth
 													?.visitor && (
-													<div className='d-flex justify-content-center'>
-														<div
-															className='px-3 fw-bold d-flex align-items-center border-chart-label1'
-															style={{
-																color:
-																	recoilChartData
-																		?.growth
-																		?.visitorIndication ===
-																	"increment"
-																		? "#58A43D"
-																		: "#A43D3D",
-															}}>
-															{recoilChartData
-																?.growth
-																?.visitorIndication ===
-															"increment" ? (
-																<img
-																	src='assets/img/up.png'
-																	className='px-1'
-																/>
-															) : (
-																<img
-																	src='assets/img/down.png'
-																	className='px-1'
-																/>
-															)}
-															{
-																recoilChartData?.growth?.visitor.split(
-																	" "
-																)[0]
-															}
-														</div>{" "}
-														<div
-															className='border-chart-label2'
-															style={{
-																color: "#6F767E",
-															}}>
-															{recoilChartData?.growth?.visitor.slice(
-																recoilChartData?.growth?.visitor.indexOf(
-																	" "
-																) + 1
-															)}
+														<div className='d-flex justify-content-center'>
+															<div
+																className='px-3 fw-bold d-flex align-items-center border-chart-label1'
+																style={{
+																	color:
+																		recoilChartData
+																			?.growth
+																			?.visitorIndication ===
+																			"increment"
+																			? "#58A43D"
+																			: "#A43D3D",
+																}}>
+																{recoilChartData
+																	?.growth
+																	?.visitorIndication ===
+																	"increment" ? (
+																	<img
+																		src='assets/img/up.png'
+																		className='px-1'
+																	/>
+																) : (
+																	<img
+																		src='assets/img/down.png'
+																		className='px-1'
+																	/>
+																)}
+																{
+																	recoilChartData?.growth?.visitor.split(
+																		" "
+																	)[0]
+																}
+															</div>{" "}
+															<div
+																className='border-chart-label2'
+																style={{
+																	color: "#6F767E",
+																}}>
+																{recoilChartData?.growth?.visitor.slice(
+																	recoilChartData?.growth?.visitor.indexOf(
+																		" "
+																	) + 1
+																)}
+															</div>
 														</div>
-													</div>
-												)}
+													)}
 											</Col>
 										</Row>
 									</Card>
@@ -459,51 +455,51 @@ const Insights = () => {
 
 												{recoilChartData?.growth
 													?.contact && (
-													<div className='d-flex justify-content-center'>
-														<div
-															className='px-3 fw-bold d-flex align-items-center border-chart-label1'
-															style={{
-																color:
-																	recoilChartData
-																		?.growth
-																		?.contactIndication ===
-																	"increment"
-																		? "#58A43D"
-																		: "#A43D3D",
-															}}>
-															{recoilChartData
-																?.growth
-																?.contactIndication ===
-															"increment" ? (
-																<img
-																	src='assets/img/up.png'
-																	className='px-1'
-																/>
-															) : (
-																<img
-																	src='assets/img/down.png'
-																	className='px-1'
-																/>
-															)}
-															{
-																recoilChartData?.growth?.contact.split(
-																	" "
-																)[0]
-															}
-														</div>{" "}
-														<div
-															className='border-chart-label2'
-															style={{
-																color: "#6F767E",
-															}}>
-															{recoilChartData?.growth?.contact.slice(
-																recoilChartData?.growth?.contact.indexOf(
-																	" "
-																) + 1
-															)}
+														<div className='d-flex justify-content-center'>
+															<div
+																className='px-3 fw-bold d-flex align-items-center border-chart-label1'
+																style={{
+																	color:
+																		recoilChartData
+																			?.growth
+																			?.contactIndication ===
+																			"increment"
+																			? "#58A43D"
+																			: "#A43D3D",
+																}}>
+																{recoilChartData
+																	?.growth
+																	?.contactIndication ===
+																	"increment" ? (
+																	<img
+																		src='assets/img/up.png'
+																		className='px-1'
+																	/>
+																) : (
+																	<img
+																		src='assets/img/down.png'
+																		className='px-1'
+																	/>
+																)}
+																{
+																	recoilChartData?.growth?.contact.split(
+																		" "
+																	)[0]
+																}
+															</div>{" "}
+															<div
+																className='border-chart-label2'
+																style={{
+																	color: "#6F767E",
+																}}>
+																{recoilChartData?.growth?.contact.slice(
+																	recoilChartData?.growth?.contact.indexOf(
+																		" "
+																	) + 1
+																)}
+															</div>
 														</div>
-													</div>
-												)}
+													)}
 											</Col>
 										</Row>
 									</Card>
@@ -519,7 +515,7 @@ const Insights = () => {
 						</>
 					)}
 					{/* tabels */}
-					{permissions.contact ? (
+					{permissions?.contact ? (
 						loading ? (
 							<Loader />
 						) : (

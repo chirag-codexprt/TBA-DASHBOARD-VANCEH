@@ -20,7 +20,7 @@ import ErrorPage from "./pages/ErrorPage";
 function App() {
 	const login = useRecoilValue(loginAtom);
 	const permissions = login?.permissions;
-	console.log("permissions", permissions);
+	// console.log("permissions", permissions);
 	return (
 		<>
 			<ToastContainer position='top-center' />

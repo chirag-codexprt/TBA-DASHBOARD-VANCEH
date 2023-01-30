@@ -29,7 +29,7 @@ const GenerateLinkModal = ({
 		});
 	};
 
-	const submitForm = (e) => {
+	const submitForm = () => {
 		const submitData = {
 			permission: {
 				...formValues,
@@ -42,6 +42,7 @@ const GenerateLinkModal = ({
 			if (res.success) {
 				setRefresh(refresh + 1);
 				toast.success(res.message);
+				copy(link);
 				handleClose();
 			} else {
 				toast.error(res.message);
@@ -49,16 +50,16 @@ const GenerateLinkModal = ({
 		});
 	};
 
-	const handleCopy = (code) => {
-		if (code) {
-			copy(code);
-			setCopyText(true);
-			setTimeout(() => {
-				setCopyText(false);
-				console.log("called time out");
-			}, 1000);
-		}
-	};
+	// const handleCopy = (code) => {
+	// 	if (code) {
+	// 		copy(code);
+	// 		setCopyText(true);
+	// 		setTimeout(() => {
+	// 			setCopyText(false);
+	// 			console.log("called time out");
+	// 		}, 1000);
+	// 	}
+	// };
 
 	return (
 		<div>
@@ -131,13 +132,13 @@ const GenerateLinkModal = ({
 								className='border-0 p-3 fw-bold'
 								value={link}
 							/>
-							<InputGroup.Text
+							{/* <InputGroup.Text
 								id='basic-addon2'
 								className='border-0 c-point fw-normal'
 								style={{ color: "#85A6A2" }}
 								onClick={() => handleCopy(link)}>
 								{copyText ? "Copiada" : "Copiar"}
-							</InputGroup.Text>
+							</InputGroup.Text> */}
 						</InputGroup>
 					</Col>
 					<Col className='my-4 w-100 d-flex justify-content-center'>

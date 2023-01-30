@@ -14,9 +14,10 @@ const GenerateLinkModal = ({
 }) => {
 	const [copyText, setCopyText] = useState(false);
 	const [formValues, setFormValues] = useState({
-		cpf: true,
+		CPF: true,
 		socialContract: true,
 		proofOfAddress: true,
+		CNPJ: true
 	});
 
 	const link = `${LINK_URL}${editData.id}/${editData.documentRequest}`;
@@ -90,10 +91,23 @@ const GenerateLinkModal = ({
 								type='switch'
 								id='custom-switch'
 								checked
-								name='cpf'
+								name='CPF'
 								defaultChecked={formValues.cpf}
 							/>
-							<label>CPF/CNPJ</label>
+							<label>CPF</label>
+						</Form>
+					</Col>
+					<Col className='mt-2 '>
+						<Form className='d-flex align-items-center'>
+							<Form.Check
+								className='chack-item input-check fs-5 border-0'
+								type='switch'
+								id='custom-switch'
+								checked
+								name='CNPJ'
+								defaultChecked={formValues.cnpj}
+							/>
+							<label>CNPJ</label>
 						</Form>
 					</Col>
 					<Col className='mt-2 '>

@@ -5,7 +5,7 @@ import Dropzone from "react-dropzone";
 const AddressProofCard = ({ handleAddressChange, addressImages, data }) => {
 	return (
 		<>
-			<Col md={4} xs={12}>
+			<Col md={3} xs={12}>
 				<Dropzone onDrop={handleAddressChange}>
 					{({ getRootProps, getInputProps }) => (
 						<section className='wfp--dropzone'>

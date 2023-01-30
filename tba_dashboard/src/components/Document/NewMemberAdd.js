@@ -24,6 +24,7 @@ import {
 	submitAddressDocument,
 	submitDocument,
 } from "../../helper/API/document";
+import CnpjCard from "./CnpjCard";
 
 const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 	const [characterLimit] = useState(25);
@@ -257,6 +258,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 				</Row>
 				<Row className='mt-3 gx-2'>
 					<CpfCard formValues={formValues} />
+					<CnpjCard formValues={formValues} />
 
 					<SocialContractCard
 						handleFileChange={handleFileChange}

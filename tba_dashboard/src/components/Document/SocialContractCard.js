@@ -6,7 +6,7 @@ const SocialProofCard = ({ handleFileChange, images, data }) => {
 	return (
 		<>
 			{/* {data?.socialContract === null ? ( */}
-			<Col md={4} xs={12}>
+			<Col md={3} xs={12}>
 				<Dropzone onDrop={handleFileChange}>
 					{({ getRootProps, getInputProps }) => (
 						<section className='wfp--dropzone'>

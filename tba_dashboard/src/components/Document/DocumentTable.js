@@ -75,9 +75,10 @@ const DocumentTable = ({
 					<thead>
 						<tr style={{ color: "#B5B6B7", fontSize: "12px" }}>
 							<th width={"25%"}>Nome</th>
-							<th>CPF/CNPJ</th>
+							<th>CPF</th>
+							<th>CNPJ</th>
 							<th>Email/Telefone</th>
-							<th>Data</th>
+							{/* <th>Data</th> */}
 							<th>Hora</th>
 							<th>Status</th>
 						</tr>
@@ -103,14 +104,17 @@ const DocumentTable = ({
 									{obj.name}
 								</td>
 								<td onClick={() => handleShowRow(obj.id)}>
-									{obj.CpfOrCnpj}
+									{obj.CPF}
+								</td>
+								<td onClick={() => handleShowRow(obj.id)}>
+									{obj.CNPJ}
 								</td>
 								<td onClick={() => handleShowRow(obj.id)}>
 									{obj.email ? obj.email : obj.phone}
 								</td>
-								<td onClick={() => handleShowRow(obj.id)}>
+								{/* <td onClick={() => handleShowRow(obj.id)}>
 									{obj.date}
-								</td>
+								</td> */}
 								<td onClick={() => handleShowRow(obj.id)}>
 									{obj.time}
 								</td>
@@ -140,248 +144,248 @@ const DocumentTable = ({
 								</td>
 								{(obj.allStatus === "pending" ||
 									obj.allStatus === "approved") && (
-									<div>
-										{idArray.includes(obj.id) ? (
-											<Row
-												className='position-absolute'
-												style={{
-													left: "0",
-													bottom: "0",
-													width: "100%",
-												}}>
-												<Col>
-													<Col
-														style={{
-															color: "#B5B6B7",
-														}}>
-														CPF/CNPJ
-													</Col>
-													<Col className=''>
-														<Button
-															className='w-100 p-0'
-															variant='outline-success'>
-															<i class='bi bi-check-lg fs-2'></i>
-															<h6
-																style={{
-																	color: "#C4CCD2",
-																	fontSize:
-																		"11px",
-																}}>
-																Já aprovada,
-																visualizar?
-															</h6>
-														</Button>
-													</Col>
-												</Col>
-												<Col>
-													<Col
-														style={{
-															color: "#B5B6B7",
-														}}>
-														Contrato social
-													</Col>
+										<div>
+											{idArray.includes(obj.id) ? (
+												<Row
+													className='position-absolute'
+													style={{
+														left: "0",
+														bottom: "0",
+														width: "100%",
+													}}>
 													<Col>
-														{obj?.socialContract ===
-															null && (
+														<Col
+															style={{
+																color: "#B5B6B7",
+															}}>
+															CPF/CNPJ
+														</Col>
+														<Col className=''>
 															<Button
-																className='w-100 p-0 ms-0'
-																onClick={() =>
-																	handleShowImageModal(
-																		obj,
-																		"socialContract"
-																	)
-																}
-																variant='outline-secondary'>
-																<label
-																	style={{
-																		rotate: "45deg",
-																	}}>
-																	<i class='bi bi-paperclip fs-2'></i>
-																</label>
+																className='w-100 p-0'
+																variant='outline-success'>
+																<i class='bi bi-check-lg fs-2'></i>
 																<h6
 																	style={{
 																		color: "#C4CCD2",
 																		fontSize:
 																			"11px",
 																	}}>
-																	Aguardando
-																	análise,
+																	Já aprovada,
 																	visualizar?
 																</h6>
 															</Button>
-														)}
-														{obj?.socialContract &&
-															!obj?.socialContract
-																?.approved && (
-																<Button
-																	className='w-100 p-0 ms-0'
-																	onClick={() =>
-																		handleShowImageModal(
-																			obj,
-																			"socialContract"
-																		)
-																	}
-																	variant='outline-warning'>
-																	<i class='bi bi-clock-fill fs-2'></i>
-
-																	<h6
-																		style={{
-																			color: "#C4CCD2",
-																			fontSize:
-																				"11px",
-																		}}>
-																		Aguardando
-																		análise,
-																		visualizar?
-																	</h6>
-																</Button>
-															)}
-
-														{obj?.socialContract &&
-															obj?.socialContract
-																?.approved && (
-																<Button
-																	className='w-100 p-0 ms-0'
-																	onClick={() =>
-																		handleShowImageModal(
-																			obj,
-																			"socialContract"
-																		)
-																	}
-																	variant='outline-success'>
-																	<i class='bi bi-check-lg fs-2'></i>
-
-																	<h6
-																		style={{
-																			color: "#C4CCD2",
-																			fontSize:
-																				"11px",
-																		}}>
-																		Aguardando
-																		análise,
-																		visualizar?
-																	</h6>
-																</Button>
-															)}
-													</Col>
-												</Col>
-												<Col>
-													<Col
-														style={{
-															color: "#B5B6B7",
-														}}>
-														Comprovante de
-														residência
+														</Col>
 													</Col>
 													<Col>
-														{obj?.addressProof ===
-															null && (
-															<Button
-																className='w-100 p-0 ms-0'
-																onClick={() =>
-																	handleShowAddressModal(
-																		obj,
-																		"addressProof"
-																	)
-																}
-																variant='outline-secondary'>
-																<label
-																	style={{
-																		rotate: "45deg",
-																	}}>
-																	<i class='bi bi-paperclip fs-2'></i>
-																</label>
-																<h6
-																	style={{
-																		color: "#C4CCD2",
-																		fontSize:
-																			"11px",
-																	}}>
-																	Arraste e
-																	solte aqui
-																	ou importe
-																	dos seus
-																	arquivos
-																</h6>
-															</Button>
-														)}
-														{obj?.addressProof &&
-															!obj?.addressProof
-																?.approved && (
-																<Button
-																	className='w-100 p-0 ms-0'
-																	onClick={() =>
-																		handleShowAddressModal(
-																			obj,
-																			"addressProof"
-																		)
-																	}
-																	variant='outline-warning'>
-																	<i class='bi bi-clock-fill fs-2'></i>
+														<Col
+															style={{
+																color: "#B5B6B7",
+															}}>
+															Contrato social
+														</Col>
+														<Col>
+															{obj?.socialContract ===
+																null && (
+																	<Button
+																		className='w-100 p-0 ms-0'
+																		onClick={() =>
+																			handleShowImageModal(
+																				obj,
+																				"socialContract"
+																			)
+																		}
+																		variant='outline-secondary'>
+																		<label
+																			style={{
+																				rotate: "45deg",
+																			}}>
+																			<i class='bi bi-paperclip fs-2'></i>
+																		</label>
+																		<h6
+																			style={{
+																				color: "#C4CCD2",
+																				fontSize:
+																					"11px",
+																			}}>
+																			Aguardando
+																			análise,
+																			visualizar?
+																		</h6>
+																	</Button>
+																)}
+															{obj?.socialContract &&
+																!obj?.socialContract
+																	?.approved && (
+																	<Button
+																		className='w-100 p-0 ms-0'
+																		onClick={() =>
+																			handleShowImageModal(
+																				obj,
+																				"socialContract"
+																			)
+																		}
+																		variant='outline-warning'>
+																		<i class='bi bi-clock-fill fs-2'></i>
 
-																	<h6
-																		style={{
-																			color: "#C4CCD2",
-																			fontSize:
-																				"11px",
-																		}}>
-																		Arraste
-																		e solte
-																		aqui ou
-																		importe
-																		dos seus
-																		arquivos
-																	</h6>
-																</Button>
-															)}
+																		<h6
+																			style={{
+																				color: "#C4CCD2",
+																				fontSize:
+																					"11px",
+																			}}>
+																			Aguardando
+																			análise,
+																			visualizar?
+																		</h6>
+																	</Button>
+																)}
 
-														{obj?.addressProof &&
-															obj?.addressProof
-																?.approved && (
-																<Button
-																	className='w-100 p-0 ms-0'
-																	onClick={() =>
-																		handleShowAddressModal(
-																			obj,
-																			"addressProof"
-																		)
-																	}
-																	variant='outline-success'>
-																	<i class='bi bi-check-lg fs-2'></i>
+															{obj?.socialContract &&
+																obj?.socialContract
+																	?.approved && (
+																	<Button
+																		className='w-100 p-0 ms-0'
+																		onClick={() =>
+																			handleShowImageModal(
+																				obj,
+																				"socialContract"
+																			)
+																		}
+																		variant='outline-success'>
+																		<i class='bi bi-check-lg fs-2'></i>
 
-																	<h6
-																		style={{
-																			color: "#C4CCD2",
-																			fontSize:
-																				"11px",
-																		}}>
-																		Aguardando
-																		análise,
-																		visualizar?
-																	</h6>
-																</Button>
-															)}
+																		<h6
+																			style={{
+																				color: "#C4CCD2",
+																				fontSize:
+																					"11px",
+																			}}>
+																			Aguardando
+																			análise,
+																			visualizar?
+																		</h6>
+																	</Button>
+																)}
+														</Col>
 													</Col>
-												</Col>
+													<Col>
+														<Col
+															style={{
+																color: "#B5B6B7",
+															}}>
+															Comprovante de
+															residência
+														</Col>
+														<Col>
+															{obj?.addressProof ===
+																null && (
+																	<Button
+																		className='w-100 p-0 ms-0'
+																		onClick={() =>
+																			handleShowAddressModal(
+																				obj,
+																				"addressProof"
+																			)
+																		}
+																		variant='outline-secondary'>
+																		<label
+																			style={{
+																				rotate: "45deg",
+																			}}>
+																			<i class='bi bi-paperclip fs-2'></i>
+																		</label>
+																		<h6
+																			style={{
+																				color: "#C4CCD2",
+																				fontSize:
+																					"11px",
+																			}}>
+																			Arraste e
+																			solte aqui
+																			ou importe
+																			dos seus
+																			arquivos
+																		</h6>
+																	</Button>
+																)}
+															{obj?.addressProof &&
+																!obj?.addressProof
+																	?.approved && (
+																	<Button
+																		className='w-100 p-0 ms-0'
+																		onClick={() =>
+																			handleShowAddressModal(
+																				obj,
+																				"addressProof"
+																			)
+																		}
+																		variant='outline-warning'>
+																		<i class='bi bi-clock-fill fs-2'></i>
 
-												<Row>
-													<Col
-														className='d-flex justify-content-center mt-2 ms-4'
-														style={{
-															color: "#C4CCD2",
-															fontSize: "12px",
-														}}>
-														Responsável por esse
-														cliente: Renata
-														Vasconcelos
+																		<h6
+																			style={{
+																				color: "#C4CCD2",
+																				fontSize:
+																					"11px",
+																			}}>
+																			Arraste
+																			e solte
+																			aqui ou
+																			importe
+																			dos seus
+																			arquivos
+																		</h6>
+																	</Button>
+																)}
+
+															{obj?.addressProof &&
+																obj?.addressProof
+																	?.approved && (
+																	<Button
+																		className='w-100 p-0 ms-0'
+																		onClick={() =>
+																			handleShowAddressModal(
+																				obj,
+																				"addressProof"
+																			)
+																		}
+																		variant='outline-success'>
+																		<i class='bi bi-check-lg fs-2'></i>
+
+																		<h6
+																			style={{
+																				color: "#C4CCD2",
+																				fontSize:
+																					"11px",
+																			}}>
+																			Aguardando
+																			análise,
+																			visualizar?
+																		</h6>
+																	</Button>
+																)}
+														</Col>
 													</Col>
+
+													<Row>
+														<Col
+															className='d-flex justify-content-center mt-2 ms-4'
+															style={{
+																color: "#C4CCD2",
+																fontSize: "12px",
+															}}>
+															Responsável por esse
+															cliente: Renata
+															Vasconcelos
+														</Col>
+													</Row>
 												</Row>
-											</Row>
-										) : (
-											""
-										)}
-									</div>
-								)}
+											) : (
+												""
+											)}
+										</div>
+									)}
 							</tr>
 						))}
 					</tbody>

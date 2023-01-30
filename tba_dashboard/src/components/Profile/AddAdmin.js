@@ -16,6 +16,7 @@ const AddAdmin = ({ open, handleClose }) => {
 	const [newAdmin, setNewAdmin] = useState(false);
 	const [designation, setDesignation] = useState("");
 	const [code, setCode] = useState(null);
+
 	useEffect(() => {
 		generateCode().then((res) => {
 			console.log("res code", res);
@@ -39,6 +40,7 @@ const AddAdmin = ({ open, handleClose }) => {
 			console.log("res invite admin", res);
 			if (res.success) {
 				toast.success(res.message);
+				copy(code);
 				handleClose();
 			} else {
 				toast.error(res.message);
@@ -47,16 +49,16 @@ const AddAdmin = ({ open, handleClose }) => {
 		// console.log("submitData", submitData);
 	};
 
-	const handleCopy = (code) => {
-		if (code) {
-			copy(code);
-			setCopyText(true);
-			setTimeout(() => {
-				setCopyText(false);
-				console.log("called time out");
-			}, 1000);
-		}
-	};
+	// const handleCopy = (code) => {
+	// 	if (code) {
+	// 		copy(code);
+	// 		setCopyText(true);
+	// 		setTimeout(() => {
+	// 			setCopyText(false);
+	// 			console.log("called time out");
+	// 		}, 1000);
+	// 	}
+	// };
 
 	return (
 		<>
@@ -216,7 +218,7 @@ const AddAdmin = ({ open, handleClose }) => {
 									style={{ backgroundColor: "#F4F6F8" }}
 									value={code}
 								/>
-								<InputGroup.Text
+								{/* <InputGroup.Text
 									className='border-0 small fw-bold'
 									style={{
 										backgroundColor: "#F4F6F8",
@@ -225,7 +227,7 @@ const AddAdmin = ({ open, handleClose }) => {
 									}}
 									onClick={() => handleCopy(code)}>
 									{copyText ? "Copiada" : "Copiar"}
-								</InputGroup.Text>
+								</InputGroup.Text> */}
 							</InputGroup>
 						</Col>
 						{/* button */}

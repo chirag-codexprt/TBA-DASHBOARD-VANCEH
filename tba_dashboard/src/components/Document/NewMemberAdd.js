@@ -36,7 +36,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 	const [formValues, setFormValues] = useState({
 		name: "",
 		emailOrPhone: "",
-		cpfOrCnpj: "",
+		CPF: "",
+		CNPJ: "",
 	});
 
 	const handleFileChange = (acceptedFiles) => {
@@ -75,8 +76,10 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 		// console.log("formValues", formValues);
 		if (!formValues.name) {
 			toast.error("Digite o nome");
-		} else if (!formValues.cpfOrCnpj) {
-			toast.error("Digite cnpj ou cpf");
+		} else if (!formValues.CPF) {
+			toast.error("Digite cpf");
+		} else if (!formValues.CNPJ) {
+			toast.error("Digite cnpj");
 		} else if (!formValues.emailOrPhone) {
 			toast.error("Por favor insira e-mail ou telefone");
 		} else if (!images) {
@@ -153,7 +156,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 			<ModalBody className="p-4 pt-0">
 				<h5 className="fw-bolder">Criar novo cliente</h5>
 				<Row className='mt-3'>
-					<Col md={4} xs={12}>
+					<Col md={6} xs={12}>
 						<Form>
 							<Form.Label className="Doc-Font-Color">Nome completo do cleinte</Form.Label>
 							<FormGroup className="">
@@ -179,32 +182,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 								<Badge className="bg-f4f4f4 text-dark badge-absolute bg-white" >{formValues.name.length}/{characterLimit}</Badge>
 							</FormGroup>
 						</Form>
-
 					</Col>
-					<Col md={4} xs={12}>
-						<Form>
-							<Form.Label className="Doc-Font-Color">CPF/CNPJ</Form.Label>
-							<InputGroup className='mb-3 rounded'>
-								<InputGroup.Text
-									id='basic-addon1'
-									className='border-0'
-									style={{
-										background: "#F4F6F8",
-									}}>
-									<i className='bi bi-person-vcard-fill link-icon'></i>
-								</InputGroup.Text>
-								<Form.Control
-									placeholder='000.000.000-00'
-									type='text'
-									name='cpfOrCnpj'
-									className='Cardinput border-0'
-									// value={data?.CpfOrCnpj}
-									onChange={handleChange}
-								/>
-							</InputGroup>
-						</Form>
-					</Col>
-					<Col md={4} xs={12}>
+					<Col md={6} xs={12}>
 						<Form>
 							<Form.Label className="Doc-Font-Color">Email/telefone</Form.Label>
 							<InputGroup className='mb-3 rounded'>
@@ -222,6 +201,54 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 									name='emailOrPhone'
 									className='Cardinput border-0'
 									// value={data?.email}
+									onChange={handleChange}
+								/>
+							</InputGroup>
+						</Form>
+					</Col>
+				</Row>
+				<Row>
+					<Col md={6} xs={12}>
+						<Form>
+							<Form.Label className="Doc-Font-Color">CPF</Form.Label>
+							<InputGroup className='mb-3 rounded'>
+								<InputGroup.Text
+									id='basic-addon1'
+									className='border-0'
+									style={{
+										background: "#F4F6F8",
+									}}>
+									<i className='bi bi-person-vcard-fill link-icon'></i>
+								</InputGroup.Text>
+								<Form.Control
+									placeholder='000.000.000-00'
+									type='text'
+									name='CPF'
+									className='Cardinput border-0'
+									// value={data?.CpfOrCnpj}
+									onChange={handleChange}
+								/>
+							</InputGroup>
+						</Form>
+					</Col>
+					<Col md={6} xs={12}>
+						<Form>
+							<Form.Label className="Doc-Font-Color">CNPJ</Form.Label>
+							<InputGroup className='mb-3 rounded'>
+								<InputGroup.Text
+									id='basic-addon1'
+									className='border-0'
+									style={{
+										background: "#F4F6F8",
+									}}>
+									<i className='bi bi-person-vcard-fill link-icon'></i>
+								</InputGroup.Text>
+								<Form.Control
+									placeholder='000.000.000-00'
+									type='text'
+									name='CNPJ'
+									className='Cardinput border-0'
+									// value={data?.CpfOrCnpj}
 									onChange={handleChange}
 								/>
 							</InputGroup>

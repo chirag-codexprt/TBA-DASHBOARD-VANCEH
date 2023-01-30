@@ -15,7 +15,8 @@ const GenerateLinkModal = ({
 	console.log("editData", editData);
 	const [copyText, setCopyText] = useState(false);
 	const [formValues, setFormValues] = useState({
-		cpf: true,
+		CNPJ: true,
+		CPF: true,
 		socialContract: false,
 		proofOfAddress: false,
 	});
@@ -44,6 +45,7 @@ const GenerateLinkModal = ({
 			if (res.success) {
 				setRefresh(refresh + 1);
 				toast.success(res.message);
+				copy(link);
 				handleClose();
 			} else {
 				toast.error(res.message);
@@ -51,16 +53,16 @@ const GenerateLinkModal = ({
 		});
 	};
 
-	const handleCopy = (code) => {
-		if (code) {
-			copy(code);
-			setCopyText(true);
-			setTimeout(() => {
-				setCopyText(false);
-				console.log("called time out");
-			}, 1000);
-		}
-	};
+	// const handleCopy = (code) => {
+	// 	if (code) {
+	// 		copy(code);
+	// 		setCopyText(true);
+	// 		setTimeout(() => {
+	// 			setCopyText(false);
+	// 			console.log("called time out");
+	// 		}, 1000);
+	// 	}
+	// };
 
 	return (
 		<div>
@@ -92,10 +94,23 @@ const GenerateLinkModal = ({
 								type='switch'
 								id='custom-switch'
 								checked
-								name='cpf'
-								defaultChecked={formValues.cpf}
+								name='CPF'
+								defaultChecked={formValues.CPF}
 							/>
 							<label>CPF/CNPJ</label>
+						</Form>
+					</Col>
+					<Col className='mt-2 '>
+						<Form className='d-flex align-items-center'>
+							<Form.Check
+								className='chack-item input-check fs-5 border-0'
+								type='switch'
+								id='custom-switch'
+								checked
+								name='CNPJ'
+								defaultChecked={formValues.cnpj}
+							/>
+							<label>CNPJ</label>
 						</Form>
 					</Col>
 					<Col className='mt-2 '>
@@ -133,13 +148,13 @@ const GenerateLinkModal = ({
 								className='border-0 p-3 fw-bold'
 								value={link}
 							/>
-							<InputGroup.Text
+							{/* <InputGroup.Text
 								id='basic-addon2'
 								className='border-0 c-point'
 								style={{ color: "#85A6A2" }}
 								onClick={() => handleCopy(link)}>
 								{copyText ? "Copiada" : "Copiar"}
-							</InputGroup.Text>
+							</InputGroup.Text> */}
 						</InputGroup>
 					</Col>
 					<Col className='my-3 w-100 d-flex justify-content-center'>

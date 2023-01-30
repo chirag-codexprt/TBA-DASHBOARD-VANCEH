@@ -32,7 +32,7 @@ const Login = () => {
 		email: "",
 		password: "",
 	});
-
+	console.log('registerFormValues', registerFormValues)
 	const Login = () => {
 		setLogin(true);
 		setAccount(false);

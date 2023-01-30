@@ -6,7 +6,7 @@ const CpfCard = ({ formValues }) => {
 		<>
 			<Col md={4} xs={12}>
 				<h6 style={{ color: "#B5B6B7" }}>CPF/CNPJ</h6>
-				{formValues.cpfOrCnpj ? (
+				{formValues.CPF && formValues.CNPJ ? (
 					<Button
 						className='w-100 p-0 CardBtn'
 						variant='outline-success'>

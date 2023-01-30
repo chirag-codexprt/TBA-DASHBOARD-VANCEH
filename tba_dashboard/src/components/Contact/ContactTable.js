@@ -69,9 +69,10 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 					<thead>
 						<tr style={{ color: "#B5B6B7", fontSize: "12px" }}>
 							<th width={"25%"}>Nome</th>
-							<th>CPF/CNPJ</th>
+							<th>CPF</th>
+							<th>CNPJ</th>
 							<th>Email/Telefone</th>
-							<th>Data</th>
+							{/* <th>Data</th> */}
 							<th>Hora</th>
 							<th width={"10%"}>Status</th>
 						</tr>
@@ -99,17 +100,22 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 									obj.status === "pending"
 										? () => handleShowRow(obj.id)
 										: null
-								}>{obj.CpfOrCnpj}</td>
+								}>{obj.CPF}</td>
+								<td onClick={
+									obj.status === "pending"
+										? () => handleShowRow(obj.id)
+										: null
+								}>{obj.CNPJ}</td>
 								<td onClick={
 									obj.status === "pending"
 										? () => handleShowRow(obj.id)
 										: null
 								}>{obj.email ? obj.email : obj.phone}</td>
-								<td onClick={
+								{/* <td onClick={
 									obj.status === "pending"
 										? () => handleShowRow(obj.id)
 										: null
-								}>{obj.date}</td>
+								}>{obj.date}</td> */}
 								<td onClick={
 									obj.status === "pending"
 										? () => handleShowRow(obj.id)
@@ -217,7 +223,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 													className='border-0'
 													style={{
 														background:
-															"#C4CCD2",
+															"#1C3D59",
 														width: "100%",
 													}}>
 													Gerar link

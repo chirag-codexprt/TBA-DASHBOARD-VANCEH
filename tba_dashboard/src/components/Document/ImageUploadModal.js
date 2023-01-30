@@ -75,12 +75,22 @@ const ImageUploadModal = ({
 						<div
 							className='border d-flex align-items-center justify-content-center position-relative rounded-2 mb-4'
 							style={{ height: "400px" }}>
-							<img
+							{/* <img
 								src={
 									imagePreview
 										? imagePreview
 										: "/assets/img/blankimg.png"
 								}
+								style={{
+									height: imagePreview ? "100%" : "",
+									width: imagePreview ? "100%" : "",
+									// padding: "0px 15px",
+								}} */}
+							{/* /> */}
+
+							<embed
+								src={imagePreview}
+								type='application/pdf'
 								style={{
 									height: imagePreview ? "100%" : "",
 									width: imagePreview ? "100%" : "",

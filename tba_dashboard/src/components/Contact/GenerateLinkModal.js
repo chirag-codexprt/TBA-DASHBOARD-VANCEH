@@ -17,7 +17,7 @@ const GenerateLinkModal = ({
 		CPF: true,
 		socialContract: true,
 		proofOfAddress: true,
-		CNPJ: true
+		CNPJ: true,
 	});
 
 	const link = `${LINK_URL}${editData.id}/${editData.documentRequest.id}`;
@@ -160,7 +160,8 @@ const GenerateLinkModal = ({
 							className='border-0'
 							style={{ background: "#1C3D59" }}
 							onClick={submitForm}>
-							Encaminhar
+							{/* Encaminhar */}
+							Copiar
 						</Button>
 					</Col>
 				</Row>

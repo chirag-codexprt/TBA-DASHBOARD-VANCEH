@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { approvedDocumentList } from "../../helper/API/document";
-
+import { Document, Page, pdfjs } from "react-pdf";
 const AddressProofModal = ({
 	open,
 	handleClose,
@@ -18,7 +18,12 @@ const AddressProofModal = ({
 		document?.addressProof?.url
 	);
 	const [anchorEl, setAnchorEl] = useState(null);
+	const [numPages, setNumPages] = useState(null);
+	const [pageNumber, setPageNumber] = useState(1);
 
+	function onDocumentLoadSuccess({ numPages }) {
+		setNumPages(numPages);
+	}
 	const handleImageChange = (event) => {
 		const fileUploaded = event.target.files[0];
 		if (event.target.files[0]) {
@@ -75,12 +80,22 @@ const AddressProofModal = ({
 						<div
 							className='border d-flex align-items-center justify-content-center position-relative rounded-2 mb-4'
 							style={{ height: "400px" }}>
-							<img
+							{/* <iframe
 								src={
 									imagePreview
 										? imagePreview
 										: "/assets/img/blankimg.png"
 								}
+								style={{
+									height: imagePreview ? "100%" : "",
+									width: imagePreview ? "100%" : "",
+									// padding: "0px 15px",
+								}}
+							/>
+							  <div> */}
+							<embed
+								src={imagePreview}
+								type='application/pdf'
 								style={{
 									height: imagePreview ? "100%" : "",
 									width: imagePreview ? "100%" : "",

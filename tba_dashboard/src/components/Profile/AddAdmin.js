@@ -236,7 +236,8 @@ const AddAdmin = ({ open, handleClose }) => {
 								onClick={submitAdmin}
 								className='fw-bolder fs-6 w-50 border-0'
 								style={{ backgroundColor: "#1C3D59" }}>
-								Gerar código
+								{/* Gerar código */}
+								Copiar
 							</Button>
 						</Col>
 					</Row>

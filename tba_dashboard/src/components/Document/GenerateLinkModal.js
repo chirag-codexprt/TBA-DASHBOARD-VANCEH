@@ -161,7 +161,8 @@ const GenerateLinkModal = ({
 						<Button
 							style={{ background: "#1C3D59" }}
 							onClick={submitForm}>
-							Encaminhar
+							{/* Encaminhar */}
+							Copiar
 						</Button>
 					</Col>
 				</Row>

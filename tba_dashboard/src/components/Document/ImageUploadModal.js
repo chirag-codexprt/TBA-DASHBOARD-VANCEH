@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { approvedDocumentList } from "../../helper/API/document";
-
 const ImageUploadModal = ({
 	open,
 	handleClose,
@@ -55,7 +54,7 @@ const ImageUploadModal = ({
 
 	return (
 		<div>
-			<Modal show={open} onHide={handleClose} centered>
+			<Modal show={open} onHide={handleClose} centered className='zindex'>
 				<Row className='p-3 px-3'>
 					<Col md={10}>
 						<h5 className='fw-bold mt-1'>
@@ -75,7 +74,7 @@ const ImageUploadModal = ({
 						<div
 							className='border d-flex align-items-center justify-content-center position-relative rounded-2 mb-4'
 							style={{ height: "400px" }}>
-							{/* <img
+							{/* <iframe
 								src={
 									imagePreview
 										? imagePreview
@@ -85,18 +84,28 @@ const ImageUploadModal = ({
 									height: imagePreview ? "100%" : "",
 									width: imagePreview ? "100%" : "",
 									// padding: "0px 15px",
-								}} */}
-							{/* /> */}
-
+								}}
+							/> */}
+							{/* {imagePreview} */}
 							<embed
+								src={`https://drive.google.com/viewerng/
+viewer?embedded=true&url=${imagePreview}`}
+								style={{
+									height: imagePreview ? "100%" : "",
+									width: imagePreview ? "100%" : "",
+									// padding: "0px 15px",
+								}}></embed>
+							{/* <embed
 								src={imagePreview}
 								type='application/pdf'
+								frameBorder='0'
+								scrolling='auto'
 								style={{
 									height: imagePreview ? "100%" : "",
 									width: imagePreview ? "100%" : "",
 									// padding: "0px 15px",
 								}}
-							/>
+							/> */}
 
 							{/* <div
 								style={{

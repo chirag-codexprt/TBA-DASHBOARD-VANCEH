@@ -94,14 +94,13 @@ const AddressProofModal = ({
 							/>
 							  <div> */}
 							<embed
-								src={imagePreview}
-								type='application/pdf'
+								src={`https://drive.google.com/viewerng/
+viewer?embedded=true&url=${imagePreview}`}
 								style={{
 									height: imagePreview ? "100%" : "",
 									width: imagePreview ? "100%" : "",
 									// padding: "0px 15px",
-								}}
-							/>
+								}}></embed>
 						</div>
 						<div>
 							<a

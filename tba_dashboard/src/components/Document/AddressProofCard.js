@@ -15,7 +15,8 @@ const AddressProofCard = ({ handleAddressChange, addressImages, data }) => {
 								})}>
 								<input
 									{...getInputProps()}
-									accept={"image/*"}
+									type='file'
+									accept={".pdf"}
 								/>
 								<h6 style={{ color: "#B5B6B7" }}>
 									Comprovante&nbsp;de&nbsp;residência

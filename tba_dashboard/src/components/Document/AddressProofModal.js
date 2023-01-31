@@ -60,7 +60,7 @@ const AddressProofModal = ({
 
 	return (
 		<div>
-			<Modal show={open} onHide={handleClose} centered>
+			<Modal show={open} onHide={handleClose} centered className="zindex">
 				<Row className='p-3 px-3'>
 					<Col md={10}>
 						<h5 className='fw-bold mt-1'>

@@ -33,9 +33,10 @@ const ProfileTable = ({ tableRow }) => {
 							<th className='tbl-head-color ' width={"25%"}>
 								Nome{" "}
 							</th>
-							<th className='tbl-head-color '>CPF/CNPJ</th>
+							<th className='tbl-head-color '>CPF</th>
+							<th className='tbl-head-color '>CNPJ</th>
 							<th className='tbl-head-color '>Email </th>
-							<th className='tbl-head-color '>Data</th>
+							{/* <th className='tbl-head-color '>Data</th> */}
 							<th className='tbl-head-color text-center'>
 								Hora{" "}
 							</th>
@@ -52,9 +53,10 @@ const ProfileTable = ({ tableRow }) => {
 						{currentTableData?.map((obj, i) => (
 							<tr style={{ fontSize: "14px" }}>
 								<td className='fw-bold'>{obj.name}</td>
-								<td>{obj.CpfOrCnpj}</td>
+								<td>{obj.CPF}</td>
+								<td>{obj.CNPJ}</td>
 								<td>{obj.email}</td>
-								<td>{obj.date}</td>
+								{/* <td>{obj.date}</td> */}
 								<td className='text-center'>{obj.time}</td>
 								<td className='text-end'>
 									<Button

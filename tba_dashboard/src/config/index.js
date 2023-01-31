@@ -14,7 +14,7 @@ const envData = (ENV, local, test, production) => {
 	}
 };
 
-export const ENV_TYPE = "local"; // local // test // production
+export const ENV_TYPE = "production"; // local // test // production
 
 export const BASE_URL = envData(
 	ENV_TYPE,
@@ -25,8 +25,8 @@ export const BASE_URL = envData(
 export const LINK_URL = envData(
 	ENV_TYPE,
 	"http://localhost:3001/document-verification/",
-	"http://tba-site.s3-website-sa-east-1.amazonaws.com/document-verification/",
-	"http://tba-site.s3-website-sa-east-1.amazonaws.com/document-verification/"
+	"https://www.tbaconsulting.com.br/document-verification/",
+	"https://www.tbaconsulting.com.br/document-verification/"
 );
 
 // export const LINK_URL = "localhost:3003/document-verification/";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { loginAtom } from "../recoil/Atoms";
 
@@ -65,10 +65,10 @@ const Sidebar = () => {
 						}}>
 						Category
 					</div>
-					{link.map((val) => {
+					{link.map((val, index) => {
 						if (val.active == true) {
 							return (
-								<Row className='mt-4 c-point'>
+								<Row key={index} className='mt-4 c-point'>
 									<Col
 										md={5}
 										xs={5}

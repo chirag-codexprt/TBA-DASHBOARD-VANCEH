@@ -33,7 +33,7 @@ const Documents = () => {
 			search,
 		};
 		getDocumentList(submitData).then((res) => {
-			console.log("res contact :: ", res);
+			// console.log("res contact :: ", res);
 			if (res.success) {
 				setTable(res.data);
 				setTableRow(res.data);
@@ -50,13 +50,13 @@ const Documents = () => {
 
 	const onEnter = (e) => {
 		if (e.key === "Enter") {
-			console.log("clicked enter");
+			// console.log("clicked enter");
 			setLoading(true);
 			const submitData = {
 				search,
 			};
 			getDocumentList(submitData).then((res) => {
-				console.log("res contact :: ", res);
+				// console.log("res contact :: ", res);
 				if (res.success) {
 					setTableRow(res.data);
 					setLoading(false);
@@ -135,29 +135,26 @@ const Documents = () => {
 							setRefresh={setRefresh}
 							search={search}>
 							<Button
-								className={`fs-color  mx-1 border-0 ${
-									active.approved
+								className={`fs-color  mx-1 border-0 ${active.approved
 										? "activeBtnTable"
 										: "inActiveBtnTable"
-								}`}
+									}`}
 								onClick={(e) => handleToggle("Approved")}>
 								Concluídos
 							</Button>
 							<Button
-								className={`fs-color  mx-1 border-0 ${
-									active.pending
+								className={`fs-color  mx-1 border-0 ${active.pending
 										? "activeBtnTable"
 										: "inActiveBtnTable"
-								}`}
+									}`}
 								onClick={(e) => handleToggle("Pending")}>
 								Pendentes
 							</Button>
 							<Button
-								className={`fs-color px-4 mx-1 border-0 ${
-									active.all
+								className={`fs-color px-4 mx-1 border-0 ${active.all
 										? "activeBtnTable"
 										: "inActiveBtnTable"
-								}`}
+									}`}
 								onClick={(e) => handleToggle("All")}>
 								Todas
 							</Button>

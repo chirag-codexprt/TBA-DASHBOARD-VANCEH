@@ -39,7 +39,7 @@ const ChangePassword = ({ open, handleClose }) => {
 				newPassword: formValues.passwords,
 			};
 			passwordChange(submitData).then((res) => {
-				console.log("res GET PASSWORD", res);
+				// console.log("res GET PASSWORD", res);
 				if (res.success) {
 					toast.success(res.message);
 					handleClose();

@@ -67,7 +67,7 @@ const DocumentTable = ({
 		setOpenLinkModal(true);
 		setEditData(val);
 	};
-	console.log("idArray.includes(id)", idArray);
+	// console.log("idArray.includes(id)", idArray);
 	return (
 		<div>
 			<Table responsive>

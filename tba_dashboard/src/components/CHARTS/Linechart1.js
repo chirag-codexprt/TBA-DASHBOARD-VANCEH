@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useState, useCallback } from "react";
+import React from "react";
 import {
 	LineChart,
 	Line,
@@ -51,7 +51,7 @@ const Linechart = () => {
 			});
 		} else {
 			if (contactData?.contactData?.length <= 30) {
-				console.log("30");
+				// console.log("30");
 
 				// data = contactData?.contactData?.map((obj) => {
 				// 	return {
@@ -87,7 +87,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -136,7 +136,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -177,7 +177,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByMonthNumber?.map(function (group) {
 						return {

@@ -19,7 +19,7 @@ const AddAdmin = ({ open, handleClose }) => {
 
 	useEffect(() => {
 		generateCode().then((res) => {
-			console.log("res code", res);
+			// console.log("res code", res);
 			if (res.success) {
 				setCode(res.data);
 			}
@@ -37,7 +37,7 @@ const AddAdmin = ({ open, handleClose }) => {
 			code,
 		};
 		inviteAdmin(submitData).then((res) => {
-			console.log("res invite admin", res);
+			// console.log("res invite admin", res);
 			if (res.success) {
 				toast.success(res.message);
 				copy(code);

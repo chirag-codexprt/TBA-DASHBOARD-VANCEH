@@ -4,9 +4,7 @@ import {
 	LineChart,
 	Line,
 	ResponsiveContainer,
-	Legend,
 	Tooltip,
-	Label,
 	XAxis,
 } from "recharts";
 import { useRecoilValue } from "recoil";
@@ -82,7 +80,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -133,7 +131,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -176,7 +174,7 @@ const Linechart = () => {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByMonthNumber?.map(function (group) {
 						return {
@@ -252,7 +250,7 @@ const Linechart = () => {
 						dataKey='visitas'
 						stroke={
 							visitorData?.growth?.visitorIndication ===
-							"increment"
+								"increment"
 								? "#58A43D"
 								: "#A43D3D"
 						}

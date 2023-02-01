@@ -43,11 +43,11 @@ const Permissões = () => {
 			}
 		});
 	}, [refresh]);
-	console.log("table", tableRow);
+	// console.log("table", tableRow);
 
 	const onEnter = (e) => {
 		if (e.key === 'Enter') {
-			console.log('clicked enter')
+			// console.log('clicked enter')
 			setLoading(true);
 			const submitData = {
 				search

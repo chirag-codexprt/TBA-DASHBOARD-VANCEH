@@ -15,7 +15,7 @@ const PermissonTooltip = ({
 	refresh,
 	setRefresh,
 }) => {
-	console.log("editData", editData);
+	// console.log("editData", editData);
 
 	const handleAuth = () => {
 		var submitData;
@@ -89,7 +89,7 @@ const PermissonTooltip = ({
 				},
 			};
 		}
-		console.log("submitData", submitData);
+		// console.log("submitData", submitData);
 		changePermission(submitData).then((res) => {
 			if (res.success) {
 				toast.success(res.message);

@@ -57,19 +57,19 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 
 		if (acceptedFiles[0].type !== "application/pdf") {
 			toast.error("Por favor, selecione apenas arquivo pdf");
-			console.log("1");
+			// console.log("1");
 		} else {
-			console.log("2");
+			// console.log("2");
 			setopen(true);
 			if (acceptedFiles[0]) {
 				setImages(acceptedFiles[0]);
 				const reader = new FileReader();
 				reader.addEventListener("load", () => {
 					setImagePreview(URL.createObjectURL(acceptedFiles[0]));
-					console.log(
-						"reader url",
-						URL.createObjectURL(acceptedFiles[0])
-					);
+					// console.log(
+					// 	"reader url",
+					// 	URL.createObjectURL(acceptedFiles[0])
+					// );
 				});
 				reader.readAsDataURL(acceptedFiles[0]);
 			} else {
@@ -87,11 +87,11 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 	};
 
 	const handleAddressChange = (acceptedFiles) => {
-		console.log("acceptedFiles", acceptedFiles);
+		// console.log("acceptedFiles", acceptedFiles);
 		// setAddressOpen(true);
 		if (acceptedFiles[0].type !== "application/pdf") {
 			toast.error("Por favor, selecione apenas arquivo pdf");
-			console.log("1");
+			// console.log("1");
 		} else {
 			if (acceptedFiles[0]) {
 				setAddressImages(acceptedFiles[0]);

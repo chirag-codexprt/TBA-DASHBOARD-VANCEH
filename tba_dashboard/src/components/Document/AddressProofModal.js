@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Button, Col, Modal, Row, Spinner } from "react-bootstrap";
+import { Button, Col, Modal, Row, } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { approvedDocumentList } from "../../helper/API/document";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -12,7 +12,7 @@ const AddressProofModal = ({
 	refresh,
 	setRefresh,
 }) => {
-	console.log("document", document);
+	// console.log("document", document);
 
 	const hiddenFileInput = useRef(null);
 	const [images, setImages] = useState("");
@@ -52,7 +52,7 @@ const AddressProofModal = ({
 				toast.error(res.message);
 			}
 		});
-		console.log("submitData", submitData);
+		// console.log("submitData", submitData);
 	};
 	pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 

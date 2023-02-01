@@ -32,7 +32,7 @@ const Login = () => {
 		email: "",
 		password: "",
 	});
-	console.log('registerFormValues', registerFormValues)
+	// console.log('registerFormValues', registerFormValues)
 	const Login = () => {
 		setLogin(true);
 		setAccount(false);
@@ -57,14 +57,14 @@ const Login = () => {
 	};
 
 	const handleForm = (e) => {
-		console.log("handleForm", e.target.value);
+		// console.log("handleForm", e.target.value);
 		setFormValues({
 			...formValues,
 			[e.target.name]: e.target.value,
 		});
 	};
 	const handleRegisterForm = (e) => {
-		console.log("handleForm", e.target.value);
+		// console.log("handleForm", e.target.value);
 		setRegisterFormValues({
 			...registerFormValues,
 			[e.target.name]: e.target.value,
@@ -75,7 +75,7 @@ const Login = () => {
 		event.preventDefault();
 		setLoading(true);
 		loginAdmin(formValues).then((res) => {
-			console.log("res", res);
+			// console.log("res", res);
 			if (res.success) {
 				setLoading(false);
 				localStorage.setItem("login", true);
@@ -119,7 +119,7 @@ const Login = () => {
 			setLoading(false);
 		} else {
 			registerAdmin(registerFormValues).then((res) => {
-				console.log("res", res);
+				// console.log("res", res);
 				if (res.success) {
 					setLoading(false);
 					Login();
@@ -141,7 +141,7 @@ const Login = () => {
 		const submitData = { code: registerFormValues.code };
 
 		getDesignation(submitData).then((res) => {
-			console.log("res", res);
+			// console.log("res", res);
 			if (res.success) {
 				setRegisterFormValues({
 					...registerFormValues,

@@ -7,7 +7,7 @@ import {
 } from "../url";
 
 export const passwordChange = (submitData) => {
-	console.log("su", submitData);
+	// console.log("su", submitData);
 	return new Promise((resolve, reject) => {
 		AfterAuthApi(CHANGE_PASSWORD, "post", submitData)
 			.then((res) => {
@@ -20,7 +20,7 @@ export const passwordChange = (submitData) => {
 };
 
 export const profileData = (submitData) => {
-	console.log("su", submitData);
+	// console.log("su", submitData);
 	return new Promise((resolve, reject) => {
 		AfterAuthApi(GET_PROFILE, "post", submitData)
 			.then((res) => {

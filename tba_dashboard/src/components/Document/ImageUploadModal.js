@@ -14,7 +14,7 @@ const ImageUploadModal = ({
 	refresh,
 	setRefresh,
 }) => {
-	console.log("document", document);
+	// console.log("document", document);
 
 	const hiddenFileInput = useRef(null);
 	const [images, setImages] = useState("");
@@ -54,7 +54,7 @@ const ImageUploadModal = ({
 				toast.error(res.message);
 			}
 		});
-		console.log("submitData", submitData);
+		// console.log("submitData", submitData);
 	};
 
 	pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;

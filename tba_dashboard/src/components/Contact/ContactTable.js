@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
-import { Card, Row, Col } from "react-bootstrap";
+import React, { useState, useEffect, useMemo } from "react";
 import Button from "react-bootstrap/Button";
 
 import Table from "react-bootstrap/Table";
@@ -9,7 +8,7 @@ import GenerateLinkModal from "./GenerateLinkModal";
 
 const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 	const [openLinkModal, setOpenLinkModal] = useState(false);
-	console.log("tableRow", tableRow);
+	// console.log("tableRow", tableRow);
 	const [open, setOpen] = useState(false);
 	const [id, setId] = useState(null);
 	const [editData, setEditData] = useState(null);
@@ -19,7 +18,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 
 	// let ab = [];
 
-	console.log("idArray", idArray);
+	// console.log("idArray", idArray);
 	useEffect(() => {
 		setTableData(tableRow);
 
@@ -53,7 +52,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 			setIdArray((old) => [...old, id]);
 		}
 
-		console.log("index ::", index);
+		// console.log("index ::", index);
 	};
 
 	const handleShowLinkModal = (val) => {
@@ -61,7 +60,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 		setEditData(val);
 	};
 
-	console.log("idArray", idArray);
+	// console.log("idArray", idArray);
 	return (
 		<div>
 			<Table responsive>

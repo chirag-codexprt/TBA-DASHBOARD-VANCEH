@@ -4,10 +4,7 @@ import {
 	BarChart,
 	Bar,
 	XAxis,
-	YAxis,
-	CartesianGrid,
 	Tooltip,
-	Legend,
 	Cell,
 	ResponsiveContainer,
 } from "recharts";
@@ -88,10 +85,10 @@ function BarChartCounter() {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
-						console.log("group", group);
+						// console.log("group", group);
 						return {
 							weekStart: getWeekStart(group[0]._id),
 							week: capitalizeFirstLetter(group[0]?.sortWeek),
@@ -138,7 +135,7 @@ function BarChartCounter() {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -156,7 +153,7 @@ function BarChartCounter() {
 					return el != null;
 				});
 			} else {
-				console.log("60+");
+				// console.log("60+");
 				function getMonthStart(date) {
 					var offset = new Date(date).getMonth();
 					return new Date(new Date(date) - offset);
@@ -179,10 +176,10 @@ function BarChartCounter() {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByMonthNumber?.map(function (group) {
-						console.log("group", group);
+						// console.log("group", group);
 						return {
 							week: moment(getMonthStart(group[0]._id)).format(
 								"DD-MM-YYYY"
@@ -247,7 +244,7 @@ function BarChartCounter() {
 
 		return null;
 	};
-	console.log("data", data);
+	// console.log("data", data);
 	return (
 		<ResponsiveContainer width='100%' height={220}>
 			<BarChart

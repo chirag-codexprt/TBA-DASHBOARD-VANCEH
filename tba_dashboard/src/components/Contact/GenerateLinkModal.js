@@ -21,7 +21,7 @@ const GenerateLinkModal = ({
 	});
 
 	const link = `${LINK_URL}${editData.id}/${editData.documentRequest.id}`;
-	console.log("link", link);
+	// console.log("link", link);
 
 	const handleCheck = (e) => {
 		setFormValues({

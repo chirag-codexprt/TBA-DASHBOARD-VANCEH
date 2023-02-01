@@ -26,7 +26,7 @@ export const generateLink = (submitData) => {
 };
 
 export const contactForm = (submitData) => {
-	console.log("submitData", submitData);
+	// console.log("submitData", submitData);
 	return new Promise((resolve, reject) => {
 		ApiCall(CONTACT_FORM, "post", submitData)
 			.then((res) => {

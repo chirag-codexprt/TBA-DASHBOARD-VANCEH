@@ -11,8 +11,8 @@ const Test = () => {
 	const [value, setValue] = useState(1);
 
 	const handleChange = (e) => {
-		console.log();
-		console.log(e.target);
+		// console.log();
+		// console.log(e.target);
 		setValue(e.target.value);
 	};
 

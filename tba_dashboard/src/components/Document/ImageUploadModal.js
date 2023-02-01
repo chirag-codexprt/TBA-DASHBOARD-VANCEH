@@ -2,6 +2,11 @@ import React, { useRef, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { approvedDocumentList } from "../../helper/API/document";
+
+import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/esm/Page/TextLayer.css";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const ImageUploadModal = ({
 	open,
 	handleClose,
@@ -52,6 +57,34 @@ const ImageUploadModal = ({
 		console.log("submitData", submitData);
 	};
 
+	pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+	// const [numPages, setNumPages] = useState(null);
+	// const [pageNumber, setPageNumber] = useState(1);
+
+	// const onDocumentLoadSuccess = ({ numPages }) => {
+	// 	setNumPages(numPages);
+	// 	setPageNumber(1);
+	// };
+
+	const [numPages, setNumPages] = useState(null);
+	const [pageNumber, setPageNumber] = useState(1); //setting 1 to show fisrt page
+
+	function onDocumentLoadSuccess({ numPages }) {
+		setNumPages(numPages);
+		setPageNumber(1);
+	}
+
+	function changePage(offset) {
+		setPageNumber((prevPageNumber) => prevPageNumber + offset);
+	}
+
+	function previousPage() {
+		changePage(-1);
+	}
+
+	function nextPage() {
+		changePage(1);
+	}
 	return (
 		<div>
 			<Modal show={open} onHide={handleClose} centered className='zindex'>
@@ -72,55 +105,112 @@ const ImageUploadModal = ({
 				<Row>
 					<Col className='mx-4'>
 						<div
-							className='border d-flex align-items-center justify-content-center position-relative rounded-2 mb-4'
-							style={{ height: "400px" }}>
-							{/* <iframe
-								src={
-									imagePreview
-										? imagePreview
-										: "/assets/img/blankimg.png"
-								}
-								style={{
-									height: imagePreview ? "100%" : "",
-									width: imagePreview ? "100%" : "",
-									// padding: "0px 15px",
-								}}
-							/> */}
-							{/* {imagePreview} */}
-							<embed
-								src={`https://drive.google.com/viewerng/
-viewer?embedded=true&url=${imagePreview}`}
-								style={{
-									height: imagePreview ? "100%" : "",
-									width: imagePreview ? "100%" : "",
-									// padding: "0px 15px",
-								}}></embed>
+							className='border  position-relative rounded-2 mb-4'
+							style={{ height: "360px" }}>
 							{/* <embed
-								src={imagePreview}
-								type='application/pdf'
-								frameBorder='0'
-								scrolling='auto'
+								src={`https://drive.google.com/viewerng/viewer?embedded=true&url=${imagePreview}`}
 								style={{
 									height: imagePreview ? "100%" : "",
 									width: imagePreview ? "100%" : "",
 									// padding: "0px 15px",
+								}}></embed> */}
+							{/* <Document
+								onLoadError={console.error}
+								file={imagePreview}
+								onLoadSuccess={({
+									numPages: numPagesInPdf,
+								}) => {
+									console.log(
+										"numPagesInPdf : ",
+										numPagesInPdf
+									);
 								}}
-							/> */}
+								loading={"Loading"}>
+								<Page pageNumber={1} pageIndex={1} fullScreen />
+							</Document> */}
 
-							{/* <div
-								style={{
-									height: "0px",
-									width: "0px",
-									overflow: "hidden",
-								}}>
-								<input
-									id='upfile'
-									type='file'
-									ref={hiddenFileInput}
-									onChange={handleImageChange}
-									style={{ display: "none" }}
-								/>
+							{/* <div>
+								<Document
+									file={imagePreview}
+									onLoadSuccess={onDocumentLoadSuccess}
+									// height={"20vh"}
+									className='react-pdf-doc'>
+									<Page
+										// size='A4'
+										pageNumber={pageNumber}
+										className='react-pdf-page-class'
+									/>
+								</Document>
+								<p>
+									Page {pageNumber} of {numPages}
+								</p>
+
 							</div> */}
+
+							<>
+								<Document
+									file={imagePreview}
+									// options={{ workerSrc: "/pdf.worker.js" }}
+									loading={"Carregando..."}
+									noData='Nenhum arquivo PDF especificado.'
+									onLoadSuccess={onDocumentLoadSuccess}
+									className='react-pdf-doc'>
+									<Page
+										pageNumber={pageNumber}
+										className='react-pdf-page-class'
+										error='Falha ao carregar a página.'
+										loading={() => {
+											return (
+												<>
+													<div
+														className='d-flex justify-content-center align-items-center'
+														style={{
+															height: "40vh",
+														}}>
+														<span className=''>
+															Página de
+															carregamento…
+														</span>
+													</div>
+													{/* <div
+														className='d-flex justify-content-center align-items-center'
+														height={"100%"}>
+														Página de carregamento…
+													</div> */}
+												</>
+											);
+										}}
+									/>
+								</Document>
+								<div>
+									{numPages > 1 && (
+										<div className='d-flex justify-content-around align-items-center mt-3'>
+											<button
+												type='button'
+												disabled={pageNumber <= 1}
+												onClick={previousPage}
+												className='btn-next-prev'>
+												<i class='bi bi-caret-left-fill'></i>
+											</button>
+											<p className='text-center p-0 m-0'>
+												Página{" "}
+												{pageNumber ||
+													(numPages ? 1 : "--")}{" "}
+												de {numPages || "--"}
+											</p>
+											<button
+												type='button'
+												disabled={
+													pageNumber >= numPages
+												}
+												onClick={nextPage}
+												className='btn-next-prev'>
+												<i class='bi bi-caret-right-fill'></i>
+											</button>
+										</div>
+									)}
+								</div>
+							</>
 						</div>
 						<div>
 							<a

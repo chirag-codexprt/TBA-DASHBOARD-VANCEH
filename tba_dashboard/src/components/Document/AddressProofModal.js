@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
-import { Button, Col, Modal, Row } from "react-bootstrap";
+import { Button, Col, Modal, Row, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { approvedDocumentList } from "../../helper/API/document";
 import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/esm/Page/TextLayer.css";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 const AddressProofModal = ({
 	open,
 	handleClose,
@@ -18,12 +20,7 @@ const AddressProofModal = ({
 		document?.addressProof?.url
 	);
 	const [anchorEl, setAnchorEl] = useState(null);
-	const [numPages, setNumPages] = useState(null);
-	const [pageNumber, setPageNumber] = useState(1);
 
-	function onDocumentLoadSuccess({ numPages }) {
-		setNumPages(numPages);
-	}
 	const handleImageChange = (event) => {
 		const fileUploaded = event.target.files[0];
 		if (event.target.files[0]) {
@@ -57,6 +54,27 @@ const AddressProofModal = ({
 		});
 		console.log("submitData", submitData);
 	};
+	pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+	const [numPages, setNumPages] = useState(null);
+	const [pageNumber, setPageNumber] = useState(1); //setting 1 to show fisrt page
+
+	function onDocumentLoadSuccess({ numPages }) {
+		setNumPages(numPages);
+		setPageNumber(1);
+	}
+
+	function changePage(offset) {
+		setPageNumber((prevPageNumber) => prevPageNumber + offset);
+	}
+
+	function previousPage() {
+		changePage(-1);
+	}
+
+	function nextPage() {
+		changePage(1);
+	}
 
 	return (
 		<div>
@@ -78,8 +96,8 @@ const AddressProofModal = ({
 				<Row>
 					<Col className='mx-4'>
 						<div
-							className='border d-flex align-items-center justify-content-center position-relative rounded-2 mb-4'
-							style={{ height: "400px" }}>
+							className='border position-relative rounded-2 mb-4'
+							style={{ height: "360px" }}>
 							{/* <iframe
 								src={
 									imagePreview
@@ -93,14 +111,79 @@ const AddressProofModal = ({
 								}}
 							/>
 							  <div> */}
-							<embed
+							{/* <embed
 								src={`https://drive.google.com/viewerng/
 viewer?embedded=true&url=${imagePreview}`}
 								style={{
 									height: imagePreview ? "100%" : "",
 									width: imagePreview ? "100%" : "",
 									// padding: "0px 15px",
-								}}></embed>
+								}}></embed> */}
+
+							<>
+								<Document
+									file={imagePreview}
+									// options={{ workerSrc: "/pdf.worker.js" }}
+									loading={"Carregando..."}
+									noData='Nenhum arquivo PDF especificado.'
+									onLoadSuccess={onDocumentLoadSuccess}
+									className='react-pdf-doc'>
+									<Page
+										pageNumber={pageNumber}
+										className='react-pdf-page-class'
+										error='Falha ao carregar a página.'
+										loading={() => {
+											return (
+												<>
+													<div
+														className='d-flex justify-content-center align-items-center'
+														style={{
+															height: "40vh",
+														}}>
+														<span className=''>
+															Página de
+															carregamento…
+														</span>
+													</div>
+													{/* <div
+														className='d-flex justify-content-center align-items-center'
+														height={"100%"}>
+														Página de carregamento…
+													</div> */}
+												</>
+											);
+										}}
+									/>
+								</Document>
+								<div>
+									{numPages > 1 && (
+										<div className='d-flex justify-content-around align-items-center mt-3'>
+											<button
+												type='button'
+												disabled={pageNumber <= 1}
+												onClick={previousPage}
+												className='btn-next-prev'>
+												<i class='bi bi-caret-left-fill'></i>
+											</button>
+											<p className='text-center p-0 m-0'>
+												Página{" "}
+												{pageNumber ||
+													(numPages ? 1 : "--")}{" "}
+												de {numPages || "--"}
+											</p>
+											<button
+												type='button'
+												disabled={
+													pageNumber >= numPages
+												}
+												onClick={nextPage}
+												className='btn-next-prev'>
+												<i class='bi bi-caret-right-fill'></i>
+											</button>
+										</div>
+									)}
+								</div>
+							</>
 						</div>
 						<div>
 							<a

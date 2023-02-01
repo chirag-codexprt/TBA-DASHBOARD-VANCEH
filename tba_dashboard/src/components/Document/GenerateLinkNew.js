@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form, InputGroup, Modal, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { LINK_URL } from "../../config";
-import { generateLink } from "../../helper/API/contact";
+import { generateLink, generateNewLink } from "../../helper/API/contact";
 import copy from "copy-to-clipboard";
+import ModalCardRow from "./documents/ModalCardRow";
+import PermissionSwith from "./documents/PermissionSwitch";
 
 const GenerateLinkNew = ({
 	open,
@@ -13,12 +15,32 @@ const GenerateLinkNew = ({
 	setRefresh,
 }) => {
 	console.log("editData", editData);
+	const [permission, setPermission] = useState([]);
+	useEffect(() => {
+		generateNewLink().then((res) => {
+			if (res.success) {
+				console.log("res", res);
+				setPermission(res.data);
+			}
+		});
+	}, []);
+
 	const [copyText, setCopyText] = useState(false);
 	const [formValues, setFormValues] = useState({
 		CNPJ: true,
 		CPF: true,
-		socialContract: false,
-		proofOfAddress: false,
+		socialContract: true,
+		addressProof: true,
+		balanceIncome: true,
+		balanceSheet: true,
+		partnerIncome: true,
+		billingCustomer: true,
+		partnerDocument: true,
+		updatedBankDebt: true,
+		spouseDocument: true,
+		extractBusiestBank: true,
+		companyPhotos: true,
+		abcCurve: true,
 	});
 
 	const link = `${LINK_URL}${editData.id}/${editData.documentRequest.id}`;
@@ -31,7 +53,6 @@ const GenerateLinkNew = ({
 	};
 
 	const submitForm = (e) => {
-		console.log("editData", editData);
 		const submitData = {
 			permission: {
 				...formValues,
@@ -51,88 +72,38 @@ const GenerateLinkNew = ({
 				toast.error(res.message);
 			}
 		});
+		console.log("formValues", formValues);
 	};
-
-	// const handleCopy = (code) => {
-	// 	if (code) {
-	// 		copy(code);
-	// 		setCopyText(true);
-	// 		setTimeout(() => {
-	// 			setCopyText(false);
-	// 			console.log("called time out");
-	// 		}, 1000);
-	// 	}
-	// };
-
 	return (
 		<div>
 			<Modal
 				className='zindex'
 				show={open}
 				onHide={handleClose}
+				aria-labelledby='contained-modal-title-vcenter'
+				centered
 				size='lg'>
-				<Row className='p-3 px-4'>
-					<Col md={10} xs={9}>
-						<h5 className='fw-bolder'>
-							Link para solicitação de documentos
-						</h5>
-					</Col>
-					<Col className='text-end'>
-						<img
-							style={{ cursor: "pointer" }}
-							onClick={handleClose}
-							src='assets/img/close.png'></img>
-					</Col>
-				</Row>
-				<Row className="px-4">
-					<Col md={12}>
-						<h6>Documentos já enviados e aprovados</h6>
-					</Col>
-					<Col md={4}>
-						<img src="assets/img/right1.png"></img>
-						<span className="ps-2" style={{ fontWeight: '500' }}>CNPJ</span>
-					</Col>
-					<Col md={4}>
-						<img src="assets/img/right1.png"></img>
-						<span className="ps-2" style={{ fontWeight: '500' }}>CPF dos sócios</span>
-					</Col>
-					<Col md={4}>
-						<img src="assets/img/right1.png"></img>
-						<span className="ps-2" style={{ fontWeight: '500' }}>Contrato social</span>
-					</Col>
-				</Row>
+				<ModalCardRow
+					handleClose={handleClose}
+					id='contained-modal-title-vcenter'
+				/>
 				<Row className='px-4 pt-3'>
 					<Col md={12}>
 						<h6>Solicitar outros documentos</h6>
 					</Col>
-					<Col md={6} className=''>
-						<Form className='d-flex align-items-center'>
-							<Form.Check
-								className='chack-item input-check fs-5 border-0'
-								type='switch'
-								id='custom-switch'
-								checked
-								name='CPF'
-								defaultChecked={formValues.CPF}
-							/>
-							<label>CNPJ</label>
-						</Form>
-					</Col>
-					<Col md={6} className=''>
-						<Form className='d-flex align-items-center'>
-							<Form.Check
-								className='chack-item input-check fs-5 border-0'
-								type='switch'
-								id='custom-switch'
-								checked
-								name='CNPJ'
-								defaultChecked={formValues.cnpj}
-							/>
-							<label>CNPJ</label>
-						</Form>
-					</Col>
+					{permission?.map((obj, index) => (
+						<PermissionSwith
+							name={obj?.type}
+							label={obj?.title}
+							defaultChecked={
+								obj?.type ? `${formValues}.${obj?.type}` : ""
+							}
+							handleCheck={handleCheck}
+							// checked={`${formValues}.${obj?.type}`}
+						/>
+					))}
 				</Row>
-				<Row className="px-4">
+				<Row className='px-4'>
 					<Col md={12} className='mt-3'>
 						<h6>Link para compartilhar com o cliente</h6>
 					</Col>
@@ -153,7 +124,7 @@ const GenerateLinkNew = ({
 					</Col>
 					<Col md={6} className='my-3 text-end'>
 						<Button
-							className="px-5"
+							className='px-5'
 							style={{ background: "#1C3D59" }}
 							onClick={submitForm}>
 							{/* Encaminhar */}

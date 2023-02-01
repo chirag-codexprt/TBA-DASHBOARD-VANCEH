@@ -534,3 +534,35 @@ body {
   margin-top: -2.9rem;
   margin-left: 29rem;
 }
+.react-pdf-doc{
+  height: 300px;
+  width: 300px !important;
+}
+.react-pdf-page-class{
+  /* height: 85vh !important;
+width: 15vw !important; */
+height: 100% !important;
+}
+/* .react-pdf__Page__canvas{
+  height: 49% !important;
+width: 100% !important;
+} */
+
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+  width: 18vw !important;
+  height: 100% !important;
+}
+
+.btn-next-prev{
+  background-color: transparent !important;
+  border: 1px solid rgb(28, 61, 89);
+  color:#000;
+  height:20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: #85A6A2 !important; */
+}

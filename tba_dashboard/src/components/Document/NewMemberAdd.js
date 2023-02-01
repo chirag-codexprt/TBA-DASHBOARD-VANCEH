@@ -27,6 +27,7 @@ import {
 import CnpjCard from "./CnpjCard";
 
 const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
+	const [open, setopen] = useState(false);
 	const [characterLimit] = useState(25);
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState(null);
@@ -43,26 +44,63 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 
 	const handleFileChange = (acceptedFiles) => {
 		// setopen(true);
-		if (acceptedFiles[0]) {
-			setImages(acceptedFiles[0]);
-			const reader = new FileReader();
-			reader.addEventListener("load", () => {
-				setImagePreview(reader.result);
-			});
-			reader.readAsDataURL(acceptedFiles[0]);
+		// 	if (acceptedFiles[0]) {
+		// 		setImages(acceptedFiles[0]);
+		// 		const reader = new FileReader();
+		// 		reader.addEventListener("load", () => {
+		// 			setImagePreview(reader.result);
+		// 		});
+		// 		reader.readAsDataURL(acceptedFiles[0]);
+		// 	}
+		// 
+
+
+		if (acceptedFiles[0].type !== "application/pdf") {
+			toast.error("Por favor, selecione apenas arquivo pdf");
+			console.log("1");
+		} else {
+			console.log("2");
+			setopen(true);
+			if (acceptedFiles[0]) {
+				setImages(acceptedFiles[0]);
+				const reader = new FileReader();
+				reader.addEventListener("load", () => {
+					setImagePreview(URL.createObjectURL(acceptedFiles[0]));
+					console.log(
+						"reader url",
+						URL.createObjectURL(acceptedFiles[0])
+					);
+				});
+				reader.readAsDataURL(acceptedFiles[0]);
+			} else {
+				if (acceptedFiles[0]) {
+					setImages(acceptedFiles[0]);
+					const reader = new FileReader();
+					reader.addEventListener("load", () => {
+						setImagePreview(reader.result);
+					});
+					reader.readAsDataURL(acceptedFiles[0]);
+				}
+			}
 		}
+
 	};
 
 	const handleAddressChange = (acceptedFiles) => {
 		console.log("acceptedFiles", acceptedFiles);
 		// setAddressOpen(true);
-		if (acceptedFiles[0]) {
-			setAddressImages(acceptedFiles[0]);
-			const reader = new FileReader();
-			reader.addEventListener("load", () => {
-				setAddressImagePreview(reader.result);
-			});
-			reader.readAsDataURL(acceptedFiles[0]);
+		if (acceptedFiles[0].type !== "application/pdf") {
+			toast.error("Por favor, selecione apenas arquivo pdf");
+			console.log("1");
+		} else {
+			if (acceptedFiles[0]) {
+				setAddressImages(acceptedFiles[0]);
+				const reader = new FileReader();
+				reader.addEventListener("load", () => {
+					setAddressImagePreview(reader.result);
+				});
+				reader.readAsDataURL(acceptedFiles[0]);
+			}
 		}
 	};
 

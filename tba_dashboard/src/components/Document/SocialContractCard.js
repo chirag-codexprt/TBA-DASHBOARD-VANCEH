@@ -15,8 +15,9 @@ const SocialProofCard = ({ handleFileChange, images, data }) => {
 									className: "wfp--dropzone__input",
 								})}>
 								<input
+									// accept={"image/*"}
 									{...getInputProps()}
-									accept={"image/*"}
+									accept={".pdf"}
 								/>
 								<h6
 									style={{

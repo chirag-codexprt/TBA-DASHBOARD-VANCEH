@@ -1,25 +1,19 @@
 import React, { useRef, useState } from "react";
-import { Button, Col, Modal, Row } from "react-bootstrap";
+import { Button, Col, Modal, Row, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { approvedDocumentList } from "../../helper/API/document";
-
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-const ImageUploadModal = ({
+const DocumentVerifyModal = ({
 	open,
 	handleClose,
 	document,
 	refresh,
 	setRefresh,
 }) => {
-	console.log("document.type", document.type);
-
-	const hiddenFileInput = useRef(null);
-	const [images, setImages] = useState("");
 	const [imagePreview, setImagePreview] = useState(
-		document?.socialContract?.url
+		document?.addressProof?.url
 	);
 
 	const handleSubmit = (action) => {
@@ -37,8 +31,8 @@ const ImageUploadModal = ({
 				toast.error(res.message);
 			}
 		});
+		console.log("submitData", submitData);
 	};
-
 	pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 	const [numPages, setNumPages] = useState(null);
@@ -60,6 +54,7 @@ const ImageUploadModal = ({
 	function nextPage() {
 		changePage(1);
 	}
+
 	return (
 		<div>
 			<Modal show={open} onHide={handleClose} centered className='zindex'>
@@ -80,12 +75,12 @@ const ImageUploadModal = ({
 				<Row>
 					<Col className='mx-4'>
 						<div
-							className='border  position-relative rounded-2 mb-4'
+							className='border position-relative rounded-2 mb-4'
 							style={{ height: "360px" }}>
 							<>
 								<Document
 									file={imagePreview}
-									options={{ workerSrc: "/pdf.worker.js" }}
+									// options={{ workerSrc: "/pdf.worker.js" }}
 									loading={"Carregando..."}
 									noData='Nenhum arquivo PDF especificado.'
 									onLoadSuccess={onDocumentLoadSuccess}
@@ -107,11 +102,6 @@ const ImageUploadModal = ({
 															carregamento…
 														</span>
 													</div>
-													{/* <div
-														className='d-flex justify-content-center align-items-center'
-														height={"100%"}>
-														Página de carregamento…
-													</div> */}
 												</>
 											);
 										}}
@@ -149,7 +139,7 @@ const ImageUploadModal = ({
 						</div>
 						<div>
 							<a
-								href={document?.socialContract?.url}
+								href={document?.addressProof?.url}
 								target='_blank'
 								style={{ textDecoration: "none" }}>
 								<Button
@@ -171,8 +161,8 @@ const ImageUploadModal = ({
 						<Button
 							className='w-100 p-0 py-2 border-0'
 							style={{ background: "#C4CCD2" }}
-							onClick={() => handleSubmit("reject")}
-							disabled={document?.socialContract?.approved}>
+							disabled={document?.addressProof?.approved}
+							onClick={() => handleSubmit("reject")}>
 							<i class='bi bi-x'></i>Solicitar outra foto
 						</Button>
 					</Col>
@@ -180,7 +170,7 @@ const ImageUploadModal = ({
 						<Button
 							className='p-0 py-2 w-100 border-0'
 							style={{ backgroundColor: "#1C3D59" }}
-							disabled={document?.socialContract?.approved}
+							disabled={document?.addressProof?.approved}
 							onClick={() => handleSubmit("approved")}>
 							<i class='bi bi-check'></i>Aprovar documento
 						</Button>
@@ -191,4 +181,4 @@ const ImageUploadModal = ({
 	);
 };
 
-export default ImageUploadModal;
+export default DocumentVerifyModal;

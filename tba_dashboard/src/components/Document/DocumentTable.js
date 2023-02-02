@@ -6,6 +6,7 @@ import Table from "react-bootstrap/Table";
 import Pagination from "../Pagination";
 import RecordFound from "../RecordFound";
 import AddressProofModal from "./AddressProofModal";
+import TableRowDocument from "./documents/TableRowDocument";
 import GenerateLinkModal from "./GenerateLinkModal";
 import GenerateLinkNew from "./GenerateLinkNew";
 import ImageUploadModal from "./ImageUploadModal";
@@ -45,23 +46,13 @@ const DocumentTable = ({
 	}, [tableData, currentPage]);
 
 	const handleShowImageModal = (data, type) => {
-		if (data.socialContract) {
-			setOpenImageModal(true);
-			setDocument({
-				...data,
-				type,
-			});
-		}
-	};
-
-	const handleShowAddressModal = (data, type) => {
-		if (data.addressProof) {
-			setOpenAddressModal(true);
-			setAddDocument({
-				...data,
-				type,
-			});
-		}
+		// if (data.socialContract) {
+		setDocument({
+			...data,
+			type,
+		});
+		setOpenImageModal(true);
+		// }
 	};
 
 	const handleShowLinkModal = (val) => {
@@ -145,247 +136,40 @@ const DocumentTable = ({
 								</td>
 								{(obj.allStatus === "pending" ||
 									obj.allStatus === "approved") && (
-										<div>
-											{idArray.includes(obj.id) ? (
-												<Row
-													className='position-absolute'
-													style={{
-														left: "0",
-														bottom: "0",
-														width: "100%",
-													}}>
-													<Col>
-														<Col
-															style={{
-																color: "#B5B6B7",
-															}}>
-															CPF/CNPJ
-														</Col>
-														<Col className=''>
-															<Button
-																className='w-100 p-0'
-																variant='outline-success'>
-																<i class='bi bi-check-lg fs-2'></i>
-																<h6
-																	style={{
-																		color: "#C4CCD2",
-																		fontSize:
-																			"11px",
-																	}}>
-																	Já aprovada,
-																	visualizar?
-																</h6>
-															</Button>
-														</Col>
+									<div>
+										{idArray.includes(obj.id) ? (
+											<Row
+												className='position-absolute'
+												style={{
+													left: "0",
+													bottom: "0",
+													width: "100%",
+												}}>
+												<TableRowDocument
+													obj={obj}
+													handleShowImageModal={
+														handleShowImageModal
+													}
+												/>
+
+												<Row>
+													<Col
+														className='d-flex justify-content-center mt-2 ms-4'
+														style={{
+															color: "#C4CCD2",
+															fontSize: "12px",
+														}}>
+														Responsável por esse
+														cliente: Renata
+														Vasconcelos
 													</Col>
-													<Col>
-														<Col
-															style={{
-																color: "#B5B6B7",
-															}}>
-															Contrato social
-														</Col>
-														<Col>
-															{obj?.socialContract ===
-																null && (
-																	<Button
-																		className='w-100 p-0 ms-0'
-																		onClick={() =>
-																			handleShowImageModal(
-																				obj,
-																				"socialContract"
-																			)
-																		}
-																		variant='outline-secondary'>
-																		<label
-																			style={{
-																				rotate: "45deg",
-																			}}>
-																			<i class='bi bi-paperclip fs-2'></i>
-																		</label>
-																		<h6
-																			style={{
-																				color: "#C4CCD2",
-																				fontSize:
-																					"11px",
-																			}}>
-																			Arraste e
-																			solte aqui
-																			ou importe
-																			dos seus
-																			arquivos
-																		</h6>
-																	</Button>
-																)}
-															{obj?.socialContract &&
-																!obj?.socialContract
-																	?.approved && (
-																	<Button
-																		className='w-100 p-0 ms-0'
-																		onClick={() =>
-																			handleShowImageModal(
-																				obj,
-																				"socialContract"
-																			)
-																		}
-																		variant='outline-warning'>
-																		<i class='bi bi-clock-fill fs-2'></i>
-
-																		<h6
-																			style={{
-																				color: "#C4CCD2",
-																				fontSize:
-																					"11px",
-																			}}>
-																			Aguardando
-																			análise,
-																			visualizar?
-																		</h6>
-																	</Button>
-																)}
-
-															{obj?.socialContract &&
-																obj?.socialContract
-																	?.approved && (
-																	<Button
-																		className='w-100 p-0 ms-0'
-																		onClick={() =>
-																			handleShowImageModal(
-																				obj,
-																				"socialContract"
-																			)
-																		}
-																		variant='outline-success'>
-																		<i class='bi bi-check-lg fs-2'></i>
-
-																		<h6
-																			style={{
-																				color: "#C4CCD2",
-																				fontSize:
-																					"11px",
-																			}}>
-																			Aguardando
-																			análise,
-																			visualizar?
-																		</h6>
-																	</Button>
-																)}
-														</Col>
-													</Col>
-													<Col>
-														<Col
-															style={{
-																color: "#B5B6B7",
-															}}>
-															Comprovante de
-															residência
-														</Col>
-														<Col>
-															{obj?.addressProof ===
-																null && (
-																	<Button
-																		className='w-100 p-0 ms-0'
-																		onClick={() =>
-																			handleShowAddressModal(
-																				obj,
-																				"addressProof"
-																			)
-																		}
-																		variant='outline-secondary'>
-																		<label
-																			style={{
-																				rotate: "45deg",
-																			}}>
-																			<i class='bi bi-paperclip fs-2'></i>
-																		</label>
-																		<h6
-																			style={{
-																				color: "#C4CCD2",
-																				fontSize:
-																					"11px",
-																			}}>
-																			Arraste e
-																			solte aqui
-																			ou importe
-																			dos seus
-																			arquivos
-																		</h6>
-																	</Button>
-																)}
-															{obj?.addressProof &&
-																!obj?.addressProof
-																	?.approved && (
-																	<Button
-																		className='w-100 p-0 ms-0'
-																		onClick={() =>
-																			handleShowAddressModal(
-																				obj,
-																				"addressProof"
-																			)
-																		}
-																		variant='outline-warning'>
-																		<i class='bi bi-clock-fill fs-2'></i>
-
-																		<h6
-																			style={{
-																				color: "#C4CCD2",
-																				fontSize:
-																					"11px",
-																			}}>
-																			Aguardando
-																			análise,
-																			visualizar?
-																		</h6>
-																	</Button>
-																)}
-
-															{obj?.addressProof &&
-																obj?.addressProof
-																	?.approved && (
-																	<Button
-																		className='w-100 p-0 ms-0'
-																		onClick={() =>
-																			handleShowAddressModal(
-																				obj,
-																				"addressProof"
-																			)
-																		}
-																		variant='outline-success'>
-																		<i class='bi bi-check-lg fs-2'></i>
-
-																		<h6
-																			style={{
-																				color: "#C4CCD2",
-																				fontSize:
-																					"11px",
-																			}}>
-																			Aguardando
-																			análise,
-																			visualizar?
-																		</h6>
-																	</Button>
-																)}
-														</Col>
-													</Col>
-
-													<Row>
-														<Col
-															className='d-flex justify-content-center mt-2 ms-4'
-															style={{
-																color: "#C4CCD2",
-																fontSize: "12px",
-															}}>
-															Responsável por esse
-															cliente: Renata
-															Vasconcelos
-														</Col>
-													</Row>
 												</Row>
-											) : (
-												""
-											)}
-										</div>
-									)}
+											</Row>
+										) : (
+											""
+										)}
+									</div>
+								)}
 							</tr>
 						))}
 					</tbody>

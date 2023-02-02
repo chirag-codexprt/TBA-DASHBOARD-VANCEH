@@ -2,11 +2,14 @@ import React from "react";
 import { Button, Col } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 
-const SocialProofCard = ({ handleFileChange, images, data }) => {
+const UpdatedBankDebt = ({ data, images, handleFileChange }) => {
 	return (
 		<>
-			<Col md={3} xs={12}>
-				<Dropzone onDrop={handleFileChange}>
+			<Col md={4} xs={12}>
+				<Dropzone
+					onDrop={(acceptedFiles, rejected, e) => {
+						handleFileChange(acceptedFiles, rejected, e);
+					}}>
 					{({ getRootProps, getInputProps }) => (
 						<section className='wfp--dropzone'>
 							<div
@@ -15,15 +18,17 @@ const SocialProofCard = ({ handleFileChange, images, data }) => {
 								})}>
 								<input
 									{...getInputProps()}
-									accept={"image/*"}
+									accept={".pdf"}
+									name='updatedBankDebt'
+									type='file'
 								/>
 								<h6
 									style={{
 										color: "#B5B6B7",
 									}}>
-									Contrato social
+									Endividamento bancário atualizado
 								</h6>
-								{images ? (
+								{images?.updatedBankDebt ? (
 									<Button
 										className='w-100 p-0 CardBtn'
 										variant='outline-warning'>
@@ -67,4 +72,4 @@ const SocialProofCard = ({ handleFileChange, images, data }) => {
 	);
 };
 
-export default SocialProofCard;
+export default UpdatedBankDebt;

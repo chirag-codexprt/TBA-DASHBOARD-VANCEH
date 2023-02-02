@@ -4,7 +4,7 @@ import { Button, Col } from "react-bootstrap";
 const CpfCard = ({ formValues }) => {
 	return (
 		<>
-			<Col md={3} xs={12}>
+			<Col md={4} xs={12}>
 				<h6 style={{ color: "#B5B6B7" }}>CPF</h6>
 				{formValues.CPF ? (
 					<Button

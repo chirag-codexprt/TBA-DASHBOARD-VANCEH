@@ -171,8 +171,7 @@ const ImageUploadModal = ({
 						<Button
 							className='w-100 p-0 py-2 border-0'
 							style={{ background: "#C4CCD2" }}
-							onClick={() => handleSubmit("reject")}
-							disabled={document?.socialContract?.approved}>
+							onClick={() => handleSubmit("reject")}>
 							<i class='bi bi-x'></i>Solicitar outra foto
 						</Button>
 					</Col>
@@ -180,7 +179,6 @@ const ImageUploadModal = ({
 						<Button
 							className='p-0 py-2 w-100 border-0'
 							style={{ backgroundColor: "#1C3D59" }}
-							disabled={document?.socialContract?.approved}
 							onClick={() => handleSubmit("approved")}>
 							<i class='bi bi-check'></i>Aprovar documento
 						</Button>

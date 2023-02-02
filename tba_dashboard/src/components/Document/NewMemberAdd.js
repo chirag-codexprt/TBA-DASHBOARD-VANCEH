@@ -19,18 +19,19 @@ import SocialContractCard from "./SocialContractCard";
 import AddressProofCard from "./AddressProofCard";
 import { toast } from "react-toastify";
 import CpfCard from "./CpfCard";
-import { contactForm } from "../../helper/API/contact";
+import { attachDocument, contactForm } from "../../helper/API/contact";
 import {
 	submitAddressDocument,
 	submitDocument,
 } from "../../helper/API/document";
 import CnpjCard from "./CnpjCard";
+import TableRowDocument from "./NewClientCards/TableRowDocument";
 
 const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 	const [characterLimit] = useState(25);
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState(null);
-	const [images, setImages] = React.useState("");
+
 	const [imagePreview, setImagePreview] = React.useState("");
 	const [addressImages, setAddressImages] = React.useState("");
 	const [addressImagePreview, setAddressImagePreview] = React.useState("");
@@ -40,29 +41,34 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 		CPF: "",
 		CNPJ: "",
 	});
+	const [images, setImages] = React.useState({
+		socialContract: "",
+		addressProof: "",
+		balanceIncome: "",
+		balanceSheet: "",
+		partnerIncome: "",
+		billingCustomer: "",
+		partnerDocument: "",
+		updatedBankDebt: "",
+		spouseDocument: "",
+		extractBusiestBank: "",
+		companyPhotos: "",
+		abcCurve: "",
+	});
 
-	const handleFileChange = (acceptedFiles) => {
-		// setopen(true);
-		if (acceptedFiles[0]) {
-			setImages(acceptedFiles[0]);
-			const reader = new FileReader();
-			reader.addEventListener("load", () => {
-				setImagePreview(reader.result);
-			});
-			reader.readAsDataURL(acceptedFiles[0]);
-		}
-	};
-
-	const handleAddressChange = (acceptedFiles) => {
+	const handleFileChange = (acceptedFiles, type, e) => {
 		console.log("acceptedFiles", acceptedFiles);
-		// setAddressOpen(true);
-		if (acceptedFiles[0]) {
-			setAddressImages(acceptedFiles[0]);
-			const reader = new FileReader();
-			reader.addEventListener("load", () => {
-				setAddressImagePreview(reader.result);
-			});
-			reader.readAsDataURL(acceptedFiles[0]);
+		if (acceptedFiles[0].type !== "application/pdf") {
+			toast.error("Por favor, selecione apenas arquivo pdf");
+		} else {
+			// setopen(true);
+			if (acceptedFiles[0]) {
+				setImagePreview(URL.createObjectURL(acceptedFiles[0]));
+				setImages({
+					...images,
+					[e.target.name]: acceptedFiles[0],
+				});
+			}
 		}
 	};
 
@@ -83,61 +89,165 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 			toast.error("Digite cnpj");
 		} else if (!formValues.emailOrPhone) {
 			toast.error("Por favor insira e-mail ou telefone");
-		} else if (!images) {
+		} else if (!images.socialContract) {
 			toast.error("Selecione o documento");
-		} else if (!addressImages) {
+		} else if (!images.addressProof) {
+			toast.error("Selecione o documento");
+		} else if (!images.balanceIncome) {
+			toast.error("Selecione o documento");
+		} else if (!images.balanceSheet) {
+			toast.error("Selecione o documento");
+		} else if (!images.partnerIncome) {
+			toast.error("Selecione o documento");
+		} else if (!images.billingCustomer) {
+			toast.error("Selecione o documento");
+		} else if (!images.partnerDocument) {
+			toast.error("Selecione o documento");
+		} else if (!images.updatedBankDebt) {
+			toast.error("Selecione o documento");
+		} else if (!images.extractBusiestBank) {
+			toast.error("Selecione o documento");
+		} else if (!images.companyPhotos) {
+			toast.error("Selecione o documento");
+		} else if (!images.abcCurve) {
+			toast.error("Selecione o documento");
+		} else if (!images.socialContract) {
 			toast.error("Selecione o documento");
 		} else {
 			contactForm(formValues).then((res) => {
 				// console.log("first form", res);
 				if (res.success) {
-					if (images) {
-						setLoading(true);
-						let formData = new FormData();
-						formData.append("socialContract", images);
+					let call1;
+					let call2;
+					let call3;
+					let call4;
+					let call5;
+					let call6;
+					let call7;
+					let call8;
+					let call9;
+					let call10;
+					let call11;
+					let call12;
+					setLoading(true);
+					if (images.socialContract) {
+						const formData = new FormData();
+						formData.append("addressProof", images.socialContract);
 						formData.append("id", res.data.id);
-						submitDocument(formData).then((resp) => {
-							// console.log("resp img::", resp);
-							if (resp.success) {
-
-								if (addressImages) {
-									setLoading(true);
-									let formDataAddress = new FormData();
-									formDataAddress.append(
-										"addressProof",
-										addressImages
-									);
-									formDataAddress.append("id", res.data.id);
-									submitAddressDocument(formDataAddress).then(
-										(res) => {
-											// console.log(
-											// 	"resp Address ::",
-											// 	resp
-											// );
-											if (res.success) {
-												setLoading(false);
-												setAddressImages("");
-												setImagePreview("");
-												setImages("");
-												setAddressImagePreview("");
-												toast.success(res.message);
-												setRefresh(refresh + 1);
-												handleClose();
-											} else {
-												setLoading(false);
-												toast.error(res.message);
-											}
-										}
-									);
-								}
-							} else {
-								toast.error(res.message);
-							}
-						});
+						formData.append("type", "socialContract");
+						call1 = attachDocument(formData);
 					}
-				} else {
-					toast.error(res.message);
-					// console.log("res", res);
+					if (images.addressProof) {
+						const formData = new FormData();
+						formData.append("addressProof", images.addressProof);
+						formData.append("id", res.data.id);
+						formData.append("type", "addressProof");
+						call2 = attachDocument(formData);
+					}
+					if (images.balanceIncome) {
+						const formData = new FormData();
+						formData.append("addressProof", images.balanceIncome);
+						formData.append("id", res.data.id);
+						formData.append("type", "balanceIncome");
+						call3 = attachDocument(formData);
+					}
+					if (images.balanceSheet) {
+						const formData = new FormData();
+						formData.append("addressProof", images.balanceSheet);
+						formData.append("id", res.data.id);
+						formData.append("type", "balanceSheet");
+						call4 = attachDocument(formData);
+					}
+					if (images.partnerIncome) {
+						const formData = new FormData();
+						formData.append("addressProof", images.partnerIncome);
+						formData.append("id", res.data.id);
+						formData.append("type", "partnerIncome");
+						call5 = attachDocument(formData);
+					}
+					if (images.billingCustomer) {
+						const formData = new FormData();
+						formData.append("addressProof", images.billingCustomer);
+						formData.append("id", res.data.id);
+						formData.append("type", "billingCustomer");
+						call6 = attachDocument(formData);
+					}
+					if (images.partnerDocument) {
+						const formData = new FormData();
+						formData.append("addressProof", images.partnerDocument);
+						formData.append("id", res.data.id);
+						formData.append("type", "partnerDocument");
+						call7 = attachDocument(formData);
+					}
+					if (images.updatedBankDebt) {
+						const formData = new FormData();
+						formData.append("addressProof", images.updatedBankDebt);
+						formData.append("id", res.data.id);
+						formData.append("type", "updatedBankDebt");
+						call8 = attachDocument(formData);
+					}
+					if (images.spouseDocument) {
+						const formData = new FormData();
+						formData.append("addressProof", images.spouseDocument);
+						formData.append("id", res.data.id);
+						formData.append("type", "spouseDocument");
+						call9 = attachDocument(formData);
+					}
+					if (images.extractBusiestBank) {
+						const formData = new FormData();
+						formData.append(
+							"addressProof",
+							images.extractBusiestBank
+						);
+						formData.append("id", res.data.id);
+						formData.append("type", "extractBusiestBank");
+						call10 = attachDocument(formData);
+					}
+					if (images.companyPhotos) {
+						const formData = new FormData();
+						formData.append("addressProof", images.companyPhotos);
+						formData.append("id", res.data.id);
+						formData.append("type", "companyPhotos");
+						call11 = attachDocument(formData);
+					}
+					if (images.abcCurve) {
+						const formData = new FormData();
+						formData.append("addressProof", images.abcCurve);
+						formData.append("id", res.data.id);
+						formData.append("type", "abcCurve");
+						call12 = attachDocument(formData);
+					}
+					console.log("call1", call1);
+					const ab = [
+						call1,
+						call2,
+						call3,
+						call4,
+						call5,
+						call6,
+						call7,
+						call8,
+						call9,
+						call10,
+						call11,
+						call12,
+					];
+
+					Promise.all(ab)
+						.then((responses) => {
+							console.log("responses :::", responses);
+							console.log(
+								"responses length :::",
+								responses.length
+							);
+							if (responses) {
+								toast.success("Anexo adicionado com sucesso");
+								setLoading(false);
+								handleClose();
+								setRefresh(refresh + 1);
+							}
+						})
+						.catch((err) => toast.error("Pedido inválido"));
 				}
 			});
 		}
@@ -150,17 +260,20 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 			size='xl'
 			aria-labelledby='contained-modal-title-vcenter'
 			centered>
-			<ModalHeader className='border-0 mx-3 mt-3 mb-0 fw-bolder fs-6' closeButton>
-				<Modal.Title id='contained-modal-title-vcenter'>
-				</Modal.Title>
+			<ModalHeader
+				className='border-0 mx-3 mt-3 mb-0 fw-bolder fs-6'
+				closeButton>
+				<Modal.Title id='contained-modal-title-vcenter'></Modal.Title>
 			</ModalHeader>
-			<ModalBody className="p-4 pt-0">
-				<h5 className="fw-bolder">Criar novo cliente</h5>
+			<ModalBody className='p-4 pt-0'>
+				<h5 className='fw-bolder'>Criar novo cliente</h5>
 				<Row className='mt-3'>
 					<Col md={6} xs={12}>
 						<Form>
-							<Form.Label className="Doc-Font-Color">Nome completo do cleinte</Form.Label>
-							<FormGroup className="">
+							<Form.Label className='Doc-Font-Color'>
+								Nome completo do cleinte
+							</Form.Label>
+							<FormGroup className=''>
 								<InputGroup className='mb-3 rounded'>
 									<InputGroup.Text
 										id='basic-addon1'
@@ -180,13 +293,17 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 										onChange={handleChange}
 									/>
 								</InputGroup>
-								<Badge className="bg-f4f4f4 text-dark badge-absolute bg-white" >{formValues.name.length}/{characterLimit}</Badge>
+								<Badge className='bg-f4f4f4 text-dark badge-absolute bg-white'>
+									{formValues.name.length}/{characterLimit}
+								</Badge>
 							</FormGroup>
 						</Form>
 					</Col>
 					<Col md={6} xs={12}>
 						<Form>
-							<Form.Label className="Doc-Font-Color">Email/telefone</Form.Label>
+							<Form.Label className='Doc-Font-Color'>
+								Email/telefone
+							</Form.Label>
 							<InputGroup className='mb-3 rounded'>
 								<InputGroup.Text
 									id='basic-addon1'
@@ -211,7 +328,9 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 				<Row>
 					<Col md={6} xs={12}>
 						<Form>
-							<Form.Label className="Doc-Font-Color">CPF</Form.Label>
+							<Form.Label className='Doc-Font-Color'>
+								CPF
+							</Form.Label>
 							<InputGroup className='mb-3 rounded'>
 								<InputGroup.Text
 									id='basic-addon1'
@@ -234,7 +353,9 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					</Col>
 					<Col md={6} xs={12}>
 						<Form>
-							<Form.Label className="Doc-Font-Color">CNPJ</Form.Label>
+							<Form.Label className='Doc-Font-Color'>
+								CNPJ
+							</Form.Label>
 							<InputGroup className='mb-3 rounded'>
 								<InputGroup.Text
 									id='basic-addon1'
@@ -260,15 +381,9 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					<CpfCard formValues={formValues} />
 					<CnpjCard formValues={formValues} />
 
-					<SocialContractCard
+					<TableRowDocument
 						handleFileChange={handleFileChange}
 						images={images}
-					/>
-
-					<AddressProofCard
-						handleAddressChange={handleAddressChange}
-						addressImages={addressImages}
-						data={data}
 					/>
 				</Row>
 				<div className='d-flex justify-content-end'>

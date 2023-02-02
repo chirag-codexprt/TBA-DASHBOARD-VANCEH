@@ -4,6 +4,7 @@ import {
 	GENERATE_LINK,
 	CONTACT_FORM,
 	GENERATE_NEW_LINK,
+	ATTACH_DOCUMENT,
 } from "../url";
 
 export const getContactList = (submitData) => {
@@ -46,6 +47,19 @@ export const contactForm = (submitData) => {
 export const generateNewLink = (submitData) => {
 	return new Promise((resolve, reject) => {
 		AfterAuthApi(GENERATE_NEW_LINK, "post", submitData)
+			.then((res) => {
+				resolve(res.data);
+			})
+			.catch((err) => {
+				reject();
+			});
+	});
+};
+
+export const attachDocument = (submitData) => {
+	console.log("submitData", submitData);
+	return new Promise((resolve, reject) => {
+		ApiCall(ATTACH_DOCUMENT, "post", submitData)
 			.then((res) => {
 				resolve(res.data);
 			})

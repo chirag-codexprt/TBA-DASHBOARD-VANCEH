@@ -2,11 +2,14 @@ import React from "react";
 import { Button, Col } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 
-const SocialProofCard = ({ handleFileChange, images, data }) => {
+const ProofOfAddress = ({ data, images, handleFileChange }) => {
 	return (
 		<>
-			<Col md={3} xs={12}>
-				<Dropzone onDrop={handleFileChange}>
+			<Col md={4} xs={12}>
+				<Dropzone
+					onDrop={(acceptedFiles, rejected, e) => {
+						handleFileChange(acceptedFiles, rejected, e);
+					}}>
 					{({ getRootProps, getInputProps }) => (
 						<section className='wfp--dropzone'>
 							<div
@@ -15,19 +18,17 @@ const SocialProofCard = ({ handleFileChange, images, data }) => {
 								})}>
 								<input
 									{...getInputProps()}
-									accept={"image/*"}
+									accept={".pdf"}
+									name='addressProof'
+									type='file'
 								/>
-								<h6
-									style={{
-										color: "#B5B6B7",
-									}}>
-									Contrato social
+								<h6 style={{ color: "#B5B6B7" }}>
+									Comprovante de endereço dos sócios
 								</h6>
-								{images ? (
+								{images?.addressProof ? (
 									<Button
 										className='w-100 p-0 CardBtn'
 										variant='outline-warning'>
-										{/* <i className='bi bi-check-lg fs-1 right-icon'></i> */}
 										<i className='bi bi-clock-fill fs-1 pending-icon'></i>
 										<h6
 											style={{
@@ -42,10 +43,7 @@ const SocialProofCard = ({ handleFileChange, images, data }) => {
 									<Button
 										className='w-100 p-0 CardBtn'
 										variant='outline-secondary'>
-										<label
-											style={{
-												rotate: "45deg",
-											}}>
+										<label style={{ rotate: "45deg" }}>
 											<i className='bi bi-paperclip fs-1 link-icon'></i>
 										</label>
 										<h6
@@ -67,4 +65,4 @@ const SocialProofCard = ({ handleFileChange, images, data }) => {
 	);
 };
 
-export default SocialProofCard;
+export default ProofOfAddress;

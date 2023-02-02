@@ -5,7 +5,7 @@ import Dropzone from "react-dropzone";
 const CpfNumber = ({ data, images, handleFileChange }) => {
 	return (
 		<>
-			<Col md={4} xs={12}>
+			<Col md={4} xs={12} style={{ margin: '1rem 0rem' }}>
 				<h6 style={{ color: "#B5B6B7" }}>CPF</h6>
 				<Button className='w-100 p-0 CardBtn' variant='outline-success'>
 					<i className='bi bi-check-lg fs-1 right-icon'></i>

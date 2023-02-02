@@ -5,7 +5,7 @@ import Dropzone from "react-dropzone";
 const BalanceIncome = ({ data, images, handleFileChange }) => {
 	return (
 		<>
-			<Col md={4} xs={12}>
+			<Col md={4} style={{ margin: '1rem 0rem' }} xs={12}>
 				<Dropzone
 					onDrop={(acceptedFiles, rejected, e) => {
 						handleFileChange(acceptedFiles, rejected, e);

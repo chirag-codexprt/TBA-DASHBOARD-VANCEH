@@ -4,7 +4,7 @@ import { Button, Col } from "react-bootstrap";
 const CnpjCard = ({ formValues }) => {
 	return (
 		<>
-			<Col md={4} xs={12}>
+			<Col md={4} style={{ margin: "1rem 0rem" }} xs={12}>
 				<h6 style={{ color: "#B5B6B7" }}>CNPJ</h6>
 				{formValues.CNPJ ? (
 					<Button

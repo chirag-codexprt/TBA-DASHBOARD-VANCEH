@@ -5,7 +5,7 @@ import Dropzone from "react-dropzone";
 const SpouseDocument = ({ data, images, handleFileChange }) => {
 	return (
 		<>
-			<Col md={4} xs={12}>
+			<Col md={4} xs={12} style={{ margin: '1rem 0rem' }}>
 				<Dropzone
 					onDrop={(acceptedFiles, rejected, e) => {
 						handleFileChange(acceptedFiles, rejected, e);

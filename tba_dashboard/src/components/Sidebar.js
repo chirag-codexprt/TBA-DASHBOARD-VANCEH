@@ -63,7 +63,7 @@ const Sidebar = () => {
 							color: "#c2c2c2",
 							marginLeft: "30%",
 						}}>
-						Category
+						Categorias
 					</div>
 					{link.map((val, index) => {
 						if (val.active == true) {

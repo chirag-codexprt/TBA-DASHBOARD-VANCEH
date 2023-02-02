@@ -138,7 +138,7 @@ const DocumentTable = ({
 												: null
 										}>
 										{obj.allStatus === "pending"
-											? "Pendente"
+											? "Aguard. doc."
 											: "Concluído"}
 									</Button>
 								</td>

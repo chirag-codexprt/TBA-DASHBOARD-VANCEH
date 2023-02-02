@@ -40,7 +40,7 @@ const NavbarCom = () => {
 									} text-white d-flex align-items-center`}>
 								{profileItem?.name}
 								<Nav.Link>
-									<img
+									<img className={`${pathName == "/perfil" && "Imgborder"}`}
 										src={
 											profileItem.profileImage
 												? profileItem.profileImage
@@ -52,6 +52,7 @@ const NavbarCom = () => {
 											width: "50px",
 											borderRadius: "50%",
 											objectFit: "contain"
+
 										}}
 									/>
 								</Nav.Link>

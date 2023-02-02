@@ -38,8 +38,8 @@ const InsightTable = ({ tableRow }) => {
 											: "success"
 									}>
 									{obj.status === "pending"
-										? "Pendente"
-										: "respondidas"}
+										? "Aguard. doc."
+										: "Respondido"}
 								</Button>
 							</td>
 						</tr>

@@ -154,8 +154,8 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 												: null
 										}>
 										{obj.status === "pending"
-											? "Pendente"
-											: "Respondido"}
+											? "Aguardando"
+											: "Aprovado"}
 									</Button>
 								</td>
 								{

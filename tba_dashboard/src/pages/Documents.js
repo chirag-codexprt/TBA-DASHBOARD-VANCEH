@@ -135,29 +135,26 @@ const Documents = () => {
 							setRefresh={setRefresh}
 							search={search}>
 							<Button
-								className={`fs-color  mx-1 border-0 ${
-									active.approved
+								className={`fs-color  mx-1 border-0 ${active.approved
 										? "activeBtnTable"
 										: "inActiveBtnTable"
-								}`}
+									}`}
 								onClick={(e) => handleToggle("Approved")}>
 								Concluídos
 							</Button>
 							<Button
-								className={`fs-color  mx-1 border-0 ${
-									active.pending
+								className={`fs-color  mx-1 border-0 ${active.pending
 										? "activeBtnTable"
 										: "inActiveBtnTable"
-								}`}
+									}`}
 								onClick={(e) => handleToggle("Pending")}>
 								Pendentes
 							</Button>
 							<Button
-								className={`fs-color px-4 mx-1 border-0 ${
-									active.all
+								className={`fs-color px-4 mx-1 border-0 ${active.all
 										? "activeBtnTable"
 										: "inActiveBtnTable"
-								}`}
+									}`}
 								onClick={(e) => handleToggle("All")}>
 								Todas
 							</Button>
@@ -170,7 +167,7 @@ const Documents = () => {
 									marginLeft: "2.5rem",
 								}}
 								className='fw-bold align-items-center border-0'>
-								+ Novo cliente
+								+&nbsp;Novo&nbsp;cliente
 							</Button>
 						</TableNavbar>
 					</div>

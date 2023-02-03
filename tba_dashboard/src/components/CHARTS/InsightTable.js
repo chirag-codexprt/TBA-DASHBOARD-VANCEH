@@ -14,19 +14,19 @@ const InsightTable = ({ tableRow, refresh, setRefresh }) => {
 						<th className='tbl-head-color '>CPF</th>
 						<th className='tbl-head-color '>CNPJ</th>
 						<th className='tbl-head-color '>Telefone </th>
-						{/* <th className='tbl-head-color '>Data</th> */}
+						<th className='tbl-head-color '>Data</th>
 						<th className='tbl-head-color text-center '>Hora </th>
 						<th className='tbl-head-color text-center'>Status </th>
 					</tr>
 				</thead>
 				<tbody>
 					{tableRow.slice(0, 4).map((obj, i) => (
-						<tr className='14px'>
+						<tr>
 							<td className='fw-bold  '>{obj?.name}</td>
 							<td>{obj?.CPF}</td>
 							<td>{obj?.CNPJ}</td>
 							<td>{obj?.phone} </td>
-							{/* <td>{obj?.date}</td> */}
+							<td>{obj?.date}</td>
 							<td className='text-center'>{obj?.time} </td>
 							<td className='text-end position-relative'>
 								<Button

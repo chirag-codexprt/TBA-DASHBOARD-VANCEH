@@ -1,10 +1,15 @@
 import React from 'react'
 import { Button, Col } from 'react-bootstrap'
 
-const GenerateLinkBtn = () => {
+const GenerateLinkBtn = ({ onClick, obj }) => {
+    console.log('obj', obj)
     return (
         <>
-            <Col md={4} className="d-flex align-items-center justify-content-end">
+            <Col md={4} className="d-flex align-items-center justify-content-end mt-3"
+                style={{
+                    position: "relative",
+                    zIndex: 2000
+                }}>
                 <div>
                     <h6
                         style={{
@@ -17,11 +22,7 @@ const GenerateLinkBtn = () => {
                 <div className='ps-3'>
                     <Button
                         className='border-0 px-4'
-                        // onClick={() =>
-                        //     handleShowLinkModal(
-                        //         obj
-                        //     )
-                        // }
+                        onClick={onClick}
                         style={{
                             background:
                                 "#1C3D59",

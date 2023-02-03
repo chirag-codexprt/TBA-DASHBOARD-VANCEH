@@ -196,7 +196,7 @@ const PermissonTable = ({ tableRow, refresh, setRefresh }) => {
 							<th className='tbl-head-color' width={"25%"}>
 								Nome{" "}
 							</th>
-							<th className='tbl-head-color'>Email/Telefone </th>
+							<th className='tbl-head-color'>Email</th>
 							<th className='tbl-head-color'>Função </th>
 							<th className='tbl-head-color'>Contatos</th>
 							<th className='tbl-head-color'>Documentos</th>

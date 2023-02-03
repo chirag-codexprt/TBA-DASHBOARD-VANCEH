@@ -35,11 +35,11 @@ const ProfileTable = ({ tableRow }) => {
 							</th>
 							<th className='tbl-head-color '>CPF</th>
 							<th className='tbl-head-color '>CNPJ</th>
-							<th className='tbl-head-color '>Email </th>
+							<th className='tbl-head-color '>Telefone </th>
 							{/* <th className='tbl-head-color '>Data</th> */}
-							<th className='tbl-head-color text-center'>
+							{/* <th className='tbl-head-color text-center'>
 								Hora{" "}
-							</th>
+							</th> */}
 							<th className='tbl-head-color text-center'>
 								Status{" "}
 							</th>
@@ -55,9 +55,9 @@ const ProfileTable = ({ tableRow }) => {
 								<td className='fw-bold'>{obj.name}</td>
 								<td>{obj.CPF}</td>
 								<td>{obj.CNPJ}</td>
-								<td>{obj.email}</td>
+								<td>{obj.phone}</td>
 								{/* <td>{obj.date}</td> */}
-								<td className='text-center'>{obj.time}</td>
+								{/* <td className='text-center'>{obj.time}</td> */}
 								<td className='text-end'>
 									<Button
 										variant='success'

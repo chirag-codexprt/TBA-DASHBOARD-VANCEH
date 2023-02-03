@@ -10,6 +10,7 @@ import TableRowDocument from "./documents/TableRowDocument";
 import GenerateLinkModal from "./GenerateLinkModal";
 import GenerateLinkNew from "./GenerateLinkNew";
 import ImageUploadModal from "./ImageUploadModal";
+import GenerateLinkBtn from "./NewClientCards/GenerateLinkBtn";
 import NewMemberAdd from "./NewMemberAdd";
 import SocialContractBtn from "./SocialContractBtn";
 
@@ -56,6 +57,7 @@ const DocumentTable = ({
 	};
 
 	const handleShowLinkModal = (val) => {
+		console.log('clicked')
 		setOpenLinkModal(true);
 		setEditData(val);
 	};
@@ -69,8 +71,8 @@ const DocumentTable = ({
 							<th width={"25%"}>Nome</th>
 							<th>CPF</th>
 							<th>CNPJ</th>
-							<th>Email/Telefone</th>
-							{/* <th>Data</th> */}
+							<th>Telefone</th>
+							<th>Data</th>
 							<th>Hora</th>
 							<th>Status</th>
 						</tr>
@@ -102,11 +104,11 @@ const DocumentTable = ({
 									{obj.CNPJ}
 								</td>
 								<td onClick={() => handleShowRow(obj.id)}>
-									{obj.email ? obj.email : obj.phone}
+									{obj.phone}
 								</td>
-								{/* <td onClick={() => handleShowRow(obj.id)}>
+								<td onClick={() => handleShowRow(obj.id)}>
 									{obj.date}
-								</td> */}
+								</td>
 								<td onClick={() => handleShowRow(obj.id)}>
 									{obj.time}
 								</td>
@@ -124,11 +126,12 @@ const DocumentTable = ({
 												? "warning"
 												: "success"
 										}
-										onClick={
-											obj.allStatus === "pending"
-												? () => handleShowLinkModal(obj)
-												: null
-										}>
+									// onClick={
+									// 	obj.allStatus === "pending"
+									// 		? () => handleShowLinkModal(obj)
+									// 		: null
+									// }
+									>
 										{obj.allStatus === "pending"
 											? "Pendente"
 											: "Concluded"}
@@ -136,40 +139,41 @@ const DocumentTable = ({
 								</td>
 								{(obj.allStatus === "pending" ||
 									obj.allStatus === "approved") && (
-									<div>
-										{idArray.includes(obj.id) ? (
-											<Row
-												className='position-absolute'
-												style={{
-													left: "0",
-													bottom: "0",
-													width: "100%",
-												}}>
-												<TableRowDocument
-													obj={obj}
-													handleShowImageModal={
-														handleShowImageModal
-													}
-												/>
+										<div>
+											{idArray.includes(obj.id) ? (
+												<Row
+													className='position-absolute'
+													style={{
+														left: "0",
+														bottom: "0",
+														width: "100%",
+													}}>
+													<TableRowDocument
+														obj={obj}
+														handleShowImageModal={
+															handleShowImageModal
+														}
+													/>
+													<GenerateLinkBtn onClick={() => handleShowLinkModal(obj)} obj={obj} />
 
-												<Row>
-													<Col
-														className='d-flex justify-content-center mt-2 ms-4'
-														style={{
-															color: "#C4CCD2",
-															fontSize: "12px",
-														}}>
-														Responsável por esse
-														cliente: Renata
-														Vasconcelos
-													</Col>
+													<Row>
+														<Col
+															className='d-flex justify-content-center mt-2 ms-4'
+															style={{
+																color: "#C4CCD2",
+																fontSize: "12px",
+															}}>
+															Responsável por esse
+															cliente: Renata
+															Vasconcelos
+														</Col>
+													</Row>
 												</Row>
-											</Row>
-										) : (
-											""
-										)}
-									</div>
-								)}
+											) : (
+												""
+											)}
+										</div>
+									)}
 							</tr>
 						))}
 					</tbody>

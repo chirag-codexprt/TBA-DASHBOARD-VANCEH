@@ -87,7 +87,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 							<th>CPF</th>
 							<th>CNPJ</th>
 							<th>Telefone</th>
-							{/* <th>Data</th> */}
+							<th>Data</th>
 							<th>Hora</th>
 							<th width={"10%"}>Status</th>
 						</tr>
@@ -139,11 +139,11 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 									}>
 									{obj.phone}
 								</td>
-								{/* <td onClick={
+								<td onClick={
 									obj.status === "pending"
 										? () => handleShowRow(obj.id)
 										: null
-								}>{obj.date}</td> */}
+								}>{obj.date}</td>
 								<td
 									onClick={
 										obj.status === "pending"

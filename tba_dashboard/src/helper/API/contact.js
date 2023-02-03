@@ -5,6 +5,7 @@ import {
 	CONTACT_FORM,
 	GENERATE_NEW_LINK,
 	ATTACH_DOCUMENT,
+	APPROVE_VISITOR,
 } from "../url";
 
 export const getContactList = (submitData) => {
@@ -60,6 +61,19 @@ export const attachDocument = (submitData) => {
 	console.log("submitData", submitData);
 	return new Promise((resolve, reject) => {
 		ApiCall(ATTACH_DOCUMENT, "post", submitData)
+			.then((res) => {
+				resolve(res.data);
+			})
+			.catch((err) => {
+				reject();
+			});
+	});
+};
+
+export const approveVisitor = (submitData) => {
+	console.log("submitData", submitData);
+	return new Promise((resolve, reject) => {
+		ApiCall(APPROVE_VISITOR, "post", submitData)
 			.then((res) => {
 				resolve(res.data);
 			})

@@ -14,6 +14,8 @@ export const PERMISSION_TABLE = "permissions/filter-admins-list";
 export const CHANGE_PERMISSION = "permissions/change-permission";
 
 export const GET_CONTACT = "contacts/filter-contacts";
+export const APPROVE_VISITOR = "contacts/approve-visitor";
+
 export const CHANGE_PASSWORD = "auth/change-password";
 
 export const GET_PROFILE = "profile/get-profile";

@@ -26,6 +26,7 @@ import {
 } from "../../helper/API/document";
 import CnpjCard from "./CnpjCard";
 import TableRowDocument from "./NewClientCards/TableRowDocument";
+import GenerateLinkBtn from "./NewClientCards/GenerateLinkBtn";
 
 const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 	const [characterLimit] = useState(25);

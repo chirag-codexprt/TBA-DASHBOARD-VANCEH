@@ -13,7 +13,7 @@ const InsightTable = ({ tableRow, refresh, setRefresh }) => {
 						<th className='tbl-head-color '>Nome </th>
 						<th className='tbl-head-color '>CPF</th>
 						<th className='tbl-head-color '>CNPJ</th>
-						<th className='tbl-head-color '>Email/Telefone </th>
+						<th className='tbl-head-color '>Telefone </th>
 						{/* <th className='tbl-head-color '>Data</th> */}
 						<th className='tbl-head-color text-center '>Hora </th>
 						<th className='tbl-head-color text-center'>Status </th>
@@ -25,7 +25,7 @@ const InsightTable = ({ tableRow, refresh, setRefresh }) => {
 							<td className='fw-bold  '>{obj?.name}</td>
 							<td>{obj?.CPF}</td>
 							<td>{obj?.CNPJ}</td>
-							<td>{obj?.email ? obj?.email : obj?.phone} </td>
+							<td>{obj?.phone} </td>
 							{/* <td>{obj?.date}</td> */}
 							<td className='text-center'>{obj?.time} </td>
 							<td className='text-end position-relative'>

@@ -16,7 +16,7 @@ const GenerateLinkModal = ({
 	const [formValues, setFormValues] = useState({
 		CPF: true,
 		socialContract: true,
-		proofOfAddress: true,
+		addressProof: true,
 		CNPJ: true,
 	});
 
@@ -130,9 +130,9 @@ const GenerateLinkModal = ({
 								className='fs-5 border-0 input-check'
 								type='switch'
 								id='custom-switch'
-								name='proofOfAddress'
+								name='addressProof'
 								onChange={handleCheck}
-								defaultChecked={formValues.proofOfAddress}
+								defaultChecked={formValues.addressProof}
 							/>
 							<label>Comprovante de residência</label>
 						</Form>

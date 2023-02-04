@@ -71,7 +71,7 @@ const Contact = () => {
 			});
 
 			const newData = table.filter((obj) => {
-				if (obj.status === "pending") {
+				if (obj.contactApprove === "pending") {
 					return obj;
 				}
 			});
@@ -83,7 +83,7 @@ const Contact = () => {
 				all: false,
 			});
 			const newData = table.filter((obj) => {
-				if (obj.status === "approved") {
+				if (obj.contactApprove === "approved") {
 					return obj;
 				}
 			});
@@ -113,28 +113,31 @@ const Contact = () => {
 						search={search}
 						setActive={setActive}
 						active={active}>
-						<div className="" >
+						<div className=''>
 							<Button
-								className={`fs-color mx-2 border-0 ${active.pending
-									? "activeBtnTable"
-									: "inActiveBtnTable"
-									}`}
+								className={`fs-color mx-2 border-0 ${
+									active.pending
+										? "activeBtnTable"
+										: "inActiveBtnTable"
+								}`}
 								onClick={(e) => handleToggle("Pending")}>
 								Pendentes
 							</Button>
 							<Button
-								className={`fs-color  mx-2 border-0 ${active.approved
-									? "activeBtnTable"
-									: "inActiveBtnTable"
-									}`}
+								className={`fs-color  mx-2 border-0 ${
+									active.approved
+										? "activeBtnTable"
+										: "inActiveBtnTable"
+								}`}
 								onClick={(e) => handleToggle("Approved")}>
 								Respondidas
 							</Button>
 							<Button
-								className={`fs-color px-4 border-0 ${active.all
-									? "activeBtnTable"
-									: "inActiveBtnTable"
-									}`}
+								className={`fs-color px-4 border-0 ${
+									active.all
+										? "activeBtnTable"
+										: "inActiveBtnTable"
+								}`}
 								onClick={(e) => handleToggle("All")}>
 								Todos
 							</Button>

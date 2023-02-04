@@ -32,8 +32,8 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 		setTableData(tableRow);
 
 		// tableRow?.filter((obj, index) => {
-		// 	// console.log("obj", obj.status === "pending");
-		// 	if (obj.status === "pending") {
+		// 	// console.log("obj", obj.contactApprove === "pending");
+		// 	if (obj.contactApprove === "pending") {
 		// 		setIdArray((old) => [...old, obj.id]);
 		// 	}
 		// });
@@ -70,11 +70,11 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 	};
 
 	const handalShowTooltip = (event, id) => {
-		console.log('id', id)
-		setVisitorId(id)
-		setShow(true)
-		setTarget(event.target)
-	}
+		console.log("id", id);
+		setVisitorId(id);
+		setShow(true);
+		setTarget(event.target);
+	};
 
 	// console.log("idArray", idArray);
 	return (
@@ -109,7 +109,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								<td
 									className='fw-bold'
 									onClick={
-										obj.status === "pending"
+										obj.contactApprove === "pending"
 											? () => handleShowRow(obj.id)
 											: null
 									}>
@@ -117,7 +117,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								</td>
 								<td
 									onClick={
-										obj.status === "pending"
+										obj.contactApprove === "pending"
 											? () => handleShowRow(obj.id)
 											: null
 									}>
@@ -125,7 +125,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								</td>
 								<td
 									onClick={
-										obj.status === "pending"
+										obj.contactApprove === "pending"
 											? () => handleShowRow(obj.id)
 											: null
 									}>
@@ -133,20 +133,23 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 								</td>
 								<td
 									onClick={
-										obj.status === "pending"
+										obj.contactApprove === "pending"
 											? () => handleShowRow(obj.id)
 											: null
 									}>
 									{obj.phone}
 								</td>
-								<td onClick={
-									obj.status === "pending"
-										? () => handleShowRow(obj.id)
-										: null
-								}>{obj.date}</td>
 								<td
 									onClick={
-										obj.status === "pending"
+										obj.contactApprove === "pending"
+											? () => handleShowRow(obj.id)
+											: null
+									}>
+									{obj.date}
+								</td>
+								<td
+									onClick={
+										obj.contactApprove === "pending"
 											? () => handleShowRow(obj.id)
 											: null
 									}>
@@ -160,155 +163,165 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 											fontSize: "12px",
 										}}
 										variant={
-											obj.status === "pending"
+											obj.contactApprove === "pending"
 												? "warning"
+												: obj.contactApprove ===
+												  "rejected"
+												? "danger"
 												: "success"
 										}
-										// onClick={
-										// 	obj.status === "pending"
-										// 		? () => handleShowRow(obj.id)
-										// 		: null
-										// }
-										onClick={(e) => handalShowTooltip(e, obj.id)}
-									>
-										{obj.status === "pending"
+										onClick={
+											obj.contactApprove !== "rejected" &&
+											obj.contactApprove !== "approved"
+												? (e) =>
+														handalShowTooltip(
+															e,
+															obj.id
+														)
+												: null
+										}>
+										{obj.contactApprove === "pending"
 											? "Pendente"
+											: obj.contactApprove === "rejected"
+											? "Reprovado"
 											: "Respondido"}
 									</Button>
-									{show && <ContactTooltip
-										show={show}
-										target={target}
-										ref={ref}
-										refresh={refresh}
-										setRefresh={setRefresh}
-										visitorId={visitorId}
-										close={() => setShow(false)}
-									/>}
+									{show && (
+										<ContactTooltip
+											show={show}
+											target={target}
+											ref={ref}
+											refresh={refresh}
+											setRefresh={setRefresh}
+											visitorId={visitorId}
+											close={() => setShow(false)}
+										/>
+									)}
 								</td>
 								{
-									obj.status === "pending" &&
-									// <div>
-									(idArray.includes(obj.id) ? (
-										// <Row
-										// 	style={{
-										// 		width: "600px",
-										// 		position: "absolute",
-										// 		right: "-15.3%",
-										// 		bottom: "0%",
-										// 	}}>
-										// 	{/* <Row> */}
-										// 	<Col
-										// 		md={4}
-										// 		className='opacity-25 px-1'
-										// 		style={{
-										// 			textAlign: "right",
-										// 		}}>
-										// 		Entrar em contato por:
-										// 	</Col>
+									obj.contactApprove === "pending" &&
+										// <div>
+										(idArray.includes(obj.id) ? (
+											// <Row
+											// 	style={{
+											// 		width: "600px",
+											// 		position: "absolute",
+											// 		right: "-15.3%",
+											// 		bottom: "0%",
+											// 	}}>
+											// 	{/* <Row> */}
+											// 	<Col
+											// 		md={4}
+											// 		className='opacity-25 px-1'
+											// 		style={{
+											// 			textAlign: "right",
+											// 		}}>
+											// 		Entrar em contato por:
+											// 	</Col>
 
-										// 	{obj?.phone && (
-										// 		<Col
-										// 			md={1}
-										// 			className='px-1'>
-										// 			<Button
-										// 				style={{
-										// 					background:
-										// 						"#1C3D59",
-										// 				}}>
-										// 				<a
-										// 					href={`https://wa.me/${obj.phone}`}
-										// 					target='_blank'
-										// 					style={{
-										// 						textDecoration:
-										// 							"none",
-										// 						color: "#fff",
-										// 					}}>
-										// 					<i class='bi bi-whatsapp'></i>
-										// 				</a>
-										// 			</Button>
-										// 		</Col>
-										// 	)}
-										// 	{obj?.email && (
-										// 		<Col
-										// 			md={1}
-										// 			className='px-1'>
-										// 			<Button
-										// 				style={{
-										// 					background:
-										// 						"#1C3D59",
-										// 				}}>
-										// 				<a
-										// 					href={`mailto:${obj.email}`}
-										// 					target='_blank'
-										// 					style={{
-										// 						textDecoration:
-										// 							"none",
-										// 						color: "#fff",
-										// 					}}>
-										// 					<i class='bi bi-envelope'></i>
-										// 				</a>
-										// 			</Button>
-										// 		</Col>
-										// 	)}
-										// 	<Col
-										// 		md={1}
-										// 		className='opacity-25 text-center'>
-										// 		ou
-										// 	</Col>
-										// 	<Col md={3} className='ps-0'>
-										// 		<Button
-										// 			onClick={() =>
-										// 				handleShowLinkModal(
-										// 					obj
-										// 				)
-										// 			}
-										// 			className='border-0'
-										// 			style={{
-										// 				background:
-										// 					"#1C3D59",
-										// 				width: "100%",
-										// 			}}>
-										// 			Gerar link
-										// 		</Button>
-										// 	</Col>
-										// 	{/* </Row> */}
-										// </Row>
-										<div
-											className='d-flex justify-content-end'
-											style={{
-												position: "absolute",
-												top: "45%",
-												right: "0%",
-												paddingRight: "1%",
-												marginRight: "2px",
-											}}>
-											<h6
-												style={{ color: "#B5B6B7" }}
-												className='d-flex mt-1 align-items-center'>
-												{" "}
-												Entrar em contato por:
-											</h6>
-											<div className='ps-3'>
-												{obj?.phone && (
-													<Button
-														style={{
-															background:
-																"#1C3D59",
-														}}
-														className='border-0'>
-														<a
-															href={`https://wa.me/${obj.phone}`}
-															target='_blank'
+											// 	{obj?.phone && (
+											// 		<Col
+											// 			md={1}
+											// 			className='px-1'>
+											// 			<Button
+											// 				style={{
+											// 					background:
+											// 						"#1C3D59",
+											// 				}}>
+											// 				<a
+											// 					href={`https://wa.me/${obj.phone}`}
+											// 					target='_blank'
+											// 					style={{
+											// 						textDecoration:
+											// 							"none",
+											// 						color: "#fff",
+											// 					}}>
+											// 					<i class='bi bi-whatsapp'></i>
+											// 				</a>
+											// 			</Button>
+											// 		</Col>
+											// 	)}
+											// 	{obj?.email && (
+											// 		<Col
+											// 			md={1}
+											// 			className='px-1'>
+											// 			<Button
+											// 				style={{
+											// 					background:
+											// 						"#1C3D59",
+											// 				}}>
+											// 				<a
+											// 					href={`mailto:${obj.email}`}
+											// 					target='_blank'
+											// 					style={{
+											// 						textDecoration:
+											// 							"none",
+											// 						color: "#fff",
+											// 					}}>
+											// 					<i class='bi bi-envelope'></i>
+											// 				</a>
+											// 			</Button>
+											// 		</Col>
+											// 	)}
+											// 	<Col
+											// 		md={1}
+											// 		className='opacity-25 text-center'>
+											// 		ou
+											// 	</Col>
+											// 	<Col md={3} className='ps-0'>
+											// 		<Button
+											// 			onClick={() =>
+											// 				handleShowLinkModal(
+											// 					obj
+											// 				)
+											// 			}
+											// 			className='border-0'
+											// 			style={{
+											// 				background:
+											// 					"#1C3D59",
+											// 				width: "100%",
+											// 			}}>
+											// 			Gerar link
+											// 		</Button>
+											// 	</Col>
+											// 	{/* </Row> */}
+											// </Row>
+											<div
+												className='d-flex justify-content-end'
+												style={{
+													position: "absolute",
+													top: "45%",
+													right: "0%",
+													paddingRight: "1%",
+													marginRight: "2px",
+												}}>
+												<h6
+													style={{ color: "#B5B6B7" }}
+													className='d-flex mt-1 align-items-center'>
+													{" "}
+													Entrar em contato por:
+												</h6>
+												<div className='ps-3'>
+													{obj?.phone && (
+														<Button
 															style={{
-																textDecoration:
-																	"none",
-																color: "#fff",
-															}}>
-															<i class='bi bi-whatsapp'></i>
-														</a>
-													</Button>
-												)}
-												{/* {obj?.email && (
+																background:
+																	"#1C3D59",
+															}}
+															className='border-0'>
+															<a
+																href={`https://wa.me/${obj.phone}`}
+																target='_blank'
+																style={{
+																	textDecoration:
+																		"none",
+																	color: "#fff",
+																}}>
+																<i class='bi bi-whatsapp'></i>
+															</a>
+														</Button>
+													)}
+													{/* {obj?.email && (
 													<Button
 														style={{
 															background:
@@ -327,11 +340,11 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 														</a>
 													</Button>
 												)} */}
+												</div>
 											</div>
-										</div>
-									) : (
-										""
-									))
+										) : (
+											""
+										))
 									// </div>
 								}
 							</tr>

@@ -6,6 +6,7 @@ import { generateLink, generateNewLink } from "../../helper/API/contact";
 import copy from "copy-to-clipboard";
 import ModalCardRow from "./documents/ModalCardRow";
 import PermissionSwith from "./documents/PermissionSwitch";
+import Loader from "../Loader";
 
 const GenerateLinkNew = ({
 	open,
@@ -16,11 +17,17 @@ const GenerateLinkNew = ({
 }) => {
 	console.log("editData", editData);
 	const [permission, setPermission] = useState([]);
+	const [loading, setLoading] = useState(false);
+
 	useEffect(() => {
+		setLoading(true);
 		generateNewLink().then((res) => {
 			if (res.success) {
+				setLoading(false);
 				console.log("res", res);
 				setPermission(res.data);
+			} else {
+				setLoading(false);
 			}
 		});
 	}, []);
@@ -91,17 +98,23 @@ const GenerateLinkNew = ({
 					<Col md={12}>
 						<h6>Solicitar outros documentos</h6>
 					</Col>
-					{permission?.map((obj, index) => (
-						<PermissionSwith
-							name={obj?.type}
-							label={obj?.title}
-							defaultChecked={
-								obj?.type ? `${formValues}.${obj?.type}` : ""
-							}
-							handleCheck={handleCheck}
-							// checked={`${formValues}.${obj?.type}`}
-						/>
-					))}
+					{loading ? (
+						<Loader />
+					) : (
+						permission?.map((obj, index) => (
+							<PermissionSwith
+								name={obj?.type}
+								label={obj?.title}
+								defaultChecked={
+									obj?.type
+										? `${formValues}.${obj?.type}`
+										: ""
+								}
+								handleCheck={handleCheck}
+								// checked={`${formValues}.${obj?.type}`}
+							/>
+						))
+					)}
 				</Row>
 				<Row className='px-4'>
 					<Col md={12} className='mt-3'>
@@ -124,11 +137,20 @@ const GenerateLinkNew = ({
 					</Col>
 					<Col md={6} className='my-3 text-end'>
 						<Button
+							disabled={loading}
 							className='px-5'
 							style={{ background: "#1C3D59" }}
 							onClick={submitForm}>
 							{/* Encaminhar */}
-							Copiar link
+							Copiar link &nbsp;
+							{loading && (
+								<div
+									className='spinner-border spinner-border-sm '
+									role='status'
+									style={{
+										color: "#85A6A2",
+									}}></div>
+							)}
 						</Button>
 					</Col>
 				</Row>

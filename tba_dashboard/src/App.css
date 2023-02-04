@@ -293,7 +293,22 @@ body {
 }
 
 .row-height {
-  height:700px;
+  height:730px;
+}
+.row-height1 {
+  height:250px;
+}
+.row-height2 {
+  height:350px;
+}
+.row-height3 {
+  height:500px;
+}
+.row-height4 {
+  height:620px;
+}
+.row-height5 {
+  height:250px;
 }
 
 

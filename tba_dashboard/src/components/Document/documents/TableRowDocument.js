@@ -20,56 +20,86 @@ const TableRowDocument = ({
 	handleShowImageModal,
 	handleShowAddressModal,
 }) => {
+	const permission = obj?.documentRequest?.requiredPermission;
+	console.log("permission", permission);
+
 	return (
 		<>
 			<CnpjNumber obj={obj} />
 			<CpfNumber obj={obj} />
-			<SocialContract
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>
-			<ProofOfAddress
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-				// handleShowAddressModal={handleShowAddressModal}
-			/>
-			<BalanceIncome
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>
-			<BalanceSheet
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>
-			<BillingCustomer
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>
-			<PartnerIncome
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>
-			<UpdatedBankDebt
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>
-			<PartnerDocument
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>
-			<SpouseDocument
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>
-			<CompanyPhotos
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>
-			<ExtractBusiestBank
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>
-			<AbcCurve obj={obj} handleShowImageModal={handleShowImageModal} />
+			{permission?.socialContract && (
+				<SocialContract
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+			{permission?.addressProof && (
+				<ProofOfAddress
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+					// handleShowAddressModal={handleShowAddressModal}
+				/>
+			)}
+			{permission?.balanceIncome && (
+				<BalanceIncome
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+			{permission?.balanceSheet && (
+				<BalanceSheet
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+			{permission?.billingCustomer && (
+				<BillingCustomer
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+			{permission?.partnerIncome && (
+				<PartnerIncome
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+			{permission?.updatedBankDebt && (
+				<UpdatedBankDebt
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+			{permission?.partnerDocument && (
+				<PartnerDocument
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+			{permission?.spouseDocument && (
+				<SpouseDocument
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+			{permission?.companyPhotos && (
+				<CompanyPhotos
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+			{permission?.extractBusiestBank && (
+				<ExtractBusiestBank
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+			{permission?.abcCurve && (
+				<AbcCurve
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
 		</>
 	);
 };

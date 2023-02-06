@@ -57,7 +57,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 		abcCurve: "",
 	});
 
-	const handleFileChange = (acceptedFiles, type, fileName) => {
+	const handleFileChange = (acceptedFiles, type, e) => {
 		console.log("acceptedFiles", acceptedFiles);
 		if (acceptedFiles[0].type !== "application/pdf") {
 			toast.error("Por favor, selecione apenas arquivo pdf");
@@ -67,7 +67,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 				setImagePreview(URL.createObjectURL(acceptedFiles[0]));
 				setImages({
 					...images,
-					[fileName]: acceptedFiles[0],
+					[e.target.name]: acceptedFiles[0],
 				});
 			}
 		}
@@ -249,6 +249,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 							}
 						})
 						.catch((err) => toast.error("Pedido inválido"));
+				} else {
+					toast.error(res.message);
 				}
 			});
 		}
@@ -262,8 +264,9 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 			aria-labelledby='contained-modal-title-vcenter'
 			centered>
 			<ModalHeader
-				className='border-0 mx-3 mt-2 d-flex justify-content-end fw-bolder'>
-				<Modal.Title id='contained-modal-title-vcenter' style={{ cursor: 'pointer' }} onClick={handleClose}><img src="assets/img/close.png"></img></Modal.Title>
+				className='border-0 mx-3 mt-3 mb-0 fw-bolder fs-6'
+				closeButton>
+				<Modal.Title id='contained-modal-title-vcenter'></Modal.Title>
 			</ModalHeader>
 			<ModalBody className='p-4 pt-0'>
 				<h5 className='fw-bolder'>Criar novo cliente</h5>
@@ -302,7 +305,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					<Col md={6} xs={12}>
 						<Form>
 							<Form.Label className='Doc-Font-Color'>
-								Telefone
+								Email/telefone
 							</Form.Label>
 							<InputGroup className='mb-3 rounded'>
 								<InputGroup.Text
@@ -311,10 +314,10 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 									style={{
 										background: "#F4F6F8",
 									}}>
-									<i class="bi bi-telephone link-icon"></i>
+									<i className='bi bi-envelope-fill link-icon'></i>
 								</InputGroup.Text>
 								<Form.Control
-									placeholder='(00)00000-0000'
+									placeholder='anajuliamarques@tba.com'
 									type='text'
 									name='emailOrPhone'
 									className='Cardinput border-0'
@@ -389,13 +392,13 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 				<div className='d-flex justify-content-end'>
 					<Button
 						onClick={submitDocumentForm}
-						className='mt-4 px-5 p-3 fw-bold border-0'
+						className='mt-4  p-3 px-4 fw-bold border-0'
 						disabled={loading}
 						style={{
 							width: "fit-content",
 							background: "#1C3D59",
 						}}>
-						Criar cliente
+						Criar
 						{loading && (
 							<Spinner
 								animation='grow'
@@ -406,7 +409,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					</Button>
 				</div>
 			</ModalBody>
-		</Modal >
+		</Modal>
 	);
 };
 

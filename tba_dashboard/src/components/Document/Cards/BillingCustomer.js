@@ -19,8 +19,14 @@ const BillingCustomer = ({ obj, handleShowImageModal }) => {
 				{obj?.billingCustomer === null && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "billingCustomer")
+						onClick={
+							obj?.billingCustomer === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"billingCustomer"
+										)
 						}
 						variant='outline-secondary'>
 						<label
@@ -41,8 +47,14 @@ const BillingCustomer = ({ obj, handleShowImageModal }) => {
 				{obj?.billingCustomer && !obj?.billingCustomer?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "billingCustomer")
+						onClick={
+							obj?.billingCustomer === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"billingCustomer"
+										)
 						}
 						variant='outline-warning'>
 						<i class='bi bi-clock-fill fs-2'></i>
@@ -60,8 +72,14 @@ const BillingCustomer = ({ obj, handleShowImageModal }) => {
 				{obj?.billingCustomer && obj?.billingCustomer?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "billingCustomer")
+						onClick={
+							obj?.billingCustomer === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"billingCustomer"
+										)
 						}
 						variant='outline-success'>
 						<i class='bi bi-check-lg fs-2'></i>

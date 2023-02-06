@@ -19,8 +19,14 @@ const BalanceSheet = ({ obj, handleShowImageModal }) => {
 				{obj?.balanceSheet === null && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "balanceSheet")
+						onClick={
+							obj?.balanceSheet === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"balanceSheet"
+										)
 						}
 						variant='outline-secondary'>
 						<label
@@ -41,8 +47,14 @@ const BalanceSheet = ({ obj, handleShowImageModal }) => {
 				{obj?.balanceSheet && !obj?.balanceSheet?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "balanceSheet")
+						onClick={
+							obj?.balanceSheet === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"balanceSheet"
+										)
 						}
 						variant='outline-warning'>
 						<i class='bi bi-clock-fill fs-2'></i>
@@ -60,8 +72,14 @@ const BalanceSheet = ({ obj, handleShowImageModal }) => {
 				{obj?.balanceSheet && obj?.balanceSheet?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "balanceSheet")
+						onClick={
+							obj?.balanceSheet === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"balanceSheet"
+										)
 						}
 						variant='outline-success'>
 						<i class='bi bi-check-lg fs-2'></i>

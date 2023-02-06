@@ -19,8 +19,14 @@ const ExtractBusiestBank = ({ obj, handleShowImageModal }) => {
 				{obj?.extractBusiestBank === null && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "extractBusiestBank")
+						onClick={
+							obj?.extractBusiestBank === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"extractBusiestBank"
+										)
 						}
 						variant='outline-secondary'>
 						<label
@@ -42,8 +48,14 @@ const ExtractBusiestBank = ({ obj, handleShowImageModal }) => {
 					!obj?.extractBusiestBank?.approved && (
 						<Button
 							className='w-100 p-0 ms-0'
-							onClick={() =>
-								handleShowImageModal(obj, "extractBusiestBank")
+							onClick={
+								obj?.extractBusiestBank === null
+									? null
+									: () =>
+											handleShowImageModal(
+												obj,
+												"extractBusiestBank"
+											)
 							}
 							variant='outline-warning'>
 							<i class='bi bi-clock-fill fs-2'></i>
@@ -62,8 +74,14 @@ const ExtractBusiestBank = ({ obj, handleShowImageModal }) => {
 					obj?.extractBusiestBank?.approved && (
 						<Button
 							className='w-100 p-0 ms-0'
-							onClick={() =>
-								handleShowImageModal(obj, "extractBusiestBank")
+							onClick={
+								obj?.extractBusiestBank === null
+									? null
+									: () =>
+											handleShowImageModal(
+												obj,
+												"extractBusiestBank"
+											)
 							}
 							variant='outline-success'>
 							<i class='bi bi-check-lg fs-2'></i>

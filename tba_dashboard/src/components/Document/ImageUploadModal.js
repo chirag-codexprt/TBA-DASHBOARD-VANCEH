@@ -6,7 +6,7 @@ import { approvedDocumentList } from "../../helper/API/document";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import Loader from "../Loader"
+import Loader from "../Loader";
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const ImageUploadModal = ({
 	open,
@@ -17,14 +17,14 @@ const ImageUploadModal = ({
 }) => {
 	console.log("document.type", document.type);
 
-	const [reload, setReload] = useState(false)
+	const [reload, setReload] = useState(false);
 
 	const hiddenFileInput = useRef(null);
 	const [images, setImages] = useState("");
 	const [imagePreview, setImagePreview] = useState(
 		document[document.type]?.url
 	);
-	console.log("document?.socialContract?.url", document[document?.type]?.url)
+	console.log("document?.socialContract?.url", document[document?.type]?.url);
 	const handleSubmit = (action) => {
 		const submitData = {
 			id: document.id,
@@ -65,11 +65,11 @@ const ImageUploadModal = ({
 	}
 
 	const handleReload = () => {
-		setReload(true)
+		setReload(true);
 		setTimeout(() => {
-			setReload(false)
+			setReload(false);
 		}, 3000);
-	}
+	};
 
 	return (
 		<div>
@@ -89,7 +89,7 @@ const ImageUploadModal = ({
 					</Col>
 					<div>
 						<Button
-							className="border-0"
+							className='border-0'
 							style={{
 								position: "absolute",
 								backgroundColor: "#1C3D59",
@@ -97,9 +97,8 @@ const ImageUploadModal = ({
 								top: "12%",
 								zIndex: 10000,
 							}}
-							onClick={handleReload}
-						>
-							<i class="bi bi-arrow-clockwise"></i>
+							onClick={handleReload}>
+							<i class='bi bi-arrow-clockwise'></i>
 						</Button>
 					</div>
 				</Row>
@@ -108,16 +107,19 @@ const ImageUploadModal = ({
 						<div
 							className='border d-flex align-items-center justify-content-center  position-relative rounded-2 mb-4'
 							style={{ height: "400px" }}>
-							{reload ?
-								<div className="d-flex align-items-center justify-content-center h-100 ">
-									<Loader /></div> :
+							{reload ? (
+								<div className='d-flex align-items-center justify-content-center h-100 '>
+									<Loader />
+								</div>
+							) : (
 								<embed
 									src={`https://drive.google.com/viewerng/viewer?embedded=true&url=${imagePreview}`}
 									style={{
 										height: imagePreview ? "100%" : "",
 										width: imagePreview ? "100%" : "",
 										// padding: "0px 15px",
-									}}></embed>}
+									}}></embed>
+							)}
 							{/* <>
 								<Document
 									file={imagePreview}
@@ -208,12 +210,12 @@ const ImageUploadModal = ({
 							className='w-100 p-0 py-2 border-0 fw-bold '
 							style={{
 								background: "#1C3D59",
-								fontSize: "14px"
+								fontSize: "14px",
 							}}
 							disabled={document[document?.type]?.approved}
 							onClick={() => handleSubmit("reject")}>
 							{/* <i className='bi bi-x '></i> */}
-							<img src="assets/img/X.png" />
+							<img src='assets/img/X.png' />
 							&nbsp;Reprovar&nbsp;documento
 						</Button>
 					</Col>
@@ -221,17 +223,19 @@ const ImageUploadModal = ({
 						<Button
 							className='p-0 py-2 w-100 border-0 fw-bold'
 							disabled={document[document?.type]?.approved}
-							style={{ backgroundColor: "#1C3D59", fontSize: "14px" }}
+							style={{
+								backgroundColor: "#1C3D59",
+								fontSize: "14px",
+							}}
 							onClick={() => handleSubmit("approved")}>
 							{/* <i className='bi bi-check'></i> */}
-							<img src="assets/img/right.png" />
-
+							<img src='assets/img/right.png' />
 							Aprovar documento
 						</Button>
 					</Col>
 				</Row>
 			</Modal>
-		</div >
+		</div>
 	);
 };
 

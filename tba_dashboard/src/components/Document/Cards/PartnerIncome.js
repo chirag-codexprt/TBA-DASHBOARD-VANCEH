@@ -19,8 +19,14 @@ const PartnerIncome = ({ obj, handleShowImageModal }) => {
 				{obj?.partnerIncome === null && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "partnerIncome")
+						onClick={
+							obj?.partnerIncome === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"partnerIncome"
+										)
 						}
 						variant='outline-secondary'>
 						<label
@@ -41,8 +47,14 @@ const PartnerIncome = ({ obj, handleShowImageModal }) => {
 				{obj?.partnerIncome && !obj?.partnerIncome?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "partnerIncome")
+						onClick={
+							obj?.partnerIncome === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"partnerIncome"
+										)
 						}
 						variant='outline-warning'>
 						<i class='bi bi-clock-fill fs-2'></i>
@@ -60,8 +72,14 @@ const PartnerIncome = ({ obj, handleShowImageModal }) => {
 				{obj?.partnerIncome && obj?.partnerIncome?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "partnerIncome")
+						onClick={
+							obj?.partnerIncome === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"partnerIncome"
+										)
 						}
 						variant='outline-success'>
 						<i class='bi bi-check-lg fs-2'></i>

@@ -19,8 +19,14 @@ const PartnerDocument = ({ obj, handleShowImageModal }) => {
 				{obj?.partnerDocument === null && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "partnerDocument")
+						onClick={
+							obj?.partnerDocument === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"partnerDocument"
+										)
 						}
 						variant='outline-secondary'>
 						<label
@@ -41,8 +47,14 @@ const PartnerDocument = ({ obj, handleShowImageModal }) => {
 				{obj?.partnerDocument && !obj?.partnerDocument?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "partnerDocument")
+						onClick={
+							obj?.partnerDocument === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"partnerDocument"
+										)
 						}
 						variant='outline-warning'>
 						<i class='bi bi-clock-fill fs-2'></i>
@@ -60,8 +72,14 @@ const PartnerDocument = ({ obj, handleShowImageModal }) => {
 				{obj?.partnerDocument && obj?.partnerDocument?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "partnerDocument")
+						onClick={
+							obj?.partnerDocument === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"partnerDocument"
+										)
 						}
 						variant='outline-success'>
 						<i class='bi bi-check-lg fs-2'></i>

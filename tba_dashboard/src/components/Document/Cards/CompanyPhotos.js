@@ -19,8 +19,14 @@ const CompanyPhotos = ({ obj, handleShowImageModal }) => {
 				{obj?.companyPhotos === null && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "companyPhotos")
+						onClick={
+							obj?.companyPhotos === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"companyPhotos"
+										)
 						}
 						variant='outline-secondary'>
 						<label
@@ -41,8 +47,14 @@ const CompanyPhotos = ({ obj, handleShowImageModal }) => {
 				{obj?.companyPhotos && !obj?.companyPhotos?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "companyPhotos")
+						onClick={
+							obj?.companyPhotos === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"companyPhotos"
+										)
 						}
 						variant='outline-warning'>
 						<i class='bi bi-clock-fill fs-2'></i>
@@ -60,8 +72,14 @@ const CompanyPhotos = ({ obj, handleShowImageModal }) => {
 				{obj?.companyPhotos && obj?.companyPhotos?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "companyPhotos")
+						onClick={
+							obj?.companyPhotos === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"companyPhotos"
+										)
 						}
 						variant='outline-success'>
 						<i class='bi bi-check-lg fs-2'></i>

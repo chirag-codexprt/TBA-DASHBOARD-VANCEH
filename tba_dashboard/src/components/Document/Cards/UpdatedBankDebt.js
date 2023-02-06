@@ -19,8 +19,14 @@ const UpdatedBankDebt = ({ obj, handleShowImageModal }) => {
 				{obj?.updatedBankDebt === null && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "updatedBankDebt")
+						onClick={
+							obj?.updatedBankDebt === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"updatedBankDebt"
+										)
 						}
 						variant='outline-secondary'>
 						<label
@@ -41,8 +47,14 @@ const UpdatedBankDebt = ({ obj, handleShowImageModal }) => {
 				{obj?.updatedBankDebt && !obj?.updatedBankDebt?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "updatedBankDebt")
+						onClick={
+							obj?.updatedBankDebt === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"updatedBankDebt"
+										)
 						}
 						variant='outline-warning'>
 						<i class='bi bi-clock-fill fs-2'></i>
@@ -60,8 +72,14 @@ const UpdatedBankDebt = ({ obj, handleShowImageModal }) => {
 				{obj?.updatedBankDebt && obj?.updatedBankDebt?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
-						onClick={() =>
-							handleShowImageModal(obj, "updatedBankDebt")
+						onClick={
+							obj?.updatedBankDebt === null
+								? null
+								: () =>
+										handleShowImageModal(
+											obj,
+											"updatedBankDebt"
+										)
 						}
 						variant='outline-success'>
 						<i class='bi bi-check-lg fs-2'></i>

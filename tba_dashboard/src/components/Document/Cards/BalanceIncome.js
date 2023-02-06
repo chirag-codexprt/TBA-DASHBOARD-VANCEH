@@ -71,7 +71,7 @@ const BalanceIncome = ({ obj, handleShowImageModal }) => {
 								color: "#C4CCD2",
 								fontSize: "11px",
 							}}>
-							Aguardando análise, visualizar?
+							Já aprovada, visualizar?
 						</h6>
 					</Button>
 				)}

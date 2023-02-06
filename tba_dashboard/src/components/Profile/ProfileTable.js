@@ -60,11 +60,13 @@ const ProfileTable = ({ tableRow }) => {
 								<td className='text-center'>{obj.time}</td>
 								<td className='text-end'>
 									<Button
-										variant='success'
+
 										style={{
 											width: "100px",
 											fontSize: "14px",
-											borderRadius: "3px"
+											borderRadius: "3px",
+											backgroundColor: "#58A43D"
+
 										}}
 										className='border-0 p-0'
 										size='md'>

@@ -205,25 +205,33 @@ const ImageUploadModal = ({
 				<Row className='px-4 gx-2 my-2'>
 					<Col>
 						<Button
-							className='w-100 p-0 py-2 border-0'
-							style={{ background: "#C4CCD2" }}
+							className='w-100 p-0 py-2 border-0 fw-bold '
+							style={{
+								background: "#1C3D59",
+								fontSize: "14px"
+							}}
 							disabled={document[document?.type]?.approved}
 							onClick={() => handleSubmit("reject")}>
-							<i class='bi bi-x'></i>Solicitar outra foto
+							{/* <i className='bi bi-x '></i> */}
+							<img src="assets/img/X.png" />
+							&nbsp;Reprovar&nbsp;documento
 						</Button>
 					</Col>
 					<Col>
 						<Button
-							className='p-0 py-2 w-100 border-0'
+							className='p-0 py-2 w-100 border-0 fw-bold'
 							disabled={document[document?.type]?.approved}
-							style={{ backgroundColor: "#1C3D59" }}
+							style={{ backgroundColor: "#1C3D59", fontSize: "14px" }}
 							onClick={() => handleSubmit("approved")}>
-							<i class='bi bi-check'></i>Aprovar documento
+							{/* <i className='bi bi-check'></i> */}
+							<img src="assets/img/right.png" />
+
+							Aprovar documento
 						</Button>
 					</Col>
 				</Row>
 			</Modal>
-		</div>
+		</div >
 	);
 };
 

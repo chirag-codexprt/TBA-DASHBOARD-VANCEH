@@ -22,9 +22,9 @@ const ImageUploadModal = ({
 	const hiddenFileInput = useRef(null);
 	const [images, setImages] = useState("");
 	const [imagePreview, setImagePreview] = useState(
-		document?.socialContract?.url
+		document[document.type]?.url
 	);
-
+	console.log("document?.socialContract?.url", document[document?.type]?.url)
 	const handleSubmit = (action) => {
 		const submitData = {
 			id: document.id,
@@ -207,6 +207,7 @@ const ImageUploadModal = ({
 						<Button
 							className='w-100 p-0 py-2 border-0'
 							style={{ background: "#C4CCD2" }}
+							disabled={document[document?.type]?.approved}
 							onClick={() => handleSubmit("reject")}>
 							<i class='bi bi-x'></i>Solicitar outra foto
 						</Button>
@@ -214,6 +215,7 @@ const ImageUploadModal = ({
 					<Col>
 						<Button
 							className='p-0 py-2 w-100 border-0'
+							disabled={document[document?.type]?.approved}
 							style={{ backgroundColor: "#1C3D59" }}
 							onClick={() => handleSubmit("approved")}>
 							<i class='bi bi-check'></i>Aprovar documento

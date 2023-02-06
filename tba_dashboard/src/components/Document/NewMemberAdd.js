@@ -262,9 +262,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 			aria-labelledby='contained-modal-title-vcenter'
 			centered>
 			<ModalHeader
-				className='border-0 mx-3 mt-3 mb-0 fw-bolder fs-6'
-				closeButton>
-				<Modal.Title id='contained-modal-title-vcenter'></Modal.Title>
+				className='border-0 mx-3 mt-2 d-flex justify-content-end fw-bolder'>
+				<Modal.Title id='contained-modal-title-vcenter' style={{ cursor: 'pointer' }} onClick={handleClose}><img src="assets/img/close.png"></img></Modal.Title>
 			</ModalHeader>
 			<ModalBody className='p-4 pt-0'>
 				<h5 className='fw-bolder'>Criar novo cliente</h5>
@@ -390,13 +389,13 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 				<div className='d-flex justify-content-end'>
 					<Button
 						onClick={submitDocumentForm}
-						className='mt-4  p-3 px-4 fw-bold border-0'
+						className='mt-4 px-5 p-3 fw-bold border-0'
 						disabled={loading}
 						style={{
 							width: "fit-content",
 							background: "#1C3D59",
 						}}>
-						Criar
+						Criar cliente
 						{loading && (
 							<Spinner
 								animation='grow'

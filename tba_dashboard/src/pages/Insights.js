@@ -227,16 +227,16 @@ const Insights = () => {
 									</Nav>
 									<Button
 										className={`fs-color  mx-1 border-0 ${active.year
-												? "activeBtnTable"
-												: "inActiveBtnTable"
+											? "activeBtnTable"
+											: "inActiveBtnTable"
 											}`}
 										onClick={(e) => handleToggle("yearly")}>
 										Ano
 									</Button>
 									<Button
 										className={`fs-color  mx-1 border-0 ${active.month
-												? "activeBtnTable"
-												: "inActiveBtnTable"
+											? "activeBtnTable"
+											: "inActiveBtnTable"
 											}`}
 										onClick={(e) =>
 											handleToggle("monthly")
@@ -245,8 +245,8 @@ const Insights = () => {
 									</Button>
 									<Button
 										className={`fs-color  mx-1 border-0 ${active.week
-												? "activeBtnTable"
-												: "inActiveBtnTable"
+											? "activeBtnTable"
+											: "inActiveBtnTable"
 											}`}
 										onClick={(e) => handleToggle("week")}>
 										Semana
@@ -406,6 +406,7 @@ const Insights = () => {
 									</Card>
 								</Col>
 							</Row>
+							<h5 className="fw-bold mt-2">Contatos</h5>
 							<Row className='my-3'>
 								{/* third card */}
 								<Col md={6}>

@@ -40,7 +40,7 @@ const ProfileTable = ({ tableRow }) => {
 							<th className='tbl-head-color text-center'>
 								Hora{" "}
 							</th>
-							<th className='tbl-head-color text-center'>
+							<th className='tbl-head-color ps-3'>
 								Status{" "}
 							</th>
 						</tr>
@@ -64,6 +64,7 @@ const ProfileTable = ({ tableRow }) => {
 										style={{
 											width: "100px",
 											fontSize: "14px",
+											borderRadius: "3px"
 										}}
 										className='border-0 p-0'
 										size='md'>

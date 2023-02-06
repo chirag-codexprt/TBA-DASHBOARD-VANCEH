@@ -13,6 +13,7 @@ const Contact = () => {
 	const [refresh, setRefresh] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [active, setActive] = useState({
+		rejected: false,
 		pending: false,
 		approved: false,
 		all: true,
@@ -65,6 +66,7 @@ const Contact = () => {
 	const handleToggle = (status) => {
 		if (status === "Pending") {
 			setActive({
+				rejected: false,
 				pending: true,
 				approved: false,
 				all: false,
@@ -78,6 +80,7 @@ const Contact = () => {
 			setTableRow(newData);
 		} else if (status === "Approved") {
 			setActive({
+				rejected: false,
 				pending: false,
 				approved: true,
 				all: false,
@@ -88,8 +91,22 @@ const Contact = () => {
 				}
 			});
 			setTableRow(newData);
+		} else if (status === "rejected") {
+			setActive({
+				rejected: true,
+				pending: false,
+				approved: false,
+				all: false,
+			});
+			const newData = table.filter((obj) => {
+				if (obj.contactApprove === "rejected") {
+					return obj;
+				}
+			});
+			setTableRow(newData);
 		} else {
 			setActive({
+				rejected: false,
 				pending: false,
 				approved: false,
 				all: true,
@@ -115,29 +132,34 @@ const Contact = () => {
 						active={active}>
 						<div className=''>
 							<Button
-								className={`fs-color mx-2 border-0 ${
-									active.pending
-										? "activeBtnTable"
-										: "inActiveBtnTable"
-								}`}
+								className={`fs-color mx-2 border-0 ${active.rejected
+									? "activeBtnTable"
+									: "inActiveBtnTable"
+									}`}
+								onClick={(e) => handleToggle("rejected")}>
+								Reprovado
+							</Button>
+							<Button
+								className={`fs-color mx-2 border-0 ${active.pending
+									? "activeBtnTable"
+									: "inActiveBtnTable"
+									}`}
 								onClick={(e) => handleToggle("Pending")}>
 								Pendentes
 							</Button>
 							<Button
-								className={`fs-color  mx-2 border-0 ${
-									active.approved
-										? "activeBtnTable"
-										: "inActiveBtnTable"
-								}`}
+								className={`fs-color  mx-2 border-0 ${active.approved
+									? "activeBtnTable"
+									: "inActiveBtnTable"
+									}`}
 								onClick={(e) => handleToggle("Approved")}>
-								Respondidas
+								Approved
 							</Button>
 							<Button
-								className={`fs-color px-4 border-0 ${
-									active.all
-										? "activeBtnTable"
-										: "inActiveBtnTable"
-								}`}
+								className={`fs-color px-4 border-0 ${active.all
+									? "activeBtnTable"
+									: "inActiveBtnTable"
+									}`}
 								onClick={(e) => handleToggle("All")}>
 								Todos
 							</Button>

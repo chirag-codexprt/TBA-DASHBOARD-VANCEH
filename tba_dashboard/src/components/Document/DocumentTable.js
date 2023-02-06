@@ -93,29 +93,29 @@ const DocumentTable = ({
 								}}
 								className={
 									idArray.includes(obj.id) &&
-									getRequiredLength(obj) <= 3 &&
-									getRequiredLength(obj) !== 0
+										getRequiredLength(obj) <= 3 &&
+										getRequiredLength(obj) !== 0
 										? "row-height1"
 										: idArray.includes(obj.id) &&
-										  getRequiredLength(obj) <= 6 &&
-										  getRequiredLength(obj) !== 0
-										? "row-height2"
-										: idArray.includes(obj.id) &&
-										  getRequiredLength(obj) >= 14 &&
-										  getRequiredLength(obj) !== 0
-										? "row-height"
-										: idArray.includes(obj.id) &&
-										  getRequiredLength(obj) >= 6 &&
-										  getRequiredLength(obj) <= 9
-										? "row-height3"
-										: idArray.includes(obj.id) &&
-										  getRequiredLength(obj) >= 9 &&
-										  getRequiredLength(obj) <= 12
-										? "row-height4"
-										: idArray.includes(obj.id) &&
-										  getRequiredLength(obj) === 0
-										? "row-height5"
-										: ""
+											getRequiredLength(obj) <= 6 &&
+											getRequiredLength(obj) !== 0
+											? "row-height2"
+											: idArray.includes(obj.id) &&
+												getRequiredLength(obj) >= 14 &&
+												getRequiredLength(obj) !== 0
+												? "row-height"
+												: idArray.includes(obj.id) &&
+													getRequiredLength(obj) >= 6 &&
+													getRequiredLength(obj) <= 9
+													? "row-height3"
+													: idArray.includes(obj.id) &&
+														getRequiredLength(obj) >= 9 &&
+														getRequiredLength(obj) <= 12
+														? "row-height4"
+														: idArray.includes(obj.id) &&
+															getRequiredLength(obj) === 0
+															? "row-height5"
+															: ""
 									// "row-height"
 								}>
 								<td
@@ -142,52 +142,56 @@ const DocumentTable = ({
 									className='position-relative text-end'
 									style={{ zIndex: 1000 }}>
 									<Button
-										className='text-white fw-bold p-0'
+										// className='text-white fw-bold p-0'
 										style={{
 											width: "100px",
 											fontSize: "12px",
+											borderRadius: "3px",
+											padding: '0px',
+											border: "none",
+											fontWeight: '800'
 										}}
-										variant={
+										className={
 											// 	obj.allStatus === "pending"
 											// 		? "warning"
 											// 		: "success"
 											// }
 											obj.allStatus === "pending"
-												? "warning"
+												? "document-pending"
 												: obj.allStatus === "wait"
-												? "danger"
-												: "success"
+													? "document-wait"
+													: "document-success"
 										}
-										// onClick={
-										// 	obj.allStatus === "pending"
-										// 		? () => handleShowLinkModal(obj)
-										// 		: null
-										// }
+									// onClick={
+									// 	obj.allStatus === "pending"
+									// 		? () => handleShowLinkModal(obj)
+									// 		: null
+									// }
 									>
 										{/* {obj.allStatus === "pending"
 											? "Pendente"
 											: "Concluded"} */}
 
 										{obj.allStatus === "pending"
-											? "Aguard. rev."
+											? "Aguard. doc."
 											: obj.allStatus === "wait"
-											? "Aguard. rev."
-											: "Concluído"}
+												? "Aguard. rev."
+												: "Concluído"}
 									</Button>
 								</td>
 								{(obj.allStatus === "pending" ||
 									obj.allStatus === "wait" ||
 									obj.allStatus === "approved") && (
-									<div>
-										{idArray.includes(obj.id) ? (
-											<Row
-												className='position-absolute'
-												style={{
-													left: "0",
-													bottom: "0",
-													width: "100%",
-												}}>
-												{/* {!obj.allStatus === "wait" && (
+										<div>
+											{idArray.includes(obj.id) ? (
+												<Row
+													className='position-absolute'
+													style={{
+														left: "0",
+														bottom: "0",
+														width: "100%",
+													}}>
+													{/* {!obj.allStatus === "wait" && (
 													<>
 														<TableRowDocument
 															obj={obj}
@@ -206,7 +210,7 @@ const DocumentTable = ({
 													</>
 												)} */}
 
-												{/* {obj.allStatus === "wait" ? (
+													{/* {obj.allStatus === "wait" ? (
 													<GenerateLinkBtn
 														onClick={() =>
 															handleShowLinkModal(
@@ -217,43 +221,43 @@ const DocumentTable = ({
 														md={12}
 													/>
 												) : ( */}
-												<>
-													<TableRowDocument
-														obj={obj}
-														handleShowImageModal={
-															handleShowImageModal
-														}
-													/>
-													<GenerateLinkBtn
-														onClick={() =>
-															handleShowLinkModal(
-																obj
-															)
-														}
-														obj={obj}
-														md={12}
-													/>
-												</>
-												{/* )} */}
+													<>
+														<TableRowDocument
+															obj={obj}
+															handleShowImageModal={
+																handleShowImageModal
+															}
+														/>
+														<GenerateLinkBtn
+															onClick={() =>
+																handleShowLinkModal(
+																	obj
+																)
+															}
+															obj={obj}
+															md={12}
+														/>
+													</>
+													{/* )} */}
 
-												<Row>
-													<Col
-														className='d-flex justify-content-center mt-2 ms-4'
-														style={{
-															color: "#C4CCD2",
-															fontSize: "12px",
-														}}>
-														Responsável por esse
-														cliente: Renata
-														Vasconcelos
-													</Col>
+													<Row>
+														<Col
+															className='d-flex justify-content-center mt-2 ms-4'
+															style={{
+																color: "#C4CCD2",
+																fontSize: "12px",
+															}}>
+															Responsável por esse
+															cliente: Renata
+															Vasconcelos
+														</Col>
+													</Row>
 												</Row>
-											</Row>
-										) : (
-											""
-										)}
-									</div>
-								)}
+											) : (
+												""
+											)}
+										</div>
+									)}
 							</tr>
 						))}
 					</tbody>

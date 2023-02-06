@@ -581,3 +581,17 @@ width: 100% !important;
   align-items: center;
   /* background: #85A6A2 !important; */
 }
+
+.contact-wait{
+  background-color: #AE2424 !important;
+}
+
+.document-pending{
+  background-color: #E9BC1E !important;
+}
+.document-wait{
+  background-color: #E97F1E !important;
+}
+.document-success{
+  background-color: #58A43D !important;
+}

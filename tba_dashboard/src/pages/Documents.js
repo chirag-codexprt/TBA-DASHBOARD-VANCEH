@@ -15,6 +15,7 @@ const Documents = () => {
 	const [loading, setLoading] = useState(false);
 	const [table, setTable] = useRecoilState(documentTableData);
 	const [active, setActive] = useState({
+		rejected: false,
 		pending: false,
 		approved: false,
 		all: true,
@@ -71,6 +72,7 @@ const Documents = () => {
 	const handleToggle = (status) => {
 		if (status === "Pending") {
 			setActive({
+				rejected: false,
 				pending: true,
 				approved: false,
 				all: false,
@@ -84,6 +86,7 @@ const Documents = () => {
 			setTableRow(newData);
 		} else if (status === "Approved") {
 			setActive({
+				rejected: false,
 				pending: false,
 				approved: true,
 				all: false,
@@ -94,8 +97,22 @@ const Documents = () => {
 				}
 			});
 			setTableRow(newData);
+		} else if (status === "rejected") {
+			setActive({
+				rejected: true,
+				pending: false,
+				approved: false,
+				all: false,
+			});
+			const newData = table.filter((obj) => {
+				if (obj.allStatus === "wait") {
+					return obj;
+				}
+			});
+			setTableRow(newData);
 		} else {
 			setActive({
+				rejected: false,
 				pending: false,
 				approved: false,
 				all: true,
@@ -126,7 +143,7 @@ const Documents = () => {
 					<div style={{ paddingRight: "2%" }}>
 						<TableNavbar
 							title={"Documentos"}
-							btn1Text='Concluídos'
+							btn1Text='Respondidas'
 							btn2Text='Pendentes'
 							btn3Text='Todas'
 							setSearch={setSearch}
@@ -135,25 +152,33 @@ const Documents = () => {
 							setRefresh={setRefresh}
 							search={search}>
 							<Button
-								className={`fs-color  mx-1 border-0 ${active.approved
-										? "activeBtnTable"
-										: "inActiveBtnTable"
+								className={`fs-color ms-1 border-0 ${active.rejected
+									? "activeBtnTable"
+									: "inActiveBtnTable"
+									}`}
+								onClick={(e) => handleToggle("rejected")}>
+								Aguard.&nbsp;rev.
+							</Button>
+							<Button
+								className={`fs-color border-0 ${active.approved
+									? "activeBtnTable"
+									: "inActiveBtnTable"
 									}`}
 								onClick={(e) => handleToggle("Approved")}>
 								Concluídos
 							</Button>
 							<Button
-								className={`fs-color  mx-1 border-0 ${active.pending
-										? "activeBtnTable"
-										: "inActiveBtnTable"
+								className={`fs-color border-0 ${active.pending
+									? "activeBtnTable"
+									: "inActiveBtnTable"
 									}`}
 								onClick={(e) => handleToggle("Pending")}>
-								Pendentes
+								Aguard.&nbsp;doc.
 							</Button>
 							<Button
-								className={`fs-color px-4 mx-1 border-0 ${active.all
-										? "activeBtnTable"
-										: "inActiveBtnTable"
+								className={`fs-color px-3 border-0 ${active.all
+									? "activeBtnTable"
+									: "inActiveBtnTable"
 									}`}
 								onClick={(e) => handleToggle("All")}>
 								Todas
@@ -164,7 +189,7 @@ const Documents = () => {
 								}}
 								style={{
 									backgroundColor: "#1C3D59",
-									marginLeft: "2.5rem",
+									marginLeft: "8px",
 								}}
 								className='fw-bold align-items-center border-0'>
 								+&nbsp;Novo&nbsp;cliente

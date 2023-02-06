@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button, Col } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 
 const UpdatedBankDebt = ({ data, images, handleFileChange }) => {
+	const inputRef = useRef(null);
+
+
 	return (
 		<>
 			<Col md={4} xs={12} style={{ margin: '1rem 0rem' }}>
 				<Dropzone
 					onDrop={(acceptedFiles, rejected, e) => {
-						handleFileChange(acceptedFiles, rejected, e);
+						handleFileChange(acceptedFiles, rejected, inputRef.current.name);
 					}}>
 					{({ getRootProps, getInputProps }) => (
 						<section className='wfp--dropzone'>
@@ -21,6 +24,8 @@ const UpdatedBankDebt = ({ data, images, handleFileChange }) => {
 									accept={".pdf"}
 									name='updatedBankDebt'
 									type='file'
+									ref={inputRef}
+
 								/>
 								<h6
 									style={{

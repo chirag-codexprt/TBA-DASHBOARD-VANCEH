@@ -57,7 +57,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 		abcCurve: "",
 	});
 
-	const handleFileChange = (acceptedFiles, type, e) => {
+	const handleFileChange = (acceptedFiles, type, fileName) => {
 		console.log("acceptedFiles", acceptedFiles);
 		if (acceptedFiles[0].type !== "application/pdf") {
 			toast.error("Por favor, selecione apenas arquivo pdf");
@@ -67,7 +67,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 				setImagePreview(URL.createObjectURL(acceptedFiles[0]));
 				setImages({
 					...images,
-					[e.target.name]: acceptedFiles[0],
+					[fileName]: acceptedFiles[0],
 				});
 			}
 		}
@@ -302,7 +302,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					<Col md={6} xs={12}>
 						<Form>
 							<Form.Label className='Doc-Font-Color'>
-								Email/telefone
+								Telefone
 							</Form.Label>
 							<InputGroup className='mb-3 rounded'>
 								<InputGroup.Text
@@ -311,10 +311,10 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 									style={{
 										background: "#F4F6F8",
 									}}>
-									<i className='bi bi-envelope-fill link-icon'></i>
+									<i class="bi bi-telephone link-icon"></i>
 								</InputGroup.Text>
 								<Form.Control
-									placeholder='anajuliamarques@tba.com'
+									placeholder='(00)00000-0000'
 									type='text'
 									name='emailOrPhone'
 									className='Cardinput border-0'
@@ -406,7 +406,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					</Button>
 				</div>
 			</ModalBody>
-		</Modal>
+		</Modal >
 	);
 };
 

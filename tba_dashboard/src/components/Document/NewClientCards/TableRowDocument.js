@@ -24,6 +24,7 @@ const TableRowDocument = ({ images, handleFileChange }) => {
 			<SocialContract
 				images={images}
 				handleFileChange={handleFileChange}
+
 			/>
 
 			<ProofOfAddress

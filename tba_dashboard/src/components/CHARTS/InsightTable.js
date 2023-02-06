@@ -10,7 +10,9 @@ const InsightTable = ({ tableRow, refresh, setRefresh }) => {
 				responsive>
 				<thead>
 					<tr className='12px'>
-						<th className='tbl-head-color' width={"25%"}>Nome </th>
+						<th className='tbl-head-color' width={"25%"}>
+							Nome{" "}
+						</th>
 						<th className='tbl-head-color '>CPF</th>
 						<th className='tbl-head-color '>CNPJ</th>
 						<th className='tbl-head-color '>Telefone </th>
@@ -21,7 +23,7 @@ const InsightTable = ({ tableRow, refresh, setRefresh }) => {
 				</thead>
 				<tbody>
 					{tableRow.slice(0, 4).map((obj, i) => (
-						<tr style={{ fontSize: '14px' }}>
+						<tr style={{ fontSize: "14px" }}>
 							<td className='fw-bold  '>{obj?.name}</td>
 							<td>{obj?.CPF}</td>
 							<td>{obj?.CNPJ}</td>
@@ -30,8 +32,12 @@ const InsightTable = ({ tableRow, refresh, setRefresh }) => {
 							<td className='text-center'>{obj?.time} </td>
 							<td className='text-end position-relative'>
 								<Button
-									className='p-0 text-white fw-bold'
-									style={{ width: "100px", fontSize: "12px", borderRadius: '3px' }}
+									className='p-0 text-white fw-normal'
+									style={{
+										width: "100px",
+										fontSize: "12px",
+										borderRadius: "3px",
+									}}
 									// variant={
 									// 	obj.status === "pending"
 									// 		? "warning"
@@ -40,20 +46,18 @@ const InsightTable = ({ tableRow, refresh, setRefresh }) => {
 									variant={
 										obj.contactApprove === "pending"
 											? "warning"
-											: obj.contactApprove ===
-												"rejected"
-												? "danger"
-												: "success"
-									}
-								>
+											: obj.contactApprove === "rejected"
+											? "danger"
+											: "success"
+									}>
 									{/* {obj.status === "pending"
 										? "Pendente"
 										: "respondidas"} */}
 									{obj.contactApprove === "pending"
 										? "Pendente"
 										: obj.contactApprove === "rejected"
-											? "Reprovado"
-											: "Respondido"}
+										? "Reprovado"
+										: "Respondido"}
 								</Button>
 							</td>
 						</tr>

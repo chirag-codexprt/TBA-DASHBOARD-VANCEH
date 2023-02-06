@@ -170,7 +170,7 @@ const DocumentTable = ({
 											: "Concluded"} */}
 
 										{obj.allStatus === "pending"
-											? "Aguard. rev."
+											? "Aguard. doc."
 											: obj.allStatus === "wait"
 											? "Aguard. rev."
 											: "Concluído"}

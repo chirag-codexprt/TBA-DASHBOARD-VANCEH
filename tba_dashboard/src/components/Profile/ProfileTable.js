@@ -40,9 +40,7 @@ const ProfileTable = ({ tableRow }) => {
 							<th className='tbl-head-color text-center'>
 								Hora{" "}
 							</th>
-							<th className='tbl-head-color ps-3'>
-								Status{" "}
-							</th>
+							<th className='tbl-head-color ps-3'>Status </th>
 						</tr>
 					</thead>
 				) : (
@@ -60,15 +58,13 @@ const ProfileTable = ({ tableRow }) => {
 								<td className='text-center'>{obj.time}</td>
 								<td className='text-end'>
 									<Button
-
 										style={{
 											width: "100px",
 											fontSize: "14px",
 											borderRadius: "3px",
-											backgroundColor: "#58A43D"
-
+											backgroundColor: "#58A43D",
 										}}
-										className='border-0 p-0'
+										className='border-0 p-0 fw-normal'
 										size='md'>
 										Respondido
 									</Button>

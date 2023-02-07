@@ -10,7 +10,7 @@ const PermissionSwitch = ({
 }) => {
 	return (
 		<Col md={6}>
-			<Form className='d-flex align-items-center'>
+			<Form className='d-flex '>
 				<Form.Check
 					className='chack-item input-check fs-5 border-0'
 					type='switch'

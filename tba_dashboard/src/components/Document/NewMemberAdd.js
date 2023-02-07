@@ -41,6 +41,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 		CNPJ: "",
 	});
 	const [images, setImages] = React.useState({
+		CPFDOC: "",
+		CNPJDOC: "",
 		socialContract: "",
 		addressProof: "",
 		balanceIncome: "",
@@ -128,6 +130,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					let call10;
 					let call11;
 					let call12;
+					let call13;
+					let call14;
 					setLoading(true);
 					if (images.socialContract) {
 						const formData = new FormData();
@@ -216,6 +220,20 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 						formData.append("type", "abcCurve");
 						call12 = attachDocument(formData);
 					}
+					if (images.CPFDOC) {
+						const formData = new FormData();
+						formData.append("addressProof", images.CPFDOC);
+						formData.append("id", res.data.id);
+						formData.append("type", "CPFDOC");
+						call13 = attachDocument(formData);
+					}
+					if (images.CNPJDOC) {
+						const formData = new FormData();
+						formData.append("addressProof", images.CNPJDOC);
+						formData.append("id", res.data.id);
+						formData.append("type", "CNPJDOC");
+						call14 = attachDocument(formData);
+					}
 					console.log("call1", call1);
 					const ab = [
 						call1,
@@ -230,6 +248,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 						call10,
 						call11,
 						call12,
+						call13,
+						call14,
 					];
 
 					Promise.all(ab)

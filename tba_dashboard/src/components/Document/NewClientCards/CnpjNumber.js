@@ -3,7 +3,6 @@ import { Button, Col } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 
 const CnpjNumber = ({ data, images, handleFileChange }) => {
-
 	const hiddenFileInput = useRef(null);
 
 	const handleClick = (event) => {
@@ -25,7 +24,11 @@ const CnpjNumber = ({ data, images, handleFileChange }) => {
 					</h6>
 				</Button>
 			</Col> */}
-			<Col md={4} style={{ margin: '1rem 0rem' }} xs={12} onClick={handleClick}>
+			<Col
+				md={4}
+				style={{ margin: "1rem 0rem" }}
+				xs={12}
+				onClick={handleClick}>
 				{/* <Dropzone
 					onDrop={(acceptedFiles, rejected, e) => {
 						handleFileChange(acceptedFiles, rejected, inputRef.current.name);
@@ -53,7 +56,7 @@ const CnpjNumber = ({ data, images, handleFileChange }) => {
 						id='upfile'
 						type='file'
 						accept={".pdf"}
-						name='CNPJ'
+						name='CNPJDOC'
 						ref={hiddenFileInput}
 						onChange={(e) => handleFileChange(e)}
 						style={{ display: "none" }}
@@ -65,7 +68,7 @@ const CnpjNumber = ({ data, images, handleFileChange }) => {
 					}}>
 					CNPJ
 				</h6>
-				{images?.CNPJ ? (
+				{images?.CNPJDOC ? (
 					<Button
 						className='w-100 p-0 CardBtn'
 						variant='outline-warning'>
@@ -76,8 +79,7 @@ const CnpjNumber = ({ data, images, handleFileChange }) => {
 								color: "#C4CCD2",
 								fontSize: "11px",
 							}}>
-							Arraste e solte aqui ou importe dos
-							seus arquivos
+							Arraste e solte aqui ou importe dos seus arquivos
 						</h6>
 					</Button>
 				) : (
@@ -95,8 +97,7 @@ const CnpjNumber = ({ data, images, handleFileChange }) => {
 								color: "#C4CCD2",
 								fontSize: "11px",
 							}}>
-							Arraste e solte aqui ou importe dos
-							seus arquivos
+							Arraste e solte aqui ou importe dos seus arquivos
 						</h6>
 					</Button>
 				)}

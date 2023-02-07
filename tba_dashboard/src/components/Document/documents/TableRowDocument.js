@@ -25,15 +25,19 @@ const TableRowDocument = ({
 
 	return (
 		<>
-			{permission?.CPF && (<CpfNumber
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>)}
+			{permission?.CPFDOC && (
+				<CpfNumber
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
 
-			{permission?.CNPJ && (<CnpjNumber
-				obj={obj}
-				handleShowImageModal={handleShowImageModal}
-			/>)}
+			{permission?.CNPJDOC && (
+				<CnpjNumber
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
 
 			{permission?.socialContract && (
 				<SocialContract
@@ -45,7 +49,7 @@ const TableRowDocument = ({
 				<ProofOfAddress
 					obj={obj}
 					handleShowImageModal={handleShowImageModal}
-				// handleShowAddressModal={handleShowAddressModal}
+					// handleShowAddressModal={handleShowAddressModal}
 				/>
 			)}
 			{permission?.balanceIncome && (

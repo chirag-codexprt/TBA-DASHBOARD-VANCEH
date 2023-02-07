@@ -152,34 +152,38 @@ const Documents = () => {
 							setRefresh={setRefresh}
 							search={search}>
 							<Button
-								className={`fs-color ms-1 border-0 ${active.rejected
-									? "activeBtnTable"
-									: "inActiveBtnTable"
-									}`}
+								className={`fs-color ms-1 border-0 ${
+									active.rejected
+										? "activeBtnTable"
+										: "inActiveBtnTable"
+								}`}
 								onClick={(e) => handleToggle("rejected")}>
 								Aguard.&nbsp;rev.
 							</Button>
 							<Button
-								className={`fs-color border-0 ${active.approved
-									? "activeBtnTable"
-									: "inActiveBtnTable"
-									}`}
+								className={`fs-color border-0 ${
+									active.approved
+										? "activeBtnTable"
+										: "inActiveBtnTable"
+								}`}
 								onClick={(e) => handleToggle("Approved")}>
 								Concluídos
 							</Button>
 							<Button
-								className={`fs-color border-0 ${active.pending
-									? "activeBtnTable"
-									: "inActiveBtnTable"
-									}`}
+								className={`fs-color border-0 ${
+									active.pending
+										? "activeBtnTable"
+										: "inActiveBtnTable"
+								}`}
 								onClick={(e) => handleToggle("Pending")}>
 								Aguard.&nbsp;doc.
 							</Button>
 							<Button
-								className={`fs-color px-3 border-0 ${active.all
-									? "activeBtnTable"
-									: "inActiveBtnTable"
-									}`}
+								className={`fs-color px-3 border-0 ${
+									active.all
+										? "activeBtnTable"
+										: "inActiveBtnTable"
+								}`}
 								onClick={(e) => handleToggle("All")}>
 								Todas
 							</Button>

@@ -5,10 +5,16 @@ import Dropzone from "react-dropzone";
 const SpouseDocument = ({ data, images, handleFileChange }) => {
 	const inputRef = useRef(null);
 
+	const hiddenFileInput = useRef(null);
+
+	const handleClick = (event) => {
+		hiddenFileInput.current.click();
+	};
+
 	return (
 		<>
-			<Col md={4} xs={12} style={{ margin: '1rem 0rem' }}>
-				<Dropzone
+			<Col md={4} xs={12} style={{ margin: '1rem 0rem' }} onClick={handleClick}>
+				{/* <Dropzone
 					onDrop={(acceptedFiles, rejected, e) => {
 						handleFileChange(acceptedFiles, rejected, inputRef.current.name);
 					}}>
@@ -25,52 +31,68 @@ const SpouseDocument = ({ data, images, handleFileChange }) => {
 									type='file'
 									ref={inputRef}
 
-								/>
-								<h6
-									style={{
-										color: "#B5B6B7",
-									}}>
-									Documentos do cônjuge
-								</h6>
-								{images?.spouseDocument ? (
-									<Button
-										className='w-100 p-0 CardBtn'
-										variant='outline-warning'>
-										{/* <i className='bi bi-check-lg fs-1 right-icon'></i> */}
-										<i className='bi bi-clock-fill fs-1 pending-icon'></i>
-										<h6
-											style={{
-												color: "#C4CCD2",
-												fontSize: "11px",
-											}}>
-											Arraste e solte aqui ou importe dos
-											seus arquivos
-										</h6>
-									</Button>
-								) : (
-									<Button
-										className='w-100 p-0 CardBtn'
-										variant='outline-secondary'>
-										<label
-											style={{
-												rotate: "45deg",
-											}}>
-											<i className='bi bi-paperclip fs-1 link-icon'></i>
-										</label>
-										<h6
-											style={{
-												color: "#C4CCD2",
-												fontSize: "11px",
-											}}>
-											Arraste e solte aqui ou importe dos
-											seus arquivos
-										</h6>
-									</Button>
-								)}
-							</div>
+								/> */}
+				<div
+					style={{
+						height: "0px",
+						width: "0px",
+						overflow: "hidden",
+					}}>
+					<input
+						id='upfile'
+						type='file'
+						accept={".pdf"}
+						name='spouseDocument'
+						ref={hiddenFileInput}
+						onChange={(e) => handleFileChange(e)}
+						style={{ display: "none" }}
+					/>
+				</div>
+				<h6
+					style={{
+						color: "#B5B6B7",
+					}}>
+					Documentos do cônjuge
+				</h6>
+				{images?.spouseDocument ? (
+					<Button
+						className='w-100 p-0 CardBtn'
+						variant='outline-warning'>
+						{/* <i className='bi bi-check-lg fs-1 right-icon'></i> */}
+						<i className='bi bi-clock-fill fs-1 pending-icon'></i>
+						<h6
+							style={{
+								color: "#C4CCD2",
+								fontSize: "11px",
+							}}>
+							Arraste e solte aqui ou importe dos
+							seus arquivos
+						</h6>
+					</Button>
+				) : (
+					<Button
+						className='w-100 p-0 CardBtn'
+						variant='outline-secondary'>
+						<label
+							style={{
+								rotate: "45deg",
+							}}>
+							<i className='bi bi-paperclip fs-1 link-icon'></i>
+						</label>
+						<h6
+							style={{
+								color: "#C4CCD2",
+								fontSize: "11px",
+							}}>
+							Arraste e solte aqui ou importe dos
+							seus arquivos
+						</h6>
+					</Button>
+				)}
+				{/* </div>
 						</section>
 					)}
-				</Dropzone>
+				</Dropzone> */}
 			</Col>
 		</>
 	);

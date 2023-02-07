@@ -34,8 +34,8 @@ const GenerateLinkNew = ({
 
 	const [copyText, setCopyText] = useState(false);
 	const [formValues, setFormValues] = useState({
-		CNPJ: true,
-		CPF: true,
+		CNPJDOC: true,
+		CPFDOC: true,
 		socialContract: true,
 		addressProof: true,
 		balanceIncome: true,
@@ -79,8 +79,8 @@ const GenerateLinkNew = ({
 				toast.error(res.message);
 			}
 		});
-		console.log("formValues", formValues);
 	};
+	console.log("formValues", formValues);
 	return (
 		<div>
 			<Modal
@@ -101,19 +101,23 @@ const GenerateLinkNew = ({
 					{loading ? (
 						<Loader />
 					) : (
-						permission?.map((obj, index) => (
-							<PermissionSwith
-								name={obj?.type}
-								label={obj?.title}
-								defaultChecked={
-									obj?.type
-										? `${formValues}.${obj?.type}`
-										: ""
-								}
-								handleCheck={handleCheck}
-								// checked={`${formValues}.${obj?.type}`}
-							/>
-						))
+						permission?.map(
+							(obj, index) =>
+								obj?.type !== "CPF" &&
+								obj.type !== "CNPJ" && (
+									<PermissionSwith
+										name={obj?.type}
+										label={obj?.title}
+										defaultChecked={
+											obj?.type
+												? `${formValues}.${obj?.type}`
+												: ""
+										}
+										handleCheck={handleCheck}
+										// checked={`${formValues}.${obj?.type}`}
+									/>
+								)
+						)
 					)}
 				</Row>
 				<Row className='px-4'>

@@ -143,21 +143,24 @@ const DocumentTable = ({
 									className='position-relative text-end'
 									style={{ zIndex: 1000 }}>
 									<Button
-										className='text-white fw-bold p-0'
 										style={{
 											width: "100px",
 											fontSize: "12px",
+											fontWeight: "500",
+											border: "0",
+											padding: "0",
+											borderRadius: "3px",
 										}}
-										variant={
+										className={
 											// 	obj.allStatus === "pending"
 											// 		? "warning"
 											// 		: "success"
 											// }
 											obj.allStatus === "pending"
-												? "warning"
+												? "document-pending"
 												: obj.allStatus === "wait"
-												? "danger"
-												: "success"
+												? "document-wait"
+												: "document-success"
 										}
 										// onClick={
 										// 	obj.allStatus === "pending"

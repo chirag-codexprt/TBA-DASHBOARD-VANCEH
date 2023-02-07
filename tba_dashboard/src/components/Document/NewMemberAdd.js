@@ -18,13 +18,11 @@ import {
 import SocialContractCard from "./SocialContractCard";
 import AddressProofCard from "./AddressProofCard";
 import { toast } from "react-toastify";
-import CpfCard from "./CpfCard";
 import { attachDocument, contactForm } from "../../helper/API/contact";
 import {
 	submitAddressDocument,
 	submitDocument,
 } from "../../helper/API/document";
-import CnpjCard from "./CnpjCard";
 import TableRowDocument from "./NewClientCards/TableRowDocument";
 import GenerateLinkBtn from "./NewClientCards/GenerateLinkBtn";
 
@@ -43,6 +41,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 		CNPJ: "",
 	});
 	const [images, setImages] = React.useState({
+		CPFDOC: "",
+		CNPJDOC: "",
 		socialContract: "",
 		addressProof: "",
 		balanceIncome: "",
@@ -57,17 +57,17 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 		abcCurve: "",
 	});
 
-	const handleFileChange = (acceptedFiles, type, fileName) => {
-		console.log("acceptedFiles", acceptedFiles);
-		if (acceptedFiles[0].type !== "application/pdf") {
+	const handleFileChange = (e) => {
+		// console.log("acceptedFiles", acceptedFiles);
+		if (e.target.files[0].type !== "application/pdf") {
 			toast.error("Por favor, selecione apenas arquivo pdf");
 		} else {
 			// setopen(true);
-			if (acceptedFiles[0]) {
-				setImagePreview(URL.createObjectURL(acceptedFiles[0]));
+			if (e.target.files[0]) {
+				setImagePreview(URL.createObjectURL(e.target.files[0]));
 				setImages({
 					...images,
-					[fileName]: acceptedFiles[0],
+					[e.target.name]: e.target.files[0],
 				});
 			}
 		}
@@ -130,6 +130,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					let call10;
 					let call11;
 					let call12;
+					let call13;
+					let call14;
 					setLoading(true);
 					if (images.socialContract) {
 						const formData = new FormData();
@@ -218,6 +220,20 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 						formData.append("type", "abcCurve");
 						call12 = attachDocument(formData);
 					}
+					if (images.CPFDOC) {
+						const formData = new FormData();
+						formData.append("addressProof", images.CPFDOC);
+						formData.append("id", res.data.id);
+						formData.append("type", "CPFDOC");
+						call13 = attachDocument(formData);
+					}
+					if (images.CNPJDOC) {
+						const formData = new FormData();
+						formData.append("addressProof", images.CNPJDOC);
+						formData.append("id", res.data.id);
+						formData.append("type", "CNPJDOC");
+						call14 = attachDocument(formData);
+					}
 					console.log("call1", call1);
 					const ab = [
 						call1,
@@ -232,6 +248,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 						call10,
 						call11,
 						call12,
+						call13,
+						call14,
 					];
 
 					Promise.all(ab)
@@ -384,9 +402,6 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					</Col>
 				</Row>
 				<Row className='mt-3 gx-2'>
-					<CpfCard formValues={formValues} />
-					<CnpjCard formValues={formValues} />
-
 					<TableRowDocument
 						handleFileChange={handleFileChange}
 						images={images}

@@ -15,11 +15,11 @@ import SpouseDocument from "./SpouseDocument";
 import UpdatedBankDebt from "./UpdatedBankDebt";
 import PartnerIncome from "./PartnerIncome";
 
-const TableRowDocument = ({ images, handleFileChange }) => {
+const TableRowDocument = ({ data, images, handleFileChange }) => {
 	return (
 		<>
-			{/* <CnpjNumber data={data} />
-			<CpfNumber data={data} /> */}
+			<CpfNumber images={images} handleFileChange={handleFileChange} />
+			<CnpjNumber images={images} handleFileChange={handleFileChange} />
 
 			<SocialContract
 				images={images}

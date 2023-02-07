@@ -25,8 +25,20 @@ const TableRowDocument = ({
 
 	return (
 		<>
-			<CnpjNumber obj={obj} />
-			<CpfNumber obj={obj} />
+			{permission?.CPFDOC && (
+				<CpfNumber
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+
+			{permission?.CNPJDOC && (
+				<CnpjNumber
+					obj={obj}
+					handleShowImageModal={handleShowImageModal}
+				/>
+			)}
+
 			{permission?.socialContract && (
 				<SocialContract
 					obj={obj}

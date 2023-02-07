@@ -1,8 +1,32 @@
 import React from "react";
 import { Button, Col } from "react-bootstrap";
 
-const CnpjNumber = ({ obj }) => {
+const CnpjNumber = ({ obj, handleShowImageModal }) => {
 	return (
+		// <Col
+		// 	md={4}
+		// 	style={{
+		// 		margin: "1rem 0rem",
+		// 	}}>
+		// 	<Col
+		// 		style={{
+		// 			color: "#B5B6B7",
+		// 		}}>
+		// 		CNPJ
+		// 	</Col>
+		// 	<Col className=''>
+		// 		<Button className='w-100 p-0' variant='outline-success'>
+		// 			<i class='bi bi-check-lg fs-2'></i>
+		// 			<h6
+		// 				style={{
+		// 					color: "#C4CCD2",
+		// 					fontSize: "11px",
+		// 				}}>
+		// 				Já aprovada, visualizar?
+		// 			</h6>
+		// 		</Button>
+		// 	</Col>
+		// </Col>
 		<Col
 			md={4}
 			style={{
@@ -14,17 +38,72 @@ const CnpjNumber = ({ obj }) => {
 				}}>
 				CNPJ
 			</Col>
-			<Col className=''>
-				<Button className='w-100 p-0' variant='outline-success'>
-					<i class='bi bi-check-lg fs-2'></i>
-					<h6
-						style={{
-							color: "#C4CCD2",
-							fontSize: "11px",
-						}}>
-						Já aprovada, visualizar?
-					</h6>
-				</Button>
+			<Col>
+				{obj?.CNPJDOC === null && (
+					<Button
+						className='w-100 p-0 ms-0'
+						onClick={
+							obj?.CNPJDOC === null
+								? null
+								: () => handleShowImageModal(obj, "CNPJDOC")
+						}
+						variant='outline-secondary'>
+						<label
+							style={{
+								rotate: "45deg",
+							}}>
+							<i class='bi bi-paperclip fs-2'></i>
+						</label>
+						<h6
+							style={{
+								color: "#C4CCD2",
+								fontSize: "11px",
+							}}>
+							Arraste e solte aqui ou importe dos seus arquivos
+						</h6>
+					</Button>
+				)}
+				{obj?.CNPJDOC && !obj?.CNPJDOC?.approved && (
+					<Button
+						className='w-100 p-0 ms-0'
+						onClick={
+							obj?.CNPJDOC === null
+								? null
+								: () => handleShowImageModal(obj, "CNPJDOC")
+						}
+						variant='outline-warning'>
+						<i class='bi bi-clock-fill fs-2'></i>
+
+						<h6
+							style={{
+								color: "#C4CCD2",
+								fontSize: "11px",
+							}}>
+							Aguardando análise, visualizar?
+						</h6>
+					</Button>
+				)}
+
+				{obj?.CNPJDOC && obj?.CNPJDOC?.approved && (
+					<Button
+						className='w-100 p-0 ms-0'
+						onClick={
+							obj?.abcCurve === null
+								? null
+								: () => handleShowImageModal(obj, "CNPJDOC")
+						}
+						variant='outline-success'>
+						<i class='bi bi-check-lg fs-2'></i>
+
+						<h6
+							style={{
+								color: "#C4CCD2",
+								fontSize: "11px",
+							}}>
+							Já aprovada, visualizar?
+						</h6>
+					</Button>
+				)}
 			</Col>
 		</Col>
 	);

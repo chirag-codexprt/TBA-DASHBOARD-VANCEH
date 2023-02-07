@@ -293,22 +293,28 @@ body {
 }
 
 .row-height {
-  height:730px;
+  height: 730px;
 }
+
 .row-height1 {
-  height:350px;
+  height: 350px;
 }
+
 .row-height2 {
-  height:350px;
+  height: 350px;
 }
+
 .row-height3 {
-  height:500px;
+  height: 500px;
 }
+
 .row-height4 {
-  height:620px;
+  height: 620px;
 }
+
 .row-height5 {
-  height:250px;
+  height: 140px;
+  /* height: 250px; */
 }
 
 
@@ -549,15 +555,18 @@ body {
   margin-top: -2.9rem;
   margin-left: 29rem;
 }
-.react-pdf-doc{
+
+.react-pdf-doc {
   height: 300px;
   width: 300px !important;
 }
-.react-pdf-page-class{
+
+.react-pdf-page-class {
   /* height: 85vh !important;
 width: 15vw !important; */
-height: 100% !important;
+  height: 100% !important;
 }
+
 /* .react-pdf__Page__canvas{
   height: 49% !important;
 width: 100% !important;
@@ -569,11 +578,11 @@ width: 100% !important;
   height: 100% !important;
 }
 
-.btn-next-prev{
+.btn-next-prev {
   background-color: transparent !important;
   border: 1px solid rgb(28, 61, 89);
-  color:#000;
-  height:20px;
+  color: #000;
+  height: 20px;
   width: 20px;
   border-radius: 50%;
   display: flex;
@@ -582,16 +591,18 @@ width: 100% !important;
   /* background: #85A6A2 !important; */
 }
 
-.contact-wait{
+.contact-wait {
   background-color: #AE2424 !important;
 }
 
-.document-pending{
+.document-pending {
   background-color: #E9BC1E !important;
 }
-.document-wait{
+
+.document-wait {
   background-color: #E97F1E !important;
 }
-.document-success{
+
+.document-success {
   background-color: #58A43D !important;
 }

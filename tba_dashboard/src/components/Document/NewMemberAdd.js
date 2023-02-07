@@ -384,8 +384,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					</Col>
 				</Row>
 				<Row className='mt-3 gx-2'>
-					<CpfCard formValues={formValues} />
-					<CnpjCard formValues={formValues} />
+					<CpfCard />
+					<CnpjCard />
 
 					<TableRowDocument
 						handleFileChange={handleFileChange}

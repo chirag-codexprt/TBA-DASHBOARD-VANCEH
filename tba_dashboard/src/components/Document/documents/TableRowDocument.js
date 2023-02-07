@@ -25,8 +25,16 @@ const TableRowDocument = ({
 
 	return (
 		<>
-			<CnpjNumber obj={obj} />
-			<CpfNumber obj={obj} />
+			{permission?.CPF && (<CpfNumber
+				obj={obj}
+				handleShowImageModal={handleShowImageModal}
+			/>)}
+
+			{permission?.CNPJ && (<CnpjNumber
+				obj={obj}
+				handleShowImageModal={handleShowImageModal}
+			/>)}
+
 			{permission?.socialContract && (
 				<SocialContract
 					obj={obj}
@@ -37,7 +45,7 @@ const TableRowDocument = ({
 				<ProofOfAddress
 					obj={obj}
 					handleShowImageModal={handleShowImageModal}
-					// handleShowAddressModal={handleShowAddressModal}
+				// handleShowAddressModal={handleShowAddressModal}
 				/>
 			)}
 			{permission?.balanceIncome && (

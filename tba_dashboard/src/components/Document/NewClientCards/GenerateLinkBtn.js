@@ -7,7 +7,7 @@ const GenerateLinkBtn = ({ onClick, obj, md }) => {
 		<>
 			<Col
 				md={md}
-				className='d-flex align-items-center justify-content-end mt-3'
+				className='d-flex justify-content-end'
 				style={{
 					position: "relative",
 					zIndex: 1001,

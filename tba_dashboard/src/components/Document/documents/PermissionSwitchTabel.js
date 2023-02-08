@@ -5,15 +5,6 @@ const PermissionSwitchTabel = ({ formValues, handleCheck }) => {
     return (
         <>
             <PermissionSwitch
-                name={"CPFDOC"}
-                label={"CPF dos sócios"}
-                defaultChecked={
-                    formValues.CPFDOC
-                }
-                handleCheck={handleCheck}
-            // checked={`${formValues}.${obj?.type}`}
-            />
-            <PermissionSwitch
                 name={"CNPJDOC"}
                 label={"CNPJ"}
                 defaultChecked={
@@ -23,19 +14,19 @@ const PermissionSwitchTabel = ({ formValues, handleCheck }) => {
             // checked={`${formValues}.${obj?.type}`}
             />
             <PermissionSwitch
-                name={"socialContract"}
-                label={"Contrato social"}
+                name={"CPFDOC"}
+                label={"CPF dos sócios"}
                 defaultChecked={
-                    formValues.socialContract
+                    formValues.CPFDOC
                 }
                 handleCheck={handleCheck}
             // checked={`${formValues}.${obj?.type}`}
             />
             <PermissionSwitch
-                name={"addressProof"}
-                label={"Comprovante de endereço dos sócios"}
+                name={"socialContract"}
+                label={"Contrato social"}
                 defaultChecked={
-                    formValues.addressProof
+                    formValues.socialContract
                 }
                 handleCheck={handleCheck}
             // checked={`${formValues}.${obj?.type}`}
@@ -94,6 +85,17 @@ const PermissionSwitchTabel = ({ formValues, handleCheck }) => {
                 handleCheck={handleCheck}
             // checked={`${formValues}.${obj?.type}`}
             />
+            <PermissionSwitch
+                name={"addressProof"}
+                label={"Comprovante de endereço dos sócios"}
+                defaultChecked={
+                    formValues.addressProof
+                }
+                handleCheck={handleCheck}
+            // checked={`${formValues}.${obj?.type}`}
+            />
+
+
             <PermissionSwitch
                 name={"spouseDocument"}
                 label={"Documentos do cônjuge"}

@@ -20,7 +20,9 @@ const PermissionSwitch = ({
 					defaultChecked={defaultChecked}
 					onChange={handleCheck}
 				/>
-				<label>{label}</label>
+				<label style={{
+					color: "#272B30", fontWeight: "600"
+				}} >{label}</label>
 			</Form>
 		</Col>
 	);

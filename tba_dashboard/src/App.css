@@ -361,7 +361,7 @@ body {
 .form-switch .form-check-input:checked {
   background-color: #dcdddf !important;
   border: 0 !important;
-  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%%27/></svg>") !important;
+  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill='rgb(28,61,89)' /></svg>") !important;
 }
 
 .form-switch .form-check-input {

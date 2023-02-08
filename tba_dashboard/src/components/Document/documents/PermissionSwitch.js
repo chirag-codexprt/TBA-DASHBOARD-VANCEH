@@ -7,7 +7,9 @@ const PermissionSwitch = ({
 	checked,
 	defaultChecked,
 	handleCheck,
+	disabled,
 }) => {
+	console.log("disabled", disabled);
 	return (
 		<Col md={6}>
 			<Form className='d-flex '>
@@ -15,14 +17,19 @@ const PermissionSwitch = ({
 					className='chack-item input-check fs-5 border-0'
 					type='switch'
 					id='custom-switch'
-					checked={checked}
+					// checked={checked}
 					name={name}
 					defaultChecked={defaultChecked}
 					onChange={handleCheck}
+					disabled={disabled}
 				/>
-				<label style={{
-					color: "#272B30", fontWeight: "600"
-				}} >{label}</label>
+				<label
+					style={{
+						color: "#272B30",
+						fontWeight: "600",
+					}}>
+					{label}
+				</label>
 			</Form>
 		</Col>
 	);

@@ -94,6 +94,7 @@ const GenerateLinkNew = ({
 				<ModalCardRow
 					handleClose={handleClose}
 					id='contained-modal-title-vcenter'
+					editData={editData}
 				/>
 				<Row className='px-4 pt-3'>
 					<Col md={12}>
@@ -123,6 +124,7 @@ const GenerateLinkNew = ({
 					<PermissionSwitchTabel
 						handleCheck={handleCheck}
 						formValues={formValues}
+						editData={editData}
 					/>
 				</Row>
 				<Row className='px-4'>

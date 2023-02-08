@@ -81,6 +81,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 	};
 
 	const submitDocumentForm = () => {
+		setLoading(true);
 		// console.log("formValues", formValues);
 		contactForm(formValues).then((res) => {
 			// console.log("first form", res);
@@ -165,10 +166,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 				}
 				if (images.extractBusiestBank) {
 					const formData = new FormData();
-					formData.append(
-						"addressProof",
-						images.extractBusiestBank
-					);
+					formData.append("addressProof", images.extractBusiestBank);
 					formData.append("id", res.data.id);
 					formData.append("type", "extractBusiestBank");
 					call10 = attachDocument(formData);
@@ -222,10 +220,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 				Promise.all(ab)
 					.then((responses) => {
 						console.log("responses :::", responses);
-						console.log(
-							"responses length :::",
-							responses.length
-						);
+						console.log("responses length :::", responses.length);
 						if (responses) {
 							toast.success("Anexo adicionado com sucesso");
 							setLoading(false);
@@ -236,9 +231,10 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					.catch((err) => toast.error("Pedido inválido"));
 			} else {
 				toast.error(res.message);
+				setLoading(false);
 			}
 		});
-	}
+	};
 	return (
 		<Modal
 			show={show}

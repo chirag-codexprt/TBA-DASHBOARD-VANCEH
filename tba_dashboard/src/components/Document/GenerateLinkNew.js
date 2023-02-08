@@ -7,6 +7,7 @@ import copy from "copy-to-clipboard";
 import ModalCardRow from "./documents/ModalCardRow";
 import PermissionSwith from "./documents/PermissionSwitch";
 import Loader from "../Loader";
+import PermissionSwitchTabel from "./documents/PermissionSwitchTabel";
 
 const GenerateLinkNew = ({
 	open,
@@ -98,7 +99,7 @@ const GenerateLinkNew = ({
 					<Col md={12}>
 						<h6>Solicitar outros documentos</h6>
 					</Col>
-					{loading ? (
+					{/* {loading ? (
 						<Loader />
 					) : (
 						permission?.map(
@@ -114,11 +115,15 @@ const GenerateLinkNew = ({
 												: ""
 										}
 										handleCheck={handleCheck}
-										// checked={`${formValues}.${obj?.type}`}
+									// checked={`${formValues}.${obj?.type}`}
 									/>
 								)
 						)
-					)}
+					)} */}
+					<PermissionSwitchTabel
+						handleCheck={handleCheck}
+						formValues={formValues}
+					/>
 				</Row>
 				<Row className='px-4'>
 					<Col md={12} className='mt-3'>

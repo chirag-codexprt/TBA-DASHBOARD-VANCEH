@@ -187,7 +187,7 @@ const ImageUploadModal = ({
 						</div>
 						<div>
 							<a
-								href={document?.socialContract?.url}
+								href={document[document?.type]?.url}
 								target='_blank'
 								style={{ textDecoration: "none" }}>
 								<Button

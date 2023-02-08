@@ -145,7 +145,7 @@ const Contact = () => {
 									: "inActiveBtnTable"
 									}`}
 								onClick={(e) => handleToggle("Pending")}>
-								Pendentes
+								Aguardando
 							</Button>
 							<Button
 								className={`fs-color  mx-2 border-0 ${active.approved

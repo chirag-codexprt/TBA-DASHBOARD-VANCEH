@@ -64,8 +64,7 @@ const BillingCustomer = ({ data, images, handleFileChange }) => {
 								color: "#C4CCD2",
 								fontSize: "11px",
 							}}>
-							Arraste e solte aqui ou importe dos
-							seus arquivos
+							Aguardando análise, visualizar?
 						</h6>
 					</Button>
 				) : (

@@ -82,197 +82,163 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 
 	const submitDocumentForm = () => {
 		// console.log("formValues", formValues);
-		if (!formValues.name) {
-			toast.error("Digite o nome");
-		} else if (!formValues.CPF) {
-			toast.error("Digite cpf");
-		} else if (!formValues.CNPJ) {
-			toast.error("Digite cnpj");
-		} else if (!formValues.emailOrPhone) {
-			toast.error("Por favor insira e-mail ou telefone");
-		} else if (!images.socialContract) {
-			toast.error("Selecione o documento");
-		} else if (!images.addressProof) {
-			toast.error("Selecione o documento");
-		} else if (!images.balanceIncome) {
-			toast.error("Selecione o documento");
-		} else if (!images.balanceSheet) {
-			toast.error("Selecione o documento");
-		} else if (!images.partnerIncome) {
-			toast.error("Selecione o documento");
-		} else if (!images.billingCustomer) {
-			toast.error("Selecione o documento");
-		} else if (!images.partnerDocument) {
-			toast.error("Selecione o documento");
-		} else if (!images.updatedBankDebt) {
-			toast.error("Selecione o documento");
-		} else if (!images.extractBusiestBank) {
-			toast.error("Selecione o documento");
-		} else if (!images.companyPhotos) {
-			toast.error("Selecione o documento");
-		} else if (!images.abcCurve) {
-			toast.error("Selecione o documento");
-		} else if (!images.socialContract) {
-			toast.error("Selecione o documento");
-		} else {
-			contactForm(formValues).then((res) => {
-				// console.log("first form", res);
-				if (res.success) {
-					let call1;
-					let call2;
-					let call3;
-					let call4;
-					let call5;
-					let call6;
-					let call7;
-					let call8;
-					let call9;
-					let call10;
-					let call11;
-					let call12;
-					let call13;
-					let call14;
-					setLoading(true);
-					if (images.socialContract) {
-						const formData = new FormData();
-						formData.append("addressProof", images.socialContract);
-						formData.append("id", res.data.id);
-						formData.append("type", "socialContract");
-						call1 = attachDocument(formData);
-					}
-					if (images.addressProof) {
-						const formData = new FormData();
-						formData.append("addressProof", images.addressProof);
-						formData.append("id", res.data.id);
-						formData.append("type", "addressProof");
-						call2 = attachDocument(formData);
-					}
-					if (images.balanceIncome) {
-						const formData = new FormData();
-						formData.append("addressProof", images.balanceIncome);
-						formData.append("id", res.data.id);
-						formData.append("type", "balanceIncome");
-						call3 = attachDocument(formData);
-					}
-					if (images.balanceSheet) {
-						const formData = new FormData();
-						formData.append("addressProof", images.balanceSheet);
-						formData.append("id", res.data.id);
-						formData.append("type", "balanceSheet");
-						call4 = attachDocument(formData);
-					}
-					if (images.partnerIncome) {
-						const formData = new FormData();
-						formData.append("addressProof", images.partnerIncome);
-						formData.append("id", res.data.id);
-						formData.append("type", "partnerIncome");
-						call5 = attachDocument(formData);
-					}
-					if (images.billingCustomer) {
-						const formData = new FormData();
-						formData.append("addressProof", images.billingCustomer);
-						formData.append("id", res.data.id);
-						formData.append("type", "billingCustomer");
-						call6 = attachDocument(formData);
-					}
-					if (images.partnerDocument) {
-						const formData = new FormData();
-						formData.append("addressProof", images.partnerDocument);
-						formData.append("id", res.data.id);
-						formData.append("type", "partnerDocument");
-						call7 = attachDocument(formData);
-					}
-					if (images.updatedBankDebt) {
-						const formData = new FormData();
-						formData.append("addressProof", images.updatedBankDebt);
-						formData.append("id", res.data.id);
-						formData.append("type", "updatedBankDebt");
-						call8 = attachDocument(formData);
-					}
-					if (images.spouseDocument) {
-						const formData = new FormData();
-						formData.append("addressProof", images.spouseDocument);
-						formData.append("id", res.data.id);
-						formData.append("type", "spouseDocument");
-						call9 = attachDocument(formData);
-					}
-					if (images.extractBusiestBank) {
-						const formData = new FormData();
-						formData.append(
-							"addressProof",
-							images.extractBusiestBank
-						);
-						formData.append("id", res.data.id);
-						formData.append("type", "extractBusiestBank");
-						call10 = attachDocument(formData);
-					}
-					if (images.companyPhotos) {
-						const formData = new FormData();
-						formData.append("addressProof", images.companyPhotos);
-						formData.append("id", res.data.id);
-						formData.append("type", "companyPhotos");
-						call11 = attachDocument(formData);
-					}
-					if (images.abcCurve) {
-						const formData = new FormData();
-						formData.append("addressProof", images.abcCurve);
-						formData.append("id", res.data.id);
-						formData.append("type", "abcCurve");
-						call12 = attachDocument(formData);
-					}
-					if (images.CPFDOC) {
-						const formData = new FormData();
-						formData.append("addressProof", images.CPFDOC);
-						formData.append("id", res.data.id);
-						formData.append("type", "CPFDOC");
-						call13 = attachDocument(formData);
-					}
-					if (images.CNPJDOC) {
-						const formData = new FormData();
-						formData.append("addressProof", images.CNPJDOC);
-						formData.append("id", res.data.id);
-						formData.append("type", "CNPJDOC");
-						call14 = attachDocument(formData);
-					}
-					console.log("call1", call1);
-					const ab = [
-						call1,
-						call2,
-						call3,
-						call4,
-						call5,
-						call6,
-						call7,
-						call8,
-						call9,
-						call10,
-						call11,
-						call12,
-						call13,
-						call14,
-					];
-
-					Promise.all(ab)
-						.then((responses) => {
-							console.log("responses :::", responses);
-							console.log(
-								"responses length :::",
-								responses.length
-							);
-							if (responses) {
-								toast.success("Anexo adicionado com sucesso");
-								setLoading(false);
-								handleClose();
-								setRefresh(refresh + 1);
-							}
-						})
-						.catch((err) => toast.error("Pedido inválido"));
-				} else {
-					toast.error(res.message);
+		contactForm(formValues).then((res) => {
+			// console.log("first form", res);
+			if (res.success) {
+				let call1;
+				let call2;
+				let call3;
+				let call4;
+				let call5;
+				let call6;
+				let call7;
+				let call8;
+				let call9;
+				let call10;
+				let call11;
+				let call12;
+				let call13;
+				let call14;
+				setLoading(true);
+				if (images.socialContract) {
+					const formData = new FormData();
+					formData.append("addressProof", images.socialContract);
+					formData.append("id", res.data.id);
+					formData.append("type", "socialContract");
+					call1 = attachDocument(formData);
 				}
-			});
-		}
-	};
+				if (images.addressProof) {
+					const formData = new FormData();
+					formData.append("addressProof", images.addressProof);
+					formData.append("id", res.data.id);
+					formData.append("type", "addressProof");
+					call2 = attachDocument(formData);
+				}
+				if (images.balanceIncome) {
+					const formData = new FormData();
+					formData.append("addressProof", images.balanceIncome);
+					formData.append("id", res.data.id);
+					formData.append("type", "balanceIncome");
+					call3 = attachDocument(formData);
+				}
+				if (images.balanceSheet) {
+					const formData = new FormData();
+					formData.append("addressProof", images.balanceSheet);
+					formData.append("id", res.data.id);
+					formData.append("type", "balanceSheet");
+					call4 = attachDocument(formData);
+				}
+				if (images.partnerIncome) {
+					const formData = new FormData();
+					formData.append("addressProof", images.partnerIncome);
+					formData.append("id", res.data.id);
+					formData.append("type", "partnerIncome");
+					call5 = attachDocument(formData);
+				}
+				if (images.billingCustomer) {
+					const formData = new FormData();
+					formData.append("addressProof", images.billingCustomer);
+					formData.append("id", res.data.id);
+					formData.append("type", "billingCustomer");
+					call6 = attachDocument(formData);
+				}
+				if (images.partnerDocument) {
+					const formData = new FormData();
+					formData.append("addressProof", images.partnerDocument);
+					formData.append("id", res.data.id);
+					formData.append("type", "partnerDocument");
+					call7 = attachDocument(formData);
+				}
+				if (images.updatedBankDebt) {
+					const formData = new FormData();
+					formData.append("addressProof", images.updatedBankDebt);
+					formData.append("id", res.data.id);
+					formData.append("type", "updatedBankDebt");
+					call8 = attachDocument(formData);
+				}
+				if (images.spouseDocument) {
+					const formData = new FormData();
+					formData.append("addressProof", images.spouseDocument);
+					formData.append("id", res.data.id);
+					formData.append("type", "spouseDocument");
+					call9 = attachDocument(formData);
+				}
+				if (images.extractBusiestBank) {
+					const formData = new FormData();
+					formData.append(
+						"addressProof",
+						images.extractBusiestBank
+					);
+					formData.append("id", res.data.id);
+					formData.append("type", "extractBusiestBank");
+					call10 = attachDocument(formData);
+				}
+				if (images.companyPhotos) {
+					const formData = new FormData();
+					formData.append("addressProof", images.companyPhotos);
+					formData.append("id", res.data.id);
+					formData.append("type", "companyPhotos");
+					call11 = attachDocument(formData);
+				}
+				if (images.abcCurve) {
+					const formData = new FormData();
+					formData.append("addressProof", images.abcCurve);
+					formData.append("id", res.data.id);
+					formData.append("type", "abcCurve");
+					call12 = attachDocument(formData);
+				}
+				if (images.CPFDOC) {
+					const formData = new FormData();
+					formData.append("addressProof", images.CPFDOC);
+					formData.append("id", res.data.id);
+					formData.append("type", "CPFDOC");
+					call13 = attachDocument(formData);
+				}
+				if (images.CNPJDOC) {
+					const formData = new FormData();
+					formData.append("addressProof", images.CNPJDOC);
+					formData.append("id", res.data.id);
+					formData.append("type", "CNPJDOC");
+					call14 = attachDocument(formData);
+				}
+				console.log("call1", call1);
+				const ab = [
+					call1,
+					call2,
+					call3,
+					call4,
+					call5,
+					call6,
+					call7,
+					call8,
+					call9,
+					call10,
+					call11,
+					call12,
+					call13,
+					call14,
+				];
+
+				Promise.all(ab)
+					.then((responses) => {
+						console.log("responses :::", responses);
+						console.log(
+							"responses length :::",
+							responses.length
+						);
+						if (responses) {
+							toast.success("Anexo adicionado com sucesso");
+							setLoading(false);
+							handleClose();
+							setRefresh(refresh + 1);
+						}
+					})
+					.catch((err) => toast.error("Pedido inválido"));
+			} else {
+				toast.error(res.message);
+			}
+		});
+	}
 	return (
 		<Modal
 			show={show}

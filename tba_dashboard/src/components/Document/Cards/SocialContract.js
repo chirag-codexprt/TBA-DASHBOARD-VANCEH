@@ -15,17 +15,17 @@ const SocialContract = ({ obj, handleShowImageModal }) => {
 				Contrato social
 			</Col>
 			<Col>
-				{obj?.socialContract === null && (
+				{obj?.socialContract === null && !obj?.docStatus?.socialContract && (
 					<Button
 						className='w-100 p-0 ms-0'
 						onClick={
 							obj?.socialContract === null
 								? null
 								: () =>
-										handleShowImageModal(
-											obj,
-											"socialContract"
-										)
+									handleShowImageModal(
+										obj,
+										"socialContract"
+									)
 						}
 						variant='outline-secondary'>
 						<label
@@ -50,10 +50,10 @@ const SocialContract = ({ obj, handleShowImageModal }) => {
 							obj?.socialContract === null
 								? null
 								: () =>
-										handleShowImageModal(
-											obj,
-											"socialContract"
-										)
+									handleShowImageModal(
+										obj,
+										"socialContract"
+									)
 						}
 						variant='outline-warning'>
 						<i class='bi bi-clock-fill fs-2'></i>
@@ -75,10 +75,10 @@ const SocialContract = ({ obj, handleShowImageModal }) => {
 							obj?.socialContract === null
 								? null
 								: () =>
-										handleShowImageModal(
-											obj,
-											"socialContract"
-										)
+									handleShowImageModal(
+										obj,
+										"socialContract"
+									)
 						}
 						variant='outline-success'>
 						<i class='bi bi-check-lg fs-2'></i>
@@ -89,6 +89,27 @@ const SocialContract = ({ obj, handleShowImageModal }) => {
 								fontSize: "11px",
 							}}>
 							Já aprovada, visualizar?
+						</h6>
+					</Button>
+				)}
+				{obj?.socialContract === null && obj?.docStatus?.socialContract && (
+					<Button
+						className='w-100  p-0 ms-0 reject-card'
+						onClick={
+							obj?.socialContract === null
+								? null
+								: () => handleShowImageModal(obj, "socialContract")
+						}
+						// variant='outline-danger'
+						style={{ border: "1px solid #E97F1E" }}>
+						<i class='bi bi-x-lg fs-2 fw-bold rejected-cross'></i>
+						{/* <img style={{ height: '50px' }} src="assets/img/raject.org.png" /> */}
+						<h6
+							style={{
+								color: "#C4CCD2",
+								fontSize: "11px",
+							}}>
+							Aguardando reenvio de documentação
 						</h6>
 					</Button>
 				)}

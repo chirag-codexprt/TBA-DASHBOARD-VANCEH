@@ -39,7 +39,7 @@ const CnpjNumber = ({ obj, handleShowImageModal }) => {
 				CNPJ
 			</Col>
 			<Col>
-				{obj?.CNPJDOC === null && (
+				{obj?.CNPJDOC === null && !obj?.docStatus?.CNPJDOC && (
 					<Button
 						className='w-100 p-0 ms-0'
 						onClick={
@@ -101,6 +101,27 @@ const CnpjNumber = ({ obj, handleShowImageModal }) => {
 								fontSize: "11px",
 							}}>
 							Já aprovada, visualizar?
+						</h6>
+					</Button>
+				)}
+				{obj?.CNPJDOC === null && obj?.docStatus?.CNPJDOC && (
+					<Button
+						className='w-100  p-0 ms-0 reject-card'
+						onClick={
+							obj?.CNPJDOC === null
+								? null
+								: () => handleShowImageModal(obj, "CNPJDOC")
+						}
+						// variant='outline-danger'
+						style={{ border: "1px solid #E97F1E" }}>
+						<i class='bi bi-x-lg fs-2 fw-bold rejected-cross'></i>
+						{/* <img style={{ height: '50px' }} src="assets/img/raject.org.png" /> */}
+						<h6
+							style={{
+								color: "#C4CCD2",
+								fontSize: "11px",
+							}}>
+							Aguardando reenvio de documentação
 						</h6>
 					</Button>
 				)}

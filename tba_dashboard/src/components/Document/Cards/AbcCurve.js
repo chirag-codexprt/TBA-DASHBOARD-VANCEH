@@ -18,17 +18,17 @@ const AbcCurve = ({ obj, handleShowImageModal }) => {
 					Curva ABC
 				</Col>
 				<Col>
-					{obj?.abcCurve === null && (
+					{obj?.abcCurve === null && !obj?.docStatus?.abcCurve && (
 						<Button
 							className='w-100 p-0 ms-0'
 							onClick={
 								obj?.abcCurve === null
 									? null
 									: () =>
-											handleShowImageModal(
-												obj,
-												"abcCurve"
-											)
+										handleShowImageModal(
+											obj,
+											"abcCurve"
+										)
 							}
 							variant='outline-secondary'>
 							<label
@@ -54,10 +54,10 @@ const AbcCurve = ({ obj, handleShowImageModal }) => {
 								obj?.abcCurve === null
 									? null
 									: () =>
-											handleShowImageModal(
-												obj,
-												"abcCurve"
-											)
+										handleShowImageModal(
+											obj,
+											"abcCurve"
+										)
 							}
 							variant='outline-warning'>
 							<i class='bi bi-clock-fill fs-2'></i>
@@ -79,10 +79,10 @@ const AbcCurve = ({ obj, handleShowImageModal }) => {
 								obj?.abcCurve === null
 									? null
 									: () =>
-											handleShowImageModal(
-												obj,
-												"abcCurve"
-											)
+										handleShowImageModal(
+											obj,
+											"abcCurve"
+										)
 							}
 							variant='outline-success'>
 							<i class='bi bi-check-lg fs-2'></i>
@@ -93,6 +93,27 @@ const AbcCurve = ({ obj, handleShowImageModal }) => {
 									fontSize: "11px",
 								}}>
 								Já aprovada, visualizar?
+							</h6>
+						</Button>
+					)}
+					{obj?.abcCurve === null && obj?.docStatus?.abcCurve && (
+						<Button
+							className='w-100  p-0 ms-0 reject-card'
+							onClick={
+								obj?.abcCurve === null
+									? null
+									: () => handleShowImageModal(obj, "abcCurve")
+							}
+							// variant='outline-danger'
+							style={{ border: "1px solid #E97F1E" }}>
+							<i class='bi bi-x-lg fs-2 fw-bold rejected-cross'></i>
+							{/* <img style={{ height: '50px' }} src="assets/img/raject.org.png" /> */}
+							<h6
+								style={{
+									color: "#C4CCD2",
+									fontSize: "11px",
+								}}>
+								Aguardando reenvio de documentação
 							</h6>
 						</Button>
 					)}

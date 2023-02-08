@@ -531,6 +531,13 @@ body {
 .link-icon::before {
   color: gray !important;
 }
+.rejected-cross::before {
+  color: #E97F1E !important;
+  font-weight: bolder !important;
+}
+.reject-card{
+  background-color: transparent !important;
+}
 
 /* 
 /* .modal-dialog{

@@ -16,17 +16,17 @@ const ExtractBusiestBank = ({ obj, handleShowImageModal }) => {
 				Extrato dos últimos 30 dias do banco
 			</Col>
 			<Col>
-				{obj?.extractBusiestBank === null && (
+				{obj?.extractBusiestBank === null && !obj?.docStatus?.extractBusiestBank && (
 					<Button
 						className='w-100 p-0 ms-0'
 						onClick={
 							obj?.extractBusiestBank === null
 								? null
 								: () =>
-										handleShowImageModal(
-											obj,
-											"extractBusiestBank"
-										)
+									handleShowImageModal(
+										obj,
+										"extractBusiestBank"
+									)
 						}
 						variant='outline-secondary'>
 						<label
@@ -52,10 +52,10 @@ const ExtractBusiestBank = ({ obj, handleShowImageModal }) => {
 								obj?.extractBusiestBank === null
 									? null
 									: () =>
-											handleShowImageModal(
-												obj,
-												"extractBusiestBank"
-											)
+										handleShowImageModal(
+											obj,
+											"extractBusiestBank"
+										)
 							}
 							variant='outline-warning'>
 							<i class='bi bi-clock-fill fs-2'></i>
@@ -78,10 +78,10 @@ const ExtractBusiestBank = ({ obj, handleShowImageModal }) => {
 								obj?.extractBusiestBank === null
 									? null
 									: () =>
-											handleShowImageModal(
-												obj,
-												"extractBusiestBank"
-											)
+										handleShowImageModal(
+											obj,
+											"extractBusiestBank"
+										)
 							}
 							variant='outline-success'>
 							<i class='bi bi-check-lg fs-2'></i>
@@ -95,6 +95,27 @@ const ExtractBusiestBank = ({ obj, handleShowImageModal }) => {
 							</h6>
 						</Button>
 					)}
+				{obj?.extractBusiestBank === null && obj?.docStatus?.extractBusiestBank && (
+					<Button
+						className='w-100  p-0 ms-0 reject-card'
+						onClick={
+							obj?.extractBusiestBank === null
+								? null
+								: () => handleShowImageModal(obj, "extractBusiestBank")
+						}
+						// variant='outline-danger'
+						style={{ border: "1px solid #E97F1E" }}>
+						<i class='bi bi-x-lg fs-2 fw-bold rejected-cross'></i>
+						{/* <img style={{ height: '50px' }} src="assets/img/raject.org.png" /> */}
+						<h6
+							style={{
+								color: "#C4CCD2",
+								fontSize: "11px",
+							}}>
+							Aguardando reenvio de documentação
+						</h6>
+					</Button>
+				)}
 			</Col>
 		</Col>
 	);

@@ -15,17 +15,17 @@ const ProofOfAddress = ({ obj, handleShowImageModal }) => {
 				Comprovante de endereço dos sócios
 			</Col>
 			<Col>
-				{obj?.addressProof === null && (
+				{obj?.addressProof === null && !obj?.docStatus?.addressProof && (
 					<Button
 						className='w-100 p-0 ms-0'
 						onClick={
 							obj?.addressProof === null
 								? null
 								: () =>
-										handleShowImageModal(
-											obj,
-											"addressProof"
-										)
+									handleShowImageModal(
+										obj,
+										"addressProof"
+									)
 						}
 						variant='outline-secondary'>
 						<label
@@ -50,10 +50,10 @@ const ProofOfAddress = ({ obj, handleShowImageModal }) => {
 							obj?.addressProof === null
 								? null
 								: () =>
-										handleShowImageModal(
-											obj,
-											"addressProof"
-										)
+									handleShowImageModal(
+										obj,
+										"addressProof"
+									)
 						}
 						variant='outline-warning'>
 						<i class='bi bi-clock-fill fs-2'></i>
@@ -75,10 +75,10 @@ const ProofOfAddress = ({ obj, handleShowImageModal }) => {
 							obj?.addressProof === null
 								? null
 								: () =>
-										handleShowImageModal(
-											obj,
-											"addressProof"
-										)
+									handleShowImageModal(
+										obj,
+										"addressProof"
+									)
 						}
 						variant='outline-success'>
 						<i class='bi bi-check-lg fs-2'></i>
@@ -89,6 +89,27 @@ const ProofOfAddress = ({ obj, handleShowImageModal }) => {
 								fontSize: "11px",
 							}}>
 							Já aprovada, visualizar?
+						</h6>
+					</Button>
+				)}
+				{obj?.addressProof === null && obj?.docStatus?.addressProof && (
+					<Button
+						className='w-100  p-0 ms-0 reject-card'
+						onClick={
+							obj?.addressProof === null
+								? null
+								: () => handleShowImageModal(obj, "addressProof")
+						}
+						// variant='outline-danger'
+						style={{ border: "1px solid #E97F1E" }}>
+						<i class='bi bi-x-lg fs-2 fw-bold rejected-cross'></i>
+						{/* <img style={{ height: '50px' }} src="assets/img/raject.org.png" /> */}
+						<h6
+							style={{
+								color: "#C4CCD2",
+								fontSize: "11px",
+							}}>
+							Aguardando reenvio de documentação
 						</h6>
 					</Button>
 				)}

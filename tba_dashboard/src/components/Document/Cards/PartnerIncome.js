@@ -16,17 +16,17 @@ const PartnerIncome = ({ obj, handleShowImageModal }) => {
 				IR dos sócios
 			</Col>
 			<Col>
-				{obj?.partnerIncome === null && (
+				{obj?.partnerIncome === null && !obj?.docStatus?.partnerIncome && (
 					<Button
 						className='w-100 p-0 ms-0'
 						onClick={
 							obj?.partnerIncome === null
 								? null
 								: () =>
-										handleShowImageModal(
-											obj,
-											"partnerIncome"
-										)
+									handleShowImageModal(
+										obj,
+										"partnerIncome"
+									)
 						}
 						variant='outline-secondary'>
 						<label
@@ -51,10 +51,10 @@ const PartnerIncome = ({ obj, handleShowImageModal }) => {
 							obj?.partnerIncome === null
 								? null
 								: () =>
-										handleShowImageModal(
-											obj,
-											"partnerIncome"
-										)
+									handleShowImageModal(
+										obj,
+										"partnerIncome"
+									)
 						}
 						variant='outline-warning'>
 						<i class='bi bi-clock-fill fs-2'></i>
@@ -76,10 +76,10 @@ const PartnerIncome = ({ obj, handleShowImageModal }) => {
 							obj?.partnerIncome === null
 								? null
 								: () =>
-										handleShowImageModal(
-											obj,
-											"partnerIncome"
-										)
+									handleShowImageModal(
+										obj,
+										"partnerIncome"
+									)
 						}
 						variant='outline-success'>
 						<i class='bi bi-check-lg fs-2'></i>
@@ -90,6 +90,27 @@ const PartnerIncome = ({ obj, handleShowImageModal }) => {
 								fontSize: "11px",
 							}}>
 							Já aprovada, visualizar?
+						</h6>
+					</Button>
+				)}
+				{obj?.partnerIncome === null && obj?.docStatus?.partnerIncome && (
+					<Button
+						className='w-100  p-0 ms-0 reject-card'
+						onClick={
+							obj?.partnerIncome === null
+								? null
+								: () => handleShowImageModal(obj, "partnerIncome")
+						}
+						// variant='outline-danger'
+						style={{ border: "1px solid #E97F1E" }}>
+						<i class='bi bi-x-lg fs-2 fw-bold rejected-cross'></i>
+						{/* <img style={{ height: '50px' }} src="assets/img/raject.org.png" /> */}
+						<h6
+							style={{
+								color: "#C4CCD2",
+								fontSize: "11px",
+							}}>
+							Aguardando reenvio de documentação
 						</h6>
 					</Button>
 				)}

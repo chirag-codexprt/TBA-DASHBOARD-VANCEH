@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Col } from "react-bootstrap";
 
 const AbcCurve = ({ obj, handleShowImageModal }) => {
-	console.log("obj", obj.documentRequest.requiredPermission);
+	// console.log("obj", obj.documentRequest.requiredPermission);
 
 	return (
 		<>
@@ -35,7 +35,7 @@ const AbcCurve = ({ obj, handleShowImageModal }) => {
 								style={{
 									rotate: "45deg",
 								}}>
-								<i class='bi bi-paperclip fs-2'></i>
+								<i className='bi bi-paperclip fs-2'></i>
 							</label>
 							<h6
 								style={{
@@ -60,7 +60,7 @@ const AbcCurve = ({ obj, handleShowImageModal }) => {
 										)
 							}
 							variant='outline-warning'>
-							<i class='bi bi-clock-fill fs-2'></i>
+							<i className='bi bi-clock-fill fs-2'></i>
 
 							<h6
 								style={{
@@ -85,7 +85,7 @@ const AbcCurve = ({ obj, handleShowImageModal }) => {
 										)
 							}
 							variant='outline-success'>
-							<i class='bi bi-check-lg fs-2'></i>
+							<i className='bi bi-check-lg fs-2'></i>
 
 							<h6
 								style={{
@@ -106,7 +106,7 @@ const AbcCurve = ({ obj, handleShowImageModal }) => {
 							}
 							// variant='outline-danger'
 							style={{ border: "1px solid #E97F1E" }}>
-							<i class='bi bi-x-lg fs-2 fw-bold rejected-cross'></i>
+							<i className='bi bi-x-lg fs-2 fw-bold rejected-cross'></i>
 							{/* <img style={{ height: '50px' }} src="assets/img/raject.org.png" /> */}
 							<h6
 								style={{

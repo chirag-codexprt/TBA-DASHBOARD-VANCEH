@@ -22,7 +22,7 @@ const Contact = () => {
 	const [search, setSearch] = useState();
 	const [newTableRow, setNewtableRow] = useState([]);
 	const [table, setTable] = useRecoilState(contactTableData);
-	console.log("search", search);
+	// console.log("search", search);
 
 	useEffect(() => {
 		setLoading(true);
@@ -30,7 +30,7 @@ const Contact = () => {
 			search,
 		};
 		getContactList(submitData).then((res) => {
-			console.log("res contact :: ", res);
+			// console.log("res contact :: ", res);
 			if (res.success) {
 				setTable(res.data);
 				setTableRow(res.data);
@@ -42,17 +42,17 @@ const Contact = () => {
 			}
 		});
 	}, [refresh]);
-	console.log("tableRow", tableRow);
+	// console.log("tableRow", tableRow);
 
 	const onEnter = (e) => {
 		if (e.key === "Enter") {
-			console.log("clicked enter");
+			// console.log("clicked enter");
 			setLoading(true);
 			const submitData = {
 				search,
 			};
 			getContactList(submitData).then((res) => {
-				console.log("res contact :: enter ", res);
+				// console.log("res contact :: enter ", res);
 				if (res.success) {
 					setTableRow(res.data);
 					setLoading(false);
@@ -114,7 +114,7 @@ const Contact = () => {
 			setTableRow(table);
 		}
 	};
-	console.log("table", table);
+	// console.log("table", table);
 	return (
 		<>
 			<AfterAuth>

@@ -3,7 +3,7 @@ import { Button, Col } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 
 const SocialContract = ({ data, images, handleFileChange }) => {
-	console.log("images", images)
+	// console.log("images", images)
 	const inputRef = useRef(null);
 
 	const hiddenFileInput = useRef(null);

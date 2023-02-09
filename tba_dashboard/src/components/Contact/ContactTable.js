@@ -70,7 +70,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 	};
 
 	const handalShowTooltip = (event, id) => {
-		console.log("id", id);
+		// console.log("id", id);
 		setVisitorId(id);
 		setShow(true);
 		setTarget(event.target);
@@ -321,7 +321,7 @@ const ContactTable = ({ tableRow, refresh, setRefresh }) => {
 																	"none",
 																color: "#fff",
 															}}>
-															<i class='bi bi-whatsapp'></i>
+															<i className='bi bi-whatsapp'></i>
 														</a>
 													</Button>
 												)}

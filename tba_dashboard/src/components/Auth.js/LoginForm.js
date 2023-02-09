@@ -23,7 +23,7 @@ const LoginForm = ({
 									id='basic-addon1'
 									className='p-2'>
 									<i
-										class='bi bi-person-fill'
+										className='bi bi-person-fill'
 										style={{ color: "#CED4DB" }}></i>
 								</InputGroup.Text>
 								<Form.Control
@@ -48,7 +48,7 @@ const LoginForm = ({
 									id='basic-addon1'
 									className='p-2'>
 									<i
-										class='bi bi-lock-fill'
+										className='bi bi-lock-fill'
 										style={{ color: "#CED4DB" }}></i>
 								</InputGroup.Text>
 								<Form.Control
@@ -64,14 +64,14 @@ const LoginForm = ({
 									className='p-2'>
 									{hidePassword && (
 										<i
-											class='bi bi-eye-slash-fill'
+											className='bi bi-eye-slash-fill'
 											style={{ color: "#CED4DB" }}
 											onClick={hidePwd}></i>
 									)}
 
 									{!hidePassword && (
 										<i
-											class='bi bi-eye-fill'
+											className='bi bi-eye-fill'
 											style={{ color: "#CED4DB" }}
 											onClick={hidePwd}></i>
 									)}

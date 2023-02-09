@@ -25,7 +25,7 @@ const RegisterForm = ({
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
-									class='bi bi-hash'
+									className='bi bi-hash'
 									style={{ color: "#CED4DB" }}></i>
 							</InputGroup.Text>
 							<Form.Control
@@ -44,7 +44,7 @@ const RegisterForm = ({
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
-									class='bi bi-bag-dash-fill'
+									className='bi bi-bag-dash-fill'
 									style={{ color: "#CED4DB" }}></i>
 							</InputGroup.Text>
 							<Form.Control
@@ -62,7 +62,7 @@ const RegisterForm = ({
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
-									class='bi bi-person-fill'
+									className='bi bi-person-fill'
 									style={{ color: "#CED4DB" }}></i>
 							</InputGroup.Text>
 							<Form.Control
@@ -78,7 +78,7 @@ const RegisterForm = ({
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
-									class='bi bi-envelope'
+									className='bi bi-envelope'
 									style={{ color: "#CED4DB" }}></i>
 							</InputGroup.Text>
 							<Form.Control
@@ -94,7 +94,7 @@ const RegisterForm = ({
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
-									class='bi bi-lock-fill'
+									className='bi bi-lock-fill'
 									style={{ color: "#CED4DB" }}></i>
 							</InputGroup.Text>
 							<Form.Control
@@ -108,14 +108,14 @@ const RegisterForm = ({
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								{hidePassword && (
 									<i
-										class='bi bi-eye-slash-fill'
+										className='bi bi-eye-slash-fill'
 										style={{ color: "#CED4DB" }}
 										onClick={hidePwd}></i>
 								)}
 
 								{!hidePassword && (
 									<i
-										class='bi bi-eye-fill'
+										className='bi bi-eye-fill'
 										style={{ color: "#CED4DB" }}
 										onClick={hidePwd}></i>
 								)}
@@ -128,7 +128,7 @@ const RegisterForm = ({
 						<InputGroup className='mb-3'>
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								<i
-									class='bi bi-lock-fill'
+									className='bi bi-lock-fill'
 									style={{ color: "#CED4DB" }}></i>
 							</InputGroup.Text>
 							<Form.Control
@@ -144,14 +144,14 @@ const RegisterForm = ({
 							<InputGroup.Text id='basic-addon1' className='p-2'>
 								{hideCnfrmPassword && (
 									<i
-										class='bi bi-eye-slash-fill'
+										className='bi bi-eye-slash-fill'
 										style={{ color: "#CED4DB" }}
 										onClick={hideCnfrmPwd}></i>
 								)}
 
 								{!hideCnfrmPassword && (
 									<i
-										class='bi bi-eye-fill'
+										className='bi bi-eye-fill'
 										style={{ color: "#CED4DB" }}
 										onClick={hideCnfrmPwd}></i>
 								)}

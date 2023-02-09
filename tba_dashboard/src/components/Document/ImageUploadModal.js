@@ -15,7 +15,7 @@ const ImageUploadModal = ({
 	refresh,
 	setRefresh,
 }) => {
-	console.log("document.type", document.type);
+	// console.log("document.type", document.type);
 
 	const [reload, setReload] = useState(false);
 
@@ -24,7 +24,7 @@ const ImageUploadModal = ({
 	const [imagePreview, setImagePreview] = useState(
 		document[document.type]?.url
 	);
-	console.log("document?.socialContract?.url", document[document?.type]?.url);
+	// console.log("document?.socialContract?.url", document[document?.type]?.url);
 	const handleSubmit = (action) => {
 		const submitData = {
 			id: document.id,
@@ -98,7 +98,7 @@ const ImageUploadModal = ({
 								zIndex: 10000,
 							}}
 							onClick={handleReload}>
-							<i class='bi bi-arrow-clockwise'></i>
+							<i className='bi bi-arrow-clockwise'></i>
 						</Button>
 					</div>
 				</Row>
@@ -198,7 +198,7 @@ const ImageUploadModal = ({
 										bottom: "12%",
 										zIndex: 10000,
 									}}>
-									<i class='bi bi-cloud-arrow-down-fill'></i>
+									<i className='bi bi-cloud-arrow-down-fill'></i>
 								</Button>
 							</a>
 						</div>

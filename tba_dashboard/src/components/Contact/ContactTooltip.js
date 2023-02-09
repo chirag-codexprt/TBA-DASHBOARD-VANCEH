@@ -14,7 +14,7 @@ const ContactTooltip = ({
 	refresh,
 	setRefresh,
 }) => {
-	console.log("visitorId", visitorId);
+	// console.log("visitorId", visitorId);
 	const [loading, setLoading] = useState(false);
 
 	const handleSubmit = (action) => {
@@ -23,7 +23,7 @@ const ContactTooltip = ({
 			id: visitorId,
 			action,
 		};
-		console.log("submitData", submitData);
+		// console.log("submitData", submitData);
 		approveVisitor(submitData).then((res) => {
 			if (res.success) {
 				setLoading(false);

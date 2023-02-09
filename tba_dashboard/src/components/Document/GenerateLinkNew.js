@@ -16,7 +16,7 @@ const GenerateLinkNew = ({
 	refresh,
 	setRefresh,
 }) => {
-	console.log("editData", editData);
+	// console.log("editData", editData);
 	const [permission, setPermission] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -25,7 +25,7 @@ const GenerateLinkNew = ({
 		generateNewLink().then((res) => {
 			if (res.success) {
 				setLoading(false);
-				console.log("res", res);
+				// console.log("res", res);
 				setPermission(res.data);
 			} else {
 				setLoading(false);
@@ -69,7 +69,7 @@ const GenerateLinkNew = ({
 			requestId: editData.documentRequest.id,
 			generateLink: link,
 		};
-		console.log("submitData", submitData);
+		// console.log("submitData", submitData);
 		generateLink(submitData).then((res) => {
 			if (res.success) {
 				setRefresh(refresh + 1);
@@ -81,7 +81,7 @@ const GenerateLinkNew = ({
 			}
 		});
 	};
-	console.log("formValues", formValues);
+	// console.log("formValues", formValues);
 	return (
 		<div>
 			<Modal

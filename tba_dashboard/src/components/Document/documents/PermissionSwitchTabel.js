@@ -2,7 +2,7 @@ import React from "react";
 import PermissionSwitch from "./PermissionSwitch";
 
 const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
-	console.log("editData::::", editData);
+	// console.log("editData::::", editData);
 	return (
 		<>
 			<PermissionSwitch
@@ -11,7 +11,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 				defaultChecked={formValues.CNPJDOC}
 				disabled={editData?.CNPJDOC && editData?.CNPJDOC?.approved}
 				handleCheck={handleCheck}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"CPFDOC"}
@@ -19,7 +19,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 				defaultChecked={formValues.CPFDOC}
 				handleCheck={handleCheck}
 				disabled={editData?.CPFDOC && editData?.CPFDOC?.approved}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"socialContract"}
@@ -30,7 +30,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 					editData?.socialContract &&
 					editData?.socialContract?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"balanceIncome"}
@@ -40,7 +40,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 				disabled={
 					editData?.balanceIncome && editData?.balanceIncome?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"balanceSheet"}
@@ -50,7 +50,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 				disabled={
 					editData?.balanceSheet && editData?.balanceSheet?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"partnerIncome"}
@@ -60,7 +60,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 				disabled={
 					editData?.partnerIncome && editData?.partnerIncome?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"billingCustomer"}
@@ -73,7 +73,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 					editData?.billingCustomer &&
 					editData?.billingCustomer?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"partnerDocument"}
@@ -84,7 +84,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 					editData?.partnerDocument &&
 					editData?.partnerDocument?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"updatedBankDebt"}
@@ -95,7 +95,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 					editData?.updatedBankDebt &&
 					editData?.updatedBankDebt?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"addressProof"}
@@ -105,7 +105,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 				disabled={
 					editData?.addressProof && editData?.addressProof?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 
 			<PermissionSwitch
@@ -117,7 +117,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 					editData?.spouseDocument &&
 					editData?.spouseDocument?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"extractBusiestBank"}
@@ -130,7 +130,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 					editData?.extractBusiestBank &&
 					editData?.extractBusiestBank?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"companyPhotos"}
@@ -140,7 +140,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 				disabled={
 					editData?.companyPhotos && editData?.companyPhotos?.approved
 				}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 			<PermissionSwitch
 				name={"abcCurve"}
@@ -148,7 +148,7 @@ const PermissionSwitchTabel = ({ formValues, handleCheck, editData }) => {
 				defaultChecked={formValues.abcCurve}
 				handleCheck={handleCheck}
 				disabled={editData?.abcCurve && editData?.abcCurve?.approved}
-				// checked={`${formValues}.${obj?.type}`}
+			// checked={`${formValues}.${obj?.type}`}
 			/>
 		</>
 	);

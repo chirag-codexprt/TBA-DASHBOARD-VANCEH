@@ -26,7 +26,7 @@ function BarChartVisitor() {
 	const getData = () => {
 		if (contactData?.chartDataStatus === "yearly") {
 			data = contactData?.contactData?.map((obj) => {
-				console.log("obj", obj);
+				// console.log("obj", obj);
 				return {
 					month: obj?.month,
 					Contatos: obj?.count,
@@ -46,7 +46,7 @@ function BarChartVisitor() {
 			});
 		} else if (contactData?.chartDataStatus === "week") {
 			data = contactData?.contactData?.map((obj) => {
-				console.log("obj", obj);
+				// console.log("obj", obj);
 				return {
 					month: obj?.month,
 					Contatos: obj?.count,
@@ -91,7 +91,7 @@ function BarChartVisitor() {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -109,7 +109,7 @@ function BarChartVisitor() {
 				) {
 					return el != null;
 				});
-				console.log("30");
+				// console.log("30");
 			} else if (
 				contactData?.contactData?.length >= 30 &&
 				contactData?.contactData?.length <= 60
@@ -140,7 +140,7 @@ function BarChartVisitor() {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByWeekNumber.map(function (group) {
 						return {
@@ -181,7 +181,7 @@ function BarChartVisitor() {
 
 						return acc;
 					},
-					[]);
+						[]);
 
 					return groupsByMonthNumber?.map(function (group) {
 						return {
@@ -245,7 +245,7 @@ function BarChartVisitor() {
 
 		return null;
 	};
-	console.log("data contact", data);
+	// console.log("data contact", data);
 	return (
 		<ResponsiveContainer width='100%' height={220}>
 			<BarChart

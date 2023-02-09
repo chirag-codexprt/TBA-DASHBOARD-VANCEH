@@ -32,8 +32,8 @@ const Pagination = (props) => {
 	};
 
 	let lastPage = paginationRange[paginationRange.length - 1];
-	console.log("lastPage", lastPage);
-	console.log("currentPage", currentPage);
+	// console.log("lastPage", lastPage);
+	// console.log("currentPage", currentPage);
 	return (
 		<ul
 			className={classnames("pagination-container", {
@@ -72,14 +72,14 @@ const Pagination = (props) => {
 			{currentPage !== lastPage ? (
 				<li className='pagination-btn' onClick={onNext}>
 					<div>
-						<i class='bi bi-arrow-right-short fs-5 pagination-btn-shadow'></i>
+						<i className='bi bi-arrow-right-short fs-5 pagination-btn-shadow'></i>
 						{/* <i class='bi bi-arrow-right-circle fs-5'></i> */}
 					</div>
 				</li>
 			) : (
 				<li className='pagination-btn opacity-50'>
 					<div>
-						<i class='bi bi-arrow-right-short fs-5 pagination-btn-shadow'></i>
+						<i className='bi bi-arrow-right-short fs-5 pagination-btn-shadow'></i>
 						{/* <i class='bi bi-arrow-right-circle fs-5'></i> */}
 					</div>
 				</li>

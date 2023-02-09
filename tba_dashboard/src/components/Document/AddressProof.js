@@ -31,7 +31,7 @@ const AddressProof = ({
 																	<i class='bi bi-paperclip fs-1'></i>
 																</label> */}
 						{/* {handlePendingAddress(obj) === "outline-success" && ( */}
-						<i class='bi bi-check-lg fs-1'></i>
+						<i className='bi bi-check-lg fs-1'></i>
 						{/* )}
 						{handlePendingAddress(obj) === "outline-warning" && (
 							<i class='bi bi-clock-fill fs-1'></i>

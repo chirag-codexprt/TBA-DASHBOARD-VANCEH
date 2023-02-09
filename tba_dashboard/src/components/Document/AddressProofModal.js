@@ -12,7 +12,7 @@ const AddressProofModal = ({
 	refresh,
 	setRefresh,
 }) => {
-	console.log("document", document);
+	// console.log("document", document);
 
 	const hiddenFileInput = useRef(null);
 	const [images, setImages] = useState("");
@@ -52,7 +52,7 @@ const AddressProofModal = ({
 				toast.error(res.message);
 			}
 		});
-		console.log("submitData", submitData);
+		// console.log("submitData", submitData);
 	};
 	pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -163,7 +163,7 @@ viewer?embedded=true&url=${imagePreview}`}
 												disabled={pageNumber <= 1}
 												onClick={previousPage}
 												className='btn-next-prev'>
-												<i class='bi bi-caret-left-fill'></i>
+												<i className='bi bi-caret-left-fill'></i>
 											</button>
 											<p className='text-center p-0 m-0'>
 												Página{" "}
@@ -178,7 +178,7 @@ viewer?embedded=true&url=${imagePreview}`}
 												}
 												onClick={nextPage}
 												className='btn-next-prev'>
-												<i class='bi bi-caret-right-fill'></i>
+												<i className='bi bi-caret-right-fill'></i>
 											</button>
 										</div>
 									)}
@@ -198,7 +198,7 @@ viewer?embedded=true&url=${imagePreview}`}
 										bottom: "12%",
 										zIndex: 10000,
 									}}>
-									<i class='bi bi-cloud-arrow-down-fill'></i>
+									<i className='bi bi-cloud-arrow-down-fill'></i>
 								</Button>
 							</a>
 						</div>
@@ -211,7 +211,7 @@ viewer?embedded=true&url=${imagePreview}`}
 							style={{ background: "#C4CCD2" }}
 							disabled={document?.addressProof?.approved}
 							onClick={() => handleSubmit("reject")}>
-							<i class='bi bi-x'></i>Solicitar outra foto
+							<i className='bi bi-x'></i>Solicitar outra foto
 						</Button>
 					</Col>
 					<Col>
@@ -220,7 +220,7 @@ viewer?embedded=true&url=${imagePreview}`}
 							style={{ backgroundColor: "#1C3D59" }}
 							disabled={document?.addressProof?.approved}
 							onClick={() => handleSubmit("approved")}>
-							<i class='bi bi-check'></i>Aprovar documento
+							<i className='bi bi-check'></i>Aprovar documento
 						</Button>
 					</Col>
 				</Row>

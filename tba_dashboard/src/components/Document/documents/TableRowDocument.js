@@ -21,7 +21,7 @@ const TableRowDocument = ({
 	handleShowAddressModal,
 }) => {
 	const permission = obj?.documentRequest?.requiredPermission;
-	console.log("permission", permission);
+	// console.log("permission", permission);
 
 	return (
 		<>
@@ -49,7 +49,7 @@ const TableRowDocument = ({
 				<ProofOfAddress
 					obj={obj}
 					handleShowImageModal={handleShowImageModal}
-					// handleShowAddressModal={handleShowAddressModal}
+				// handleShowAddressModal={handleShowAddressModal}
 				/>
 			)}
 			{permission?.balanceIncome && (

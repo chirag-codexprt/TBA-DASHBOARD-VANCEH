@@ -31,7 +31,7 @@ const DocumentVerifyModal = ({
 				toast.error(res.message);
 			}
 		});
-		console.log("submitData", submitData);
+		// console.log("submitData", submitData);
 	};
 	pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -130,7 +130,7 @@ const DocumentVerifyModal = ({
 												}
 												onClick={nextPage}
 												className='btn-next-prev'>
-												<i class='bi bi-caret-right-fill'></i>
+												<i className='bi bi-caret-right-fill'></i>
 											</button>
 										</div>
 									)}
@@ -150,7 +150,7 @@ const DocumentVerifyModal = ({
 										bottom: "12%",
 										zIndex: 10000,
 									}}>
-									<i class='bi bi-cloud-arrow-down-fill'></i>
+									<i className='bi bi-cloud-arrow-down-fill'></i>
 								</Button>
 							</a>
 						</div>
@@ -163,7 +163,7 @@ const DocumentVerifyModal = ({
 							style={{ background: "#C4CCD2" }}
 							disabled={document?.addressProof?.approved}
 							onClick={() => handleSubmit("reject")}>
-							<i class='bi bi-x'></i>Solicitar outra foto
+							<i className='bi bi-x'></i>Solicitar outra foto
 						</Button>
 					</Col>
 					<Col>
@@ -172,7 +172,7 @@ const DocumentVerifyModal = ({
 							style={{ backgroundColor: "#1C3D59" }}
 							disabled={document?.addressProof?.approved}
 							onClick={() => handleSubmit("approved")}>
-							<i class='bi bi-check'></i>Aprovar documento
+							<i className='bi bi-check'></i>Aprovar documento
 						</Button>
 					</Col>
 				</Row>

@@ -9,7 +9,7 @@ const PermissionSwitch = ({
 	handleCheck,
 	disabled,
 }) => {
-	console.log("disabled", disabled);
+	// console.log("disabled", disabled);
 	return (
 		<Col md={6}>
 			<Form className='d-flex '>

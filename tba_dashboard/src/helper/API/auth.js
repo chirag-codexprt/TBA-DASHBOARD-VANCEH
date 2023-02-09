@@ -8,7 +8,7 @@ import {
 } from "../url";
 
 export const loginAdmin = (submitData) => {
-	console.log("submitData", submitData);
+	// console.log("submitData", submitData);
 	return new Promise((resolve, reject) => {
 		ApiCall(LOGIN_ADMIN, "post", submitData)
 			.then((res) => {
@@ -34,7 +34,7 @@ export const registerAdmin = (submitData) => {
 };
 
 export const getDesignation = (submitData) => {
-	console.log("submitData", submitData);
+	// console.log("submitData", submitData);
 	return new Promise((resolve, reject) => {
 		ApiCall(GENERATE_DESIGNATION, "post", submitData)
 			.then((res) => {

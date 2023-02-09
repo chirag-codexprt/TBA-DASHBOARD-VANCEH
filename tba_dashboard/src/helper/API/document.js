@@ -31,7 +31,7 @@ export const approvedDocumentList = (submitData) => {
 };
 
 export const submitDocument = (submitData) => {
-	console.log("submitData", submitData);
+	// console.log("submitData", submitData);
 	return new Promise((resolve, reject) => {
 		ApiCall(SUBMIT_DOCUMENT, "post", submitData)
 			.then((res) => {
@@ -44,7 +44,7 @@ export const submitDocument = (submitData) => {
 };
 
 export const submitAddressDocument = (submitData) => {
-	console.log("submitData", submitData);
+	// console.log("submitData", submitData);
 	return new Promise((resolve, reject) => {
 		ApiCall(APPROVE_ADDRESS_PROOF, "post", submitData)
 			.then((res) => {

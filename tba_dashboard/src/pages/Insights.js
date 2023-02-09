@@ -50,7 +50,7 @@ const Insights = () => {
 		setCardLoading(true);
 		const submitData = { filter: status };
 		getChartData(submitData).then((res) => {
-			console.log("res chartData", res);
+			// console.log("res chartData", res);
 			if (res.success) {
 				setCardLoading(false);
 				setRecoilChartData({
@@ -68,7 +68,7 @@ const Insights = () => {
 			search: "",
 		};
 		getContactList(submitData).then((res) => {
-			console.log("res contact :: ", res);
+			// console.log("res contact :: ", res);
 			if (res.success) {
 				setTableRow(res.data);
 				setLoading(false);
@@ -126,12 +126,12 @@ const Insights = () => {
 			return setCardLoading(false);
 		}
 	};
-	console.log("status", status);
+	// console.log("status", status);
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(null);
 	const onChange = (dates) => {
 		// const [start, end] = dates;
-		console.log("dates", dates);
+		// console.log("dates", dates);
 		setStartDate(dates[0]);
 		setEndDate(dates[1]);
 	};
@@ -150,10 +150,10 @@ const Insights = () => {
 
 		const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-		console.log("recoilChartData ::::", recoilChartData);
-		console.log("diffDays+ ::::", diffDays);
-		console.log("endDate+ ::::", endDate);
-		console.log("startDate+ ::::", startDate);
+		// console.log("recoilChartData ::::", recoilChartData);
+		// console.log("diffDays+ ::::", diffDays);
+		// console.log("endDate+ ::::", endDate);
+		// console.log("startDate+ ::::", startDate);
 
 		// console.log("called endDate", endDate);
 		if (
@@ -167,9 +167,9 @@ const Insights = () => {
 		} else if (diffDays >= 30) {
 			toast.error("Please  select only 30 days");
 		} else {
-			console.log("called 1");
+			// console.log("called 1");
 			getChartData(submitData).then((res) => {
-				console.log("res chartData", res);
+				// console.log("res chartData", res);
 				if (res.success) {
 					setCardLoading(false);
 					setStartDate(new Date());

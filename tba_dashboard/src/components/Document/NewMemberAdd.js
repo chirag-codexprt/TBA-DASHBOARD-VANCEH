@@ -199,7 +199,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 					formData.append("type", "CNPJDOC");
 					call14 = attachDocument(formData);
 				}
-				console.log("call1", call1);
+				// console.log("call1", call1);
 				const ab = [
 					call1,
 					call2,
@@ -219,8 +219,8 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 
 				Promise.all(ab)
 					.then((responses) => {
-						console.log("responses :::", responses);
-						console.log("responses length :::", responses.length);
+						// console.log("responses :::", responses);
+						// console.log("responses length :::", responses.length);
 						if (responses) {
 							toast.success("Anexo adicionado com sucesso");
 							setLoading(false);
@@ -297,7 +297,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 									style={{
 										background: "#F4F6F8",
 									}}>
-									<i class='bi bi-telephone link-icon'></i>
+									<i className='bi bi-telephone link-icon'></i>
 								</InputGroup.Text>
 								<Form.Control
 									placeholder='(00)00000-0000'

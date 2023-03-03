@@ -34,6 +34,13 @@ export const AfterAuthApi = (url, method, data = null, headers = {}) => {
 			.then((res) => {
 				resolve(res);
 			})
-			.catch(reject);
+			.catch((err) => {
+				reject(err);
+				if (err.response.status === 403) {
+					localStorage.clear();
+					window.location.href = "/login";
+				}
+				console.log("err :: after auth", err.response.status);
+			});
 	});
 };

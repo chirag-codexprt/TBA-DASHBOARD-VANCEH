@@ -96,36 +96,41 @@ const DocumentTable = ({
 								}}
 								className={
 									idArray.includes(obj.id) &&
-										getRequiredLength(obj) <= 3 &&
-										getRequiredLength(obj) !== 0
+									getRequiredLength(obj) <= 3 &&
+									getRequiredLength(obj) !== 0
 										? "row-height1"
 										: idArray.includes(obj.id) &&
-											getRequiredLength(obj) >= 4 &&
-											getRequiredLength(obj) <= 6 &&
-											getRequiredLength(obj) !== 0
-											? "row-height2"
-											: idArray.includes(obj.id) &&
-												getRequiredLength(obj) >= 14 &&
-												getRequiredLength(obj) !== 0
-												? "row-height"
-												: idArray.includes(obj.id) &&
-													getRequiredLength(obj) >= 6 &&
-													getRequiredLength(obj) <= 9
-													? "row-height3"
-													: idArray.includes(obj.id) &&
-														getRequiredLength(obj) >= 9 &&
-														getRequiredLength(obj) <= 12
-														? "row-height4"
-														: idArray.includes(obj.id) &&
-															getRequiredLength(obj) === 0
-															? "row-height5"
-															: ""
+										  getRequiredLength(obj) >= 4 &&
+										  getRequiredLength(obj) <= 6 &&
+										  getRequiredLength(obj) !== 0
+										? "row-height2"
+										: idArray.includes(obj.id) &&
+										  getRequiredLength(obj) >= 14 &&
+										  getRequiredLength(obj) !== 0
+										? "row-height"
+										: idArray.includes(obj.id) &&
+										  getRequiredLength(obj) >= 6 &&
+										  getRequiredLength(obj) <= 9
+										? "row-height3"
+										: idArray.includes(obj.id) &&
+										  getRequiredLength(obj) >= 9 &&
+										  getRequiredLength(obj) <= 12
+										? "row-height4"
+										: idArray.includes(obj.id) &&
+										  getRequiredLength(obj) >= 12 &&
+										  getRequiredLength(obj) <= 14
+										? "row-height6"
+										: idArray.includes(obj.id) &&
+										  getRequiredLength(obj) === 0
+										? "row-height5"
+										: ""
 									// "row-height"
 								}>
 								<td
 									onClick={() => handleShowRow(obj.id)}
 									className='fw-bold'>
 									{obj.name}
+									{getRequiredLength(obj)}
 								</td>
 								<td onClick={() => handleShowRow(obj.id)}>
 									{obj.CPF}
@@ -162,14 +167,14 @@ const DocumentTable = ({
 											obj.allStatus === "pending"
 												? "document-pending"
 												: obj.allStatus === "wait"
-													? "document-wait"
-													: "document-success"
+												? "document-wait"
+												: "document-success"
 										}
-									// onClick={
-									// 	obj.allStatus === "pending"
-									// 		? () => handleShowLinkModal(obj)
-									// 		: null
-									// }
+										// onClick={
+										// 	obj.allStatus === "pending"
+										// 		? () => handleShowLinkModal(obj)
+										// 		: null
+										// }
 									>
 										{/* {obj.allStatus === "pending"
 											? "Pendente"
@@ -178,23 +183,23 @@ const DocumentTable = ({
 										{obj.allStatus === "pending"
 											? "Aguard. doc."
 											: obj.allStatus === "wait"
-												? "Aguard. rev."
-												: "Concluído"}
+											? "Aguard. rev."
+											: "Concluído"}
 									</Button>
 								</td>
 								{(obj.allStatus === "pending" ||
 									obj.allStatus === "wait" ||
 									obj.allStatus === "approved") && (
-										<div>
-											{idArray.includes(obj.id) ? (
-												<Row
-													className='position-absolute'
-													style={{
-														left: "0",
-														bottom: "0",
-														width: "100%",
-													}}>
-													{/* {!obj.allStatus === "wait" && (
+									<div>
+										{idArray.includes(obj.id) ? (
+											<Row
+												className='position-absolute'
+												style={{
+													left: "0",
+													bottom: "0",
+													width: "100%",
+												}}>
+												{/* {!obj.allStatus === "wait" && (
 													<>
 														<TableRowDocument
 															obj={obj}
@@ -213,7 +218,7 @@ const DocumentTable = ({
 													</>
 												)} */}
 
-													{/* {obj.allStatus === "wait" ? (
+												{/* {obj.allStatus === "wait" ? (
 													<GenerateLinkBtn
 														onClick={() =>
 															handleShowLinkModal(
@@ -224,47 +229,47 @@ const DocumentTable = ({
 														md={12}
 													/>
 												) : ( */}
-													<>
-														<TableRowDocument
-															obj={obj}
-															handleShowImageModal={
-																handleShowImageModal
-															}
-														/>
-														<GenerateLinkBtn
-															onClick={() =>
-																handleShowLinkModal(
-																	obj
-																)
-															}
-															obj={obj}
-															md={12}
-														/>
-													</>
-													{/* )} */}
+												<>
+													<TableRowDocument
+														obj={obj}
+														handleShowImageModal={
+															handleShowImageModal
+														}
+													/>
+													<GenerateLinkBtn
+														onClick={() =>
+															handleShowLinkModal(
+																obj
+															)
+														}
+														obj={obj}
+														md={12}
+													/>
+												</>
+												{/* )} */}
 
-													{obj.allStatus ===
-														"approved" && (
-															<Row>
-																<Col
-																	className='d-flex justify-content-center mt-2 ms-4'
-																	style={{
-																		color: "#C4CCD2",
-																		fontSize:
-																			"12px",
-																	}}>
-																	Responsável por esse
-																	cliente:
-																	{adminName.name}
-																</Col>
-															</Row>
-														)}
-												</Row>
-											) : (
-												""
-											)}
-										</div>
-									)}
+												{obj.allStatus ===
+													"approved" && (
+													<Row>
+														<Col
+															className='d-flex justify-content-center mt-2 ms-4'
+															style={{
+																color: "#C4CCD2",
+																fontSize:
+																	"12px",
+															}}>
+															Responsável por esse
+															cliente:
+															{adminName.name}
+														</Col>
+													</Row>
+												)}
+											</Row>
+										) : (
+											""
+										)}
+									</div>
+								)}
 							</tr>
 						))}
 					</tbody>

@@ -15,34 +15,36 @@ const SocialContract = ({ obj, handleShowImageModal }) => {
 				Contrato social
 			</Col>
 			<Col>
-				{obj?.socialContract === null && !obj?.docStatus?.socialContract && (
-					<Button
-						className='w-100 p-0 ms-0'
-						onClick={
-							obj?.socialContract === null
-								? null
-								: () =>
-									handleShowImageModal(
-										obj,
-										"socialContract"
-									)
-						}
-						variant='outline-secondary'>
-						<label
-							style={{
-								rotate: "45deg",
-							}}>
-							<i className='bi bi-paperclip fs-2'></i>
-						</label>
-						<h6
-							style={{
-								color: "#C4CCD2",
-								fontSize: "11px",
-							}}>
-							Arraste e solte aqui ou importe dos seus arquivos
-						</h6>
-					</Button>
-				)}
+				{obj?.socialContract === null &&
+					!obj?.docStatus?.socialContract && (
+						<Button
+							className='w-100 p-0 ms-0'
+							onClick={
+								obj?.socialContract === null
+									? null
+									: () =>
+											handleShowImageModal(
+												obj,
+												"socialContract"
+											)
+							}
+							variant='outline-secondary'>
+							<label
+								style={{
+									rotate: "45deg",
+								}}>
+								<i className='bi bi-paperclip fs-2'></i>
+							</label>
+							<h6
+								style={{
+									color: "#C4CCD2",
+									fontSize: "11px",
+								}}>
+								Arraste e solte aqui ou importe dos seus
+								arquivos
+							</h6>
+						</Button>
+					)}
 				{obj?.socialContract && !obj?.socialContract?.approved && (
 					<Button
 						className='w-100 p-0 ms-0'
@@ -50,10 +52,10 @@ const SocialContract = ({ obj, handleShowImageModal }) => {
 							obj?.socialContract === null
 								? null
 								: () =>
-									handleShowImageModal(
-										obj,
-										"socialContract"
-									)
+										handleShowImageModal(
+											obj,
+											"socialContract"
+										)
 						}
 						variant='outline-warning'>
 						<i className='bi bi-clock-fill fs-2'></i>
@@ -75,10 +77,10 @@ const SocialContract = ({ obj, handleShowImageModal }) => {
 							obj?.socialContract === null
 								? null
 								: () =>
-									handleShowImageModal(
-										obj,
-										"socialContract"
-									)
+										handleShowImageModal(
+											obj,
+											"socialContract"
+										)
 						}
 						variant='outline-success'>
 						<i className='bi bi-check-lg fs-2'></i>
@@ -92,27 +94,32 @@ const SocialContract = ({ obj, handleShowImageModal }) => {
 						</h6>
 					</Button>
 				)}
-				{obj?.socialContract === null && obj?.docStatus?.socialContract && (
-					<Button
-						className='w-100  p-0 ms-0 reject-card'
-						onClick={
-							obj?.socialContract === null
-								? null
-								: () => handleShowImageModal(obj, "socialContract")
-						}
-						// variant='outline-danger'
-						style={{ border: "1px solid #E97F1E" }}>
-						<i className='bi bi-x-lg fs-2 fw-bold rejected-cross'></i>
-						{/* <img style={{ height: '50px' }} src="assets/img/raject.org.png" /> */}
-						<h6
-							style={{
-								color: "#C4CCD2",
-								fontSize: "11px",
-							}}>
-							Aguardando reenvio de documentação
-						</h6>
-					</Button>
-				)}
+				{obj?.socialContract === null &&
+					obj?.docStatus?.socialContract && (
+						<Button
+							className='w-100  p-0 ms-0 reject-card'
+							onClick={
+								obj?.socialContract === null
+									? null
+									: () =>
+											handleShowImageModal(
+												obj,
+												"socialContract"
+											)
+							}
+							// variant='outline-danger'
+							style={{ border: "1px solid #E97F1E" }}>
+							<i className='bi bi-x-lg fs-2 fw-bold rejected-cross'></i>
+							{/* <img style={{ height: '50px' }} src="assets/img/raject.org.png" /> */}
+							<h6
+								style={{
+									color: "#C4CCD2",
+									fontSize: "11px",
+								}}>
+								Aguardando reenvio de documentação
+							</h6>
+						</Button>
+					)}
 			</Col>
 		</Col>
 	);

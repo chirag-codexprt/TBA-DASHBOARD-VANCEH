@@ -18,13 +18,19 @@ import {
 import SocialContractCard from "./SocialContractCard";
 import AddressProofCard from "./AddressProofCard";
 import { toast } from "react-toastify";
-import { attachDocument, contactForm } from "../../helper/API/contact";
+import {
+	approveVisitor,
+	attachDocument,
+	contactForm,
+	generateLink,
+} from "../../helper/API/contact";
 import {
 	submitAddressDocument,
 	submitDocument,
 } from "../../helper/API/document";
 import TableRowDocument from "./NewClientCards/TableRowDocument";
 import GenerateLinkBtn from "./NewClientCards/GenerateLinkBtn";
+import { LINK_URL } from "../../config";
 
 const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 	const [characterLimit] = useState(25);
@@ -84,7 +90,7 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 		setLoading(true);
 		// console.log("formValues", formValues);
 		contactForm(formValues).then((res) => {
-			// console.log("first form", res);
+			console.log("first form", res);
 			if (res.success) {
 				let call1;
 				let call2;
@@ -101,6 +107,81 @@ const NewMemberAdd = ({ show, handleClose, refresh, setRefresh }) => {
 				let call13;
 				let call14;
 				setLoading(true);
+
+				const submitData = {
+					id: res.data.id,
+					action: "approved",
+				};
+				console.log("submitData visitor", submitData);
+				approveVisitor(submitData).then((resp) => {
+					if (resp.success) {
+						console.log("resp approve visitor ::", resp);
+						// setLoading(false);
+						// toast.success(resp.message);
+						const link = `${LINK_URL}${res.id}/${res.data.documentRequest.id}`;
+						const submitLink = {
+							permission: {
+								CNPJDOC: images.CNPJDOC ? true : false,
+								CPFDOC: images.CPFDOC ? true : false,
+								socialContract: images.socialContract
+									? true
+									: false,
+								addressProof: images.addressProof
+									? true
+									: false,
+								balanceIncome: images.balanceIncome
+									? true
+									: false,
+								balanceSheet: images.balanceSheet
+									? true
+									: false,
+								partnerIncome: images.partnerIncome
+									? true
+									: false,
+								billingCustomer: images.billingCustomer
+									? true
+									: false,
+								partnerDocument: images.partnerDocument
+									? true
+									: false,
+								updatedBankDebt: images.updatedBankDebt
+									? true
+									: false,
+								spouseDocument: images.spouseDocument
+									? true
+									: false,
+								extractBusiestBank: images.extractBusiestBank
+									? true
+									: false,
+								companyPhotos: images.companyPhotos
+									? true
+									: false,
+								abcCurve: images.abcCurve ? true : false,
+							},
+							contactId: res.data.id,
+							requestId: res.data.documentRequest,
+							generateLink: link,
+						};
+						console.log(
+							"submitLink fromgeneratelink :::",
+							submitLink
+						);
+						console.log(
+							"submitLink fromgeneratelink res.data :::",
+							res.data
+						);
+						generateLink(submitLink).then((res) => {
+							console.log("res link ::", res);
+							if (res.success) {
+								// setRefresh(refresh + 1);
+								// toast.success(res.message);
+							} else {
+								toast.error(res.message);
+							}
+						});
+					}
+				});
+
 				if (images.socialContract) {
 					const formData = new FormData();
 					formData.append("addressProof", images.socialContract);

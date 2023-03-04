@@ -130,7 +130,6 @@ const DocumentTable = ({
 									onClick={() => handleShowRow(obj.id)}
 									className='fw-bold'>
 									{obj.name}
-									{getRequiredLength(obj)}
 								</td>
 								<td onClick={() => handleShowRow(obj.id)}>
 									{obj.CPF}

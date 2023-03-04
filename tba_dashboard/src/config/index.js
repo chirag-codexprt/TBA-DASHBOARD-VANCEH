@@ -14,11 +14,11 @@ const envData = (ENV, local, test, production) => {
 	}
 };
 
-export const ENV_TYPE = "production"; // local // test // production
+export const ENV_TYPE = "local"; // local // test // production
 
 export const BASE_URL = envData(
 	ENV_TYPE,
-	"http://192.168.1.112:3007/api/v1/",
+	"http://192.168.1.104:3007/api/v1/",
 	"https://api.tbaconsulting.com.br/api/v1/",
 	"https://api.tbaconsulting.com.br/api/v1/"
 );
